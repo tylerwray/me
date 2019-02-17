@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "tylerwray.me",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "My special corner of the internet",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Tyler Wray",
   "dependencies": {
     "gatsby": "^2.1.4",
     "gatsby-image": "^2.0.29",
@@ -19,15 +19,16 @@
     "react-helmet": "^5.2.0"
   },
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "blog",
+    "tyler wray"
   ],
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
     "start": "npm run develop",
-    "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
+    "serve": "gatsby serve"
   },
   "repository": {
     "type": "git",
