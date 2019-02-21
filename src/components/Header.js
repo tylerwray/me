@@ -98,7 +98,7 @@ function Header({ blog }) {
       <Background flat={blog} />
       <Container>
         <Title to="/">Tyler Wray</Title>
-        <HamburgerButton onClick={toggleMenu}>
+        <HamburgerButton onClick={toggleMenu} aria-label="menu">
           <HamburgerLines open={menuOpen} />
         </HamburgerButton>
       </Container>
