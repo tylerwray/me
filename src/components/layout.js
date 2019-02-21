@@ -1,5 +1,5 @@
 import React from "react"
-import PropTypes from "prop-types"
+import { node, bool } from "prop-types"
 import styled from "styled-components"
 
 import Header from "./Header"
@@ -11,9 +11,9 @@ const Container = styled.div`
   padding-top: 0;
 `
 
-const Layout = ({ children }) => (
+const Layout = ({ children, blog }) => (
   <>
-    <Header />
+    <Header blog={blog} />
     <Container>
       <main>{children}</main>
     </Container>
@@ -21,7 +21,8 @@ const Layout = ({ children }) => (
 )
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired
+  children: node.isRequired,
+  blog: bool
 }
 
 export default Layout

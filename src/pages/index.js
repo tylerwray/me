@@ -1,20 +1,24 @@
 import React from "react"
+import { graphql, Link } from "gatsby"
 
 import Layout from "../components/Layout"
 import SEO from "../components/SEO"
-import Card from "../components/Card"
-import { graphql } from "gatsby"
 
-function IndexPage() {
+function IndexPage({ data }) {
   return (
     <Layout>
       <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
-      <Card
-        title="React anti-patterns"
-        url="/react-anti-patterns/"
-        dateCreated="2019-02-17"
-        timeToRead={8}
-      />
+      {data.allMdx.edges.map(({ node }) => (
+        <div key={node.id}>
+          <div>{node.frontmatter.title}</div>
+          <div>
+            <span>{node.frontmatter.date}</span>
+            <span>{node.timeToRead} mins</span>
+          </div>
+          <div>{node.excerpt}</div>
+          <Link to={node.frontmatter.slug}>READ</Link>
+        </div>
+      ))}
     </Layout>
   )
 }
@@ -30,6 +34,7 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
+          id
           excerpt
           timeToRead
           frontmatter {

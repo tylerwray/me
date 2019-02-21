@@ -1,11 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
 import MDXRenderer from "gatsby-mdx/mdx-renderer"
+
 import Layout from "./Layout"
 
 function BlogLayout({ data: { mdx } }) {
   return (
-    <Layout>
+    <Layout blog>
       <h1>{mdx.frontmatter.title}</h1>
       <MDXRenderer>{mdx.code.body}</MDXRenderer>
     </Layout>
