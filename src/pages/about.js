@@ -9,7 +9,6 @@ const About = () => (
       title="About Tyler Wray"
       keywords={["tyler wray", "about", "family", "hobbies"]}
     />
-    <div>Hi</div>
   </Layout>
 )
 

@@ -1,5 +1,5 @@
 import React from "react"
 
-const Card = () => <div />
+const Card = ({ title, dateCreated, snippet, url }) => <div />
 
 export default Card

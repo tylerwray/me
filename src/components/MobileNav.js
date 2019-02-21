@@ -2,6 +2,8 @@ import React from "react"
 import { bool } from "prop-types"
 import styled from "styled-components"
 
+import geometry from "../images/geometry.png"
+
 import { Link } from "gatsby"
 
 const Nav = styled.div`
@@ -15,13 +17,14 @@ const Nav = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background: var(--green);
+  background-color: var(--blue);
+  background-image: url(${geometry});
 `
 
 const link = `
   cursor: pointer;
   text-decoration: none;
-  color: var(--black);
+  color: var(--cream);
   font-size: 22px;
   margin: 10px 0px;
   padding: 10px;
