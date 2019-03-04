@@ -1,44 +1,36 @@
 const path = require("path")
 
-exports.createPages = ({ graphql, actions }) => {
-  // Destructure the createPage function from the actions object
+exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 
-  return new Promise((resolve, reject) => {
-    resolve(
-      graphql(
-        `
-          {
-            allMdx {
-              edges {
-                node {
-                  id
-                  frontmatter {
-                    slug
-                  }
-                }
-              }
+  const blogPostTemplate = path.resolve(`src/templates/blogTemplate.js`)
+
+  return graphql(`
+    {
+      allMarkdownRemark(
+        sort: { order: DESC, fields: [frontmatter___date] }
+        limit: 1000
+      ) {
+        edges {
+          node {
+            frontmatter {
+              path
             }
           }
-        `
-      ).then(result => {
-        // this is some boilerlate to handle errors
-        if (result.errors) {
-          console.error(result.errors)
-          reject(result.errors)
         }
+      }
+    }
+  `).then(result => {
+    if (result.errors) {
+      return Promise.reject(result.errors)
+    }
 
-        // We'll call `createPage` for each result
-        result.data.allMdx.edges.forEach(({ node }) => {
-          createPage({
-            // This is the slug we created before
-            // (or `node.frontmatter.slug`)
-            path: node.frontmatter.slug,
-            // This component will wrap our MDX content
-            component: path.resolve("./src/components/BlogLayout.js")
-          })
-        })
+    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+      createPage({
+        path: node.frontmatter.path,
+        component: blogPostTemplate,
+        context: {}, // additional data can be passed via context
       })
-    )
+    })
   })
 }

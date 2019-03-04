@@ -42,7 +42,20 @@ module.exports = {
       }
     },
     "gatsby-plugin-styled-components",
-    "gatsby-mdx"
+    {
+      resolve: "gatsby-transformer-remark",
+      options: {
+        plugins: [
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              maxWidth: 960
+            }
+          },
+          "gatsby-remark-prismjs"
+        ]
+      }
+    }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',
