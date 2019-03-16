@@ -74,7 +74,7 @@ const Background = styled.div`
   position: absolute;
   width: 100%;
   min-height: ${props => (props.flat ? 0 : "140px")};
-  height: 10vh;
+  height: 35vh;
   max-height: 560px;
   box-sizing: border-box;
   padding: 48px 48px 32px;
@@ -84,6 +84,10 @@ const Background = styled.div`
   background-color: var(--blue);
   background-image: url(${geometry});
   z-index: var(--index-lowest);
+
+  @media (min-width: 700px) {
+    height: 50vh;
+  }
 `
 
 function Header({ blog }) {

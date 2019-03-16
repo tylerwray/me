@@ -52,7 +52,12 @@ module.exports = {
               maxWidth: 960
             }
           },
-          "gatsby-remark-prismjs"
+          {
+            resolve: "gatsby-remark-prismjs",
+            options: {
+              inlineCodeMarker: "+"
+            }
+          }
         ]
       }
     }

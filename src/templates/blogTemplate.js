@@ -23,6 +23,7 @@ export default function Template({
       <Info>
         {frontmatter.author} · {frontmatter.date}
       </Info>
+      <img src={frontmatter.banner} />
       <div dangerouslySetInnerHTML={{ __html: html }} />
     </Layout>
   )
