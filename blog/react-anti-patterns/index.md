@@ -5,12 +5,15 @@ author: "Tyler Wray"
 date: 2019-02-20
 exerpt:
 banner: "./images/hero.jpg"
-bannerCredit: "Photo by [Lane Smith](https://unsplash.com/photos/wEsqjsjIDLs)"
+bannerCreditName: Lane Smith
+bannerCreditUrl: https://unsplash.com/photos/wEsqjsjIDLs
 ---
 
-![patterns of tires](./images/hero.jpg "Tire Patterns")
+- Am I using the right pattern?
+- What will my coworkers think of this?
+- Is this readable?
 
-I've been working with React for 3 1/2 now and these are some patterns that have come back to bite me. This is not a post about
+Everyone asks themselves these questions at some point when learning somehting new. I've been working with React for 3 1/2 now and these are some patterns that have come back to bite me.
 
 ---
 
@@ -64,7 +67,7 @@ class Widget extends Base {
 
 How to you avoid this? **DON'T DO IT.** The funny thing is, [React has explicit warnings against this!](https://reactjs.org/docs/composition-vs-inheritance.html)
 
-To be clear, you shouldn't use the `js+extends` keyword in javascript to inherit other React components.
+To be clear, you shouldn't use the `extends` keyword in javascript to inherit other React components.
 
 Read he docs people.
 

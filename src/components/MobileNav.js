@@ -41,7 +41,7 @@ const NavLink = styled(Link)`
 
 const MobileNav = ({ open }) => (
   <Nav open={open}>
-    <NavAnchor href="https://github.com/tylerwray">Github</NavAnchor>
+    <NavAnchor href="https://github.com/tylerwray/me">Github</NavAnchor>
     <NavAnchor href="https://twitter.com/wray_tw">Twitter</NavAnchor>
     <NavLink to="/about/">About Me</NavLink>
   </Nav>

@@ -6,6 +6,7 @@ import { Link } from "gatsby"
 import geometry from "../images/geometry.png"
 
 import MobileNav from "./MobileNav"
+import Nav from "./Nav"
 
 const Container = styled.div`
   margin: 0 auto;
@@ -35,6 +36,10 @@ const HamburgerButton = styled.button`
   z-index: var(--index-level-3);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+
+  @media (min-width: 700px) {
+    display: none;
+  }
 `
 
 const HamburgerLines = styled.div`
@@ -73,8 +78,8 @@ const HamburgerLines = styled.div`
 const Background = styled.div`
   position: absolute;
   width: 100%;
-  min-height: ${props => (props.flat ? 0 : "140px")};
-  height: 35vh;
+  min-height: ${props => (props.flat ? 0 : "195px")};
+  height: ${props => (props.flat ? "10vh" : "25vh")};
   max-height: 560px;
   box-sizing: border-box;
   padding: 48px 48px 32px;
@@ -86,7 +91,14 @@ const Background = styled.div`
   z-index: var(--index-lowest);
 
   @media (min-width: 700px) {
-    height: 50vh;
+    height: ${props => (props.flat ? "10vh" : "40vh")};
+  }
+`
+
+const NavMediaQuery = styled.div`
+  display: none;
+  @media (min-width: 700px) {
+    display: block;
   }
 `
 
@@ -105,6 +117,9 @@ function Header({ blog }) {
         <HamburgerButton onClick={toggleMenu} aria-label="menu">
           <HamburgerLines open={menuOpen} />
         </HamburgerButton>
+        <NavMediaQuery>
+          <Nav />
+        </NavMediaQuery>
       </Container>
       <MobileNav open={menuOpen} />
     </header>

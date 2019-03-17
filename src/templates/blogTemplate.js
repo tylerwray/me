@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
+import Img from "gatsby-image"
 import styled from "styled-components"
 
 import Layout from "../components/Layout"
@@ -10,6 +11,10 @@ const Header = styled.h1`
 
 const Info = styled.div`
   margin-bottom: 8px;
+`
+
+const Content = styled.div`
+  padding-top: 0.5rem;
 `
 
 export default function Template({
@@ -23,8 +28,12 @@ export default function Template({
       <Info>
         {frontmatter.author} · {frontmatter.date}
       </Info>
-      <img src={frontmatter.banner} />
-      <div dangerouslySetInnerHTML={{ __html: html }} />
+      <Img fluid={frontmatter.banner.childImageSharp.fluid} />
+      <sup>
+        Photo By{" "}
+        <a href={frontmatter.bannerCreditUrl}>{frontmatter.bannerCreditName}</a>
+      </sup>
+      <Content dangerouslySetInnerHTML={{ __html: html }} />
     </Layout>
   )
 }
@@ -37,6 +46,15 @@ export const pageQuery = graphql`
         title
         author
         date(formatString: "MMMM DD, YYYY")
+        banner {
+          childImageSharp {
+            fluid(maxWidth: 640) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        bannerCreditName
+        bannerCreditUrl
       }
     }
   }
