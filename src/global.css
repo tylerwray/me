@@ -1,7 +1,7 @@
 @import "https://fonts.googleapis.com/css?family=Open+Sans:400,600|Satisfy";
 
 :root {
-  --cream: rgba(246, 247, 235, 1);
+  --cream: rgb(249, 251, 252);
   --pink: rgba(233, 79, 55, 1);
   --black: rgba(57, 62, 65, 1);
   --blue: rgba(63, 136, 197, 1);
