@@ -5,13 +5,11 @@ import styled from "styled-components"
 import Layout from "../components/Layout"
 import SEO from "../components/SEO"
 
-const Card = styled.div`
+const Item = styled.div`
   margin-top: 16px;
-  background-color: white;
   color: var(--black);
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
-  border-radius: 5px;
   padding: 16px;
+  border-bottom: 1px solid var(--slate-grey);
 `
 
 const Title = styled(Link)`
@@ -20,6 +18,10 @@ const Title = styled(Link)`
   color: var(--black);
   text-decoration: none;
   cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `
 
 const Info = styled.div`
@@ -43,17 +45,18 @@ function IndexPage({ data }) {
     <Layout>
       <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
       {data.allMarkdownRemark.edges.map(({ node }) => (
-        <Card key={node.id}>
+        <Item key={node.id}>
           <Title to={node.frontmatter.path}>{node.frontmatter.title}</Title>
           <Info>
             <Date>{node.frontmatter.date}</Date>
             <Dot>·</Dot>
             <TimeToRead>
-              {"🗻".repeat(node.timeToRead)} {node.timeToRead} min read
+              {"📚".repeat(Math.floor(node.timeToRead / 5))} {node.timeToRead}{" "}
+              min read
             </TimeToRead>
           </Info>
           <Excerpt>{node.excerpt}</Excerpt>
-        </Card>
+        </Item>
       ))}
     </Layout>
   )

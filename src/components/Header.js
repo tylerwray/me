@@ -115,7 +115,7 @@ function Header({ isTransparent }) {
         </Title>
         <HamburgerButton onClick={toggleMenu} aria-label="menu">
           <HamburgerLines
-            color={menuOpen ? "--cream" : "--black"}
+            color={menuOpen ? "--cream" : isTransparent ? "--black": "--cream"}
             open={menuOpen}
           />
         </HamburgerButton>
