@@ -32,7 +32,7 @@ I first started writing React after reading a book on design patterns, and the f
 
 ![Headfirst Design Patterns Book](./images/headfirst-design-patterns.jpg "Headfirst Design Patterns")
 
-<sup>Great book, worth the read 👍🏼</sup>
+<div style="font-size: 12px; text-align: center; position: relative;top: -20px;">Great book, worth the read 👍🏼</div>
 
 The basics of inheritance are you have a class that can _inherit_ the behavior of another class. Similar to how we inherit traits from our parents.
 

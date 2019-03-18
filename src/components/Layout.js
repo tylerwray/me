@@ -11,9 +11,9 @@ const Container = styled.div`
   padding-top: 0;
 `
 
-const Layout = ({ children, blog }) => (
+const Layout = ({ children, isBlog }) => (
   <>
-    <Header blog={blog} />
+    <Header isTransparent={isBlog} />
     <Container>
       <main>{children}</main>
     </Container>

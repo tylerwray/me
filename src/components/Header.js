@@ -8,10 +8,22 @@ import geometry from "../images/geometry.png"
 import MobileNav from "./MobileNav"
 import Nav from "./Nav"
 
+const Wrapper = styled.header`
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 32px;
+  background-color: var(${props => props.color});
+  background-image: ${props =>
+    props.hideTexture ? "none" : `url(${geometry})`};
+  z-index: var(--index-lowest);
+`
+
 const Container = styled.div`
-  margin: 0 auto;
+  width: 100%;
   max-width: 960px;
-  padding: 1.5rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -20,7 +32,7 @@ const Container = styled.div`
 const Title = styled(Link)`
   font-size: 32px;
   line-height: 40px;
-  color: var(--cream);
+  color: var(${props => props.color});
   text-decoration: none;
   font-family: Satisfy;
   z-index: var(--index-level-3);
@@ -47,7 +59,7 @@ const HamburgerLines = styled.div`
   height: 2px;
   position: relative;
   left: 0px;
-  background: ${props => (props.open ? "transparent" : "var(--cream)")};
+  background: ${props => (props.open ? "transparent" : `var(${props.color})`)};
   transition: all 250ms cubic-bezier(0.86, 0, 0.07, 1) 0s;
 
   &::before {
@@ -58,7 +70,7 @@ const HamburgerLines = styled.div`
     position: absolute;
     left: 0px;
     transform: rotate(${props => (props.open ? 45 : 0)}deg);
-    background: var(--cream);
+    background: var(${props => props.color});
     transition: all 250ms cubic-bezier(0.86, 0, 0.07, 1) 0s;
   }
 
@@ -70,28 +82,8 @@ const HamburgerLines = styled.div`
     position: absolute;
     left: 0px;
     transform: rotate(${props => (props.open ? -45 : 0)}deg);
-    background: var(--cream);
+    background: var(${props => props.color});
     transition: all 250ms cubic-bezier(0.86, 0, 0.07, 1) 0s;
-  }
-`
-
-const Background = styled.div`
-  position: absolute;
-  width: 100%;
-  min-height: ${props => (props.flat ? 0 : "195px")};
-  height: ${props => (props.flat ? "10vh" : "25vh")};
-  max-height: 560px;
-  box-sizing: border-box;
-  padding: 48px 48px 32px;
-  overflow: hidden;
-  transform: skewY(${props => (props.flat ? 0 : 8)}deg);
-  transform-origin: 100%;
-  background-color: var(--blue);
-  background-image: url(${geometry});
-  z-index: var(--index-lowest);
-
-  @media (min-width: 700px) {
-    height: ${props => (props.flat ? "10vh" : "40vh")};
   }
 `
 
@@ -102,7 +94,7 @@ const NavMediaQuery = styled.div`
   }
 `
 
-function Header({ blog }) {
+function Header({ isTransparent }) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   function toggleMenu() {
@@ -110,24 +102,34 @@ function Header({ blog }) {
   }
 
   return (
-    <header>
-      <Background flat={blog} />
+    <Wrapper
+      color={isTransparent ? "--cream" : "--blue"}
+      hideTexture={isTransparent}
+    >
       <Container>
-        <Title to="/">Tyler Wray</Title>
+        <Title
+          to="/"
+          color={menuOpen ? "--cream" : isTransparent ? "--black" : "--cream"}
+        >
+          Tyler Wray
+        </Title>
         <HamburgerButton onClick={toggleMenu} aria-label="menu">
-          <HamburgerLines open={menuOpen} />
+          <HamburgerLines
+            color={menuOpen ? "--cream" : "--black"}
+            open={menuOpen}
+          />
         </HamburgerButton>
         <NavMediaQuery>
-          <Nav />
+          <Nav textColor={isTransparent ? "--black" : "--cream"} />
         </NavMediaQuery>
       </Container>
-      <MobileNav open={menuOpen} />
-    </header>
+        <MobileNav open={menuOpen} />
+    </Wrapper>
   )
 }
 
 Header.propTypes = {
-  blog: bool
+  isTransparent: bool
 }
 
 export default Header

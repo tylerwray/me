@@ -4,36 +4,43 @@ import Img from "gatsby-image"
 import styled from "styled-components"
 
 import Layout from "../components/Layout"
+import { Footer } from "../components/Footer"
 
 const Header = styled.h1`
   margin-top: 1.45rem;
+  margin-bottom: .25rem;
 `
 
 const Info = styled.div`
-  margin-bottom: 8px;
+  margin-bottom: 1.85rem;
+`
+
+const PhotoCredit = styled.div`
+  margin-top: 4px;
+  font-size: 12px;
+  text-align: center;
 `
 
 const Content = styled.div`
   padding-top: 0.5rem;
 `
 
-export default function Template({
-  data // this prop will be injected by the GraphQL query below.
-}) {
-  const { markdownRemark } = data // data.markdownRemark holds our post data
+export default function Template({ data }) {
+  const { markdownRemark } = data
   const { frontmatter, html } = markdownRemark
   return (
-    <Layout blog>
+    <Layout isBlog>
       <Header>{frontmatter.title}</Header>
       <Info>
         {frontmatter.author} · {frontmatter.date}
       </Info>
       <Img fluid={frontmatter.banner.childImageSharp.fluid} />
-      <sup>
+      <PhotoCredit>
         Photo By{" "}
         <a href={frontmatter.bannerCreditUrl}>{frontmatter.bannerCreditName}</a>
-      </sup>
+      </PhotoCredit>
       <Content dangerouslySetInnerHTML={{ __html: html }} />
+      <Footer />
     </Layout>
   )
 }
