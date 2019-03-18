@@ -13,7 +13,7 @@ bannerCreditUrl: https://unsplash.com/photos/wEsqjsjIDLs
 - What will my coworkers think of this?
 - Is this readable?
 
-Everyone asks themselves these questions at some point when learning somehting new. I've been working with React for 3 1/2 now and these are some patterns that have come back to bite me.
+Everyone asks themselves these questions at some point when learning something new. I've been working with React for 3 1/2 now and these are some patterns that have come back to bite me.
 
 ---
 
@@ -28,13 +28,13 @@ Testable code is usually easier to read, so write tests! 🧪
 
 ## Inheritance 👨‍👧
 
-I first started writing React after reading a book on design patterns, and the first chapter was on Inheritence.
+I first started writing React after reading a book on design patterns, and the first chapter was on Inheritance.
 
 ![Headfirst Design Patterns Book](./images/headfirst-design-patterns.jpg "Headfirst Design Patterns")
 
 <sup>Great book, worth the read 👍🏼</sup>
 
-The basics of inheritence is you have a class that can _inherit_ the behavior of another class. Simliar to how we inherit traits from our parents.
+The basics of inheritance are you have a class that can _inherit_ the behavior of another class. Similar to how we inherit traits from our parents.
 
 One of my first challenges was I had two components that needed the same data fetching behavior. And what came next was some of the worst code I have EVER written. I broke the number one React rule, I made a component base class 🙈
 
@@ -65,17 +65,17 @@ class Widget extends Base {
 
 > This probably even looks better than it did 👆
 
-How to you avoid this? **DON'T DO IT.** The funny thing is, [React has explicit warnings against this!](https://reactjs.org/docs/composition-vs-inheritance.html)
+How do you avoid this? **DON'T DO IT.** The funny thing is, [React has explicit warnings against this!](https://reactjs.org/docs/composition-vs-inheritance.html)
 
 To be clear, you shouldn't use the `extends` keyword in javascript to inherit other React components.
 
-Read he docs people.
+Read the docs people.
 
 ---
 
 ## Prop spreading 💔
 
-I'm pretty sure eveyone runs into this problem in React. I call it _Prop Madness_.
+I'm pretty sure everyone runs into this problem in React. I call it _Prop Madness_.
 Here is an example:
 
 ```jsx
@@ -132,7 +132,7 @@ This approach couples the two components together, you may as well inline the `j
 
 React created a built-in approach to solving this problem. It's called [Context](https://reactjs.org/docs/context.html).
 
-Context can solve this problem quite nicely, and I recommend learning the api. However, if you use something like Redux, Apollo, Relay, MobX, or anything similar, keep in mind the next Anti-pattern.
+Context can solve this problem quite nicely, and I recommend learning the API. However, if you use something like Redux, Apollo, Relay, MobX, or anything similar, keep in mind the next Anti-pattern.
 
 ---
 
@@ -140,7 +140,7 @@ Context can solve this problem quite nicely, and I recommend learning the api. H
 
 Too often I see code that is over-abstracted and split up into pieces that are too small. Not just with React either. Have you ever seen a generic `/utils` folder that holds all the business logic and each _"utility"_ is only used in one other place? It's misdirection (not abstraction), and it hurts code readability.
 
-Our Prophet, Dan Abramov, recently made an adendumn to his post on [Presentational vs Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0), stating that separation like this can be harmful when taken too seriously.
+Our Prophet, Dan Abramov, recently made an addendum to his post on [Presentational vs Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0), stating that separation like this can be harmful when taken too seriously.
 
 I live by the following mantra:
 
@@ -148,7 +148,7 @@ I live by the following mantra:
 
 ![captain obvious](https://media.giphy.com/media/xT9DPIZXsgAYE3SNvW/giphy.gif "Captain Obvious")
 
-Simple right? The idea is that we don't need to separate concerns and make components focused on _styles_ 💅, or _data_ 📈. A component is a component, and that means it doesn't matter if it has _css_, or makes _api_ calls.
+Simple right? The idea is that we don't need to separate concerns and make components focused on _styles_ 💅 or _data_ 📈. A component is a component, and that means it doesn't matter if it has _css_, or makes _api_ calls.
 _Prop Madness_ can occur when trying to separate components by what they _do_ instead of what they _are_.
 
 Don't over-abstract your components. Don't focus on [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) code _too_ much, and favor code readability over patterns and reuse.
@@ -216,15 +216,15 @@ export function NavBar() {
 }
 ```
 
-> This is completely arbitrary code, and I'm leaving quite a bit out.
+> This code is completely arbitrary, and I'm leaving quite a bit out.
 
-Notice how it combines styles, data loading, and regular markup? Especially notice how this file encapsulates all the logic around the NavBar search? We should optimize our code for readability, and in most cases having 3 files open to understand how a nav bar gets rendered is not readable.
+Notice how it combines styles, data loading, and regular markup? Especially notice how this file encapsulates all the logic around the NavBar search? We should optimize our code for readability. In most cases having 3 files open to understand how a nav bar gets rendered is not readable.
 
 ## Lastly... 🤔
 
 _There are no anti-patterns!_
 
-Yeah kinda boring conclusion here. I think the reason I've come to love React is the un-opinionated stance it takes. Do what makes sense and follow good principles of programming.
+Yeah, kinda boring conclusion here. I think the reason I've come to love React is the un-opinionated stance it takes. Do what makes sense and follow good principles of programming.
 
 - 🧪 Write tests
 - ♻️ Always be refactoring
