@@ -32,8 +32,8 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: "tyler-wray's-blog",
-        short_name: "tyler-wray",
+        name: "Tyler Wray's Blog",
+        short_name: "Blog",
         start_url: "/",
         background_color: "#3F88C5",
         theme_color: "#3F88C5",
