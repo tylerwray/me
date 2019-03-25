@@ -32,8 +32,8 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: "gatsby-starter-default",
-        short_name: "starter",
+        name: "tyler-wray's-blog",
+        short_name: "tyler-wray",
         start_url: "/",
         background_color: "#3F88C5",
         theme_color: "#3F88C5",
@@ -60,9 +60,13 @@ module.exports = {
           }
         ]
       }
-    }
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.app/offline
-    // 'gatsby-plugin-offline',
+    },
+    {
+      resolve: "gatsby-plugin-google-analytics",
+      options: {
+        trackingId: "UA-92617795-2"
+      }
+    },
+    "gatsby-plugin-offline"
   ]
 }
