@@ -13,7 +13,7 @@ bannerCreditUrl: https://unsplash.com/photos/wEsqjsjIDLs
 - What will my coworkers think of this?
 - Is this readable?
 
-Everyone asks themselves these questions at some point when learning something new. I've been working with React for 3 1/2 now and these are some patterns that have come back to bite me.
+Everyone asks themselves these questions at some point when learning something new. I've been working with React for 3 1/2 years now and these are some patterns that have come back to bite me.
 
 ---
 
