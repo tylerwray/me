@@ -6,6 +6,7 @@ import Header from "./Header"
 
 const Container = styled.div`
   margin: 0 auto;
+  margin-top: 16px;
   max-width: 960px;
   padding: 0px 1.0875rem 1.45rem;
   padding-top: 0;

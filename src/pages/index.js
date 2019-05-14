@@ -6,10 +6,10 @@ import Layout from "../components/Layout"
 import SEO from "../components/SEO"
 
 const Item = styled.div`
-  margin-top: 16px;
   color: var(--black);
   padding: 16px;
   border-bottom: 1px solid var(--slate-grey);
+  margin-bottom: 16px;
 `
 
 const Title = styled(Link)`
