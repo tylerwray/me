@@ -6,11 +6,11 @@ import { Link } from "gatsby"
 
 const Wrapper = styled.div`
   & > a {
-    color: var(${props => props.color});
+    color: var(--black);
   }
 `
 
-const link = `
+const NavLink = styled(Link)`
   cursor: pointer;
   text-decoration: none;
   font-size: 18px;
@@ -19,24 +19,14 @@ const link = `
   border-radius: 5px;
 
   &:hover {
-    text-decoration: underline
+    text-decoration: underline;
   }
 `
 
-const NavAnchor = styled.a`
-  ${link}
-`
-
-const NavLink = styled(Link)`
-  ${link}
-`
-
-const Nav = ({ textColor }) => (
-  <Wrapper color={textColor}>
-    <NavAnchor href="https://github.com/tylerwray/me">Github</NavAnchor>
-    <NavAnchor href="https://twitter.com/wray_tw">Twitter</NavAnchor>
+const Nav = () => (
+  <Wrapper>
     <NavLink to="/about/" activeStyle={{ textDecoration: "underline" }}>
-      About Me
+      About me
     </NavLink>
   </Wrapper>
 )

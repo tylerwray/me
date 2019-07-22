@@ -2,7 +2,6 @@ import React from "react"
 import { bool } from "prop-types"
 import styled from "styled-components"
 
-import geometry from "../images/geometry.png"
 
 import { Link } from "gatsby"
 
@@ -18,7 +17,6 @@ const Nav = styled.div`
   justify-content: center;
   flex-direction: column;
   background-color: var(--blue);
-  background-image: url(${geometry});
 `
 
 const link = `

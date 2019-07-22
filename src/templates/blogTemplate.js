@@ -8,7 +8,7 @@ import { Footer } from "../components/Footer"
 
 const Header = styled.h1`
   margin-top: 1.45rem;
-  margin-bottom: .25rem;
+  margin-bottom: 0.25rem;
 `
 
 const Info = styled.div`
@@ -29,7 +29,7 @@ export default function Template({ data }) {
   const { markdownRemark } = data
   const { frontmatter, html } = markdownRemark
   return (
-    <Layout isBlog>
+    <Layout>
       <Header>{frontmatter.title}</Header>
       <Info>
         {frontmatter.author} · {frontmatter.date}
