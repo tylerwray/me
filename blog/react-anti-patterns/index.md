@@ -3,7 +3,6 @@ title: React Anti-Patterns
 path: /blog/react-anti-patterns
 author: "Tyler Wray"
 date: 2019-02-20
-exerpt:
 banner: "./images/hero.jpg"
 bannerCreditName: Lane Smith
 bannerCreditUrl: https://unsplash.com/photos/wEsqjsjIDLs
