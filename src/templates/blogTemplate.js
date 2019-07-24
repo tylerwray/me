@@ -11,7 +11,7 @@ export default function Template({ data }) {
 
   return (
     <Layout>
-      <h3 className="mb-1">{frontmatter.title}</h3>
+      <div className="text-xl font-bold mb-1">{frontmatter.title}</div>
       <div className="mb-4">
         <span className="text-sm">{frontmatter.author}</span>&nbsp;
         <span className="text-xs text-gray-600">{frontmatter.date}</span>
