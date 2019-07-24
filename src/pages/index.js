@@ -9,7 +9,7 @@ function Post({ node }) {
     <>
       <div className="text-black mb-2">
         <Link
-          className="text-xl font-bold text-black cursor-pointer hover:underline"
+          className="text-xl leading-relaxed font-bold text-black cursor-pointer hover:underline"
           to={node.frontmatter.path}
         >
           {node.frontmatter.title}

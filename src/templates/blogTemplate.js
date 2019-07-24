@@ -7,16 +7,21 @@ import { Footer } from "../components/Footer"
 
 export default function Template({ data }) {
   const { markdownRemark } = data
-  const { frontmatter, html } = markdownRemark
+  const { frontmatter, html, timeToRead } = markdownRemark
 
   return (
     <Layout>
-      <div className="text-xl font-bold mb-1">{frontmatter.title}</div>
-      <div className="mb-4">
-        <span className="text-sm">{frontmatter.author}</span>&nbsp;
-        <span className="text-xs text-gray-600">{frontmatter.date}</span>
+      <div className="text-xl leading-relaxed font-bold">
+        {frontmatter.title}
       </div>
-      <Img fluid={frontmatter.banner.childImageSharp.fluid} />
+      <div className="text-sm my-1">
+        <span>{frontmatter.date}</span>
+        <span className="mx-2">·</span>
+        <span>
+          {"📚".repeat(Math.floor(timeToRead / 5))} {timeToRead} min read
+        </span>
+      </div>
+      <Img className="mt-3" fluid={frontmatter.banner.childImageSharp.fluid} />
       <div className="mt-1 text-xs text-center text-gray-600">
         Photo By{" "}
         <a href={frontmatter.bannerCreditUrl}>{frontmatter.bannerCreditName}</a>
@@ -31,9 +36,9 @@ export const pageQuery = graphql`
   query($path: String!) {
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
+      timeToRead
       frontmatter {
         title
-        author
         date(formatString: "MMMM DD, YYYY")
         banner {
           childImageSharp {
