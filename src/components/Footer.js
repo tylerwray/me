@@ -1,25 +1,10 @@
 import React from "react"
-import styled from "styled-components"
 import { StaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 
-const Container = styled.footer`
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-`
-
-const Phrase = styled.div`
-  margin-left: 8px;
-  font-size: 16px;
-`
-
 export function Footer() {
   return (
-    <Container>
+    <footer className="mw-xl mx-auto p-3 flex items-center justify-start">
       <StaticQuery
         query={graphql`
           query {
@@ -36,9 +21,9 @@ export function Footer() {
           <Img fixed={data.placeholderImage.childImageSharp.fixed} />
         )}
       />
-      <Phrase>
+      <div className="ml-2">
         Personal Blog by <a href="https://twitter.com/wray_tw">Tyler Wray</a>
-      </Phrase>
-    </Container>
+      </div>
+    </footer>
   )
 }

@@ -1,4 +1,6 @@
 import React from "react"
+import { StaticQuery, graphql } from "gatsby"
+import Img from "gatsby-image"
 
 import Layout from "../components/Layout"
 import SEO from "../components/SEO"
@@ -16,6 +18,25 @@ const About = () => (
         👋
       </span>
     </h2>
+    <StaticQuery
+      query={graphql`
+        query {
+          placeholderImage: file(relativePath: { eq: "me_at_work.jpg" }) {
+            childImageSharp {
+              fluid(maxWidth: 700) {
+                ...GatsbyImageSharpFluid_noBase64
+              }
+            }
+          }
+        }
+      `}
+      render={data => (
+        <Img
+          className="rounded shadow-md mb-4"
+          fluid={data.placeholderImage.childImageSharp.fluid}
+        />
+      )}
+    />
     <p>For as long as I can remember, I've loved everything technology.</p>
     <p>
       I was born in 1995 in Pocatello, Idaho; but I grew up in Provo, Utah.

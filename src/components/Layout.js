@@ -1,24 +1,13 @@
 import React from "react"
 import { node, bool } from "prop-types"
-import styled from "styled-components"
 
 import Header from "./Header"
 
-const Container = styled.div`
-  margin: 0 auto;
-  margin-top: 16px;
-  max-width: 960px;
-  padding: 0px 1.0875rem 1.45rem;
-  padding-top: 0;
-`
-
 const Layout = ({ children }) => (
-  <>
+  <div className="max-w-2xl mx-auto px-6">
     <Header />
-    <Container>
-      <main>{children}</main>
-    </Container>
-  </>
+    <main className="pt-6">{children}</main>
+  </div>
 )
 
 Layout.propTypes = {

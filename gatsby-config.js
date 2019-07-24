@@ -41,7 +41,6 @@ module.exports = {
         icon: "src/images/initials.png"
       }
     },
-    "gatsby-plugin-styled-components",
     {
       resolve: "gatsby-transformer-remark",
       options: {
@@ -67,6 +66,13 @@ module.exports = {
         trackingId: "UA-92617795-2"
       }
     },
-    "gatsby-plugin-offline"
+    "gatsby-plugin-offline",
+    "gatsby-plugin-postcss",
+    {
+      resolve: `gatsby-plugin-purgecss`,
+      options: {
+        tailwind: true
+      }
+    }
   ]
 }

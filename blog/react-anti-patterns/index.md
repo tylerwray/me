@@ -203,14 +203,14 @@ export function NavBar() {
   }
 
   return (
-    <Header>
+    <header>
       <form onSubmit={search}>
         <input placeholder="Search" onChange={handleChange} />
       </form>
       {results.map(result => (
-        <Result key={result.id}>{result.value}</Result>
+        <div key={result.id}>{result.value}</div>
       ))}
-    </Header>
+    </header>
   )
 }
 ```

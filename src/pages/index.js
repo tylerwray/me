@@ -1,62 +1,40 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
-import styled from "styled-components"
 
 import Layout from "../components/Layout"
 import SEO from "../components/SEO"
 
-const Item = styled.div`
-  color: var(--black);
-  padding: 16px;
-  border-bottom: 1px solid var(--slate-grey);
-  margin-bottom: 16px;
-`
-
-const Title = styled(Link)`
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--black);
-  text-decoration: none;
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`
-
-const Info = styled.div`
-  font-size: 14px;
-  margin: 4px 0;
-`
-
-const Date = styled.span``
-
-const Dot = styled.span`
-  margin: 0 8px;
-`
-const TimeToRead = styled.span``
-
-const Excerpt = styled.div`
-  font-size: 18px;
-`
+function Post({ node }) {
+  return (
+    <>
+      <div className="text-black mb-2">
+        <Link
+          className="text-xl font-bold text-black cursor-pointer hover:underline"
+          to={node.frontmatter.path}
+        >
+          {node.frontmatter.title}
+        </Link>
+        <div className="text-sm my-1">
+          <span>{node.frontmatter.date}</span>
+          <span className="mx-2">·</span>
+          <span>
+            {"📚".repeat(Math.floor(node.timeToRead / 5))} {node.timeToRead} min
+            read
+          </span>
+        </div>
+        <div>{node.excerpt}</div>
+      </div>
+      <hr className="h-px bg-gray-500" />
+    </>
+  )
+}
 
 function IndexPage({ data }) {
   return (
     <Layout>
       <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
       {data.allMarkdownRemark.edges.map(({ node }) => (
-        <Item key={node.id}>
-          <Title to={node.frontmatter.path}>{node.frontmatter.title}</Title>
-          <Info>
-            <Date>{node.frontmatter.date}</Date>
-            <Dot>·</Dot>
-            <TimeToRead>
-              {"📚".repeat(Math.floor(node.timeToRead / 5))} {node.timeToRead}{" "}
-              min read
-            </TimeToRead>
-          </Info>
-          <Excerpt>{node.excerpt}</Excerpt>
-        </Item>
+        <Post key={node.id} node={node} />
       ))}
     </Layout>
   )

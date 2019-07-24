@@ -1,45 +1,27 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-import styled from "styled-components"
 
 import Layout from "../components/Layout"
 import { Footer } from "../components/Footer"
 
-const Header = styled.h1`
-  margin-top: 1.45rem;
-  margin-bottom: 0.25rem;
-`
-
-const Info = styled.div`
-  margin-bottom: 1.85rem;
-`
-
-const PhotoCredit = styled.div`
-  margin-top: 4px;
-  font-size: 12px;
-  text-align: center;
-`
-
-const Content = styled.div`
-  padding-top: 0.5rem;
-`
-
 export default function Template({ data }) {
   const { markdownRemark } = data
   const { frontmatter, html } = markdownRemark
+
   return (
     <Layout>
-      <Header>{frontmatter.title}</Header>
-      <Info>
-        {frontmatter.author} · {frontmatter.date}
-      </Info>
+      <h3 className="mb-1">{frontmatter.title}</h3>
+      <div className="mb-4">
+        <span className="text-sm">{frontmatter.author}</span>&nbsp;
+        <span className="text-xs text-gray-600">{frontmatter.date}</span>
+      </div>
       <Img fluid={frontmatter.banner.childImageSharp.fluid} />
-      <PhotoCredit>
+      <div className="mt-1 text-xs text-center text-gray-600">
         Photo By{" "}
         <a href={frontmatter.bannerCreditUrl}>{frontmatter.bannerCreditName}</a>
-      </PhotoCredit>
-      <Content dangerouslySetInnerHTML={{ __html: html }} />
+      </div>
+      <div className="pt-3" dangerouslySetInnerHTML={{ __html: html }} />
       <Footer />
     </Layout>
   )

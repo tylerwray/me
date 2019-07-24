@@ -1,45 +1,42 @@
 import React from "react"
-import styled from "styled-components"
 import { Link } from "gatsby"
 
-import Nav from "./Nav"
-
-const Wrapper = styled.header`
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 32px;
-  z-index: var(--index-lowest);
-`
-
-const Container = styled.div`
-  width: 100%;
-  max-width: 960px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`
-
-const Title = styled(Link)`
-  font-size: 32px;
-  line-height: 40px;
-  color: var(--black);
-  text-decoration: none;
-  font-family: Satisfy;
-  z-index: var(--index-level-3);
-  -webkit-tap-highlight-color: transparent;
-`
+const emoji = ["🎉", "🤷🏻‍♂️", "🙈", "🌀", "🕷", "💻", "🖥", "🤘🏻", "⛴"]
 
 function Header() {
+  const icon = emoji[Math.floor(Math.random() * emoji.length)]
+
   return (
-    <Wrapper>
-      <Container>
-        <Title to="/">Tyler Wray</Title>
-        <Nav />
-      </Container>
-    </Wrapper>
+    <header className="flex items-center justify-between py-4">
+      <Link to="/" className="text-black no-underline">
+        <span className="text-2xl" role="img" aria-label="emoji">
+          {icon}
+        </span>
+        <span className="ml-2 text-lg hidden sm:inline">Tyler Wray</span>
+      </Link>
+      <div className="flex justify-around">
+        <Link
+          to="/about"
+          className="mx-2 hover:underline text-black"
+          activeStyle={{ textDecoration: "underline" }}
+        >
+          Me
+        </Link>
+        <Link
+          to="/contact"
+          className="mx-2 hover:underline text-black"
+          activeStyle={{ textDecoration: "underline" }}
+        >
+          Contact
+        </Link>
+        <a
+          href="https://github.com/tylerwray"
+          className="mx-2 hover:underline text-black"
+        >
+          Github
+        </a>
+      </div>
+    </header>
   )
 }
 

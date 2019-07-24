@@ -1,16 +1,16 @@
-@import "https://fonts.googleapis.com/css?family=Open+Sans:400,600|Satisfy";
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
 
 :root {
-  --cream: rgb(249, 251, 252);
-  --pink: rgba(233, 79, 55, 1);
-  --black: rgba(57, 62, 65, 1);
-  --blue: rgba(63, 136, 197, 1);
-  --green: rgba(68, 187, 164, 1);
-  --slate-grey: rgb(178, 178, 178);
+  --background: #f5f2f0;
+  --highlight-background: #e9e6e3;
 
-  --index-lowest: -100;
-  --index-level-2: 20;
-  --index-level-3: 30;
+  --magenta: #dd4a68;
+  --blue: rgb(63, 136, 197);
+  --purple: rgb(114, 89, 175);
 }
 
 html {
@@ -54,6 +54,7 @@ template {
   display: none;
 }
 a {
+  color: var(--blue);
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
 }
@@ -357,6 +358,7 @@ ul {
   margin-bottom: 1.45rem;
   list-style-position: outside;
   list-style-image: none;
+  list-style: disc;
 }
 ol {
   margin-left: 1.45rem;
@@ -633,4 +635,44 @@ pre tt:after {
   html {
     font-size: 100%;
   }
+}
+
+.gatsby-highlight-code-line {
+  background-color: var(--highlight-background);
+  display: block;
+  margin-right: -1em;
+  margin-left: -1em;
+  padding-right: 1em;
+  padding-left: 0.75em;
+  border-left: 0.25em solid var(--magenta);
+}
+
+/**
+ * Add back the container background-color, border-radius, padding, margin
+ * and overflow that we removed from <pre>.
+ */
+.gatsby-highlight {
+  background-color: var(--background);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-radius: 0.3em;
+  margin: 0.5em 0;
+  padding: 1em;
+  overflow: auto;
+}
+
+/**
+ * Remove the default PrismJS theme background-color, border-radius, margin,
+ * padding and overflow.
+ * 1. Make the element just wide enough to fit its content.
+ * 2. Always fill the visible space in .gatsby-highlight.
+ * 3. Adjust the position of the line numbers
+ */
+.gatsby-highlight pre[class*="language-"] {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  overflow: initial;
+  float: left; /* 1 */
+  min-width: 100%; /* 2 */
 }
