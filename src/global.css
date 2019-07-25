@@ -5,12 +5,19 @@
 @tailwind utilities;
 
 :root {
+  --site-background: rgb(249, 251, 252);
+  --site-text: #393e41;
   --background: #f5f2f0;
   --highlight-background: #e9e6e3;
 
   --magenta: #dd4a68;
-  --blue: rgb(63, 136, 197);
+  --blue: #63b3ed;
   --purple: rgb(114, 89, 175);
+}
+
+.tylerwray-dark-mode {
+  --site-background: #25272b;
+  --site-text: #f5fafa;
 }
 
 html {
@@ -19,8 +26,17 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 body {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  word-wrap: break-word;
+  font-kerning: normal;
+  -moz-font-feature-settings: "kern", "liga", "clig", "calt";
+  -ms-font-feature-settings: "kern", "liga", "clig", "calt";
+  -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
+  font-feature-settings: "kern", "liga", "clig", "calt";
   margin: 0;
-  background-color: var(--cream);
+  background-color: var(--site-background);
+  color: var(--site-text);
 }
 article,
 aside,
@@ -212,17 +228,6 @@ html {
 }
 *:after {
   box-sizing: inherit;
-}
-body {
-  color: hsla(0, 0%, 0%, 0.8);
-  font-family: "Open Sans", Arial, Helvetica, sans-serif;
-  font-weight: normal;
-  word-wrap: break-word;
-  font-kerning: normal;
-  -moz-font-feature-settings: "kern", "liga", "clig", "calt";
-  -ms-font-feature-settings: "kern", "liga", "clig", "calt";
-  -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
-  font-feature-settings: "kern", "liga", "clig", "calt";
 }
 img {
   max-width: 100%;
@@ -637,6 +642,7 @@ pre tt:after {
   }
 }
 
+/* purgecss start ignore */
 .gatsby-highlight-code-line {
   background-color: var(--highlight-background);
   display: block;
@@ -676,3 +682,5 @@ pre tt:after {
   float: left; /* 1 */
   min-width: 100%; /* 2 */
 }
+
+/* purgecss end ignore */
