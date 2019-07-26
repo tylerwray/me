@@ -4,7 +4,7 @@ export default function LightModeIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      style={{ width: 12, height: 12 }}
+      style={{ width: 16, height: 16 }}
       className="SVGInline-svg SVGInline--cleaned-svg SVG-svg LightModeIcon-svg SVG--color-svg text-yellow-500 fill-current"
       viewBox="0 0 16 16"
     >
