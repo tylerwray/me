@@ -72,7 +72,7 @@ module.exports = {
       resolve: "gatsby-plugin-purgecss",
       options: {
         tailwind: true,
-        ignore: ["prismjs/", "src/global.css"]
+        ignore: ["src/prism.css", "src/global.css"]
       }
     }
   ]
