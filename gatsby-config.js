@@ -69,10 +69,10 @@ module.exports = {
     "gatsby-plugin-offline",
     "gatsby-plugin-postcss",
     {
-      resolve: `gatsby-plugin-purgecss`,
+      resolve: "gatsby-plugin-purgecss",
       options: {
         tailwind: true,
-        ignore: ["prismjs/"]
+        ignore: ["prismjs/", "src/global.css"]
       }
     }
   ]

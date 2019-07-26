@@ -9,6 +9,7 @@
   --site-text: #393e41;
   --background: #f5f2f0;
   --highlight-background: #e9e6e3;
+  --quote-background: rgba(0, 0, 0, 0.07);
 
   --magenta: #dd4a68;
   --blue: #63b3ed;
@@ -16,6 +17,7 @@
 }
 
 .tylerwray-dark-mode {
+  --quote-background: #43474e;
   --site-background: #25272b;
   --site-text: #f5fafa;
 }
@@ -456,7 +458,7 @@ fieldset {
 }
 blockquote {
   border-left: 0.25em solid var(--blue);
-  background-color: rgba(0, 0, 0, 0.07);
+  background-color: var(--quote-background);
   padding-left: 1.25rem;
   padding-right: 1.25rem;
   padding-top: 0.25rem;
@@ -642,7 +644,6 @@ pre tt:after {
   }
 }
 
-/* purgecss start ignore */
 .gatsby-highlight-code-line {
   background-color: var(--highlight-background);
   display: block;
@@ -682,5 +683,3 @@ pre tt:after {
   float: left; /* 1 */
   min-width: 100%; /* 2 */
 }
-
-/* purgecss end ignore */
