@@ -10,7 +10,7 @@ function Header() {
   const icon = emoji[Math.floor(Math.random() * emoji.length)]
 
   const [dark, setDark] = useState(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const darkMode = localStorage.getItem("tylerwray-dark-mode")
 
       if (darkMode === "on") {
@@ -72,12 +72,12 @@ function Header() {
           <div
             className={`DarkMode-track ${
               dark ? "on bg-purple-800" : "bg-gray-300"
-            } absolute rounded-full h-4 left-0 right-0`}
+            } absolute rounded-full h-6 w-10 left-0 right-0`}
           />
           <div
             className={`DarkMode-knob ${
               dark ? "on bg-purple-900" : "bg-cream resize"
-            } rounded-full flex items-center justify-center shadow relative w-4 h-4`}
+            } rounded-full flex items-center justify-center shadow relative w-6 h-6`}
           >
             <div className={`${dark ? "hidden" : ""}`}>
               <LightModeIcon />
