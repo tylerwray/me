@@ -1,9 +1,14 @@
 ---
 title: React Anti-Patterns
+tags:
+  - react
+  - reactjs
+  - anti patterns
+  - frontend patterns
 path: /blog/react-anti-patterns
-author: "Tyler Wray"
+author: Tyler Wray
 date: 2019-02-20
-banner: "./images/hero.jpg"
+banner: ./images/hero.jpg
 bannerCreditName: Lane Smith
 bannerCreditUrl: https://unsplash.com/photos/wEsqjsjIDLs
 ---

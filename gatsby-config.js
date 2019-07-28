@@ -2,9 +2,11 @@ module.exports = {
   siteMetadata: {
     title: "Tyler Wray",
     description: "My special corner of the internet to be myself.",
-    author: "@wray_tw"
+    author: "@wray_tw",
+    siteUrl: "https://tylerwray.me"
   },
   plugins: [
+    "gatsby-plugin-sitemap",
     "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-source-filesystem",
@@ -25,6 +27,13 @@ module.exports = {
       options: {
         name: "src",
         path: `${__dirname}/src`
+      }
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "pages",
+        path: `${__dirname}/pages`
       }
     },
     "gatsby-transformer-sharp",

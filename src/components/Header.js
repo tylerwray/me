@@ -45,7 +45,7 @@ function Header() {
       </Link>
       <div className="flex justify-around items-center">
         <Link
-          to="/about"
+          to="/me"
           className="mx-2 hover:underline text-black dark:text-cream"
           activeStyle={{ textDecoration: "underline" }}
         >

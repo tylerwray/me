@@ -4,6 +4,7 @@ import Img from "gatsby-image"
 
 import Layout from "../components/Layout"
 import { Footer } from "../components/Footer"
+import SEO from "../components/SEO"
 
 export default function Template({ data }) {
   const { markdownRemark } = data
@@ -11,6 +12,7 @@ export default function Template({ data }) {
 
   return (
     <Layout>
+      <SEO title={frontmatter.title} keywords={[frontmatter.tags]} />
       <div className="text-xl leading-relaxed font-bold">
         {frontmatter.title}
       </div>
@@ -39,6 +41,7 @@ export const pageQuery = graphql`
       timeToRead
       frontmatter {
         title
+        tags
         date(formatString: "MMMM DD, YYYY")
         banner {
           childImageSharp {
