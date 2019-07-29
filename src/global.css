@@ -12,7 +12,7 @@
   --quote-background: rgba(0, 0, 0, 0.07);
 
   --magenta: #dd4a68;
-  --blue: #63b3ed;
+  --blue: #5293c2;
   --purple: rgb(114, 89, 175);
 }
 
@@ -22,6 +22,7 @@
   --site-background: #25272b;
   --site-text: #f5fafa;
   --quote-background: #1c1e21;
+  --blue: #63b3ed;
 }
 
 html {

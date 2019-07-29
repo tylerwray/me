@@ -5,6 +5,7 @@ import Img from "gatsby-image"
 import Layout from "../components/Layout"
 import { Footer } from "../components/Footer"
 import SEO from "../components/SEO"
+import { getIcon } from "../icons"
 
 export default function Template({ data }) {
   const { markdownRemark } = data
@@ -13,10 +14,11 @@ export default function Template({ data }) {
   return (
     <Layout>
       <SEO title={frontmatter.title} keywords={[frontmatter.tags]} />
-      <div className="text-xl leading-relaxed font-bold">
+      <div className="flex items-center text-xl leading-relaxed font-bold">
+        {getIcon(frontmatter.icon)}
         {frontmatter.title}
       </div>
-      <div className="text-sm my-1">
+      <div className="text-xs my-1">
         <span>{frontmatter.date}</span>
         <span className="mx-2">·</span>
         <span>
@@ -41,6 +43,7 @@ export const pageQuery = graphql`
       timeToRead
       frontmatter {
         title
+        icon
         tags
         date(formatString: "MMMM DD, YYYY")
         banner {

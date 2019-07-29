@@ -3,18 +3,20 @@ import { graphql, Link } from "gatsby"
 
 import Layout from "../components/Layout"
 import SEO from "../components/SEO"
+import { getIcon } from "../icons"
 
 function Post({ node }) {
   return (
     <>
       <div className="mb-2">
         <Link
-          className="text-xl leading-relaxed font-bold text-black dark:text-cream cursor-pointer hover:underline"
+          className="flex items-center text-xl leading-relaxed font-bold text-black dark:text-cream cursor-pointer hover:underline"
           to={node.frontmatter.path}
         >
+          {getIcon(node.frontmatter.icon)}
           {node.frontmatter.title}
         </Link>
-        <div className="text-sm my-1">
+        <div className="text-xs my-1">
           <span>{node.frontmatter.date}</span>
           <span className="mx-2">·</span>
           <span>
@@ -56,6 +58,7 @@ export const pageQuery = graphql`
           timeToRead
           frontmatter {
             title
+            icon
             date(formatString: "MMMM DD, YYYY")
             path
           }

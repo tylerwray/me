@@ -1,11 +1,11 @@
 import React from "react"
 
-export default function LightModeIcon() {
+export default function Sun({ className }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       style={{ width: 16, height: 16 }}
-      className="SVGInline-svg SVGInline--cleaned-svg SVG-svg LightModeIcon-svg SVG--color-svg text-yellow-500 fill-current"
+      className={className}
       viewBox="0 0 16 16"
     >
       <path

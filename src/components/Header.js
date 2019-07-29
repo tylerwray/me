@@ -1,10 +1,10 @@
-import React, { useState, useLayoutEffect } from "react"
 import { Link } from "gatsby"
-import LightModeIcon from "./LightModeIcon"
-import DarkModeIcon from "./DarkModeIcon"
+import React, { useLayoutEffect, useState } from "react"
+import Moon from "../icons/Moon"
+import Sun from "../icons/Sun"
 import "./header.css"
 
-const emoji = ["🎉", "🤷🏻‍♂️", "🙈", "🌀", "🕷", "💻", "🖥", "🤘🏻", "⛴"]
+const emoji = ["🙈", "🌀", "🕷", "💻", "🤘🏻"]
 
 function Header() {
   const icon = emoji[Math.floor(Math.random() * emoji.length)]
@@ -58,12 +58,6 @@ function Header() {
         >
           Contact
         </Link>
-        <a
-          href="https://github.com/tylerwray"
-          className="mx-2 hover:underline text-black dark:text-cream"
-        >
-          Github
-        </a>
         <button
           type="button"
           className="relative m-3 w-8 focus:outline-none"
@@ -79,12 +73,12 @@ function Header() {
               dark ? "on bg-purple-900" : "bg-cream resize"
             } rounded-full flex items-center justify-center shadow relative w-6 h-6`}
           >
-            <div className={`${dark ? "hidden" : ""}`}>
-              <LightModeIcon />
-            </div>
-            <div className={`${dark ? "" : "hidden"}`}>
-              <DarkModeIcon />
-            </div>
+            <Sun
+              className={`${dark ? "hidden" : ""} text-yellow-500 fill-current`}
+            />
+            <Moon
+              className={`${dark ? "" : "hidden"} text-purple-700 fill-current`}
+            />
           </div>
         </button>
       </div>

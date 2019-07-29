@@ -1,11 +1,11 @@
 import React from "react"
 
-export default function DarkModeIcon() {
+export default function Moon({ className }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       style={{ width: 16, height: 16 }}
-      className="SVGInline-svg SVGInline--cleaned-svg SVG-svg DarkModeIcon-svg SVG--color-svg text-purple-700 fill-current"
+      className={className}
       viewBox="0 0 17 16"
     >
       <path

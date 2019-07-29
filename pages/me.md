@@ -31,6 +31,44 @@ through and through.
 
 ![Me at work with my daugher](./images/me_at_work.jpg "Me at work")
 
-## Links
+## Things I've done.
 
 - [TDD in Elixir](https://medium.com/podium-engineering/test-driven-development-why-elixir-excels-at-tdd-8b5f1a51aee3)
+- [Organizing an elixir project](https://slides.com/tylerwray/ex-organizing-a-project/fullscreen#/)
+- [React hooks, a primer](https://slides.com/tylerwray/react-hooks/fullscreen)
+
+## Tools I use.
+
+- Editor: [VS Code](https://code.visualstudio.com/) with [Night Owl](https://github.com/sdras/night-owl-vscode-theme)
+- Terminal: [iTerm2](https://www.iterm2.com/) with [Oh My ZSH](https://ohmyz.sh/)
+
+## Tech things I like.
+
+- [GraphQL](https://graphql.org/)
+- [Elixir](https://elixir-lang.org/)
+- [Go](https://golang.org/)
+- [React](https://reactjs.org/)
+- [Docker](https://www.docker.com/)
+- [Gatsby](https://www.gatsbyjs.org/)
+- [Tailwind](https://tailwindcss.com/)
+- [Prettier](https://prettier.io/)
+- [Kafka](https://kafka.apache.org/)
+- [Vim](https://www.vim.org/)
+- [Mechanical keyboards](https://www.daskeyboard.com/daskeyboard-4-ultimate/)
+- [Homebrew](https://brew.sh/)
+
+## Thing things I like.
+
+- [Utah mountains](http://bit.ly/2GzhC1Q)
+- [Potatoes](https://idahopotato.com/)
+- My family
+- [Basketball](https://www.nba.com/)
+- How much of a dork my wife is
+- [Digital art](https://mkbhdwallpapers.blogspot.com/2018/11/poly-lakeside.html)
+- [Trees](https://www.boredpanda.com/most-beautiful-trees/?utm_source=google&utm_medium=organic&utm_campaign=organic)
+- [An expensive steak](https://www.ruthschris.com/restaurant-locations/park-city/)
+- A good toothbrush
+- [Football](https://www.nfl.com/)
+- [Autumn](https://www.sltrib.com/artsliving/outdoors/2017/09/19/10-top-spots-for-utahs-fall-colors/)
+- American crew hair pomade
+- [Personal finance management](https://www.simple.com/)

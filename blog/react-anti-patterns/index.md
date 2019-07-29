@@ -1,5 +1,6 @@
 ---
 title: React Anti-Patterns
+icon: react
 tags:
   - react
   - reactjs
