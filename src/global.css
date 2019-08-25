@@ -381,6 +381,7 @@ ol {
   margin-bottom: 1.45rem;
   list-style-position: outside;
   list-style-image: none;
+  list-style-type: decimal;
 }
 dl {
   margin-left: 0;

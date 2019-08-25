@@ -3,7 +3,6 @@ import { graphql } from "gatsby"
 import Img from "gatsby-image"
 
 import Layout from "../components/Layout"
-import { Footer } from "../components/Footer"
 import SEO from "../components/SEO"
 import { getIcon } from "../icons"
 
@@ -31,7 +30,6 @@ export default function Template({ data }) {
         <a href={frontmatter.bannerCreditUrl}>{frontmatter.bannerCreditName}</a>
       </div>
       <div className="pt-3" dangerouslySetInnerHTML={{ __html: html }} />
-      <Footer />
     </Layout>
   )
 }

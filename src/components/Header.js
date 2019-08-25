@@ -4,7 +4,7 @@ import Moon from "../icons/Moon"
 import Sun from "../icons/Sun"
 import "./header.css"
 
-const emoji = ["🙈", "🌀", "🕷", "💻", "🤘🏻"]
+const emoji = ["🙈", "🌀", "💻", "🤘🏻"]
 
 function Header() {
   const icon = emoji[Math.floor(Math.random() * emoji.length)]
