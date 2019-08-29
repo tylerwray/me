@@ -83,6 +83,7 @@ module.exports = {
         tailwind: true,
         ignore: ["src/prism.css", "src/global.css"]
       }
-    }
+    },
+    "gatsby-plugin-twitter"
   ]
 }

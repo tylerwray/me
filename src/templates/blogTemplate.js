@@ -5,10 +5,12 @@ import Img from "gatsby-image"
 import Layout from "../components/Layout"
 import SEO from "../components/SEO"
 import { getIcon } from "../icons"
+import config from "../../config/website"
 
 export default function Template({ data }) {
   const { markdownRemark } = data
-  const { frontmatter, html, timeToRead } = markdownRemark
+  const { frontmatter, html, timeToRead, fields } = markdownRemark
+  const blogPostUrl = `${config.siteUrl}${frontmatter.path}`
 
   return (
     <Layout>
@@ -30,6 +32,27 @@ export default function Template({ data }) {
         <a href={frontmatter.bannerCreditUrl}>{frontmatter.bannerCreditName}</a>
       </div>
       <div className="pt-3" dangerouslySetInnerHTML={{ __html: html }} />
+      <div className="mb-4">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          // using mobile.twitter.com because if people haven't upgraded
+          // to the new experience, the regular URL wont work for them
+          href={`https://mobile.twitter.com/search?q=${encodeURIComponent(
+            blogPostUrl
+          )}`}
+        >
+          Discuss on Twitter
+        </a>
+        <span style={{ marginLeft: 10, marginRight: 10 }}>{` • `}</span>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={fields.githubEditLink}
+        >
+          Edit post on GitHub
+        </a>
+      </div>
     </Layout>
   )
 }
@@ -39,8 +62,12 @@ export const pageQuery = graphql`
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
       timeToRead
+      fields {
+        githubEditLink
+      }
       frontmatter {
         title
+        path
         icon
         tags
         date(formatString: "MMMM DD, YYYY")

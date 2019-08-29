@@ -83,3 +83,16 @@ exports.createPages = async ({ actions, graphql }) => {
     })
   })
 }
+
+exports.onCreateNode = ({ node, actions }) => {
+  const { createNodeField } = actions
+
+  createNodeField({
+    name: "githubEditLink",
+    node,
+    value: `https://github.com/tylerwray/me/edit/master${node.fileAbsolutePath.replace(
+      __dirname,
+      ""
+    )}`
+  })
+}
