@@ -84,15 +84,15 @@ exports.createPages = async ({ actions, graphql }) => {
   })
 }
 
-exports.onCreateNode = ({ node, actions }) => {
-  const { createNodeField } = actions
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  if (node.internal.type === `MarkdownRemark`) {
+    const { createNodeField } = actions
+    const fileNode = getNode(node.parent)
 
-  createNodeField({
-    name: "githubEditLink",
-    node,
-    value: `https://github.com/tylerwray/me/edit/master${node.fileAbsolutePath.replace(
-      __dirname,
-      ""
-    )}`
-  })
+    createNodeField({
+      name: "githubEditLink",
+      node,
+      value: `https://github.com/tylerwray/me/edit/master/blog/${fileNode.relativePath}`
+    })
+  }
 }
