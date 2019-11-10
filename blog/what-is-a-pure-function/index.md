@@ -107,7 +107,11 @@ log() // 20
 
 Take note that the `log` function above performs a side-effect as well, it logs to the console. The console is a stateful output device who’s state is what has been displayed to the user.
 
-This immediately begs the question, `”Well then, where do we put side effects?!? This program works perfectly fine, why would I change it?"` There are a couple answers to these questions, but the easiest is to just clearly separate them.
+This immediately begs the question:
+
+> ”Where do we put side effects?!? This program works perfectly fine, why would I change it?"
+
+There are a couple answers to these questions, but the easiest is to just clearly separate them.
 
 Let’s re-write the example above by separating side-effect and pure functions:
 
