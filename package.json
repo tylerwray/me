@@ -47,5 +47,8 @@
   },
   "bugs": {
     "url": "https://github.com/tylerwray/me/issues"
+  },
+  "devDependencies": {
+    "eslint-config-react-app": "^5.0.2"
   }
 }
