@@ -10,7 +10,7 @@ export default function Template({ data }) {
     <Layout>
       <SEO title={frontmatter.title} keywords={frontmatter.tags} />
       <div
-        className="blog-post-content"
+        className="page"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </Layout>

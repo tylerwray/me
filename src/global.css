@@ -4,6 +4,8 @@
 
 @tailwind utilities;
 
+/* purgecss start ignore */
+
 :root {
   --site-background: rgb(249, 251, 252);
   --site-text: #393e41;
@@ -83,6 +85,12 @@ a:active,
 a:hover {
   outline-width: 0;
 }
+
+/* Only underline links in a page */
+.page a:hover {
+  border-bottom: 2px solid var(--blue);
+}
+
 abbr[title] {
   border-bottom: none;
   text-decoration: underline;
@@ -494,11 +502,11 @@ iframe {
   margin-left: 0;
   margin-right: 0;
   margin-top: 0;
+  margin-bottom: 0;
   padding-bottom: 0;
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
-  margin-bottom: 1.45rem;
 }
 hr {
   margin-left: 0;
@@ -508,8 +516,8 @@ hr {
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
-  margin-bottom: calc(1.45rem - 1px);
-  background: hsla(0, 0%, 0%, 0.2);
+  margin-bottom: 1.25rem;
+  background-color: #a0aec0;
   border: none;
   height: 1px;
 }
@@ -647,3 +655,4 @@ pre tt:after {
     font-size: 100%;
   }
 }
+/* purgecss end ignore */

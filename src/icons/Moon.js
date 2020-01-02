@@ -1,6 +1,6 @@
 import React from "react"
 
-export default function Moon({ className }) {
+function Moon({ className }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,3 +15,5 @@ export default function Moon({ className }) {
     </svg>
   )
 }
+
+export default Moon

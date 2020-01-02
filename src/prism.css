@@ -1,3 +1,5 @@
+/* purgecss start ignore */
+
 /* Light Theme */
 
 code[class*="language-"],
@@ -22,7 +24,7 @@ pre[class*="language-"] {
   -ms-hyphens: none;
   hyphens: none;
 }
-
+z
 pre[class*="language-"]::-moz-selection,
 pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection,
@@ -318,3 +320,4 @@ pre[class*="language-"] {
   float: left; /* 1 */
   min-width: 100%; /* 2 */
 }
+/* purgecss end ignore */

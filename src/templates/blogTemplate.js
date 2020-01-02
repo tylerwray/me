@@ -15,7 +15,7 @@ export default function Template({ data }) {
   return (
     <Layout>
       <SEO title={frontmatter.title} keywords={[frontmatter.tags]} />
-      <div className="flex items-center text-xl leading-relaxed font-bold">
+      <div className="flex items-center text-lg leading-relaxed font-bold">
         {getIcon(frontmatter.icon)}
         {frontmatter.title}
       </div>
@@ -31,7 +31,7 @@ export default function Template({ data }) {
         Photo By{" "}
         <a href={frontmatter.bannerCreditUrl}>{frontmatter.bannerCreditName}</a>
       </div>
-      <div className="pt-3" dangerouslySetInnerHTML={{ __html: html }} />
+      <div className="page pt-3" dangerouslySetInnerHTML={{ __html: html }} />
       <div className="mb-4">
         <a
           target="_blank"

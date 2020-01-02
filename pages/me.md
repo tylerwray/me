@@ -55,11 +55,13 @@ through and through.
 - [Kafka](https://kafka.apache.org/)
 - [Vim](https://www.vim.org/)
 - [Mechanical keyboards](https://www.daskeyboard.com/daskeyboard-4-ultimate/)
+- [My Espresso Machine](https://www.breville.com/us/en/products/espresso/bes870.html)
 - [Homebrew](https://brew.sh/)
 
 ## Thing things I like.
 
 - [Utah mountains](http://bit.ly/2GzhC1Q)
+- [Coffee](https://www.youtube.com/watch?v=ZuQu12vMQZM)
 - [Potatoes](https://idahopotato.com/)
 - My family
 - [Basketball](https://www.nba.com/)

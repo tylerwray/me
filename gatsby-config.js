@@ -80,8 +80,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-purgecss",
       options: {
-        tailwind: true,
-        ignore: ["src/prism.css", "src/global.css"]
+        tailwind: true
       }
     },
     "gatsby-plugin-twitter"
