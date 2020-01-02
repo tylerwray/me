@@ -1,35 +1,61 @@
 import { Link } from "gatsby"
-import React, { useLayoutEffect, useState } from "react"
+import React, { useLayoutEffect, useState, useEffect } from "react"
 import Moon from "../icons/Moon"
 import Sun from "../icons/Sun"
 import "./header.css"
 
 const emoji = ["🙈", "🌀", "💻", "🤘🏻"]
 
+function changeMode(dark) {
+  if (dark) {
+    localStorage.setItem("tylerwray-dark-mode", "on")
+    document.body.classList.add("tylerwray-dark-mode")
+  } else {
+    localStorage.setItem("tylerwray-dark-mode", "off")
+    document.body.classList.remove("tylerwray-dark-mode")
+  }
+}
+
+function checkMode() {
+  if (typeof window !== "undefined") {
+    const darkMode = localStorage.getItem("tylerwray-dark-mode")
+
+    if (darkMode === "on") {
+      return true
+    } else if (darkMode === "off") {
+      return false
+    }
+
+    // Fall back to user preference
+    return window.matchMedia("(prefers-color-scheme: dark").matches
+  }
+}
+
 function Header() {
   const icon = emoji[Math.floor(Math.random() * emoji.length)]
 
-  const [dark, setDark] = useState(() => {
-    if (typeof window !== "undefined") {
-      const darkMode = localStorage.getItem("tylerwray-dark-mode")
-
-      if (darkMode === "on") {
-        return true
-      } else if (darkMode === "off") {
-        return false
-      }
-    }
-  })
+  const [dark, setDark] = useState(checkMode)
 
   useLayoutEffect(() => {
-    if (dark) {
-      localStorage.setItem("tylerwray-dark-mode", "on")
-      document.body.classList.add("tylerwray-dark-mode")
-    } else {
-      localStorage.setItem("tylerwray-dark-mode", "off")
-      document.body.classList.remove("tylerwray-dark-mode")
-    }
+    changeMode(dark)
   }, [dark])
+
+  // Subscribe to user OS dark/light mode preferences
+  useEffect(() => {
+    function handler(event) {
+      setDark(event.matches)
+      changeMode(event.matches)
+    }
+
+    const matcher = window.matchMedia("(prefers-color-scheme: dark")
+
+    matcher.addListener(handler)
+
+    console.log('=== EFFECT ===')
+    return () => {
+      matcher.removeListener(handler)
+    }
+  })
 
   function handleDarkModeClick() {
     setDark(d => !d)
