@@ -7,6 +7,9 @@
 /* purgecss start ignore */
 
 :root {
+  supported-color-schemes: light dark;
+  color-scheme: light dark;
+
   --site-background: rgb(249, 251, 252);
   --site-text: #393e41;
   --background: #f5f2f0;

@@ -27,7 +27,7 @@ function checkMode() {
     }
 
     // Fall back to user preference
-    return window.matchMedia("(prefers-color-scheme: dark").matches
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
   }
 }
 
@@ -47,11 +47,10 @@ function Header() {
       changeMode(event.matches)
     }
 
-    const matcher = window.matchMedia("(prefers-color-scheme: dark")
+    const matcher = window.matchMedia("(prefers-color-scheme: dark)")
 
     matcher.addListener(handler)
 
-    console.log('=== EFFECT ===')
     return () => {
       matcher.removeListener(handler)
     }
