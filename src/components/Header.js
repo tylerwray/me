@@ -6,13 +6,11 @@ import "./header.css"
 
 const emoji = ["🙈", "🌀", "💻", "🤘🏻"]
 
-function changeMode(dark) {
-  if (dark) {
-    localStorage.setItem("tylerwray-dark-mode", "on")
-    document.body.classList.add("tylerwray-dark-mode")
-  } else {
-    localStorage.setItem("tylerwray-dark-mode", "off")
-    document.body.classList.remove("tylerwray-dark-mode")
+function changeMode(dark, persist = false) {
+  document.body.classList.toggle("tylerwray-dark-mode", dark)
+
+  if (persist) {
+    localStorage.setItem("tylerwray-dark-mode", dark ? "on" : "off")
   }
 }
 
@@ -36,15 +34,16 @@ function Header() {
 
   const [dark, setDark] = useState(checkMode)
 
+  // Set initial dark mode
   useLayoutEffect(() => {
-    changeMode(dark)
-  }, [dark])
+    changeMode(checkMode(), false)
+  }, [])
 
   // Subscribe to user OS dark/light mode preferences
   useEffect(() => {
     function handler(event) {
       setDark(event.matches)
-      changeMode(event.matches)
+      changeMode(event.matches, true)
     }
 
     const matcher = window.matchMedia("(prefers-color-scheme: dark)")
@@ -57,7 +56,12 @@ function Header() {
   })
 
   function handleDarkModeClick() {
-    setDark(d => !d)
+    // Set state and presist change
+    setDark(d => {
+      changeMode(!d, true)
+
+      return !d
+    })
   }
 
   return (
