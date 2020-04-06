@@ -9,7 +9,7 @@ tags:
 path: /blog/react-anti-patterns
 author: Tyler Wray
 date: 2019-02-20
-banner: ./images/hero.jpg
+banner: images/hero.jpg
 bannerCreditName: Lane Smith
 bannerCreditUrl: https://unsplash.com/photos/wEsqjsjIDLs
 ---
@@ -48,7 +48,7 @@ It looked something like this:
 ```jsx{8-11}
 class Base extends React.Component {
   componentDidMount() {
-    apiCall(this.props.type).then(data => {
+    apiCall(this.props.type).then((data) => {
       this.setState({ data })
     })
   }
@@ -203,7 +203,7 @@ export function NavBar() {
   function search(event) {
     event.preventDefault()
 
-    apiCall(keyword).then(data => {
+    apiCall(keyword).then((data) => {
       setResults(data.results)
     })
   }
@@ -213,7 +213,7 @@ export function NavBar() {
       <form onSubmit={search}>
         <input placeholder="Search" onChange={handleChange} />
       </form>
-      {results.map(result => (
+      {results.map((result) => (
         <div key={result.id}>{result.value}</div>
       ))}
     </header>

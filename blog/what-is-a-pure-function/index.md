@@ -9,7 +9,7 @@ tags:
 path: /blog/what-is-a-pure-function
 author: Tyler Wray
 date: 2019-07-28
-banner: ./images/hero.jpg
+banner: images/hero.jpg
 bannerCreditName: Todd Quackenbush
 bannerCreditUrl: https://unsplash.com/photos/IClZBVw5W5A
 ---
@@ -34,7 +34,7 @@ Let’s take a look these two rules.
 Here's a pure function:
 
 ```js
-const cowSay = phrase => `The cow says ${phrase}`
+const cowSay = (phrase) => `The cow says ${phrase}`
 ```
 
 We say `cowSay` is pure because if you call it with the string `'moo'` , it will always return the string `'The cow says moo'`, no matter how many times you call it.
@@ -61,13 +61,14 @@ const order = {
   items: [
     { name: "bandage", price: 1.25 },
     { name: "coffee", price: 3.4 },
-    { name: "board game", price: 12.99 }
-  ]
+    { name: "board game", price: 12.99 },
+  ],
 }
 
 // calculateTotal is pure because if you give it the same items array
 // 1 million times, it always will return the same total
-const calculateTotal = items => items.reduce((item, acc) => acc + item.price, 0)
+const calculateTotal = (items) =>
+  items.reduce((item, acc) => acc + item.price, 0)
 
 const total = calculateTotal(order.items)
 
@@ -128,9 +129,9 @@ function log() {
 }
 
 // Pure
-const add = number => number + 1
+const add = (number) => number + 1
 
-const double = number => number * 2
+const double = (number) => number * 2
 
 // Program
 log() // 2

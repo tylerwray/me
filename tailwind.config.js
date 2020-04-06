@@ -5,14 +5,15 @@ module.exports = {
         primary: "var(--primary)",
         black: "rgba(57, 62, 65, 1)",
         red: "rgb(233, 79, 55)",
-        cream: "#F5FAFA"
-      }
-    }
+        cream: "#F5FAFA",
+      },
+    },
   },
   variants: {
-    textColor: ["dark"]
+    textColor: ["dark"],
+    backgroundColor: ["dark"],
   },
-  plugins: [darkMode]
+  plugins: [darkMode],
 }
 
 function darkMode({ addVariant, e }) {

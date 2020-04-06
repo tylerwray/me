@@ -72,7 +72,10 @@ export const pageQuery = graphql`
     allMarkdownRemark(
       limit: 5
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { fileAbsolutePath: { regex: "/blog/" } }
+      filter: {
+        fileAbsolutePath: { regex: "/blog/" }
+        frontmatter: { beta: { ne: true } }
+      }
     ) {
       edges {
         node {
