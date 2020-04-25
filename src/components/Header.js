@@ -3,7 +3,6 @@ import React from "react"
 import useDarkMode from "use-dark-mode"
 import Moon from "../icons/Moon"
 import Sun from "../icons/Sun"
-import "./header.css"
 
 const emoji = ["🙈", "🌀", "💻", "🤘🏻"]
 
@@ -41,14 +40,16 @@ function Header() {
           onClick={darkMode.toggle}
         >
           <div
-            className={`DarkMode-track ${
-              darkMode.value ? "on bg-purple-800" : "bg-gray-300"
-            } absolute rounded-full h-6 w-10 left-0 right-0`}
+            className={`${
+              darkMode.value ? "bg-purple-800" : "bg-gray-300"
+            } absolute rounded-full h-6 w-10 left-0 right-0 transition duration-200`}
           />
           <div
-            className={`DarkMode-knob ${
-              darkMode.value ? "on bg-purple-900" : "bg-cream resize"
-            } rounded-full flex items-center justify-center shadow relative w-6 h-6`}
+            className={`${
+              darkMode.value
+                ? "transform translate-x-4 bg-purple-900"
+                : "bg-cream resize"
+            } rounded-full flex items-center justify-center shadow relative w-6 h-6 transition duration-200`}
           >
             <Sun
               className={`${

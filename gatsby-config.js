@@ -81,6 +81,7 @@ module.exports = {
       resolve: "gatsby-plugin-purgecss",
       options: {
         tailwind: true,
+        whitelist: ["dark-mode"],
       },
     },
     "gatsby-plugin-twitter",

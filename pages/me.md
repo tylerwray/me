@@ -39,28 +39,30 @@ through and through.
 
 ## Tools I use.
 
-- Editor: [VS Code](https://code.visualstudio.com/) with [Night Owl](https://github.com/sdras/night-owl-vscode-theme)
+- Editor: [Neovim](https://neovim.io/) with [Gruvbox](https://github.com/morhetz/gruvbox)
 - Terminal: [iTerm2](https://www.iterm2.com/) with [Oh My ZSH](https://ohmyz.sh/)
+- Dotfiles: [Repo](https://github.com/tylerwray/dotfiles). Includes all my vim configuration.
 
 ## Tech things I like.
 
-- [GraphQL](https://graphql.org/)
-- [Elixir](https://elixir-lang.org/)
-- [Go](https://golang.org/)
-- [React](https://reactjs.org/)
 - [Docker](https://www.docker.com/)
+- [Elixir](https://elixir-lang.org/)
 - [Gatsby](https://www.gatsbyjs.org/)
-- [Tailwind](https://tailwindcss.com/)
-- [Prettier](https://prettier.io/)
-- [Kafka](https://kafka.apache.org/)
-- [Vim](https://www.vim.org/)
-- [Mechanical keyboards](https://www.daskeyboard.com/daskeyboard-4-ultimate/)
-- [My Espresso Machine](https://www.breville.com/us/en/products/espresso/bes870.html)
+- [Go](https://golang.org/)
+- [GraphQL](https://graphql.org/)
 - [Homebrew](https://brew.sh/)
+- [Kafka](https://kafka.apache.org/)
+- [Mechanical keyboards](https://www.daskeyboard.com/daskeyboard-4-ultimate/)
+- [Postgres](https://www.postgresql.org/)
+- [Prettier](https://prettier.io/)
+- [React](https://reactjs.org/)
+- [Tailwind](https://tailwindcss.com/)
+- [Vim](https://www.vim.org/) (and [Neovim](https://neovim.io/))
 
 ## Thing things I like.
 
 - [Utah mountains](http://bit.ly/2GzhC1Q)
+- [My Espresso Machine](https://www.breville.com/us/en/products/espresso/bes870.html)
 - [Coffee](https://www.youtube.com/watch?v=ZuQu12vMQZM)
 - [Potatoes](https://idahopotato.com/)
 - My family
@@ -68,9 +70,10 @@ through and through.
 - How much of a dork my wife is
 - [Digital art](https://mkbhdwallpapers.blogspot.com/2018/11/poly-lakeside.html)
 - [Trees](https://www.boredpanda.com/most-beautiful-trees/?utm_source=google&utm_medium=organic&utm_campaign=organic)
-- [An expensive steak](https://www.ruthschris.com/restaurant-locations/park-city/)
+- [A nice steak](https://www.ruthschris.com/restaurant-locations/park-city/)
 - A good toothbrush
 - [Football](https://www.nfl.com/)
 - [Autumn](https://www.sltrib.com/artsliving/outdoors/2017/09/19/10-top-spots-for-utahs-fall-colors/)
 - American crew hair pomade
+- Cooking yummy food at home
 - [Personal finance management](https://www.simple.com/)
