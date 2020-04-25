@@ -19,8 +19,7 @@ module.exports = {
 function darkMode({ addVariant, e }) {
   addVariant("dark", ({ modifySelectors, separator }) => {
     modifySelectors(
-      ({ className }) =>
-        `.tylerwray-dark-mode .${e(`dark${separator}${className}`)}`
+      ({ className }) => `.dark-mode .${e(`dark${separator}${className}`)}`
     )
   })
 }

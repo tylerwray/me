@@ -139,8 +139,8 @@ pre[class*="language-"] {
 
 /* Dark Theme */
 
-.tylerwray-dark-mode code[class*="language-"],
-.tylerwray-dark-mode pre[class*="language-"] {
+.dark-mode code[class*="language-"],
+.dark-mode pre[class*="language-"] {
   color: #c5c8c6;
   text-shadow: 0 1px rgba(0, 0, 0, 0.3);
   font-family: Inconsolata, Monaco, Consolas, "Courier New", Courier, monospace;
@@ -162,121 +162,121 @@ pre[class*="language-"] {
 }
 
 /* Code blocks */
-.tylerwray-dark-mode pre[class*="language-"] {
+.dark-mode pre[class*="language-"] {
   padding: 1em;
   margin: 0.5em 0;
   overflow: auto;
   border-radius: 0.3em;
 }
 
-.tylerwray-dark-mode :not(pre) > code[class*="language-"],
-.tylerwray-dark-mode pre[class*="language-"] {
+.dark-mode :not(pre) > code[class*="language-"],
+.dark-mode pre[class*="language-"] {
   background: #1d1f21;
 }
 
 /* Inline code */
-.tylerwray-dark-mode :not(pre) > code[class*="language-"] {
+.dark-mode :not(pre) > code[class*="language-"] {
   padding: 0.1em;
   border-radius: 0.3em;
 }
 
-.tylerwray-dark-mode .token.comment,
-.tylerwray-dark-mode .token.prolog,
-.tylerwray-dark-mode .token.doctype,
-.tylerwray-dark-mode .token.cdata {
+.dark-mode .token.comment,
+.dark-mode .token.prolog,
+.dark-mode .token.doctype,
+.dark-mode .token.cdata {
   color: #7c7c7c;
 }
 
-.tylerwray-dark-mode .token.punctuation {
+.dark-mode .token.punctuation {
   color: #c5c8c6;
 }
 
-.tylerwray-dark-mode .namespace {
+.dark-mode .namespace {
   opacity: 0.7;
 }
 
-.tylerwray-dark-mode .token.property,
-.tylerwray-dark-mode .token.keyword,
-.tylerwray-dark-mode .token.tag {
+.dark-mode .token.property,
+.dark-mode .token.keyword,
+.dark-mode .token.tag {
   color: #96cbfe;
 }
 
-.tylerwray-dark-mode .token.class-name {
+.dark-mode .token.class-name {
   color: #ffffb6;
 }
 
-.tylerwray-dark-mode .token.boolean,
-.tylerwray-dark-mode .token.constant {
+.dark-mode .token.boolean,
+.dark-mode .token.constant {
   color: #99cc99;
 }
 
-.tylerwray-dark-mode .token.symbol,
-.tylerwray-dark-mode .token.deleted {
+.dark-mode .token.symbol,
+.dark-mode .token.deleted {
   color: #f92672;
 }
 
-.tylerwray-dark-mode .token.number {
+.dark-mode .token.number {
   color: #ff73fd;
 }
 
-.tylerwray-dark-mode .token.selector,
-.tylerwray-dark-mode .token.attr-name,
-.tylerwray-dark-mode .token.string,
-.tylerwray-dark-mode .token.char,
-.tylerwray-dark-mode .token.builtin,
-.tylerwray-dark-mode .token.inserted {
+.dark-mode .token.selector,
+.dark-mode .token.attr-name,
+.dark-mode .token.string,
+.dark-mode .token.char,
+.dark-mode .token.builtin,
+.dark-mode .token.inserted {
   color: #a8ff60;
 }
 
-.tylerwray-dark-mode .token.variable {
+.dark-mode .token.variable {
   color: #c6c5fe;
 }
 
-.tylerwray-dark-mode .token.operator {
+.dark-mode .token.operator {
   color: #ededed;
   background: none;
 }
 
-.tylerwray-dark-mode .token.entity {
+.dark-mode .token.entity {
   color: #ffffb6;
   /* text-decoration: underline; */
 }
 
-.tylerwray-dark-mode .token.url {
+.dark-mode .token.url {
   color: #96cbfe;
 }
 
-.tylerwray-dark-mode .language-css .token.string,
-.tylerwray-dark-mode .style .token.string {
+.dark-mode .language-css .token.string,
+.dark-mode .style .token.string {
   color: #87c38a;
 }
 
-.tylerwray-dark-mode .token.atrule,
-.tylerwray-dark-mode .token.attr-value {
+.dark-mode .token.atrule,
+.dark-mode .token.attr-value {
   color: #f9ee98;
 }
 
-.tylerwray-dark-mode .token.function {
+.dark-mode .token.function {
   color: #dad085;
 }
 
-.tylerwray-dark-mode .token.regex {
+.dark-mode .token.regex {
   color: #e9c062;
 }
 
-.tylerwray-dark-mode .token.important {
+.dark-mode .token.important {
   color: #fd971f;
 }
 
-.tylerwray-dark-mode .token.important,
-.tylerwray-dark-mode .token.bold {
+.dark-mode .token.important,
+.dark-mode .token.bold {
   font-weight: bold;
 }
-.tylerwray-dark-mode .token.italic {
+.dark-mode .token.italic {
   font-style: italic;
 }
 
-.tylerwray-dark-mode .token.entity {
+.dark-mode .token.entity {
   cursor: help;
 }
 

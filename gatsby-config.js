@@ -3,7 +3,7 @@ module.exports = {
     title: "Tyler Wray",
     description: "My special corner of the internet to be myself.",
     author: "@wray_tw",
-    siteUrl: "https://tylerwray.me"
+    siteUrl: "https://tylerwray.me",
   },
   plugins: [
     "gatsby-plugin-sitemap",
@@ -12,29 +12,29 @@ module.exports = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "images",
-        path: `${__dirname}/src/images`
-      }
+        path: `${__dirname}/src/images`,
+      },
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "blog",
-        path: `${__dirname}/blog`
-      }
+        path: `${__dirname}/blog`,
+      },
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "src",
-        path: `${__dirname}/src`
-      }
+        path: `${__dirname}/src`,
+      },
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "pages",
-        path: `${__dirname}/pages`
-      }
+        path: `${__dirname}/pages`,
+      },
     },
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
@@ -47,8 +47,8 @@ module.exports = {
         background_color: "#3F88C5",
         theme_color: "#F9FBFC",
         display: "standalone",
-        icon: "src/images/initials.png"
-      }
+        icon: "src/images/initials.png",
+      },
     },
     {
       resolve: "gatsby-transformer-remark",
@@ -57,32 +57,33 @@ module.exports = {
           {
             resolve: "gatsby-remark-images",
             options: {
-              maxWidth: 960
-            }
+              maxWidth: 960,
+            },
           },
           {
             resolve: "gatsby-remark-prismjs",
             options: {
-              inlineCodeMarker: "+"
-            }
-          }
-        ]
-      }
+              inlineCodeMarker: "+",
+            },
+          },
+        ],
+      },
     },
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
-        trackingId: "UA-92617795-2"
-      }
+        trackingId: "UA-92617795-2",
+      },
     },
     "gatsby-plugin-offline",
     "gatsby-plugin-postcss",
     {
       resolve: "gatsby-plugin-purgecss",
       options: {
-        tailwind: true
-      }
+        tailwind: true,
+      },
     },
-    "gatsby-plugin-twitter"
-  ]
+    "gatsby-plugin-twitter",
+    "gatsby-plugin-use-dark-mode",
+  ],
 }
