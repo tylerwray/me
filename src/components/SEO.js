@@ -3,11 +3,23 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { StaticQuery, graphql } from "gatsby"
 
+const DETAILS_QUERY = graphql`
+  query DefaultSEOQuery {
+    site {
+      siteMetadata {
+        title
+        description
+        author
+      }
+    }
+  }
+`
+
 function SEO({ description, lang, meta, keywords, title }) {
   return (
     <StaticQuery
-      query={detailsQuery}
-      render={data => {
+      query={DETAILS_QUERY}
+      render={(data) => {
         const metaDescription =
           description || data.site.siteMetadata.description
         return (
@@ -82,15 +94,3 @@ SEO.propTypes = {
 }
 
 export default SEO
-
-const detailsQuery = graphql`
-  query DefaultSEOQuery {
-    site {
-      siteMetadata {
-        title
-        description
-        author
-      }
-    }
-  }
-`

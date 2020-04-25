@@ -3,13 +3,13 @@ const path = require("path")
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions
 
-  const blogTemplate = path.resolve(`src/templates/blogTemplate.js`)
+  const blogTemplate = path.resolve(`src/templates/BlogTemplate.js`)
 
   const {
     errors: blogErrors,
     data: {
-      allMarkdownRemark: { edges: posts }
-    }
+      allMarkdownRemark: { edges: posts },
+    },
   } = await graphql(`
     query {
       allMarkdownRemark(
@@ -41,18 +41,18 @@ exports.createPages = async ({ actions, graphql }) => {
       component: blogTemplate,
       context: {
         prev,
-        next
-      }
+        next,
+      },
     })
   })
 
-  const pageTemplate = path.resolve(`src/templates/pageTemplate.js`)
+  const pageTemplate = path.resolve(`src/templates/PageTemplate.js`)
 
   const {
     errors: pageErrors,
     data: {
-      allMarkdownRemark: { edges: pages }
-    }
+      allMarkdownRemark: { edges: pages },
+    },
   } = await graphql(`
     query {
       allMarkdownRemark(
@@ -76,10 +76,10 @@ exports.createPages = async ({ actions, graphql }) => {
     return
   }
 
-  pages.forEach(page => {
+  pages.forEach((page) => {
     createPage({
       path: page.node.frontmatter.path,
-      component: pageTemplate
+      component: pageTemplate,
     })
   })
 }
@@ -92,7 +92,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: "githubEditLink",
       node,
-      value: `https://github.com/tylerwray/me/edit/master/blog/${fileNode.relativePath}`
+      value: `https://github.com/tylerwray/me/edit/master/blog/${fileNode.relativePath}`,
     })
   }
 }

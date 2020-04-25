@@ -7,7 +7,35 @@ import SEO from "../components/SEO"
 import { getIcon } from "../icons"
 import config from "../../config/website"
 
-export default function Template({ data }) {
+export const pageQuery = graphql`
+  query($path: String!) {
+    markdownRemark(frontmatter: { path: { eq: $path } }) {
+      html
+      timeToRead
+      fields {
+        githubEditLink
+      }
+      frontmatter {
+        title
+        path
+        icon
+        tags
+        date(formatString: "MMMM DD, YYYY")
+        banner {
+          childImageSharp {
+            fluid(maxWidth: 640) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        bannerCreditName
+        bannerCreditUrl
+      }
+    }
+  }
+`
+
+function BlogTemplate({ data }) {
   const { markdownRemark } = data
   const { frontmatter, html, timeToRead, fields } = markdownRemark
   const blogPostUrl = `${config.siteUrl}${frontmatter.path}`
@@ -57,30 +85,4 @@ export default function Template({ data }) {
   )
 }
 
-export const pageQuery = graphql`
-  query($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
-      html
-      timeToRead
-      fields {
-        githubEditLink
-      }
-      frontmatter {
-        title
-        path
-        icon
-        tags
-        date(formatString: "MMMM DD, YYYY")
-        banner {
-          childImageSharp {
-            fluid(maxWidth: 640) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        bannerCreditName
-        bannerCreditUrl
-      }
-    }
-  }
-`
+export default BlogTemplate
