@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
-import GitHubButton from "react-github-btn"
 
 import Layout from "../components/Layout"
 import SEO from "../components/SEO"
@@ -42,25 +41,6 @@ function IndexPage({ data }) {
       {data.allMarkdownRemark.edges.map(({ node }) => (
         <Post key={node.id} node={node} />
       ))}
-      <div className="flex flex-col items-start">
-        <GitHubButton
-          href="https://github.com/tylerwray"
-          data-size="large"
-          data-show-count="true"
-          aria-label="Follow @tylerwray on GitHub"
-        >
-          Follow @tylerwray
-        </GitHubButton>
-        <div className="h-4" />
-        <a
-          href="https://twitter.com/wray_tw?ref_src=twsrc%5Etfw"
-          className="twitter-follow-button"
-          data-size="large"
-          data-show-screen-name="false"
-        >
-          Follow @wray_tw
-        </a>
-      </div>
     </Layout>
   )
 }

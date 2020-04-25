@@ -84,7 +84,6 @@ module.exports = {
         whitelist: ["dark-mode"],
       },
     },
-    "gatsby-plugin-twitter",
     "gatsby-plugin-use-dark-mode",
   ],
 }
