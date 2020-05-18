@@ -17,6 +17,7 @@ export const pageQuery = graphql`
       }
       frontmatter {
         title
+        subTitle
         path
         icon
         tags
@@ -42,11 +43,12 @@ function BlogTemplate({ data }) {
 
   return (
     <Layout>
-      <SEO title={frontmatter.title} keywords={[frontmatter.tags]} />
+      <SEO title={frontmatter.title} keywords={frontmatter.tags} />
       <div className="flex items-center text-lg leading-relaxed font-bold">
         {getIcon(frontmatter.icon)}
-        {frontmatter.title}
+        <span className="ml-1">{frontmatter.title}</span>
       </div>
+      <div className="ml-8">{frontmatter.subTitle}</div>
       <div className="text-xs my-1">
         <span>{frontmatter.date}</span>
         <span className="mx-2">·</span>

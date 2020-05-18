@@ -12,7 +12,7 @@ export const pageQuery = graphql`
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
         fileAbsolutePath: { regex: "/blog/" }
-        frontmatter: { beta: { ne: true } }
+        frontmatter: { beta: { ne: true }, partOfSeries: { ne: true } }
       }
     ) {
       edges {

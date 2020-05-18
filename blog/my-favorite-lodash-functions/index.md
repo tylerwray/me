@@ -39,7 +39,7 @@ Lodash is still very helpful in everyday use. I've used these lodash utilities t
 1. [`_.truncate`](https://lodash.com/docs#truncate)
 1. [`_.capitalize`](https://lodash.com/docs#capitalize)
 
-### Debounce ⛹🏻‍♂️
+## Debounce ⛹🏻‍♂️
 
 [`_.debounce`](https://lodash.com/docs#debounce)
 
@@ -47,7 +47,7 @@ Groups some number of repeated actions that occur during a time frame.
 
 This is really nice for creating a search-as-you-type input that makes an api call to display the results.
 
-### Throttle 🚙
+## Throttle 🚙
 
 [`_.throttle`](https://lodash.com/docs#throttle)
 
@@ -55,7 +55,7 @@ Similar to `_.debounce`, but instead of grouping repeated actions, it ensures th
 
 David Corbacho wrote [a great article](https://css-tricks.com/debouncing-throttling-explained-examples/) about the details of both `_.debounce` and `_.throttle`. I'd recommend giving it a read.
 
-### Range 🚜
+## Range 🚜
 
 [`_.range`](https://lodash.com/docs#range)
 
@@ -63,7 +63,7 @@ Creates an array of consecutive integers, of a given length.
 
 Almost every other language I've used has native ranges built in, and I miss them in JavaScript! This is a nice helper to create ranges that I use a TON.
 
-### Memoize 💵
+## Memoize 💵
 
 [`_.memoize`](https://lodash.com/docs#memoize)
 
@@ -75,13 +75,13 @@ I've used this when creating a search index for fast frontend searching with som
 
 You _can_ implement your own memoization helper in vanilla JS, but there are some tricky edge cases lined out [in this article](https://www.sitepoint.com/implementing-memoization-in-javascript/), and lodash already has a battle tested one for us.
 
-### Shuffle 🂡
+## Shuffle 🂡
 
 [`_.shuffle`](https://lodash.com/docs#shuffle)
 
 Really pretty simple. Takes an array, and returns a new array, shuffled! I've found this useful when I want a "random" list of items.
 
-### IsEqual ✅
+## IsEqual ✅
 
 [`_.isEqual`](https://lodash.com/docs#isEqual)
 
@@ -89,7 +89,7 @@ This is very nice to see if two objects have the same values. It deeply checks e
 
 I've used this the most to check if an array of items has changed when saving forms.
 
-### Pick ⛏
+## Pick ⛏
 
 [`_.pick`](https://lodash.com/docs#pick)
 
@@ -97,7 +97,7 @@ Pick only a subset of keys from an object. This is really handy when ensuring th
 
 I've used this mostly as a safety layer before making api requests to make sure that things aren't accidentally getting sent that shouldn't.
 
-### Repeat 🔁
+## Repeat 🔁
 
 [`_.repeat`](https://lodash.com/docs#repeat)
 
@@ -107,7 +107,7 @@ This is nice when you need a dynamic length string of special characters.
 
 I've used this when building a CLI with node and I wanted a box of `*` around a word.
 
-### Truncate ✂
+## Truncate ✂
 
 [`_.truncate`](https://lodash.com/docs#truncate)
 
@@ -115,7 +115,7 @@ Truncate a string when it is longer than a certain number of characters.
 
 I've used this most when I want uniform items in a list, and have a description of some kind for each item. I'll truncate the description so that it only ever wraps 2 lines at most
 
-### Capitalize 🏛
+## Capitalize 🏛
 
 [`_.capitalize`](https://lodash.com/docs#capitalize)
 
