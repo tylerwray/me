@@ -6,6 +6,7 @@ import Layout from "../components/Layout"
 import SEO from "../components/SEO"
 import { getIcon } from "../icons"
 import config from "../../config/website"
+import family from "../images/family.jpg"
 
 export const pageQuery = graphql`
   query($path: String!) {
@@ -17,7 +18,6 @@ export const pageQuery = graphql`
       }
       frontmatter {
         title
-        subTitle
         description
         path
         icon
@@ -56,8 +56,8 @@ function BlogTemplate({ data }) {
           { property: "article:section", content: "Technology" },
         ]}
       />
-      <div className="flex items-center text-lg leading-relaxed font-bold">
-        {getIcon(frontmatter.icon)}
+      <div className="flex text-lg leading-relaxed font-bold">
+        <span className="mt-1">{getIcon(frontmatter.icon)}</span>
         <span className="ml-1">{frontmatter.title}</span>
       </div>
       <div className="ml-8">{frontmatter.subTitle}</div>
@@ -68,13 +68,7 @@ function BlogTemplate({ data }) {
           {"📚".repeat(Math.floor(timeToRead / 5))} {timeToRead} min read
         </span>
       </div>
-      <Img className="mt-3" fluid={frontmatter.banner.childImageSharp.fluid} />
-      <div className="mt-1 text-xs text-center text-gray-600">
-        Photo By{" "}
-        <a href={frontmatter.bannerCreditUrl}>{frontmatter.bannerCreditName}</a>
-      </div>
-      <div className="page pt-3" dangerouslySetInnerHTML={{ __html: html }} />
-      <div className="mb-4">
+      <div className="mb-4 text-sm">
         <a
           target="_blank"
           rel="noopener noreferrer"
@@ -94,6 +88,36 @@ function BlogTemplate({ data }) {
         >
           Edit post on GitHub
         </a>
+      </div>
+      <Img className="mt-3" fluid={frontmatter.banner.childImageSharp.fluid} />
+      <div className="mt-1 text-xs text-center text-gray-600">
+        Photo By{" "}
+        <a href={frontmatter.bannerCreditUrl}>{frontmatter.bannerCreditName}</a>
+      </div>
+      <div
+        className="page pt-3 mb-24"
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
+      <div className="flex mb-16 p-12 text-white bg-gray-800 rounded-lg shadow-xl flex-col md:flex-row">
+        <div>
+          <h3 className="mt-0">About the Author</h3>
+          <p className="text-sm">
+            Hi{" "}
+            <span role="img" aria-label="hand wave">
+              👋
+            </span>{" "}
+            I'm Tyler. I'm a full stack software engineer with a passion for
+            learning new things. Currently employed at
+            <a href="https://podium.com"> Podium</a>, I love solving hard
+            problems and simplifying them down to their pieces. Presently
+            residing in Utah with my two girls and beautiful wife.
+          </p>
+        </div>
+        <img
+          className="rounded-full h-48 w-48 ml-12 hidden md:block"
+          alt="Family"
+          src={family}
+        />
       </div>
     </Layout>
   )

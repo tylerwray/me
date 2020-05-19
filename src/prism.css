@@ -82,6 +82,8 @@ a > code[class*="language-"]:hover {
   color: #abb2bf;
 }
 
+
+.token.deleted,
 .token.selector,
 .token.tag {
   color: #e06c75;
@@ -92,8 +94,7 @@ a > code[class*="language-"]:hover {
 .token.number,
 .token.constant,
 .token.symbol,
-.token.attr-name,
-.token.deleted {
+.token.attr-name {
   color: #d19a66;
 }
 

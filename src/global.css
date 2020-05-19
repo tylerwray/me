@@ -262,12 +262,12 @@ h1 {
 h2 {
   margin-left: 0;
   margin-right: 0;
-  margin-top: 0;
   padding-bottom: 0;
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
-  margin-bottom: 1.45rem;
+  margin-top: 2.45rem;
+  margin-bottom: 0.5rem;
   color: inherit;
   font-weight: bold;
   text-rendering: optimizeLegibility;
@@ -277,12 +277,12 @@ h2 {
 h3 {
   margin-left: 0;
   margin-right: 0;
-  margin-top: 0;
   padding-bottom: 0;
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
-  margin-bottom: 1.45rem;
+  margin-top: 2.45rem;
+  margin-bottom: 0.5rem;
   color: inherit;
   font-weight: bold;
   text-rendering: optimizeLegibility;
@@ -398,7 +398,7 @@ p {
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
-  margin-bottom: 1.45rem;
+  margin-bottom: 0.75rem;
 }
 figure {
   margin-left: 0;
@@ -448,6 +448,7 @@ fieldset {
   margin-bottom: 1.45rem;
 }
 blockquote {
+  font-style: italic;
   border-left: 0.25em solid var(--blue);
   background-color: var(--quote-background);
   padding-left: 1.25rem;
@@ -622,7 +623,12 @@ pre code {
   }
 }
 
-.gatsby-resp-image-wrapper, .gatsby-image-wrapper,  img {
+.page > p > img  {
+  border-radius: 0.3em;
+  box-shadow: 0px 3px 6px 4px rgba(0, 0, 0, 0.08);
+}
+
+.gatsby-resp-image-wrapper, .gatsby-image-wrapper {
   border-radius: 0.3em;
   box-shadow: 0px 3px 6px 4px rgba(0, 0, 0, 0.08);
 }
