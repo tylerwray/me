@@ -4,6 +4,7 @@ module.exports = {
     description: "My special corner of the internet to be myself.",
     author: "@wray_tw",
     siteUrl: "https://tylerwray.me",
+    image: "/images/me_at_work.jpg",
   },
   plugins: [
     "gatsby-plugin-sitemap",

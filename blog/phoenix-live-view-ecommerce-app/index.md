@@ -1,5 +1,6 @@
 ---
 title: How to Build an Ecommerce App with Phoenix LiveView
+description: This tutorial takes you through building a real world ecommerce application with phoenix liveview. Integrating with Stripe, using tailwindcss, and showing live updates to users.
 icon: elixir
 tags:
   - elixir

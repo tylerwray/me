@@ -1,6 +1,7 @@
 ---
 title: How to Build an Ecommerce App with Phoenix LiveView
 subTitle: Part 2 - Our first live view
+description: This tutorial takes you through building a real world ecommerce application with phoenix liveview. Integrating with Stripe, using tailwindcss, and showing live updates to users.
 icon: elixir
 tags:
   - elixir
@@ -22,7 +23,8 @@ A basic navbar with product cards, each showing a live inventory count.
 
 ## Navbar
 
-First thing we need to do is setup our root layout properly. And that starts with adding our nice logo.
+First thing we need to do is setup our root layout properly. And that starts with
+adding our nice logo.
 
 <div class="bg-gray-800">
   <img alt="Amazin log" title="Amazin logo" src="/amazin-logo.svg" />
@@ -32,7 +34,8 @@ First thing we need to do is setup our root layout properly. And that starts wit
 
 Place that logo in `assets/static/images/logo.svg`.
 
-Then head over to `lib/amazin_web/templates/layout/root.html.leex` and replace the contents of the `<body />` tag so it looks like this:
+Then head over to `lib/amazin_web/templates/layout/root.html.leex` and replace the
+contents of the `<body />` tag so it looks like this:
 
 ```html
 <body>
@@ -48,20 +51,23 @@ Then head over to `lib/amazin_web/templates/layout/root.html.leex` and replace t
 
 ## Generate a Live view
 
-Now we are going to create a new live view using the built in generators that come with phoenix.
-
-If you haven't seen anything like this before, it may blow your mind.
+Now we are going to create a new live view using the built in generators
+that come with phoenix. If you haven't seen anything like this before,
+it may blow your mind.
 
 ```bash
 mix phx.gen.live Inventory Product products cost:integer description:string name:string stock:integer thumbnail:string upc:string:unique
 ```
 
-This creates a context called `Inventory`,
-with a schema called `Product`, using a table called `products`, with the remaining arguments describing the data of a `Product`.
+This creates a context called `Inventory`, with a schema called `Product`,
+using a table called `products`, with the remaining arguments describing
+the data of a `Product`.
 
-> Feel free to explore those files it created and get familiar with them. We will be going in and making edits to some of them later.
+> Feel free to explore those files it created and get familiar with them.
+> We will be going in and making edits to some of them later.
 
-The generator output shows us all the files it created, instructs us to make some updates to our router, and run migrations. Let's do that really quick.
+The generator output shows us all the files it created, instructs us to make
+some updates to our router, and run migrations. Let's do that really quick.
 
 ```git
 scope "/", AmazinWeb do
@@ -82,7 +88,8 @@ Then run:
 mix ecto.migrate
 ```
 
-Lastly, we need to make one small change to the `cost` field in `lib/amazin/inventory/product.ex`.
+Lastly, we need to make one small change to the `cost` field in
+`lib/amazin/inventory/product.ex`.
 
 ```git
 -    field :cost, :integer
@@ -91,32 +98,10 @@ Lastly, we need to make one small change to the `cost` field in `lib/amazin/inve
 
 Using the `Money.Ecto.Amount.Type` here, we get automatic currency formatting 🙌🏻.
 
-<!-- TODO: Do I need this?
-
-Now we can start up our server again with `mix phx.server` and if we now visit [`http://localhost:4000/products`](http://localhost:4000/products) we should see a
-nice simple table showing us a list of our products!
-
-![Initial Table](/images/initial-table.png)
-
-And if we click on that nice `New Product` button, we should get a modal where we can add new product information.
-
-![Initial Form](/images/initial-form.png)
-
-Once you save, you'll notice we have a `Show`, `Edit`, and `Delete` button next to the product row.
-
-![Initial Product](/images/initial-product.png)
-
-Pretty NEAT! The generator command created a full set of [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) interface elements for us to play with.
-
-
--->
-
 ## Custom products grid
 
-Now we're going make things our own and use the awesome power of tailwindcss.
-
-First, we need to get rid of the default phoenix styles so we can have more control over the UI.
-
+Now we're going make things our own and use the awesome power of tailwindcss. First,
+we need to get rid of the default phoenix styles so we can have more control over the UI.
 Replace all of `assets/css/app.scss` with this:
 
 ```css
@@ -129,11 +114,9 @@ Replace all of `assets/css/app.scss` with this:
 @tailwind utilities;
 ```
 
-Small one, but remove `class="container"` from the `<main />` tag in `lib/amazin_web/templates/layout/live.html.eex`.
-because it conflicts with the tailwindcss container class.
-
-Next, time to make our product list prettier.
-
+Small one, but remove `class="container"` from the `<main />` tag
+in `lib/amazin_web/templates/layout/live.html.eex`, because it conflicts
+with the tailwindcss container class. Now its time to make our product list prettier.  
 Replace all of `lib/amazin_web/live/product_live/index.html.leex` with
 
 ```html
@@ -288,7 +271,8 @@ Then run
 mix run priv/repo/seeds.exs
 ```
 
-Finally, if you start up the server again and go to [`http://localhost:4000/products`](http://localhost:4000/products),
+Finally, if you start up the server again and go to
+[`http://localhost:4000/products`](http://localhost:4000/products),
 you should see a wonderful little grid of all your products 🥰
 
 ![Nice Finished Grid](/images/pretty-grid.png)

@@ -10,18 +10,24 @@ const DETAILS_QUERY = graphql`
         title
         description
         author
+        siteUrl
+        image
       }
     }
   }
 `
 
-function SEO({ description, lang, meta, keywords, title }) {
+function SEO({ description, lang, meta, keywords, title, image, type }) {
   return (
     <StaticQuery
       query={DETAILS_QUERY}
       render={(data) => {
         const metaDescription =
           description || data.site.siteMetadata.description
+
+        const metaImage = image || data.site.siteMetadata.image
+        const metaType = type || `blog`
+
         return (
           <Helmet
             htmlAttributes={{
@@ -44,7 +50,11 @@ function SEO({ description, lang, meta, keywords, title }) {
               },
               {
                 property: `og:type`,
-                content: `website`,
+                content: metaType,
+              },
+              {
+                property: `og:image`,
+                content: `${data.site.siteMetadata.siteUrl}${metaImage}`,
               },
               {
                 name: `twitter:card`,
@@ -62,16 +72,15 @@ function SEO({ description, lang, meta, keywords, title }) {
                 name: `twitter:description`,
                 content: metaDescription,
               },
-            ]
-              .concat(
-                keywords.length > 0
-                  ? {
-                      name: `keywords`,
-                      content: keywords.join(`, `),
-                    }
-                  : []
-              )
-              .concat(meta)}
+              ...meta,
+            ].concat(
+              keywords.length > 0
+                ? {
+                    name: `keywords`,
+                    content: keywords.join(`, `),
+                  }
+                : []
+            )}
           />
         )
       }}
@@ -91,6 +100,7 @@ SEO.propTypes = {
   meta: PropTypes.array,
   keywords: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
 }
 
 export default SEO

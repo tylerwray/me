@@ -1,5 +1,6 @@
 ---
 title: My favorite Lodash Functions
+description: These are my most used lodash utilities. Here I explain what they are, why they're useful, and if you should use them too.
 icon: javascript
 tags:
   - javascript

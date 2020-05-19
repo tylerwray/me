@@ -1,5 +1,6 @@
 ---
 title: React Anti-Patterns
+description: Learn about some basic anti-patterns with React and how to avoid them.
 icon: react
 tags:
   - react

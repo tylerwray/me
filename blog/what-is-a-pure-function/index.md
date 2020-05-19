@@ -1,5 +1,6 @@
 ---
 title: What is a pure function?
+description: Pure functions are core to functional programming. Learn about what they are, why they're useful, and how to use them to improve code readability.
 icon: lambda
 tags:
   - functional programming

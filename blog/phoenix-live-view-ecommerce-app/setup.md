@@ -1,6 +1,7 @@
 ---
 title: How to Build an Ecommerce App with Phoenix LiveView
 subTitle: Part 1 - Setup
+description: This tutorial takes you through building a real world ecommerce application with phoenix liveview. Integrating with Stripe, using tailwindcss, and showing live updates to users.
 icon: elixir
 tags:
   - elixir
@@ -37,7 +38,8 @@ mix phx.new amazin --live
 
 Choose `yes` to install dependencies and follow the instructions to start the app.
 
-Once running, let's open [`http://localhost:4000`](http://localhost:4000) to see the phoenix welcome page 😎.
+Once running, let's open [`http://localhost:4000`](http://localhost:4000) to see
+the phoenix welcome page 😎.
 
 ![Phoenix default page](./images/phoenix-default.png "Phoenix default page")
 
@@ -50,9 +52,10 @@ If you don't, go create one on the [registration page](https://dashboard.stripe.
 
 ## Install Dependencies
 
-We're going to need two dependencies for our application:
+We're going to need two elixir dependencies for our application:
 
-1. [stripity_stripe](https://github.com/code-corps/stripity_stripe): A client library for working with the stripe API.
+1. [stripity_stripe](https://github.com/code-corps/stripity_stripe): A client library
+   for working with the stripe API.
 2. [Money](https://hexdocs.pm/money/Money.html): A currency formatter.
 
 Add them to your deps in `mix.exs`
@@ -72,19 +75,26 @@ Then run
 mix deps.get
 ```
 
-## Configure Stripe API Key
+Next we need to setup [tailwindcss](https://tailwindcss.com/) to work with liveview.
+I really like tailwind as a companion to liveview because of it's utility-first nature.
+It makes it really easy to style our live views and components.
 
-In order to communicate with stripe, we need an api key. You can grab the api secret key from the [stripe developer page](https://dashboard.stripe.com/apikeys) of your stripe account.
-Take great care with this key, like the name says, it's secret 🤫
+First we need to install some Javascript modules.
 
-Once we have it, we'll need to load it into the application somehow.
-I like to create a `config/dev.secret.exs` file, and load it in my dev config `config/dev.exs` with this line at the bottom:
-
-```elixir
-import_config "dev.secret.exs"
+```bash
+npm install --prefix assets postcss-loader tailwindcss
 ```
 
-And don't forget to add `config/dev.secret.exs` to your `.gitignore`!
+## Configuration
+
+We need to add a couple pieces of configuration. We need to tell `stripity_stripe`
+what our Stripe API key is. We need to tell our Money package which currency to
+use as a default. And lastly we need to tell webpack how to include tailwindcss.
+You can grab the Stripe API secret key from the
+[stripe developer page](https://dashboard.stripe.com/apikeys) of your stripe account.
+Take great care with this key, like the name says, it's secret 🤫
+
+Once you have your API key, create a new file: `config/dev.secret.exs`.
 
 Inside that `config/dev.secret.exs` file, you can now safely add the api key from stripe:
 
@@ -94,18 +104,28 @@ use Mix.Config
 config :stripity_stripe, api_key: "YOUR_SECRET_KEY"
 ```
 
-## Installing tailwindcss
+And don't forget to add `config/dev.secret.exs` to your `.gitignore`!
 
-Now we're going to setup [tailwindcss](https://tailwindcss.com/) to work with liveview. I really like tailwind as a companion to liveview
-because of it's utility-first nature. It makes it really easy to style our live views and components.
+Now in the main configuration file we are going to give our default currency. I'm using
+USD, but you can use any currency you'd like. A full list can be
+found [in the docs of Money](https://hexdocs.pm/money/Money.Currency.html#content).
 
-First we need to install some Javascript modules.
+```elixir
+# config/config.exs
 
-```bash
-npm install --prefix assets postcss-loader tailwindcss
+config :money, default_currency: :USD
 ```
 
-We're using [`postcss-loader`](https://postcss.org/) to load tailwind, so lets do that by creating a new file at `assets/postcss.config.js`
+Then in our dev configuration we are going to load our secret file. Make sure to put
+this at the very bottom of `config/dev.exs`
+
+```elixir
+import_config "dev.secret.exs"
+```
+
+Now for tailwindcss configuration. This is going to the be the most javascript
+you write in this guide, I promise. We're using [`postcss-loader`](https://postcss.org/)
+to load tailwind, so lets do that by creating a new file at `assets/postcss.config.js`
 with the contents:
 
 ```javascript
@@ -131,9 +151,7 @@ Then add the `postcss-loader` to the css rule in `assets/webpack.config.js`
 ## Testing it all out
 
 Now you should be able to start the app and communicate with stripe!
-Let's test that out.
-
-Start an interactive session of your application with:
+Let's test that out. Start an interactive session of your application with:
 
 ```bash
 iex -S mix
@@ -178,4 +196,4 @@ And with that we are all setup! Now the fun begins 😈
 - Unleash the power of phoenix generators
 - Build our first phoenix liveview page using tailwindcss
 
-[On Part 2 💪](first-live-view)
+[Onto Part 2 💪](first-live-view)

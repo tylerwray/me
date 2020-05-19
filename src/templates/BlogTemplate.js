@@ -18,10 +18,12 @@ export const pageQuery = graphql`
       frontmatter {
         title
         subTitle
+        description
         path
         icon
         tags
-        date(formatString: "MMMM DD, YYYY")
+        prettyDate: date(formatString: "MMMM DD, YYYY")
+        metaDate: date(formatString: "YYYY-DD-MM")
         banner {
           childImageSharp {
             fluid(maxWidth: 640) {
@@ -43,14 +45,24 @@ function BlogTemplate({ data }) {
 
   return (
     <Layout>
-      <SEO title={frontmatter.title} keywords={frontmatter.tags} />
+      <SEO
+        description={frontmatter.description}
+        keywords={frontmatter.tags}
+        title={frontmatter.title}
+        image={frontmatter.banner.childImageSharp.fluid.src}
+        meta={[
+          { property: "article:published_time", content: frontmatter.metaDate },
+          { property: "article:tag", content: frontmatter.tags },
+          { property: "article:section", content: "Technology" },
+        ]}
+      />
       <div className="flex items-center text-lg leading-relaxed font-bold">
         {getIcon(frontmatter.icon)}
         <span className="ml-1">{frontmatter.title}</span>
       </div>
       <div className="ml-8">{frontmatter.subTitle}</div>
       <div className="text-xs my-1">
-        <span>{frontmatter.date}</span>
+        <span>{frontmatter.prettyDate}</span>
         <span className="mx-2">·</span>
         <span>
           {"📚".repeat(Math.floor(timeToRead / 5))} {timeToRead} min read
