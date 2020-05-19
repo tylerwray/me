@@ -15,7 +15,6 @@
   --site-background: rgb(249, 251, 252);
   --site-text: #393e41;
   --background: #f5f2f0;
-  --quote-background: rgba(0, 0, 0, 0.04);
 
   --magenta: #dd4a68;
   --blue: #5293c2;
@@ -26,7 +25,6 @@
   --background: #1d1f21;
   --site-background: #1D2023;
   --site-text: #f5fafa;
-  --quote-background: #17191D;
   --blue: #63b3ed;
 }
 
@@ -450,7 +448,6 @@ fieldset {
 blockquote {
   font-style: italic;
   border-left: 0.25em solid var(--blue);
-  background-color: var(--quote-background);
   padding-left: 1.25rem;
   padding-right: 1.25rem;
   padding-top: 0.45rem;
