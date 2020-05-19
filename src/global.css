@@ -17,15 +17,14 @@
   --background: #f5f2f0;
 
   --magenta: #dd4a68;
-  --blue: #5293c2;
-  --purple: rgb(114, 89, 175);
+  --purple: #9F7AEA;
 }
 
 .dark-mode {
   --background: #1d1f21;
   --site-background: #1D2023;
   --site-text: #f5fafa;
-  --blue: #63b3ed;
+  --purple: #9F7AEA;
 }
 
 body {
@@ -72,7 +71,7 @@ template {
   display: none;
 }
 a {
-  color: var(--blue);
+  color: var(--purple);
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
 }
@@ -447,7 +446,7 @@ fieldset {
 }
 blockquote {
   font-style: italic;
-  border-left: 0.25em solid var(--blue);
+  border-left: 0.25em solid var(--purple);
   padding-left: 1.25rem;
   padding-right: 1.25rem;
   padding-top: 0.45rem;

@@ -55,7 +55,7 @@ pre[class*="language-"] {
 }
 
 a > code[class*="language-"]:hover {
-  box-shadow: inset 0px -10px 0 -8px var(--blue);
+  box-shadow: inset 0px -10px 0 -8px var(--purple);
 }
 
 /* Inline code */

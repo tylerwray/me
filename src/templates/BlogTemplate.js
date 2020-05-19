@@ -98,7 +98,7 @@ function BlogTemplate({ data }) {
         className="page pt-3 mb-24"
         dangerouslySetInnerHTML={{ __html: html }}
       />
-      <div className="flex mb-16 p-12 text-white bg-gray-800 rounded-lg shadow-xl flex-col md:flex-row">
+      <div className="flex mb-16 p-12 text-white bg-purple-500 shadow-none dark:bg-purple-900 rounded-lg shadow-xl flex-col md:flex-row">
         <div>
           <h3 className="mt-0">About the Author</h3>
           <p className="text-sm">
@@ -107,10 +107,9 @@ function BlogTemplate({ data }) {
               👋
             </span>{" "}
             I'm Tyler. I'm a full stack software engineer with a passion for
-            learning new things. Currently employed at
-            <a href="https://podium.com"> Podium</a>, I love solving hard
-            problems and simplifying them down to their pieces. Presently
-            residing in Utah with my two girls and beautiful wife.
+            learning new things. I love solving hard problems and simplifying
+            them down to their pieces. Presently residing in Utah with my two
+            girls and beautiful wife.
           </p>
         </div>
         <img
