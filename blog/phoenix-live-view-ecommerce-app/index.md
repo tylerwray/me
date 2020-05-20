@@ -8,10 +8,11 @@ tags:
   - liveview
   - elixir
   - stripe
-path: /blog/phoenix-live-view-ecommerce-app
+path: /blog/phoenix-live-view-ecommerce-app/
 author: Tyler Wray
 date: 2020-05-15
 banner: images/hero.jpg
+bannerDescription: World map with Currency
 bannerCreditName: Christine Roy
 bannerCreditUrl: https://unsplash.com/photos/ir5MHI6rPg0
 beta: true

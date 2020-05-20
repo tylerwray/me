@@ -7,10 +7,11 @@ tags:
   - pure functions
   - functional
   - javascript
-path: /blog/what-is-a-pure-function
+path: /blog/what-is-a-pure-function/
 author: Tyler Wray
 date: 2019-07-28
 banner: images/hero.jpg
+bannerDescription: Garage Tool Set
 bannerCreditName: Todd Quackenbush
 bannerCreditUrl: https://unsplash.com/photos/IClZBVw5W5A
 ---

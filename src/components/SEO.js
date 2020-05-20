@@ -17,7 +17,17 @@ const DETAILS_QUERY = graphql`
   }
 `
 
-function SEO({ description, lang, meta, keywords, title, image, type }) {
+function SEO({
+  description,
+  image,
+  imageDescription,
+  keywords,
+  lang,
+  meta,
+  path,
+  title,
+  type,
+}) {
   return (
     <StaticQuery
       query={DETAILS_QUERY}
@@ -27,6 +37,7 @@ function SEO({ description, lang, meta, keywords, title, image, type }) {
 
         const metaImage = image || data.site.siteMetadata.image
         const metaType = type || `blog`
+        const url = `${data.site.siteMetadata.siteUrl}${path}`
 
         return (
           <Helmet
@@ -35,6 +46,7 @@ function SEO({ description, lang, meta, keywords, title, image, type }) {
             }}
             title={title}
             titleTemplate={`%s | ${data.site.siteMetadata.title}`}
+            link={[{ rel: "canonical", href: url }]}
             meta={[
               {
                 name: `description`,
@@ -53,6 +65,10 @@ function SEO({ description, lang, meta, keywords, title, image, type }) {
                 content: metaType,
               },
               {
+                property: `og:url`,
+                content: url,
+              },
+              {
                 property: `og:image`,
                 content: `${data.site.siteMetadata.siteUrl}${metaImage}`,
               },
@@ -65,12 +81,24 @@ function SEO({ description, lang, meta, keywords, title, image, type }) {
                 content: data.site.siteMetadata.author,
               },
               {
+                name: `twitter:creator:id`,
+                content: "268108378",
+              },
+              {
                 name: `twitter:title`,
                 content: title,
               },
               {
                 name: `twitter:description`,
                 content: metaDescription,
+              },
+              {
+                property: `twitter:image`,
+                content: `${data.site.siteMetadata.siteUrl}${metaImage}`,
+              },
+              {
+                property: `twitter:image:alt`,
+                content: imageDescription || "Me at Work",
               },
               ...meta,
             ].concat(
@@ -96,11 +124,13 @@ SEO.defaultProps = {
 
 SEO.propTypes = {
   description: PropTypes.string,
+  image: PropTypes.string,
+  imageDescription: PropTypes.string,
+  keywords: PropTypes.arrayOf(PropTypes.string),
   lang: PropTypes.string,
   meta: PropTypes.array,
-  keywords: PropTypes.arrayOf(PropTypes.string),
+  path: PropTypes.string,
   title: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
 }
 
 export default SEO

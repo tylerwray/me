@@ -21,14 +21,14 @@ function Header() {
       </Link>
       <div className="flex justify-around items-center">
         <Link
-          to="/me"
+          to="/me/"
           className="mx-2 hover:underline text-black dark:text-cream"
           activeStyle={{ textDecoration: "underline" }}
         >
           Me
         </Link>
         <Link
-          to="/contact"
+          to="/contact/"
           className="mx-2 hover:underline text-black dark:text-cream"
           activeStyle={{ textDecoration: "underline" }}
         >

@@ -7,10 +7,11 @@ tags:
   - lodash
   - functions
   - frontend patterns
-path: /blog/my-favorite-lodash-functions
+path: /blog/my-favorite-lodash-functions/
 author: Tyler Wray
 date: 2020-04-06
 banner: images/hero.jpg
+bannerDescription: Blue Legos
 bannerCreditName: Iker Urteaga
 bannerCreditUrl: https://unsplash.com/photos/TL5Vy1IM-uA
 ---

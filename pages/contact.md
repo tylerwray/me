@@ -1,5 +1,6 @@
 ---
-title: Contact Tyler Wray
+title: Get in touch, or not
+description: Find out where to reach me! Feel free to reach out at any time. I'm always a sucker for a good conversation.
 tags:
   - tyler wray
   - developer
@@ -9,12 +10,9 @@ tags:
 path: /contact
 ---
 
-## Stuff I do.
+# Contact
 
 - Github: [tylerwray](https://github.com/tylerwray)
 - Twitter: [@wray_tw](https://twitter.com/wray_tw)
-
-## Places to reach me.
-
 - Email: [wraytw@gmail.com](mailto:wraytw@gmail.com)
 - LinkedIn: [Tyler Wray](https://www.linkedin.com/in/wraytw)

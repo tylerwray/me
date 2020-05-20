@@ -1,5 +1,6 @@
 ---
-title: About Tyler Wray
+title: Get to know me, on a personal level
+description: A little info about me, my hobbies, and accomplishments. This is constantly changing, but that's what makes life interesting!
 tags:
   - tyler wray
   - developer
@@ -39,7 +40,7 @@ through and through.
 
 ## Tools I use.
 
-- Editor: [Neovim](https://neovim.io/) with [Gruvbox](https://github.com/morhetz/gruvbox)
+- Editor: [Neovim](https://neovim.io/) with [OneDark](https://github.com/joshdick/onedark.vim)
 - Terminal: [iTerm2](https://www.iterm2.com/) with [Oh My ZSH](https://ohmyz.sh/)
 - Dotfiles: [Repo](https://github.com/tylerwray/dotfiles). Includes all my vim configuration.
 

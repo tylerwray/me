@@ -35,11 +35,15 @@ export const pageQuery = graphql`
 function IndexPage({ data }) {
   return (
     <Layout>
-      <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+      <SEO
+        path="/"
+        title="My special corner of the internet"
+        keywords={[`gatsby`, `application`, `react`]}
+      />
       <div className="flex mb-16 text-center sm:text-left">
         <div>
           <h1 className="whitespace-no-wrap">
-            Hello, I'm Tyler Wray.{" "}
+            Hi there, I'm Tyler.{" "}
             <span role="img" aria-label="hand wave">
               👋
             </span>
@@ -47,7 +51,7 @@ function IndexPage({ data }) {
 
           <img
             className="rounded-full h-48 w-48 mx-auto sm:ml-12 sm:hidden"
-            alt="Me at work"
+            alt="Me at Work"
             src="/images/me_at_work.jpg"
           />
           <p>
@@ -59,7 +63,7 @@ function IndexPage({ data }) {
         </div>
         <img
           className="rounded-full h-48 w-48 ml-12 hidden sm:block"
-          alt="Me at work"
+          alt="Me at Work"
           src="/images/me_at_work.jpg"
         />
       </div>

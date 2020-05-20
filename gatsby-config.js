@@ -1,7 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: "Tyler Wray",
-    description: "My special corner of the internet to be myself.",
+    description:
+      "For as long as I can remember, I've loved everything technology.  When I discovered that I could create technology with software, it became my second love. It's now my mission to help others discover the beauty in software that I've found.",
     author: "@wray_tw",
     siteUrl: "https://tylerwray.me",
     image: "/images/me_at_work.jpg",

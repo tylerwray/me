@@ -31,6 +31,7 @@ export const pageQuery = graphql`
             }
           }
         }
+        bannerDescription
         bannerCreditName
         bannerCreditUrl
       }
@@ -46,19 +47,21 @@ function BlogTemplate({ data }) {
   return (
     <Layout>
       <SEO
+        path={frontmatter.path}
         description={frontmatter.description}
-        keywords={frontmatter.tags}
-        title={frontmatter.title}
         image={frontmatter.banner.childImageSharp.fluid.src}
+        imageDescription={frontmatter.bannerDescription}
+        keywords={frontmatter.tags}
         meta={[
           { property: "article:published_time", content: frontmatter.metaDate },
           { property: "article:tag", content: frontmatter.tags },
           { property: "article:section", content: "Technology" },
         ]}
+        title={frontmatter.title}
       />
       <div className="flex text-lg leading-relaxed font-bold">
-        <span className="mt-1">{getIcon(frontmatter.icon)}</span>
-        <span className="ml-1">{frontmatter.title}</span>
+        {getIcon(frontmatter.icon)}
+        <h1 className="ml-1 mb-0 text-lg">{frontmatter.title}</h1>
       </div>
       <div className="ml-8">{frontmatter.subTitle}</div>
       <div className="text-xs my-1">

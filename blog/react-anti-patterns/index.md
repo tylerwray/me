@@ -7,10 +7,11 @@ tags:
   - reactjs
   - anti patterns
   - frontend patterns
-path: /blog/react-anti-patterns
+path: /blog/react-anti-patterns/
 author: Tyler Wray
 date: 2019-02-20
 banner: images/hero.jpg
+bannerDescription: Tires stacked in Pattern
 bannerCreditName: Lane Smith
 bannerCreditUrl: https://unsplash.com/photos/wEsqjsjIDLs
 ---
