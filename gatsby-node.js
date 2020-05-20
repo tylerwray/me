@@ -36,7 +36,6 @@ exports.createPages = async ({ actions, graphql }) => {
   posts.forEach(({ node }, index) => {
     const prev = index === 0 ? {} : posts[index - 1].node
     const next = index === posts.length - 1 ? {} : posts[index + 1].node
-    console.log("PATH => ", node.frontmatter.path)
     createPage({
       path: node.frontmatter.path,
       component: blogTemplate,

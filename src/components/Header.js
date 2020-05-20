@@ -11,6 +11,8 @@ function Header() {
 
   const darkMode = useDarkMode()
 
+  console.debug("Dark Mode => ", darkMode)
+
   return (
     <header className="flex items-center justify-between py-4">
       <Link to="/" className="text-black dark:text-cream no-underline">
@@ -39,28 +41,10 @@ function Header() {
           className="relative m-3 w-8 focus:outline-none"
           onClick={darkMode.toggle}
         >
-          <div
-            className={`${
-              darkMode.value ? "bg-purple-800" : "bg-gray-300"
-            } absolute rounded-full h-6 w-10 left-0 right-0 transition duration-200`}
-          />
-          <div
-            className={`${
-              darkMode.value
-                ? "transform translate-x-4 bg-purple-900"
-                : "bg-cream resize"
-            } rounded-full flex items-center justify-center shadow relative w-6 h-6 transition duration-200`}
-          >
-            <Sun
-              className={`${
-                darkMode.value ? "hidden" : ""
-              } text-yellow-500 fill-current`}
-            />
-            <Moon
-              className={`${
-                darkMode.value ? "" : "hidden"
-              } text-purple-700 fill-current`}
-            />
+          <div className="dark:bg-purple-800 bg-gray-300 absolute rounded-full h-6 w-10 left-0 right-0 transition duration-200" />
+          <div className="transform dark:translate-x-4 dark:bg-purple-900 bg-cream rounded-full flex items-center justify-center shadow relative w-6 h-6 transition duration-200">
+            <Sun className="dark:hidden text-yellow-500 fill-current" />
+            <Moon className="dark:block hidden text-purple-700 fill-current" />
           </div>
         </button>
       </div>

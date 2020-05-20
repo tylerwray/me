@@ -1,4 +1,10 @@
 module.exports = {
+  purge: {
+    content: ["./src/**/*.js"],
+    options: {
+      whitelist: ["dark-mode"],
+    },
+  },
   theme: {
     extend: {
       colors: {
@@ -11,6 +17,8 @@ module.exports = {
   variants: {
     textColor: ["dark"],
     backgroundColor: ["dark"],
+    translate: ["dark"],
+    display: ["dark"],
   },
   plugins: [darkMode],
 }
