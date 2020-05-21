@@ -60,8 +60,7 @@ function BlogTemplate({ data }) {
         title={frontmatter.title}
       />
       <div className="flex text-lg leading-relaxed font-bold">
-        {getIcon(frontmatter.icon)}
-        <h1 className="ml-1 mb-0 text-lg">{frontmatter.title}</h1>
+        <h1 className="mb-2 text-2xl sm:text-4xl">{frontmatter.title}</h1>
       </div>
       <div className="ml-8">{frontmatter.subTitle}</div>
       <div className="text-xs my-1">

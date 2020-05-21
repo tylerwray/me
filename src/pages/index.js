@@ -68,8 +68,7 @@ function IndexPage({ data }) {
         />
       </div>
 
-      <h2>Blog Posts</h2>
-      <hr />
+      <h2 className="mb-8">Blog Posts</h2>
       {data.allMarkdownRemark.edges.map(({ node }) => (
         <Post key={node.id} node={node} />
       ))}
@@ -96,9 +95,8 @@ function Post({ node }) {
             read
           </span>
         </div>
-        <div className="mb-5">{node.excerpt}</div>
+        <div className="mb-8 text-sm">{node.excerpt}</div>
       </div>
-      <hr />
     </>
   )
 }

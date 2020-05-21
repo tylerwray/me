@@ -18,7 +18,7 @@ module.exports = {
     textColor: ["dark"],
     backgroundColor: ["dark"],
     translate: ["dark"],
-    display: ["dark"],
+    display: ["dark", "responsive"],
   },
   plugins: [darkMode],
 }
