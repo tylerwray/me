@@ -8,7 +8,7 @@ tags:
   - software
   - bio
   - biography
-path: /me
+path: /me/
 ---
 
 # Hello, I'm Tyler Wray. 👋

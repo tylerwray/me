@@ -77,6 +77,10 @@ function SEO({
                 content: `summary`,
               },
               {
+                name: `twitter:site`,
+                content: data.site.siteMetadata.author,
+              },
+              {
                 name: `twitter:creator`,
                 content: data.site.siteMetadata.author,
               },

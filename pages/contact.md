@@ -7,7 +7,7 @@ tags:
   - engineer
   - software
   - contact
-path: /contact
+path: /contact/
 ---
 
 # Contact

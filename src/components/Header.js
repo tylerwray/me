@@ -38,6 +38,7 @@ function Header() {
         </Link>
         <button
           type="button"
+          aria-label="dark mode switch"
           className="relative m-3 w-8 focus:outline-none"
           onClick={darkMode.toggle}
         >
