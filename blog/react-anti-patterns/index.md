@@ -153,8 +153,6 @@ I live by the following mantra:
 
 **A component is a component**
 
-![captain obvious](https://media.giphy.com/media/xT9DPIZXsgAYE3SNvW/giphy.gif "Captain Obvious")
-
 Simple right? The idea is that we don't need to separate concerns and make components focused on _styles_ 💅 or _data_ 📈. A component is a component, and that means it doesn't matter if it has _css_, or makes _api_ calls.
 _Prop Madness_ can occur when trying to separate components by what they _do_ instead of what they _are_.
 

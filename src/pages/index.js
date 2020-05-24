@@ -52,7 +52,7 @@ function IndexPage({ data }) {
           <img
             className="rounded-full h-48 w-48 mx-auto sm:ml-12 sm:hidden"
             alt="Me at Work"
-            src="/images/me_at_work.jpg"
+            src="/images/me_at_work_720.jpg"
           />
           <p>
             For as long as I can remember, I've loved everything technology.
@@ -81,7 +81,7 @@ function Post({ node }) {
     <>
       <div className="mb-2">
         <Link
-          className="flex items-center text-lg leading-relaxed font-bold text-black dark:text-cream cursor-pointer hover:underline border-transparent"
+          className="flex text-lg leading-relaxed font-bold text-black dark:text-cream cursor-pointer hover:underline border-transparent"
           to={node.frontmatter.path}
         >
           {getIcon(node.frontmatter.icon)}

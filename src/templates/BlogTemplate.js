@@ -4,9 +4,8 @@ import Img from "gatsby-image"
 
 import Layout from "../components/Layout"
 import SEO from "../components/SEO"
-import { getIcon } from "../icons"
 import config from "../../config/website"
-import family from "../images/family.jpg"
+import family from "../images/family_192.jpg"
 
 export const pageQuery = graphql`
   query($path: String!) {

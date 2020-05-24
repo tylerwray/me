@@ -15,7 +15,7 @@ banner: images/hero.jpg
 bannerDescription: World map with Currency
 bannerCreditName: Christine Roy
 bannerCreditUrl: https://unsplash.com/photos/ir5MHI6rPg0
-beta: true
+beta: false
 ---
 
 I've heard alot about [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view) from co-workers and twitter,

@@ -30,7 +30,7 @@ are; Playing Basketball, enjoying my two children, being with family, and
 doing yard work! I'm a [#dad](https://twitter.com/wray_tw/status/1127774420724895744?s=20)
 through and through.
 
-![Me at work with my daugher](/images/me_at_work.jpg "Me at work")
+![Me at work with my daugher](/images/me_at_work_720.jpg "Me at work")
 
 ## Things I've done.
 
