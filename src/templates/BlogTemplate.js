@@ -91,7 +91,7 @@ function BlogTemplate({ data }) {
         </a>
       </div>
       <Img className="mt-3" fluid={frontmatter.banner.childImageSharp.fluid} />
-      <div className="mt-1 text-xs text-center text-gray-600">
+      <div className="mt-1 text-xs text-center text-gray-700">
         Photo By{" "}
         <a href={frontmatter.bannerCreditUrl}>{frontmatter.bannerCreditName}</a>
       </div>
@@ -99,7 +99,7 @@ function BlogTemplate({ data }) {
         className="page pt-3 mb-24"
         dangerouslySetInnerHTML={{ __html: html }}
       />
-      <div className="flex mb-16 p-12 text-white bg-purple-500 shadow-none dark:bg-purple-900 rounded-lg shadow-xl flex-col md:flex-row">
+      <div className="flex mb-16 p-12 text-white bg-purple-600 shadow-none dark:bg-purple-900 rounded-lg shadow-xl flex-col md:flex-row">
         <div>
           <h3 className="mt-0">About the Author</h3>
           <p className="text-sm">
