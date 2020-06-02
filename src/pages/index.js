@@ -64,7 +64,7 @@ function IndexPage({ data }) {
         <img
           className="rounded-full h-48 w-48 ml-12 hidden sm:block"
           alt="Me at Work"
-          src="/images/me_at_work.jpg"
+          src="/images/me_at_work_720.jpg"
         />
       </div>
 
