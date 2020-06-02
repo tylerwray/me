@@ -15,7 +15,7 @@ banner: images/hero.jpg
 bannerDescription: World map with Currency
 bannerCreditName: Christine Roy
 bannerCreditUrl: https://unsplash.com/photos/ir5MHI6rPg0
-beta: true
+isPublished: false
 ---
 
 I've heard alot about [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view) from co-workers and twitter,
@@ -287,10 +287,15 @@ with the tailwindcss container class. Now its time to make our product list pret
 Replace all of `lib/amazin_web/live/product_live/index.html.leex` with
 
 ```html
-<div class="grid grid-cols-3 gap-8 p-4">
+<div class="grid grid-cols-4 gap-12 p-12">
   <%= for product <- @products do %>
   <div class="flex flex-col bg-white border border-gray-400 shadow rounded-lg">
-    <img class="flex-grow p-12 object-contain" src="<%= product.thumbnail %>" />
+    <img
+      class="flex-grow p-6 object-contain"
+      src="<%= product.thumbnail %>"
+      title="<%= product.name %>"
+      alt="<%= product.name %>"
+    />
     <div class="px-6 py-4 border-t border-gray-400">
       <h3 class="text-lg leading-6 font-medium text-gray-900">
         <%= product.name %>
@@ -303,12 +308,12 @@ Replace all of `lib/amazin_web/live/product_live/index.html.leex` with
       <%= product.stock %> remaining
     </div>
     <div class="p-6 py-4 border-t border-gray-400 text-xl">
-      <div class="flex justify-between items-center">
+      <div class="flex flex-col items-left">
         <%= product.cost %>
         <button
           phx-click="add_to_cart"
           phx-value-upc="<%= product.upc %>"
-          class="focus:outline-none focus:shadow-outline text-sm bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+          class="focus:outline-none focus:shadow-outline text-sm bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 mt-2 rounded"
         >
           Add to Cart
         </button>
@@ -444,11 +449,10 @@ you should see a wonderful little grid of all your products 🥰
 
 ![Nice Finished Grid](/images/pretty-grid.png)
 
-## Take a breath
+## Live Updates
 
-![Take a breath](https://media.giphy.com/media/wOIhQl355kxTlgVfhI/giphy.gif "Breathing focus")
-
-Wow that was alot. Let's quickly recap before we move onto the next section.
+Now we want to make that "remaining" number update when users checkout
+and we're going to use [Phoenix.PubSub](https://hexdocs.pm/phoenix_pubsub/Phoenix.PubSub.html) to do it.
 
 ### Accomplishments 🏆
 
