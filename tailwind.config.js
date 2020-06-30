@@ -1,6 +1,6 @@
 module.exports = {
   purge: {
-    content: ["./src/**/*.js"],
+    content: ["./src/**/*.js", "./blog/**/*.md"],
     options: {
       whitelist: ["dark-mode"],
     },

@@ -30,7 +30,7 @@ This is going to be fun, let's dive in.
 ## Create a New Phoenix App
 
 Use [this guide](https://hexdocs.pm/phoenix/installation.html#content) in the
-phoenix docs to get Elixir, Erlang, Phoneix, NodeJS, and PostgreSQL setup.
+phoenix docs to Elixir, Erlang, Phoneix, NodeJS, and PostgreSQL.
 Thats alot, but trust me it's worth it 🥇.
 
 > If you're running macOS, I highly recommend [Postgres.app](https://postgresapp.com/) to
@@ -68,9 +68,11 @@ We're going to need two elixir dependencies for our application:
 Add them to your deps in `mix.exs`
 
 ```elixir
+# mix.exs
+
 def deps do
   [
-    {:stripity_stripe, "~> 2.0.0"},
+    {:stripity_stripe, "~> 2.8.0"},
     {:money, "~> 1.4"}
   ]
 end
@@ -86,7 +88,7 @@ Next we need to setup [tailwindcss](https://tailwindcss.com/) to work with livev
 I really like tailwind as a companion to liveview because of it's utility-first nature.
 It makes it really easy to style our live views and components.
 
-First we need to install some Javascript modules.
+For now, just install these modules.
 
 ```bash
 npm install --prefix assets postcss-loader tailwindcss
@@ -106,12 +108,23 @@ Once you have your API key, create a new file: `config/dev.secret.exs`.
 Inside that `config/dev.secret.exs` file, you can now safely add the api key from stripe:
 
 ```elixir
+# config/dev.secret.exs
+
 use Mix.Config
 
 config :stripity_stripe, api_key: "YOUR_SECRET_KEY"
 ```
 
-And don't forget to add `config/dev.secret.exs` to your `.gitignore`!
+> Don't forget to add `config/dev.secret.exs` to your `.gitignore`!
+
+Then in our dev configuration we are going to load that secret file we just created.
+Make sure to put this at the very bottom of `config/dev.exs`
+
+```elixir
+# config/dev.exs
+
+import_config "dev.secret.exs"
+```
 
 Now in the main configuration file we are going to give our default currency. I'm using
 USD, but you can use any currency you'd like. A full list can be
@@ -123,19 +136,14 @@ found [in the docs of Money](https://hexdocs.pm/money/Money.Currency.html#conten
 config :money, default_currency: :USD
 ```
 
-Then in our dev configuration we are going to load our secret file. Make sure to put
-this at the very bottom of `config/dev.exs`
-
-```elixir
-import_config "dev.secret.exs"
-```
-
 Now for tailwindcss configuration. This is going to the be the most javascript
 you write in this guide, I promise. We're using [`postcss-loader`](https://postcss.org/)
 to load tailwind, so lets do that by creating a new file at `assets/postcss.config.js`
 with the contents:
 
 ```javascript
+// assets/postcss.config.js
+
 module.exports = {
   plugins: [require("tailwindcss")],
 }
@@ -144,13 +152,15 @@ module.exports = {
 Then add the `postcss-loader` to the css rule in `assets/webpack.config.js`
 
 ```git
+# assets/webpack.config.js
+
 {
   test: /\.[s]?css$/,
   use: [
     MiniCssExtractPlugin.loader,
     "css-loader",
     "sass-loader",
-    "postcss-loader",
++   "postcss-loader",
   ],
 }
 ```
@@ -191,17 +201,13 @@ We are going to create our first simple live view;
 A basic navbar with product cards, each showing a live inventory count.
 
 First thing we need to do is setup our root layout properly. And that starts with
-adding our nice logo.
+adding our nice navbar.
 
 <div class="bg-gray-800">
   <img alt="Amazin log" title="Amazin logo" src="/amazin-logo.svg" />
 </div>
 
-<a href="/amazin-logo.svg" download>Click here to Download logo</a>
-
-Place that logo in `assets/static/images/logo.svg`.
-
-Then head over to `lib/amazin_web/templates/layout/root.html.leex` and replace the
+Head over to `lib/amazin_web/templates/layout/root.html.leex` and replace the
 contents of the `<body />` tag so it looks like this:
 
 ```html
@@ -223,10 +229,16 @@ that come with phoenix. If you haven't seen anything like this before,
 it may blow your mind.
 
 ```bash
-mix phx.gen.live Inventory Product products cost:integer description:string name:string stock:integer thumbnail:string upc:string:unique
+mix phx.gen.live Store Product products \
+      cost:integer \
+      description:string \
+      name:string \
+      stock:integer \
+      thumbnail:string \
+      upc:string:unique
 ```
 
-This creates a context called `Inventory`, with a schema called `Product`,
+This creates a context called `Store`, with a schema called `Product`,
 using a table called `products`, with the remaining arguments describing
 the data of a `Product`.
 
@@ -236,27 +248,27 @@ the data of a `Product`.
 The generator output shows us all the files it created, instructs us to make
 some updates to our router, and run migrations. Let's do that really quick.
 
+The command gave us alot of routes to add, but we're really only going to need these two.
+
 ```git
 scope "/", AmazinWeb do
   pipe_through :browser
 
 +  live "/products", ProductLive.Index, :index
-+  live "/products/new", ProductLive.Index, :new
-+  live "/products/:id/edit", ProductLive.Index, :edit
-
 +  live "/products/:id", ProductLive.Show, :show
-+  live "/products/:id/show/edit", ProductLive.Show, :edit
 end
 ```
 
-Then run:
+Then run migrations:
 
 ```bash
 mix ecto.migrate
 ```
 
+Now you can open the `amazin_dev` database in postgres and see the `products` table with our schema!
+
 Lastly, we need to make one small change to the `cost` field in
-`lib/amazin/inventory/product.ex`.
+`lib/amazin/store/product.ex`.
 
 ```git
 -    field :cost, :integer
@@ -282,8 +294,8 @@ Replace all of `assets/css/app.scss` with this:
 ```
 
 Small one, but remove `class="container"` from the `<main />` tag
-in `lib/amazin_web/templates/layout/live.html.eex`, because it conflicts
-with the tailwindcss container class. Now its time to make our product list prettier.  
+in `lib/amazin_web/templates/layout/live.html.leex`, because it conflicts
+with the tailwindcss `container` class. Now its time to make our product list prettier.  
 Replace all of `lib/amazin_web/live/product_live/index.html.leex` with
 
 ```html
@@ -326,12 +338,9 @@ Replace all of `lib/amazin_web/live/product_live/index.html.leex` with
 
 Let's seed our DB with some better data. Let's add the following to `priv/repo/seeds.exs`
 
-<details>
-  <summary>Click to expand</summary>
-
 ```elixir
 alias Amazin.Repo
-alias Amazin.Inventory.Product
+alias Amazin.Store.Product
 
 Repo.insert!(%Product{
   cost: 1295,
@@ -339,7 +348,7 @@ Repo.insert!(%Product{
   name: "Baseball Bat",
   stock: 10,
   thumbnail: "https://tshop.r10s.com/f32/0d1/b97c/5c3b/a03f/784b/c58d/11e6e999130242ac110004.jpg",
-  upc: "000000000000"
+  upc: "111111111111"
 })
 
 Repo.insert!(%Product{
@@ -348,8 +357,8 @@ Repo.insert!(%Product{
   name: "Soccer ball",
   stock: 9,
   thumbnail:
-    "https://www.soccermaster.com/wp-content/uploads/sc3500_610_nike_barca_20_years_prestige_ball_sm_01.jpg",
-  upc: "111111111111"
+    "https://images-na.ssl-images-amazon.com/images/I/513hBIizJUL.jpg",
+  upc: "222222222222"
 })
 
 Repo.insert!(%Product{
@@ -359,7 +368,7 @@ Repo.insert!(%Product{
   stock: 8,
   thumbnail:
     "https://dks.scene7.com/is/image/GolfGalaxy/16WILUNFLGMBLLFFCFTB?qlt=70&wid=600&fmt=pjpeg",
-  upc: "222222222222"
+  upc: "333333333333"
 })
 
 Repo.insert!(%Product{
@@ -368,72 +377,10 @@ Repo.insert!(%Product{
   name: "Basketball",
   stock: 7,
   thumbnail:
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTMDLpR4ALSBJtVOBvcyJ9aLQxs-lw0Fw1fPnPKYFKweJwSK59eEbpYQ62xoycotREN77aAB9JY&usqp=CAc",
-  upc: "333333333333"
-})
-
-Repo.insert!(%Product{
-  cost: 12399,
-  description: "StringKing Complete 2 Pro Offense Womens Lacrosse Stick | Bar Down Lacrosse",
-  name: "Lacrosse Stick",
-  stock: 6,
-  thumbnail:
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Crossed_lacrosse_sticks_skinny.svg/1200px-Crossed_lacrosse_sticks_skinny.svg.png",
+    "https://s7d2.scene7.com/is/image/dkscdn/16SPLUNBRPLCGMBLLBKB",
   upc: "444444444444"
 })
-
-Repo.insert!(%Product{
-  cost: 24995,
-  description: "American Athletic Shoe Women's Leather Lined Ice Skates",
-  name: "Ice Skates",
-  stock: 5,
-  thumbnail: "https://images-na.ssl-images-amazon.com/images/I/31vmND6WbEL._AC_.jpg",
-  upc: "555555555555"
-})
-
-Repo.insert!(%Product{
-  cost: 799,
-  description: "Penn Extra-Duty Championship Tennis Balls",
-  name: "Tennis balls",
-  stock: 4,
-  thumbnail:
-    "https://www.gophersport.com/cmsstatic/img/117/G-51119-PennExtra-DutyChampionship-ce-11.jpg",
-  upc: "666666666666"
-})
-
-Repo.insert!(%Product{
-  cost: 8799,
-  description: "Surgeon RX3.1 Ice Hockey Stick",
-  name: "Hockey Stick",
-  stock: 3,
-  thumbnail:
-    "https://www.stx.com/media/catalog/product/cache/c7d685abe37f4d15c439fdc154c3cbf1/s/u/surgeon_rx3.1_front.png",
-  upc: "777777777777"
-})
-
-Repo.insert!(%Product{
-  cost: 18549,
-  description: "Kyrie 6 'Enlightenment' Basketball Shoe",
-  name: "Basketball Shoes",
-  stock: 2,
-  thumbnail:
-    "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto/cd6f7b5f-ad1d-48a8-b129-1f9d3f1bf72e/kyrie-6-enlightenment-basketball-shoe-1zgG18.jpg",
-  upc: "888888888888"
-})
-
-Repo.insert!(%Product{
-  cost: 38549,
-  description:
-    "Ram Golf Accubar 16pc Golf Clubs Set - Graphite Shafted Woods, Steel Shafted Irons - Mens Right Hand",
-  name: "Golf Clubs",
-  stock: 1,
-  thumbnail:
-    "https://res-1.cloudinary.com/s247/image/upload/c_pad,dpr_1.0,f_auto,h_800,q_auto,w_800/media/catalog/product/r/a/ram_16pc_mensrh_2.jpg",
-  upc: "999999999999"
-})
 ```
-
-</details>
 
 <br />
 
@@ -451,8 +398,46 @@ you should see a wonderful little grid of all your products 🥰
 
 ## Live Updates
 
-Now we want to make that "remaining" number update when users checkout
+Now we want to make that "remaining" number update when users purchase an item
 and we're going to use [Phoenix.PubSub](https://hexdocs.pm/phoenix_pubsub/Phoenix.PubSub.html) to do it.
+
+When our live-view mounts, we want to subscribe our view to any stock changes.
+Add a `Phonenix.PubSub` subscription to the mount function in `lib/amazin_web/live/product_live/index.ex`.
+
+```git
++ alias Phoenix.PubSub
+
+  @impl true
+  def mount(_params, _session, socket) do
++   if connected?(socket), do: PubSub.subscribe(Amazin.PubSub, "product.purchased")
+    {:ok, assign(socket, :products, fetch_products())}
+  end
+```
+
+Then we're going to add a
+
+```elixir
+  @impl true
+  def handle_event("add_to_cart", %{"id" => id}, socket) do
+    old_cart = Map.get(socket.assigns, :cart, [])
+    new_cart = old_cart ++ [id]
+    {:noreply, assign(socket, :cart, new_cart)}
+  end
+
+  @impl true
+  def handle_info({:purchaed, product_id}, socket) do
+    products =
+      Enum.map(
+        socket.assigns.products,
+        fn
+          %{id: ^id} = p -> Map.put(p, :stock, p.stock - 1)
+          p -> p
+        end
+      )
+
+    {:noreply, assign(socket, :products, products)}
+  end
+```
 
 ### Accomplishments 🏆
 
