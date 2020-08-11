@@ -102,7 +102,7 @@ function BlogTemplate({ data }) {
       <div className="flex mb-16 p-12 text-white bg-purple-600 shadow-none dark:bg-purple-900 rounded-lg shadow-xl flex-col md:flex-row">
         <div>
           <h3 className="mt-0">About the Author</h3>
-          <p className="text-sm">
+          <p>
             Hi{" "}
             <span role="img" aria-label="hand wave">
               👋
