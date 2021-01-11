@@ -1,10 +1,10 @@
-import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
+import React from "react"
 
+import config from "../../config/website"
 import Layout from "../components/Layout"
 import SEO from "../components/SEO"
-import config from "../../config/website"
 import family from "../images/family_192.jpg"
 
 export const pageQuery = graphql`
@@ -52,7 +52,10 @@ function BlogTemplate({ data }) {
         imageDescription={frontmatter.bannerDescription}
         keywords={frontmatter.tags}
         meta={[
-          { property: "article:published_time", content: frontmatter.metaDate },
+          {
+            property: "article:published_time",
+            content: frontmatter.metaDate,
+          },
           { property: "article:tag", content: frontmatter.tags },
           { property: "article:section", content: "Technology" },
         ]}
@@ -107,10 +110,10 @@ function BlogTemplate({ data }) {
             <span role="img" aria-label="hand wave">
               👋
             </span>{" "}
-            I'm Tyler. I'm a full stack software engineer with a passion for
-            learning new things. I love solving hard problems and simplifying
-            them down to their pieces. Presently residing in Utah with my two
-            girls and beautiful wife.
+            I'm Tyler. I'm a software engineer with a passion for learning new
+            things. I love solving hard problems and simplifying them down to
+            their pieces. Presently residing in Utah with my two girls and
+            beautiful wife.
           </p>
         </div>
         <img
@@ -118,7 +121,7 @@ function BlogTemplate({ data }) {
           alt="Family"
           src={family}
         />
-      </div>
+      </div>{" "}
     </Layout>
   )
 }

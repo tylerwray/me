@@ -445,7 +445,11 @@ fieldset {
   padding-top: 0;
   margin-bottom: 1.45rem;
 }
+blockquote .dark-mode {
+  background-color: rgb(137 90 232 / 15%);
+}
 blockquote {
+  background-color: rgb(121 72 232 / 24%);
   font-style: italic;
   border-left: 0.25em solid var(--purple);
   padding-left: 1.25rem;
@@ -552,7 +556,7 @@ li > p {
   margin-bottom: calc(1.45rem / 2);
 }
 code {
-  font-size: 0.85rem;
+  font-size: 1rem;
   line-height: 1.45rem;
 }
 kbd {

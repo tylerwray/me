@@ -60,8 +60,9 @@ through and through.
 - [Tailwind](https://tailwindcss.com/)
 - [Vim](https://www.vim.org/) (and [Neovim](https://neovim.io/))
 
-## Thing things I like.
+## Thing, things I like.
 
+- [Personal finance](https://ynab.com/)
 - [Utah mountains](http://bit.ly/2GzhC1Q)
 - [My Espresso Machine](https://www.breville.com/us/en/products/espresso/bes870.html)
 - [Coffee](https://www.youtube.com/watch?v=ZuQu12vMQZM)
@@ -75,6 +76,4 @@ through and through.
 - A good toothbrush
 - [Football](https://www.nfl.com/)
 - [Autumn](https://www.sltrib.com/artsliving/outdoors/2017/09/19/10-top-spots-for-utahs-fall-colors/)
-- American crew hair pomade
 - Cooking yummy food at home
-- [Personal finance management](https://www.simple.com/)
