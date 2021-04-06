@@ -80,16 +80,5 @@ module.exports = {
     "gatsby-plugin-offline",
     "gatsby-plugin-postcss",
     "gatsby-plugin-use-dark-mode",
-    {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
-      options: {
-        fonts: [
-          {
-            family: `Roboto`,
-            variants: [`300`, `400`, `700`],
-          },
-        ],
-      },
-    },
   ],
 }

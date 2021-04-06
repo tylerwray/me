@@ -1,2 +1,5 @@
 import "./src/global.css"
 import "./src/prism.css"
+import "@fontsource/roboto/300.css"
+import "@fontsource/roboto/400.css"
+import "@fontsource/roboto/700.css"
