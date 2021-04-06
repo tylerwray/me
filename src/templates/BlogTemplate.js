@@ -102,26 +102,36 @@ function BlogTemplate({ data }) {
         className="page pt-3 mb-24"
         dangerouslySetInnerHTML={{ __html: html }}
       />
-      <div className="flex mb-16 p-12 text-white bg-purple-600 shadow-none dark:bg-purple-900 rounded-lg shadow-xl flex-col md:flex-row">
-        <div>
-          <h3 className="mt-0">About the Author</h3>
-          <p>
-            Hi{" "}
-            <span role="img" aria-label="hand wave">
-              👋
-            </span>{" "}
-            I'm Tyler. I'm a software engineer with a passion for learning new
-            things. I love solving hard problems and simplifying them down to
-            their pieces. Presently residing in Utah with my two girls and
-            beautiful wife.
-          </p>
+      <div className="mb-16 p-12 dark:text-white bg-gray-300 shadow-none dark:bg-gray-800 rounded-lg shadow-xl">
+        <div className="flex flex-col md:flex-row pb-12">
+          <div>
+            <h3 className="mt-0">About the Author</h3>
+            <p>
+              Hi{" "}
+              <span role="img" aria-label="hand wave">
+                👋
+              </span>{" "}
+              I'm Tyler. I'm a software engineer with a passion for learning new
+              things. I love solving hard problems and simplifying them down to
+              their pieces. Presently residing in Utah with my two girls and
+              beautiful wife.
+            </p>
+          </div>
+          <img
+            className="rounded-full h-48 w-48 ml-12 hidden md:block"
+            alt="Family"
+            src={family}
+          />
         </div>
-        <img
-          className="rounded-full h-48 w-48 ml-12 hidden md:block"
-          alt="Family"
-          src={family}
-        />
-      </div>{" "}
+        <a
+          className="bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-md"
+          target="_blank"
+          rel="noreferrer"
+          href="https://ko-fi.com/tylerwray"
+        >
+          Buy me a coffee
+        </a>
+      </div>
     </Layout>
   )
 }

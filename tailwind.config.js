@@ -16,7 +16,7 @@ module.exports = {
   },
   variants: {
     textColor: ["dark"],
-    backgroundColor: ["dark"],
+    backgroundColor: ["dark", "hover"],
     translate: ["dark"],
     display: ["dark", "responsive"],
   },
