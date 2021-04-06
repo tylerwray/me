@@ -18,15 +18,15 @@ bannerCreditUrl: https://unsplash.com/@florianklauer
 
 After working exclusively in elixir for 3 years now, I've been floored by the breadth of its standard library. Simply put, it's delightful.
 
-I've developed loving connection to certain utilities in the standard library; [`Enum.any?/2`](https://hexdocs.pm/elixir/Enum.html#any?/2), [`Map.pop/3`](https://hexdocs.pm/elixir/Map.html#pop/3), [`Enum.zip/1`](https://hexdocs.pm/elixir/Enum.html#zip/1) to name a few.
-But there's one you may not have used before, but has made me very happy over the years; [`Map.take/2`](https://hexdocs.pm/elixir/Map.html#take/2).
+I've developed a loving connection to certain utilities in the standard library; [`Enum.any?/2`](https://hexdocs.pm/elixir/Enum.html#any?/2), [`Map.pop/3`](https://hexdocs.pm/elixir/Map.html#pop/3), [`Enum.zip/1`](https://hexdocs.pm/elixir/Enum.html#zip/1) to name a few.
+But there's one you may not have used before that has made me very happy over the years. [`Map.take/2`](https://hexdocs.pm/elixir/Map.html#take/2).
 
-It's a simple little function that doesn't do much on the surface. [The documentation is even fairly unassuming.](https://hexdocs.pm/elixir/Map.html#take/2)
+It's a simple little function that doesn't do much on the surface. [The documentation is fairly unassuming.](https://hexdocs.pm/elixir/Map.html#take/2)
 But, I'll bet you can find a way to make your code more readable after seeing these examples.
 
 ## Get rid of the "maybe add thing" functions
 
-Starting out in elixir I would often take some source map and put its values on another map conditionally. Usually that condition would just be
+Starting out in elixir I would commonly take some source map and put its values on another map conditionally. Usually that condition would just be
 whether or not the source map had the key. I would find myself writing these kind of functions:
 
 ```elixir
@@ -51,7 +51,7 @@ end
 defp maybe_add_bar(map, _), do: map
 ```
 
-Now, there's nothing _wrong_ with the code above. But you could imagine that if you needed to add 2-3 more `maybe_add_*` functions, it
+Now, there's nothing _wrong_ with the code above. But you could imagine that if you needed 2-3 more `maybe_add_*` functions, it
 could get pretty unwieldy.
 
 Using [`Map.take/2`](https://hexdocs.pm/elixir/Map.html#take/2) is so much simpler when you just need to check if a key exists.
@@ -64,9 +64,9 @@ def call do
 end
 ```
 
-### Split a map
+## Split a map
 
-Often times in data transformation use cases I'll need to split a source map into 2 or more maps. Without [`Map.take/2`](https://hexdocs.pm/elixir/Map.html#take/2) your code might look like:
+When doing data transformations I'll sometimes need to split a source map into 2 or more sub-maps. Without [`Map.take/2`](https://hexdocs.pm/elixir/Map.html#take/2) your code might look like:
 
 ```elixir
 def call(args) do
@@ -80,6 +80,7 @@ defp split_contact_info(map) do
   Enum.reduce(map, %{}, fn
     {:phone, phone}, acc -> Map.put(acc, :phone, phone)
     {:email, email}, acc -> Map.put(acc, :email, email)
+    _, acc -> acc
   end)
 end
 
@@ -91,6 +92,7 @@ defp split_address_info(map) do
     {:state, state}, acc -> Map.put(acc, :state, state)
     {:postal_code, postal_code}, acc -> Map.put(acc, :postal_code, postal_code)
     {:country, country}, acc -> Map.put(acc, :country, country)
+    _, acc -> acc
   end)
 end
 ```
@@ -106,7 +108,7 @@ def call(args) do
 end
 ```
 
-### Argument/Options validation
+## Argument/Options validation
 
 Often I've found myself writing a function where I want to be ultra-defensive about what I allow to be passed in. When there's only a few
 arguments, passing them positionally works well:
@@ -117,9 +119,32 @@ def call(name, email) do
 end
 ```
 
-With a few more arguments, I'll allow a map to be passed to the function and use [`Map.take/2`](https://hexdocs.pm/elixir/Map.html#take/2) to only allow the values I want.
+With a few more arguments, I'll pass a map to the function and use [`Map.take/2`](https://hexdocs.pm/elixir/Map.html#take/2) to only allow the values I want.
+I've found this especially helpful when talking to external API's.
 
-> I've found this especially helpful when talking to external API's
+Without [`Map.take/2`](https://hexdocs.pm/elixir/Map.html#take/2) the reader has to keep the context of a reduce loop in their head:
+
+```elixir
+def call(params) do
+  params = allowed_params(params)
+
+  # Process something with params now sanitized
+end
+
+def allowed_params(params) do
+  Enum.reduce(map, %{}, fn
+    {:name, name}, acc -> Map.put(acc, :name, name)
+    {:email, email}, acc -> Map.put(acc, :email, email)
+    {:phone, phone}, acc -> Map.put(acc, :phone, phone)
+    {:country, country}, acc -> Map.put(acc, :country, country)
+    {:message, message}, acc -> Map.put(acc, :message, message)
+    _, acc -> acc
+  end)
+end
+```
+
+[`Map.take/2`](https://hexdocs.pm/elixir/Map.html#take/2) shines again with it's readability. Making the code declarative like this removes overhead from the reader,
+freeing their mind from the reduce loop logic.
 
 ```elixir
 def call(params) do
