@@ -117,7 +117,7 @@ def call(name, email) do
 end
 ```
 
-With a few more arguments, I'll allow a map to be passed to the function, and use [`Map.take/2`](https://hexdocs.pm/elixir/Map.html#take/2) to only allow the values I want.
+With a few more arguments, I'll allow a map to be passed to the function and use [`Map.take/2`](https://hexdocs.pm/elixir/Map.html#take/2) to only allow the values I want.
 
 > I've found this especially helpful when talking to external API's
 
@@ -129,5 +129,5 @@ def call(params) do
 end
 ```
 
-Hopefully you (like me) can start to appreciate the readability that [`Map.take/2`](https://hexdocs.pm/elixir/Map.html#take/2) can provide. For me, it sparks a little joy
+Hopefully you can start to appreciate the readability that [`Map.take/2`](https://hexdocs.pm/elixir/Map.html#take/2) can provide. For me, it sparks a little joy
 each time I use it because I know the code it's saving me from writing, documenting, and testing ❤️.
