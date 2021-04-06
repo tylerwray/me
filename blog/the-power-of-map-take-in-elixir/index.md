@@ -26,8 +26,8 @@ But, I'll bet you can find a way to make your code more readable after seeing th
 
 ## Get rid of the "maybe add thing" functions
 
-Starting out in elixir I would commonly take some source map and put its values on another map conditionally. Usually that condition would just be
-whether or not the source map had the key. I would find myself writing these kind of functions:
+Starting out in elixir I would commonly take some source map and put its values on another map conditionally. Usually, that condition would just be
+whether or not the source map had the key. I would find myself writing these kinds of functions:
 
 ```elixir
 def call do
@@ -120,7 +120,7 @@ end
 ```
 
 With a few more arguments, I'll pass a map to the function and use [`Map.take/2`](https://hexdocs.pm/elixir/Map.html#take/2) to only allow the values I want.
-I've found this especially helpful when talking to external API's.
+I've found this especially helpful when talking to external APIs.
 
 Without [`Map.take/2`](https://hexdocs.pm/elixir/Map.html#take/2) the reader has to keep the context of a reduce loop in their head:
 
@@ -143,7 +143,7 @@ def allowed_params(params) do
 end
 ```
 
-[`Map.take/2`](https://hexdocs.pm/elixir/Map.html#take/2) shines again with it's readability. Making the code declarative like this removes overhead from the reader,
+[`Map.take/2`](https://hexdocs.pm/elixir/Map.html#take/2) shines again with its readability. Making the code declarative like this removes overhead from the reader,
 freeing their mind from the reduce loop logic.
 
 ```elixir
@@ -154,5 +154,5 @@ def call(params) do
 end
 ```
 
-Hopefully you can start to appreciate the readability that [`Map.take/2`](https://hexdocs.pm/elixir/Map.html#take/2) can provide. For me, it sparks a little joy
+Hopefully, you can start to appreciate the readability that [`Map.take/2`](https://hexdocs.pm/elixir/Map.html#take/2) can provide. For me, it sparks a little joy
 each time I use it because I know the code it's saving me from writing, documenting, and testing ❤️.
