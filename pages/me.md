@@ -15,7 +15,7 @@ path: /me/
 
 For as long as I can remember, I've loved everything technology.
 
-I was born in 1995 in Pocatello, Idaho; but I grew up in Provo, Utah.
+I was born in Pocatello, Idaho; but I grew up in Provo, Utah.
 Living in Provo until the age of 10, I spent lots of time dreaming of
 being a BYU football player. Most of my summers were spent in Idaho on my
 grandparent's farms, or on trips to lake powell, moab, Oregon, and other
@@ -26,7 +26,7 @@ Currently, I am a student at UVU in the Computer Science department; I am
 married to my highschool sweetheart, Ashley; and I have two young girls,
 Lyla and Cecily. I work full time as a Software Engineer for
 [Podium](http://podium.com). Some of my favorite past-times
-are; Playing Basketball, enjoying my two children, being with family, and
+are; Playing Golf, Making delicious Espresso, Playing Basketball, enjoying my two children, being with family, and
 doing yard work! I'm a [#dad](https://twitter.com/wray_tw/status/1127774420724895744?s=20)
 through and through.
 
@@ -58,22 +58,23 @@ through and through.
 - [Prettier](https://prettier.io/)
 - [React](https://reactjs.org/)
 - [Tailwind](https://tailwindcss.com/)
+- [Typescript](https://www.typescriptlang.org/)
 - [Vim](https://www.vim.org/) (and [Neovim](https://neovim.io/))
 
 ## Thing, things I like.
 
+- [Golf](https://www.theoaksatsf.com/)
 - [Personal finance](https://ynab.com/)
-- [Utah mountains](http://bit.ly/2GzhC1Q)
 - [My Espresso Machine](https://www.breville.com/us/en/products/espresso/bes870.html)
 - [Coffee](https://www.youtube.com/watch?v=ZuQu12vMQZM)
+- [Utah mountains](http://bit.ly/2GzhC1Q)
 - [Potatoes](https://idahopotato.com/)
 - My family
 - [Basketball](https://www.nba.com/)
-- How much of a dork my wife is
+- My dorky wife
 - [Digital art](https://mkbhdwallpapers.blogspot.com/2018/11/poly-lakeside.html)
 - [Trees](https://www.boredpanda.com/most-beautiful-trees/?utm_source=google&utm_medium=organic&utm_campaign=organic)
 - [A nice steak](https://www.ruthschris.com/restaurant-locations/park-city/)
-- A good toothbrush
 - [Football](https://www.nfl.com/)
 - [Autumn](https://www.sltrib.com/artsliving/outdoors/2017/09/19/10-top-spots-for-utahs-fall-colors/)
-- Cooking yummy food at home
+- [Home Cooking]()

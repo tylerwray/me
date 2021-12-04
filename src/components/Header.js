@@ -11,8 +11,6 @@ function Header() {
 
   const darkMode = useDarkMode()
 
-  console.debug("Dark Mode => ", darkMode)
-
   return (
     <header className="flex items-center justify-between py-4">
       <Link to="/" className="text-black dark:text-cream no-underline">
@@ -22,6 +20,13 @@ function Header() {
         <span className="ml-2 text-lg hidden sm:inline">Tyler Wray</span>
       </Link>
       <div className="flex justify-around items-center">
+        <Link
+          to="/"
+          className="mx-2 hover:underline text-black dark:text-cream"
+          activeStyle={{ textDecoration: "underline" }}
+        >
+          Posts
+        </Link>
         <Link
           to="/me/"
           className="mx-2 hover:underline text-black dark:text-cream"
