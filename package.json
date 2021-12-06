@@ -18,6 +18,9 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean"
   },
+  "engines": {
+    "node": ">=14.15.0"
+  },
   "dependencies": {
     "@deckdeckgo/highlight-code": "^3.6.0",
     "@mdx-js/mdx": "^1.6.22",
