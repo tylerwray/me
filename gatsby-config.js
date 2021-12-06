@@ -8,42 +8,19 @@ module.exports = {
     image: "/images/me_at_work.jpg",
   },
   plugins: [
-    "gatsby-plugin-sitemap",
+    {
+      resolve: "gatsby-plugin-google-analytics",
+      options: {
+        trackingId: "UA-92617795-2",
+      },
+    },
+    "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "images",
-        path: `${__dirname}/src/images`,
-      },
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "blog",
-        path: `${__dirname}/blog`,
-      },
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "src",
-        path: `${__dirname}/src`,
-      },
-    },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "pages",
-        path: `${__dirname}/pages`,
-      },
-    },
-    "gatsby-transformer-sharp",
-    "gatsby-plugin-sharp",
+    "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: "Tyler Wray's Blog",
+        name: "Tyler Wray",
         short_name: "Blog",
         start_url: "/",
         background_color: "#3F88C5",
@@ -53,32 +30,67 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-transformer-remark",
+      resolve: "gatsby-plugin-mdx",
       options: {
-        plugins: [
-          {
-            resolve: "gatsby-remark-images",
-            options: {
-              maxWidth: 960,
-            },
-          },
+        gatsbyRemarkPlugins: [
           {
             resolve: "gatsby-remark-prismjs",
             options: {
               inlineCodeMarker: "+",
             },
           },
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1200,
+            },
+          },
         ],
       },
     },
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
     {
-      resolve: "gatsby-plugin-google-analytics",
+      resolve: "gatsby-source-filesystem",
       options: {
-        trackingId: "UA-92617795-2",
+        name: "images",
+        path: "./src/images/",
       },
+      __key: "images",
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "pages",
+        path: "./pages/",
+      },
+      __key: "pages",
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "blog",
+        path: "./blog/",
+      },
+      __key: "blog",
     },
     "gatsby-plugin-offline",
     "gatsby-plugin-postcss",
-    "gatsby-plugin-use-dark-mode",
+    {
+      resolve: "gatsby-plugin-use-dark-mode",
+      options: {
+        classNameDark: "dark",
+        classNameLight: "light",
+      },
+    },
   ],
 }
+
+// {
+//   resolve: "gatsby-source-filesystem",
+//   options: {
+//     name: "src",
+//     path: `./src`,
+//   },
+//   __key: "src"
+// },

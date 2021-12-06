@@ -1,33 +1,41 @@
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
 import React from "react"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import MDXRenderer from "gatsby-plugin-mdx/mdx-renderer"
 
-import config from "../../config/website"
 import Layout from "../components/Layout"
-import SEO from "../components/SEO"
+import Seo from "../components/SEO"
 import family from "../images/family_192.jpg"
 
-export const pageQuery = graphql`
-  query($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
-      html
+import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader"
+
+deckDeckGoHighlightElement()
+
+export const query = graphql`
+  query BlogPost($id: String!) {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
+    mdx(id: { eq: $id }) {
+      body
       timeToRead
       fields {
-        githubEditLink
+        slug
+        editLink
       }
       frontmatter {
         title
         description
-        path
         icon
         tags
         prettyDate: date(formatString: "MMMM DD, YYYY")
         metaDate: date(formatString: "YYYY-DD-MM")
         banner {
+          publicURL
           childImageSharp {
-            fluid(maxWidth: 640) {
-              ...GatsbyImageSharpFluid
-            }
+            gatsbyImageData(layout: FULL_WIDTH)
           }
         }
         bannerDescription
@@ -39,16 +47,19 @@ export const pageQuery = graphql`
 `
 
 function BlogTemplate({ data }) {
-  const { markdownRemark } = data
-  const { frontmatter, html, timeToRead, fields } = markdownRemark
-  const blogPostUrl = `${config.siteUrl}${frontmatter.path}`
+  const { frontmatter, body, fields } = data.mdx
+  const blogPostUrl = `${data.site.siteMetadata.siteUrl}${fields.slug}`
+
+  const banner = getImage(frontmatter.banner)
+
+  const timeToRead = data.mdx.timeToRead * 3
 
   return (
     <Layout>
-      <SEO
-        path={frontmatter.path}
+      <Seo
+        path={fields.slug}
         description={frontmatter.description}
-        image={frontmatter.banner.childImageSharp.fluid.src}
+        image={frontmatter.banner.publicURL}
         imageDescription={frontmatter.bannerDescription}
         keywords={frontmatter.tags}
         meta={[
@@ -85,24 +96,17 @@ function BlogTemplate({ data }) {
           Discuss on Twitter
         </a>
         <span style={{ marginLeft: 10, marginRight: 10 }}>{` • `}</span>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={fields.githubEditLink}
-        >
+        <a target="_blank" rel="noopener noreferrer" href={fields.editLink}>
           Edit post on GitHub
         </a>
       </div>
-      <Img className="mt-3" fluid={frontmatter.banner.childImageSharp.fluid} />
-      <div className="mt-1 text-xs text-center text-gray-700">
+      <GatsbyImage className="mt-3" image={banner} />
+      <div className="mt-2 mb-6 text-sm text-center text-gray-500">
         Photo By{" "}
         <a href={frontmatter.bannerCreditUrl}>{frontmatter.bannerCreditName}</a>
       </div>
-      <div
-        className="page pt-3 mb-24"
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
-      <div className="mb-16 p-12 dark:text-white bg-gray-300 shadow-none dark:bg-gray-800 rounded-lg shadow-xl">
+      <MDXRenderer>{body}</MDXRenderer>
+      <div className="my-16 p-12 dark:text-white bg-gray-300 shadow-none dark:bg-gray-800 rounded-lg shadow-xl">
         <div className="flex flex-col md:flex-row pb-12">
           <div>
             <h3 className="mt-0">About the Author</h3>
@@ -124,7 +128,7 @@ function BlogTemplate({ data }) {
           />
         </div>
         <a
-          className="bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-md"
+          className="bg-purple-500 hover:bg-purple-600 text-white p-4 rounded-md"
           target="_blank"
           rel="noreferrer"
           href="https://ko-fi.com/tylerwray"

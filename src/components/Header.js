@@ -9,7 +9,10 @@ const emoji = ["🙈", "🌀", "💻", "🤘🏻"]
 function Header() {
   const icon = emoji[Math.floor(Math.random() * emoji.length)]
 
-  const darkMode = useDarkMode()
+  const darkMode = useDarkMode(false, {
+    classNameDark: "dark",
+    classNameLight: "light",
+  })
 
   return (
     <header className="flex items-center justify-between py-4">
@@ -22,21 +25,21 @@ function Header() {
       <div className="flex justify-around items-center">
         <Link
           to="/"
-          className="mx-2 hover:underline text-black dark:text-cream"
+          className="mx-2 hover:underline text-black dark:text-cream text-lg"
           activeStyle={{ textDecoration: "underline" }}
         >
           Posts
         </Link>
         <Link
           to="/me/"
-          className="mx-2 hover:underline text-black dark:text-cream"
+          className="mx-2 hover:underline text-black dark:text-cream text-lg"
           activeStyle={{ textDecoration: "underline" }}
         >
           Me
         </Link>
         <Link
           to="/contact/"
-          className="mx-2 hover:underline text-black dark:text-cream"
+          className="mx-2 hover:underline text-black dark:text-cream text-lg"
           activeStyle={{ textDecoration: "underline" }}
         >
           Contact

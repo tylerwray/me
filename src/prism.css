@@ -5,9 +5,10 @@
  */
 code[class*="language-"],
 pre[class*="language-"] {
-  color: #ABB2BF;
+  color: #abb2bf;
   background: none;
-  font-family: Inconsolata, Monaco, Consolas, 'Andale Mono', 'Ubuntu Mono', Courier, monospace;
+  font-family: Inconsolata, Monaco, Consolas, "Andale Mono", "Ubuntu Mono",
+    Courier, monospace;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
@@ -23,14 +24,17 @@ pre[class*="language-"] {
   hyphens: none;
 }
 
-pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
-code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection {
   text-shadow: none;
-  background: #383e49;
 }
 
-pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
-code[class*="language-"]::selection, code[class*="language-"] ::selection {
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection {
   text-shadow: none;
   background: #9aa2b1;
 }
@@ -44,7 +48,7 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 /* Code blocks */
 pre[class*="language-"] {
   padding: 1em;
-  margin: .5em 0;
+  margin: 0.5em 0;
   overflow: auto;
 }
 
@@ -65,8 +69,8 @@ a > code[class*="language-"]:hover {
   border-radius: 0.5em;
   white-space: normal;
 }
-.dark-mode :not(pre) > code[class*="language-"] {
-  color: #ABB2BF;
+body.dark :not(pre) > code[class*="language-"] {
+  color: #abb2bf;
   background-color: #282c34;
 }
 
@@ -74,13 +78,12 @@ a > code[class*="language-"]:hover {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  color: #5C6370;
+  color: #5c6370;
 }
 
 .token.punctuation {
   color: #abb2bf;
 }
-
 
 .token.deleted,
 .token.selector,
@@ -142,55 +145,53 @@ a > code[class*="language-"]:hover {
 }
 
 pre.line-numbers {
-	position: relative;
-	padding-left: 3.8em;
-	counter-reset: linenumber;
+  position: relative;
+  padding-left: 3.8em;
+  counter-reset: linenumber;
 }
 
 pre.line-numbers > code {
-	position: relative;
+  position: relative;
 }
 
 .line-numbers .line-numbers-rows {
-	position: absolute;
-	pointer-events: none;
-	top: 0;
-	font-size: 100%;
-	left: -3.8em;
-	width: 3em; /* works for line-numbers below 1000 lines */
-	letter-spacing: -1px;
-	border-right: 0;
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  font-size: 100%;
+  left: -3.8em;
+  width: 3em; /* works for line-numbers below 1000 lines */
+  letter-spacing: -1px;
+  border-right: 0;
 
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .line-numbers-rows > span {
-	pointer-events: none;
-	display: block;
-	counter-increment: linenumber;
+  pointer-events: none;
+  display: block;
+  counter-increment: linenumber;
 }
 
 .line-numbers-rows > span:before {
-	content: counter(linenumber);
-	color: #5C6370;
-	display: block;
-	padding-right: 0.8em;
-	text-align: right;
+  content: counter(linenumber);
+  color: #5c6370;
+  display: block;
+  padding-right: 0.8em;
+  text-align: right;
 }
 
 /* Gatsby Prism overrides */
 .gatsby-highlight-code-line {
-  background-color: #161718;
+  background-color: #191a1f;
   display: block;
-  margin-right: -1.5em;
-  margin-left: -1.5em;
+  margin-right: -1em;
+  margin-left: -1em;
   padding-right: 1em;
-  padding-left: 0.75em;
-  border-left: 0.25em solid #e06c75;
+  padding-left: 1em;
 }
 
 .template-string > .gatsby-highlight-code-line {

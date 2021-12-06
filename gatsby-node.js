@@ -1,26 +1,23 @@
 const path = require("path")
+const { createFilePath } = require("gatsby-source-filesystem")
 
-exports.createPages = async ({ actions, graphql }) => {
+async function createPages({ graphql, actions, reporter }) {
   const { createPage } = actions
 
-  const blogTemplate = path.resolve(`src/templates/BlogTemplate.js`)
-
-  const {
-    errors: blogErrors,
-    data: {
-      allMarkdownRemark: { edges: posts },
-    },
-  } = await graphql(`
+  const { data, errors } = await graphql(`
     query {
-      allMarkdownRemark(
-        filter: { fileAbsolutePath: { regex: "/blog/" } }
-        sort: { order: ASC, fields: [frontmatter___date] }
-        limit: 1000
-      ) {
+      allMdx {
         edges {
           node {
-            frontmatter {
-              path
+            id
+            fields {
+              slug
+              pageType
+            }
+            parent {
+              ... on File {
+                sourceInstanceName
+              }
             }
           }
         }
@@ -28,71 +25,84 @@ exports.createPages = async ({ actions, graphql }) => {
     }
   `)
 
-  if (blogErrors) {
-    console.error(blogErrors)
+  if (errors) {
+    reporter.panicOnBuild(`Error while running GraphQL query.`)
     return
   }
 
-  posts.forEach(({ node }, index) => {
-    const prev = index === 0 ? {} : posts[index - 1].node
-    const next = index === posts.length - 1 ? {} : posts[index + 1].node
+  // Create pages
+  data.allMdx.edges.forEach(({ node }) => {
     createPage({
-      path: node.frontmatter.path,
-      component: blogTemplate,
+      path: node.fields.slug,
+      component: path.resolve(
+        __dirname,
+        `./src/templates/${node.fields.pageType}.js`
+      ),
       context: {
-        prev,
-        next,
+        id: node.id,
       },
-    })
-  })
-
-  const pageTemplate = path.resolve(`src/templates/PageTemplate.js`)
-
-  const {
-    errors: pageErrors,
-    data: {
-      allMarkdownRemark: { edges: pages },
-    },
-  } = await graphql(`
-    query {
-      allMarkdownRemark(
-        filter: { fileAbsolutePath: { regex: "/pages/" } }
-        sort: { order: ASC, fields: [frontmatter___date] }
-        limit: 1000
-      ) {
-        edges {
-          node {
-            frontmatter {
-              path
-            }
-          }
-        }
-      }
-    }
-  `)
-
-  if (pageErrors) {
-    console.error(pageErrors)
-    return
-  }
-
-  pages.forEach((page) => {
-    createPage({
-      path: page.node.frontmatter.path,
-      component: pageTemplate,
     })
   })
 }
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  if (node.internal.type === `MarkdownRemark`) {
-    const { createNodeField } = actions
-    const fileNode = getNode(node.parent)
+function getSlug({ node, getNode, pageType }) {
+  const path = createFilePath({ node, getNode })
 
-    createNodeField({
-      name: "githubEditLink",
-      node,
-      value: `https://github.com/tylerwray/me/edit/master/blog/${fileNode.relativePath}`,
-    })
+  // 'page' types should just use their file path
+  if (pageType === "page") return path
+
+  return `/${pageType}${path}`
+}
+
+function onCreateMdxNode({ node, getNode, actions }) {
+  const { createNodeField } = actions
+  const pageType = /blog/.test(node.fileAbsolutePath) ? "blog" : "page"
+  const slug = node.frontmatter.slug || getSlug({ node, getNode, pageType })
+
+  createNodeField({
+    name: "pageType",
+    node,
+    value: pageType,
+  })
+
+  createNodeField({
+    name: "slug",
+    node,
+    value: slug,
+  })
+
+  const url = new URL(getSiteUrl())
+  url.pathname = slug
+
+  createNodeField({
+    name: "url",
+    node,
+    value: url.toString(),
+  })
+
+  const editPath = node.fileAbsolutePath.replace(__dirname, "")
+
+  createNodeField({
+    name: "editLink",
+    node,
+    value: `https://github.com/tylerwray/me/edit/main${editPath}`,
+  })
+}
+
+function onCreateNode(...args) {
+  if (args[0].node.internal.type === `Mdx`) {
+    onCreateMdxNode(...args)
   }
+}
+
+function getSiteUrl() {
+  if (process.env.NETLIFY !== "true")
+    return "https://tylerwray.me/" || "http://localhost:8000/"
+  if (process.env.CONTEXT === "production") return process.env.URL
+  return process.env.DEPLOY_PRIME_URL
+}
+
+module.exports = {
+  onCreateNode,
+  createPages,
 }

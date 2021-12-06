@@ -2,12 +2,12 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 
 import Layout from "../components/Layout"
-import SEO from "../components/SEO"
+import Seo from "../components/SEO"
 import { getIcon } from "../icons"
 
 export const pageQuery = graphql`
   {
-    allMarkdownRemark(
+    allMdx(
       limit: 5
       sort: { fields: [frontmatter___date], order: DESC }
       filter: {
@@ -24,7 +24,9 @@ export const pageQuery = graphql`
             title
             icon
             date(formatString: "MMMM DD, YYYY")
-            path
+          }
+          fields {
+            slug
           }
         }
       }
@@ -35,7 +37,7 @@ export const pageQuery = graphql`
 function IndexPage({ data }) {
   return (
     <Layout>
-      <SEO
+      <Seo
         path="/"
         title="My special corner of the internet"
         keywords={[`gatsby`, `application`, `react`]}
@@ -69,7 +71,7 @@ function IndexPage({ data }) {
       </div>
 
       <h2 className="mb-8">Posts</h2>
-      {data.allMarkdownRemark.edges.map(({ node }) => (
+      {data.allMdx.edges.map(({ node }) => (
         <Post key={node.id} node={node} />
       ))}
     </Layout>
@@ -77,12 +79,14 @@ function IndexPage({ data }) {
 }
 
 function Post({ node }) {
+  const timeToRead = node.timeToRead * 3
+
   return (
     <>
       <div className="mb-2">
         <Link
           className="flex text-lg leading-relaxed font-bold text-black dark:text-cream cursor-pointer hover:underline border-transparent"
-          to={node.frontmatter.path}
+          to={node.fields.slug}
         >
           {getIcon(node.frontmatter.icon)}
           {node.frontmatter.title}
@@ -91,8 +95,7 @@ function Post({ node }) {
           <span>{node.frontmatter.date}</span>
           <span className="mx-2">·</span>
           <span>
-            {"📚".repeat(Math.floor(node.timeToRead / 5))} {node.timeToRead} min
-            read
+            {"📚".repeat(Math.floor(timeToRead / 5))} {timeToRead} min read
           </span>
         </div>
         <div className="mb-8 text-sm">{node.excerpt}</div>

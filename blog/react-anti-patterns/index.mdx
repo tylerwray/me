@@ -14,6 +14,7 @@ banner: images/hero.jpg
 bannerDescription: Tires stacked in Pattern
 bannerCreditName: Lane Smith
 bannerCreditUrl: https://unsplash.com/photos/wEsqjsjIDLs
+isPublished: true
 ---
 
 - Am I using the right pattern?
@@ -22,16 +23,12 @@ bannerCreditUrl: https://unsplash.com/photos/wEsqjsjIDLs
 
 Everyone asks themselves these questions at some point when learning something new. I've been working with React for 3 1/2 years now and these are some patterns that have come back to bite me.
 
----
-
-**TLDR**
+## TLDR;
 
 You should watch out for code that you can't understand easily, write readable code.
 Testable code is usually easier to read, so write tests! 🧪
 
 > Shoutout to [react-testing-library](https://github.com/kentcdodds/react-testing-library)
-
----
 
 ## Inheritance 👨‍👧
 
@@ -39,7 +36,7 @@ I first started writing React after reading a book on design patterns, and the f
 
 ![Headfirst Design Patterns Book](./images/headfirst-design-patterns.jpg "Headfirst Design Patterns")
 
-<div style="font-size: 12px; text-align: center; position: relative;top: -20px;">Great book, worth the read 👍🏼</div>
+> Great book, worth the read 👍🏼
 
 The basics of inheritance are you have a class that can _inherit_ the behavior of another class. Similar to how we inherit traits from our parents.
 
@@ -77,8 +74,6 @@ How do you avoid this? **DON'T DO IT.** The funny thing is, [React has explicit 
 To be clear, you shouldn't use the `extends` keyword in javascript to inherit other React components.
 
 Read the docs people.
-
----
 
 ## Prop spreading 💔
 
@@ -140,8 +135,6 @@ This approach couples the two components together, you may as well inline the `j
 React created a built-in approach to solving this problem. It's called [Context](https://reactjs.org/docs/context.html).
 
 Context can solve this problem quite nicely, and I recommend learning the API. However, if you use something like Redux, Apollo, Relay, MobX, or anything similar, keep in mind the next Anti-pattern.
-
----
 
 ## Smart and Dumb components 🎭
 

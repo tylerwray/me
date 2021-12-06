@@ -334,9 +334,7 @@ Replace all of `lib/amazin_web/live/product_live/index.html.leex` with
       <h3 class="text-lg leading-6 font-medium text-gray-900">
         <%= product.name %>
       </h3>
-      <p class="text-sm text-gray-500">
-        <%= product.description %>
-      </p>
+      <p class="text-sm text-gray-500"><%= product.description %></p>
     </div>
     <div class="px-6 py-4 border-t border-gray-400 text-xl">
       <%= product.stock %> remaining
@@ -727,9 +725,7 @@ The second file will be the accompanying markup:
 <div class="flex flex-col items-center justify-center p-12">
   Thank you for your purchase!
   <br />
-  <span class="text-5xl" role="img" alt="hugging emoji">
-    🤗
-  </span>
+  <span class="text-5xl" role="img" alt="hugging emoji"> 🤗 </span>
 </div>
 ```
 

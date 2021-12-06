@@ -12,19 +12,28 @@
   --site-text: #393e41;
 
   --magenta: #dd4a68;
-  --purple: #6B46C1;
+  --purple: #6b46c1;
 }
 
-.dark-mode {
+body.dark {
   --site-background: #18181b;
   --site-text: #ffffff;
-  --purple: theme('colors.purple.500');
+  --purple: theme("colors.purple.500");
 }
 
 body {
   word-wrap: break-word;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   font-size: 1rem;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smooth: auto;
+  font-kerning: normal;
+  -moz-font-feature-settings: "kern", "liga", "clig", "calt";
+  -ms-font-feature-settings: "kern", "liga", "clig", "calt";
+  -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
+  font-feature-settings: "kern", "liga", "clig", "calt";
   line-height: 1.6;
   margin: 0;
   background-color: var(--site-background);
@@ -220,7 +229,7 @@ h2 {
   font-weight: bold;
   font-size: 1.5rem;
   line-height: 1.2;
-  border-top: 1px solid theme('colors.gray.700');
+  border-top: 1px solid theme("colors.gray.700");
 }
 h3 {
   margin-top: 2rem;
@@ -419,12 +428,13 @@ code {
   }
 }
 
-.page img  {
+.page img {
   border-radius: 0.3em;
   box-shadow: 0px 3px 6px 4px rgba(0, 0, 0, 0.08);
 }
 
-.gatsby-resp-image-wrapper, .gatsby-image-wrapper {
+.gatsby-resp-image-wrapper,
+.gatsby-image-wrapper {
   border-radius: 0.3em;
   box-shadow: 0px 3px 6px 4px rgba(0, 0, 0, 0.08);
 }
