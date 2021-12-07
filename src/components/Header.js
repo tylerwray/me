@@ -15,7 +15,7 @@ function Header() {
   })
 
   return (
-    <header className="flex items-center justify-between py-4">
+    <header className="flex items-center justify-between py-4 max-w-3xl mx-auto px-6">
       <Link to="/" className="text-black dark:text-cream no-underline">
         <span className="text-2xl" role="img" aria-label="emoji">
           {icon}

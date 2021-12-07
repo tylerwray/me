@@ -5,7 +5,7 @@ import Header from "./Header"
 
 function Layout({ children }) {
   return (
-    <div className="max-w-3xl mx-auto px-6">
+    <div className="max-w-screen-2xl mx-auto">
       <Header />
       <main className="pt-6">{children}</main>
     </div>

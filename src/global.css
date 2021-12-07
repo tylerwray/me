@@ -12,13 +12,19 @@
   --site-text: #393e41;
 
   --magenta: #dd4a68;
-  --purple: #6b46c1;
+  --purple: theme("colors.purple.900");
+  --divider: theme("colors.gray.400");
+  --table-of-contents-text: theme("colors.gray.900");
+  --anchor-header-icon-fill: theme("colors.black");
 }
 
 body.dark {
   --site-background: #18181b;
   --site-text: #ffffff;
-  --purple: theme("colors.purple.500");
+  --purple: theme("colors.purple.400");
+  --divider: theme("colors.gray.700");
+  --table-of-contents-text: theme("colors.white");
+  --anchor-header-icon-fill: theme("colors.white");
 }
 
 body {
@@ -229,7 +235,7 @@ h2 {
   font-weight: bold;
   font-size: 1.5rem;
   line-height: 1.2;
-  border-top: 1px solid theme("colors.gray.700");
+  border-top: 1px solid var(--divider);
 }
 h3 {
   margin-top: 2rem;
@@ -258,13 +264,6 @@ h6 {
 }
 hgroup {
   margin-bottom: 1.45rem;
-}
-ul {
-  margin-left: 1.45rem;
-  margin-bottom: 1.45rem;
-  list-style-position: outside;
-  list-style-image: none;
-  list-style: disc;
 }
 ol {
   margin-left: 1.45rem;
@@ -441,4 +440,26 @@ code {
 
 .gatsby-resp-image-image {
   border-radius: 0.3em;
+}
+
+/* Style the link for gatsby-remark-autolink-headers */
+h2 > a.anchor.before {
+  top: 1rem;
+  fill: var(--anchor-header-icon-fill);
+}
+
+/* Style the table of contents as the user hovers */
+.table-of-contents-link[aria-current] {
+  font-weight: 500;
+  color: var(--table-of-contents-text);
+  transform: translateX(0.25rem);
+  opacity: 1;
+}
+
+@media (min-width: 1380px) {
+  .layout-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 288px minmax(0px, 1fr) 288px;
+  }
 }

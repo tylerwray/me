@@ -33,6 +33,7 @@ module.exports = {
       resolve: "gatsby-plugin-mdx",
       options: {
         gatsbyRemarkPlugins: [
+          "gatsby-remark-autolink-headers",
           {
             resolve: "gatsby-remark-prismjs",
             options: {
@@ -85,12 +86,3 @@ module.exports = {
     },
   ],
 }
-
-// {
-//   resolve: "gatsby-source-filesystem",
-//   options: {
-//     name: "src",
-//     path: `./src`,
-//   },
-//   __key: "src"
-// },
