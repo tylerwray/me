@@ -31,7 +31,9 @@ export default function PageTemplate({ data }) {
         title={frontmatter.title}
         keywords={frontmatter.tags}
       />
-      <MDXRenderer>{body}</MDXRenderer>
+      <div className="max-w-3xl mx-auto px-6">
+        <MDXRenderer>{body}</MDXRenderer>
+      </div>
     </Layout>
   )
 }

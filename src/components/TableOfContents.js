@@ -124,7 +124,7 @@ function TableOfContents() {
       className="sticky hidden top-2 py-6 overflow-y-auto h-screen xl:block"
     >
       <h4 className="m-0 text-sm font-normal uppercase">On this page</h4>
-      <ul className="list-none p-0">
+      <ul className="list-none p-0 m-0">
         {headings.map((heading, i) =>
           heading.url ? (
             <li key={i} data-depth={heading.depth} className="my-1">
