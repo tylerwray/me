@@ -1,13 +1,15 @@
+const colors = require("tailwindcss/colors")
+
 module.exports = {
   purge: ["./src/**/*.js", "./blog/**/*.md"],
   darkMode: "class", // or 'media' or 'class'
   theme: {
-    extend: {
-      colors: {
-        black: "rgba(57, 62, 65, 1)",
-        red: "rgb(233, 79, 55)",
-        cream: "#F5FAFA",
-      },
+    colors: {
+      gray: colors.gray,
+      black: "rgba(57, 62, 65, 1)",
+      white: "#ffffff",
+      purple: colors.purple,
+      yellow: colors.yellow,
     },
   },
   variants: {

@@ -2,6 +2,7 @@ import React from "react"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import MDXRenderer from "gatsby-plugin-mdx/mdx-renderer"
 import family from "../images/family_192.jpg"
+import Comments from "./Comments"
 
 function Post({ frontmatter, siteUrl, timeToRead, fields, body }) {
   const blogPostUrl = `${siteUrl}${fields.slug}`
@@ -40,13 +41,17 @@ function Post({ frontmatter, siteUrl, timeToRead, fields, body }) {
           Edit post on GitHub
         </a>
       </div>
-      <GatsbyImage className="mt-3" image={banner} />
-      <div className="mt-2 mb-6 text-sm text-center text-gray-500">
+      <GatsbyImage
+        className="mt-3"
+        image={banner}
+        alt={frontmatter.bannerDescription}
+      />
+      <div className="mt-2 mb-6 text-sm text-center text-gray-700 dark:text-gray-500">
         Photo By{" "}
         <a href={frontmatter.bannerCreditUrl}>{frontmatter.bannerCreditName}</a>
       </div>
       <MDXRenderer>{body}</MDXRenderer>
-      <div className="my-16 p-12 dark:text-white bg-gray-200 dark:bg-gray-800 rounded-lg shadow-xl">
+      <div className="my-16 p-12 dark:text-white rounded-lg border-2 border-purple-300 dark:border-purple-800">
         <div className="flex flex-col md:flex-row pb-12">
           <div>
             <h3 className="mt-0">About the Author</h3>
@@ -68,7 +73,7 @@ function Post({ frontmatter, siteUrl, timeToRead, fields, body }) {
           />
         </div>
         <a
-          className="bg-purple-500 hover:bg-purple-600 text-white p-4 rounded-md"
+          className="bg-purple-200 hover:bg-purple-300 dark:bg-purple-700 dark:hover:bg-purple-800 text-black dark:text-white p-4 rounded-md uppercase font-bold no-underline"
           target="_blank"
           rel="noreferrer"
           href="https://ko-fi.com/tylerwray"
@@ -76,6 +81,7 @@ function Post({ frontmatter, siteUrl, timeToRead, fields, body }) {
           Buy me a coffee
         </a>
       </div>
+      <Comments />
     </div>
   )
 }

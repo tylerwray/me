@@ -87,7 +87,7 @@ function Post({ node }) {
     <>
       <div className="mb-2">
         <Link
-          className="flex text-lg leading-relaxed font-bold text-black dark:text-cream cursor-pointer hover:underline border-transparent"
+          className="flex text-lg leading-relaxed font-bold text-black dark:text-white cursor-pointer hover:underline border-transparent no-underline"
           to={node.fields.slug}
         >
           {getIcon(node.frontmatter.icon)}

@@ -1,5 +1,5 @@
 :root {
-  --code-background-color: #f9f3eb;
+  --code-background-color: theme("colors.gray.100");
   --code-text-color: hsl(230, 8%, 24%);
   --code-selection-color: hsl(230, 1%, 90%);
   --code-comment-color: hsl(230, 4%, 64%);
@@ -11,7 +11,7 @@
   --code-variable-color: hsl(221, 87%, 60%);
   --code-url-color: hsl(198, 99%, 37%);
   --code-operator-color: hsl(187, 47%, 55%);
-  --code-highlight-line-color: #eee6da;
+  --code-highlight-line-color: theme("colors.gray.200");
 }
 
 body.dark {

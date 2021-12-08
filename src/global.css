@@ -8,23 +8,26 @@
   supported-color-schemes: light dark;
   color-scheme: light dark;
 
-  --site-background: rgb(249, 251, 252);
-  --site-text: #393e41;
-
-  --magenta: #dd4a68;
-  --purple: theme("colors.purple.900");
+  --site-background: theme("colors.white");
+  --site-text: theme("colors.black");
+  --purple: theme("colors.purple.600");
   --divider: theme("colors.gray.400");
   --table-of-contents-text: theme("colors.gray.900");
   --anchor-header-icon-fill: theme("colors.black");
+  --blockquote-bg: theme("colors.purple.100");
+  --blockquote-border: theme("colors.purple.400");
 }
 
 body.dark {
-  --site-background: #18181b;
-  --site-text: #ffffff;
+  /* --site-background: #18181b; */
+  --site-background: theme("colors.gray.900");
+  --site-text: theme("colors.white");
   --purple: theme("colors.purple.400");
   --divider: theme("colors.gray.700");
   --table-of-contents-text: theme("colors.white");
   --anchor-header-icon-fill: theme("colors.white");
+  --blockquote-bg: rgb(121 72 232 / 20%);
+  --blockquote-border: theme("colors.purple.800");
 }
 
 body {
@@ -48,6 +51,7 @@ body {
 a {
   color: var(--purple);
   background-color: transparent;
+  text-decoration: underline;
 }
 a:active,
 a:hover {
@@ -127,10 +131,10 @@ pre {
 }
 blockquote {
   font-size: 16px;
-  background-color: rgb(121 72 232 / 20%);
+  background-color: var(--blockquote-bg);
   border-left-style: solid;
   border-left-width: 8px;
-  border-color: var(--purple);
+  border-color: var(--blockquote-border);
   padding: 16px;
   margin: 16px -8px;
   border-radius: 4px;
