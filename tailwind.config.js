@@ -14,7 +14,7 @@ module.exports = {
   },
   variants: {
     extend: {
-      translate: ["dark"],
+      translate: ["dark", "group-hover"],
       display: ["dark"],
     },
   },

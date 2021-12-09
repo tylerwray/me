@@ -71,7 +71,7 @@ function IndexPage({ data }) {
           />
         </div>
 
-        <h2 className="mb-8">Posts</h2>
+        <h3 className="mb-8">Recent Posts</h3>
         {data.allMdx.edges.map(({ node }) => (
           <Post key={node.id} node={node} />
         ))}
@@ -84,25 +84,23 @@ function Post({ node }) {
   const timeToRead = node.timeToRead * 3
 
   return (
-    <>
+    <Link
+      className="group no-underline text-lg leading-relaxed text-black dark:text-white cursor-pointer border-transparent"
+      to={node.fields.slug}
+    >
       <div className="mb-2">
-        <Link
-          className="flex text-lg leading-relaxed font-bold text-black dark:text-white cursor-pointer hover:underline border-transparent no-underline"
-          to={node.fields.slug}
-        >
-          {getIcon(node.frontmatter.icon)}
-          {node.frontmatter.title}
-        </Link>
-        <div className="text-xs my-1">
-          <span>{node.frontmatter.date}</span>
-          <span className="mx-2">·</span>
-          <span>
-            {"📚".repeat(Math.floor(timeToRead / 5))} {timeToRead} min read
-          </span>
+        <div className="flex">
+          <div>{getIcon(node.frontmatter.icon)}</div>
+          <div className="dark:group-hover:text-purple-400 group-hover:text-purple-600 text-lg font-bold">
+            {node.frontmatter.title}
+          </div>
         </div>
-        <div className="mb-8 text-sm">{node.excerpt}</div>
+        <div className="mb-2 text-sm no-underline">{node.excerpt}</div>
+        <div className="group-hover:translate-x-2 transform mb-8 font-bold text-sm transition">
+          Read More
+        </div>
       </div>
-    </>
+    </Link>
   )
 }
 
