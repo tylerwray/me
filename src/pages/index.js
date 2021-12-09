@@ -19,7 +19,6 @@ export const pageQuery = graphql`
         node {
           id
           excerpt
-          timeToRead
           frontmatter {
             title
             icon
@@ -81,8 +80,6 @@ function IndexPage({ data }) {
 }
 
 function Post({ node }) {
-  const timeToRead = node.timeToRead * 3
-
   return (
     <Link
       className="group no-underline text-lg leading-relaxed text-black dark:text-white cursor-pointer border-transparent"
