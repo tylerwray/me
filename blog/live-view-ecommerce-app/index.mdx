@@ -237,7 +237,7 @@ contents of the `<body />` tag so it looks like this:
     <div class="px-4 flex items-center">
       <img class="mr-6" src="https://tylerwray.me/amazin-logo.svg" />
       <a href="/" class="px-3 py-2 rounded text-white bg-gray-900">PRODUCTS</a>
-      <div class="flex-grow"></div>
+      <div class="grow"></div>
       <a href="/cart" class="px-3 py-2 rounded text-white bg-gray-900">CART</a>
     </div>
   </nav>
@@ -325,7 +325,7 @@ Replace all of `lib/amazin_web/live/product_live/index.html.leex` with
   <%= for product <- @products do %>
   <div class="flex flex-col bg-white border border-gray-400 shadow rounded-lg">
     <img
-      class="flex-grow p-6 object-contain"
+      class="grow p-6 object-contain"
       src="<%= product.thumbnail %>"
       title="<%= product.name %>"
       alt="<%= product.name %>"

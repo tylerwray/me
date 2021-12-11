@@ -93,7 +93,7 @@ function Post({ node }) {
           </div>
         </div>
         <div className="mb-2 text-sm no-underline">{node.excerpt}</div>
-        <div className="group-hover:translate-x-2 transform mb-8 font-bold text-sm transition">
+        <div className="group-hover:translate-x-2 mb-8 font-bold text-sm transition">
           Read More
         </div>
       </div>

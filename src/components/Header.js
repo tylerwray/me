@@ -33,9 +33,9 @@ function Header() {
           onClick={darkMode.toggle}
         >
           <div className="dark:bg-purple-600 bg-gray-300 absolute rounded-full h-6 w-10 left-0 right-0 transition duration-200" />
-          <div className="transform dark:translate-x-4 dark:bg-purple-900 bg-gray-100 rounded-full flex items-center justify-center shadow relative w-6 h-6 transition duration-200">
-            <Sun className="dark:hidden text-yellow-500 fill-current" />
-            <Moon className="dark:block hidden text-purple-600 fill-current" />
+          <div className="dark:translate-x-4 dark:bg-purple-900 bg-gray-100 rounded-full flex items-center justify-center shadow relative w-6 h-6 transition duration-200">
+            <Sun className="dark:hidden fill-amber-500" />
+            <Moon className="dark:block hidden fill-purple-600" />
           </div>
         </button>
       </div>
