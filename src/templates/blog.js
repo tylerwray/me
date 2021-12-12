@@ -26,8 +26,8 @@ export const query = graphql`
         description
         icon
         tags
-        prettyDate: date(formatString: "MMMM DD, YYYY")
-        metaDate: date(formatString: "YYYY-DD-MM")
+        prettyDate: publishedOn(formatString: "MMMM DD, YYYY")
+        metaDate: publishedOn(formatString: "YYYY-DD-MM")
         banner {
           publicURL
           childImageSharp {

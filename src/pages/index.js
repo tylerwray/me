@@ -10,11 +10,8 @@ export const pageQuery = graphql`
   {
     allMdx(
       limit: 5
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: {
-        fileAbsolutePath: { regex: "/blog/" }
-        frontmatter: { isPublished: { ne: false } }
-      }
+      sort: { fields: [frontmatter___publishedOn], order: DESC }
+      filter: { frontmatter: { publishedOn: { ne: null } } }
     ) {
       edges {
         node {
@@ -23,7 +20,6 @@ export const pageQuery = graphql`
           frontmatter {
             title
             icon
-            date(formatString: "MMMM DD, YYYY")
           }
           fields {
             slug

@@ -7,7 +7,7 @@
 // import "prism-themes/themes/prism-one-light.css"
 // import "prism-themes/themes/prism-one-dark.css"
 
-import "./src/prism.css"
 import "prismjs/plugins/command-line/prism-command-line.css"
+import "./src/prism.css"
 
 import "./src/global.css"
