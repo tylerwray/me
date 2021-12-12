@@ -20,7 +20,7 @@ function Header() {
         <span className="text-2xl" role="img" aria-label="emoji">
           {icon}
         </span>
-        <span className="ml-2 text-lg hidden sm:inline">Tyler Wray</span>
+        <span className="ml-2 text-xl hidden sm:inline">Tyler Wray</span>
       </Link>
       <div className="flex justify-around items-center">
         <NavItem to="/">Posts</NavItem>

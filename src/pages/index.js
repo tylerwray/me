@@ -4,6 +4,7 @@ import { graphql, Link } from "gatsby"
 import Layout from "../components/Layout"
 import Seo from "../components/SEO"
 import { getIcon } from "../icons"
+import ArrowRight from "../icons/ArrowRight"
 
 export const pageQuery = graphql`
   {
@@ -70,7 +71,9 @@ function IndexPage({ data }) {
           />
         </div>
 
-        <h3 className="mb-8">Recent Posts</h3>
+        <h3 className="mb-8 uppercase text-purple-600 dark:text-purple-400 text-base">
+          Recently Published
+        </h3>
         {data.allMdx.edges.map(({ node }) => (
           <Post key={node.id} node={node} />
         ))}
@@ -85,16 +88,17 @@ function Post({ node }) {
       className="group no-underline text-lg leading-relaxed text-black dark:text-white cursor-pointer border-transparent"
       to={node.fields.slug}
     >
-      <div className="mb-2">
-        <div className="flex">
+      <div className="mb-4">
+        <div className="flex mb-2">
           <div>{getIcon(node.frontmatter.icon)}</div>
           <div className="dark:group-hover:text-purple-400 group-hover:text-purple-600 text-lg font-bold">
             {node.frontmatter.title}
           </div>
         </div>
-        <div className="mb-2 text-sm no-underline">{node.excerpt}</div>
-        <div className="group-hover:translate-x-2 mb-8 font-bold text-sm transition">
+        <div className="mb-2 no-underline">{node.excerpt}</div>
+        <div className="mb-8 font-bold flex items-center">
           Read More
+          <ArrowRight className="opacity-0 group-hover:opacity-100 text-purple-600 dark:text-purple-400 h-full group-hover:translate-x-1 transition-all" />
         </div>
       </div>
     </Link>

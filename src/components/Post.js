@@ -3,6 +3,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import MDXRenderer from "gatsby-plugin-mdx/mdx-renderer"
 import family from "../images/family_192.jpg"
 import Comments from "./Comments"
+import VisuallyHidden from "./VisuallyHidden"
 
 function Post({ frontmatter, siteUrl, timeToRead, fields, body }) {
   const blogPostUrl = `${siteUrl}${fields.slug}`
@@ -17,14 +18,13 @@ function Post({ frontmatter, siteUrl, timeToRead, fields, body }) {
         <h1 className="mb-2 text-2xl sm:text-4xl">{frontmatter.title}</h1>
       </div>
       <div className="ml-8">{frontmatter.subTitle}</div>
-      <div className="text-xs my-1">
+      <div className="mb-4">
         <span>{frontmatter.prettyDate}</span>
-        <span className="mx-2">·</span>
+        <span style={{ marginLeft: 10, marginRight: 10 }}>{` • `}</span>
         <span>
           {"📚".repeat(Math.floor(readingTime / 5))} {readingTime} min read
         </span>
-      </div>
-      <div className="mb-4 text-sm">
+        <span style={{ marginLeft: 10, marginRight: 10 }}>{` • `}</span>
         <a
           target="_blank"
           rel="noopener noreferrer"
@@ -36,10 +36,6 @@ function Post({ frontmatter, siteUrl, timeToRead, fields, body }) {
         >
           Discuss on Twitter
         </a>
-        <span style={{ marginLeft: 10, marginRight: 10 }}>{` • `}</span>
-        <a target="_blank" rel="noopener noreferrer" href={fields.editLink}>
-          Edit post on GitHub
-        </a>
       </div>
       <GatsbyImage
         className="mt-3"
@@ -50,36 +46,51 @@ function Post({ frontmatter, siteUrl, timeToRead, fields, body }) {
         Photo By{" "}
         <a href={frontmatter.bannerCreditUrl}>{frontmatter.bannerCreditName}</a>
       </div>
+      <VisuallyHidden>
+        <h2 className="inline-block">
+          <a id="introduction" className="inline-block" href="#introduction">
+            Introduction
+          </a>
+        </h2>
+      </VisuallyHidden>
       <MDXRenderer>{body}</MDXRenderer>
-      <div className="my-16 p-12 dark:text-white rounded-lg border-2 border-purple-300 dark:border-purple-800">
-        <div className="flex flex-col md:flex-row pb-12">
-          <div>
-            <h3 className="mt-0">About the Author</h3>
-            <p>
-              Hi{" "}
-              <span role="img" aria-label="hand wave">
-                👋
-              </span>{" "}
-              I'm Tyler. I'm a software engineer with a passion for learning new
-              things. I love solving hard problems and simplifying them down to
-              their pieces. Presently residing in Utah with my two girls and
-              beautiful wife.
-            </p>
+      <a target="_blank" rel="noopener noreferrer" href={fields.editLink}>
+        Edit post on GitHub
+      </a>
+      <div
+        className="flex justify-center p-12 my-16 dark:text-white bg-gray-100 dark:bg-gray-800 w-screen relative left-2/4 z-10"
+        style={{ marginLeft: "-50vw" }}
+      >
+        <div className="px-6 max-w-3xl">
+          <div className="flex ">
+            <div>
+              <h3 className="mt-0">About the Author</h3>
+              <p className="pb-4">
+                Hi{" "}
+                <span role="img" aria-label="hand wave">
+                  👋
+                </span>{" "}
+                I'm Tyler. I'm a software engineer with a passion for learning
+                new things. I love solving hard problems and simplifying them
+                down to their pieces. Presently residing in Utah with my two
+                girls and beautiful wife.
+              </p>
+            </div>
+            <img
+              className="rounded-full h-48 w-48 ml-12 hidden md:block"
+              alt="Family"
+              src={family}
+            />
           </div>
-          <img
-            className="rounded-full h-48 w-48 ml-12 hidden md:block"
-            alt="Family"
-            src={family}
-          />
+          <a
+            className="bg-purple-500 hover:bg-purple-600 dark:bg-purple-800 dark:hover:bg-purple-900 text-white p-4 rounded-md uppercase font-bold no-underline"
+            target="_blank"
+            rel="noreferrer"
+            href="https://ko-fi.com/tylerwray"
+          >
+            Buy me a coffee
+          </a>
         </div>
-        <a
-          className="bg-purple-200 hover:bg-purple-300 dark:bg-purple-700 dark:hover:bg-purple-800 text-black dark:text-white p-4 rounded-md uppercase font-bold no-underline"
-          target="_blank"
-          rel="noreferrer"
-          href="https://ko-fi.com/tylerwray"
-        >
-          Buy me a coffee
-        </a>
       </div>
       <Comments />
     </div>

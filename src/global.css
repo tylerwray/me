@@ -19,7 +19,6 @@
 }
 
 body.dark {
-  /* --site-background: #18181b; */
   --site-background: theme("colors.gray.900");
   --site-text: theme("colors.white");
   --purple: theme("colors.purple.400");
@@ -179,15 +178,15 @@ h2 > a.anchor.before {
   fill: var(--anchor-header-icon-fill);
 }
 
-/* Style the table of contents as the user hovers */
-.table-of-contents-link[aria-current] {
-  font-weight: 500;
-  color: var(--table-of-contents-text);
-  transform: translateX(0.25rem);
-  opacity: 1;
+#table-of-contents {
+  display: none;
 }
 
 @media (min-width: 1380px) {
+  #table-of-contents {
+    display: block;
+  }
+
   .layout-grid {
     display: grid;
     gap: 1rem;

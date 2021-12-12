@@ -27,8 +27,8 @@ body.dark {
   --code-string-color: hsl(95, 38%, 62%);
   --code-variable-color: hsl(207, 82%, 66%);
   --code-url-color: hsl(187, 47%, 55%);
-  --code-highlight-line-color: rgba(142, 107, 223, 0.21);
-  --code-highlight-gutter-color: theme("colors.purple.600");
+  --code-highlight-line-color: rgba(142, 107, 223, 0.15);
+  --code-highlight-gutter-color: theme("colors.purple.500");
 }
 
 code[class*="language-"],
@@ -445,7 +445,8 @@ pre > code.diff-highlight .token.token.inserted:not(.prefix) *::selection {
 .gatsby-highlight {
   background-color: var(--code-background-color);
   border-radius: 0.3em;
-  margin: 0.5em 0;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
   padding: 1em;
   overflow: auto;
 }

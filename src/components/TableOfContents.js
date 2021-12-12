@@ -1,140 +1,97 @@
-import React, { useEffect } from "react"
-// eslint-disable-next-line import/no-unresolved
-import { useLocation } from "@reach/router"
+import React from "react"
 
-const TOP_OFFSET = 100
-
-function getHeaderAnchors() {
-  return Array.prototype.filter.call(
-    document.getElementsByClassName("anchor"),
-    (testElement) =>
-      testElement.parentNode.nodeName === "H2" ||
-      testElement.parentNode.nodeName === "H3"
-  )
-}
-
-function getHeaderDataFromAnchor(el) {
-  return {
-    url: el.getAttribute("href"),
-    text: el.parentElement?.innerText,
-    depth: Number(el.parentElement?.nodeName.replace("H", "")),
+const throttle = (func, limit) => {
+  let lastFunc
+  let lastRan
+  return function (...args) {
+    if (!lastRan) {
+      func.apply(null, args)
+      lastRan = Date.now()
+    } else {
+      clearTimeout(lastFunc)
+      lastFunc = setTimeout(function () {
+        if (Date.now() - lastRan >= limit) {
+          func.apply(null, args)
+          lastRan = Date.now()
+        }
+      }, limit - (Date.now() - lastRan))
+    }
   }
 }
 
-function getAnchorHeaderIdentifier(el) {
-  return el?.parentElement?.id
+const TableOfContents = ({ headings }) => {
+  const activeHeadingUrl = useActiveHeading(headings)
+
+  return (
+    <nav
+      id="table-of-contents"
+      className="sticky top-2 py-6 overflow-y-auto h-screen"
+    >
+      <h4 className="uppercase">Table of Contents</h4>
+
+      {headings.map((heading, index) => (
+        <ContentLinkHeading
+          key={index}
+          href={heading.url}
+          isActive={activeHeadingUrl === heading.url}
+        >
+          {heading.title}
+        </ContentLinkHeading>
+      ))}
+    </nav>
+  )
 }
 
-export function useTocHighlight(ref) {
-  const { pathname } = useLocation()
-  const [lastActiveLink, setLastActiveLink] = React.useState(undefined)
-  const [headings, setHeadings] = React.useState([])
+const useActiveHeading = (headings) => {
+  const [activeHeadingUrl, setActiveHeadingUrl] = React.useState(
+    headings[0].url
+  )
 
-  useEffect(() => {
-    setHeadings(getHeaderAnchors().map(getHeaderDataFromAnchor))
-  }, [pathname])
+  React.useEffect(() => {
+    const handleScroll = throttle(() => {
+      // The first heading within the viewport is the one we want to highlight.
+      let firstHeadingInViewport = headings.find(({ url }) => {
+        const elem = document.querySelector(url)
+        const rect = elem.getBoundingClientRect()
+        // Using negative value here because our headers have a top
+        // padding and top border
+        return rect.top >= -2 && rect.bottom <= window.innerHeight
+      })
 
-  useEffect(() => {
-    let headersAnchors = []
-    let links = []
-
-    function setActiveLink() {
-      function getActiveHeaderAnchor() {
-        let index = 0
-        let activeHeaderAnchor = null
-
-        headersAnchors = getHeaderAnchors()
-        while (index < headersAnchors.length && !activeHeaderAnchor) {
-          const headerAnchor = headersAnchors[index]
-          const { top } = headerAnchor.getBoundingClientRect()
-
-          if (top >= 0 && top <= TOP_OFFSET) {
-            activeHeaderAnchor = headerAnchor
-          }
-
-          index += 1
-        }
-
-        return activeHeaderAnchor
+      if (
+        firstHeadingInViewport &&
+        firstHeadingInViewport.url !== activeHeadingUrl
+      ) {
+        setActiveHeadingUrl(firstHeadingInViewport.url)
       }
+    }, 500)
 
-      const activeHeaderAnchor = getActiveHeaderAnchor()
-
-      if (activeHeaderAnchor) {
-        let index = 0
-        let itemHighlighted = false
-
-        links = ref.current ? ref.current.querySelectorAll("a") : []
-
-        while (index < links.length && !itemHighlighted) {
-          const link = links[index]
-          const { href } = link
-          const anchorValue = decodeURIComponent(
-            href.substring(href.indexOf("#") + 1)
-          )
-
-          if (getAnchorHeaderIdentifier(activeHeaderAnchor) === anchorValue) {
-            if (lastActiveLink) {
-              lastActiveLink.removeAttribute("aria-current")
-            }
-
-            link.setAttribute("aria-current", "true")
-
-            setLastActiveLink(link)
-            itemHighlighted = true
-          }
-
-          index += 1
-        }
-      }
-    }
-
-    document.addEventListener("scroll", setActiveLink)
-    document.addEventListener("resize", setActiveLink)
-
-    setActiveLink()
+    window.addEventListener("scroll", handleScroll)
 
     return () => {
-      document.removeEventListener("scroll", setActiveLink)
-      document.removeEventListener("resize", setActiveLink)
+      window.removeEventListener("scroll", handleScroll)
     }
-  })
+  }, [activeHeadingUrl, setActiveHeadingUrl, headings])
 
-  return headings
+  return activeHeadingUrl
 }
 
-function Link({ href, children }) {
+const ContentLinkHeading = ({ isActive = false, children, ...props }) => {
+  let activeStyles = "text-gray-600 dark:text-gray-400"
+
+  if (isActive) activeStyles = "text-gray-900 dark:text-white font-bold"
+
   return (
     <a
-      href={href}
-      className="table-of-contents-link inline-block transition-all text-gray-600 dark:text-gray-400 no-underline opactiy-80 transform hover:translate-x-1 hover:text-gray-900 dark:hover:text-white text-sm"
+      className={`block mb-2 no-underline transition-opacity opacity-70 hover:focus:opacity-100 hover:black dark:hover:text-white text-base ${activeStyles}`}
+      {...props}
     >
       {children}
     </a>
   )
 }
-
-function TableOfContents() {
-  const ref = React.useRef()
-  const headings = useTocHighlight(ref)
-  if (!headings.length) return null
-  return (
-    <div
-      ref={ref}
-      className="sticky hidden top-2 py-6 overflow-y-auto h-screen xl:block"
-    >
-      <h4 className="m-0 text-sm font-normal uppercase">On this page</h4>
-      <ul className="list-none p-0 m-0">
-        {headings.map((heading, i) =>
-          heading.url ? (
-            <li key={i} data-depth={heading.depth} className="my-1">
-              <Link href={heading.url}>{heading.text}</Link>
-            </li>
-          ) : null
-        )}
-      </ul>
-    </div>
-  )
-}
+// font-weight: 500;
+// color: var(--table-of-contents-text);
+// transform: translateX(0.25rem);
 
 export default TableOfContents

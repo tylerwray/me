@@ -20,6 +20,7 @@ export const query = graphql`
         slug
         editLink
       }
+      tableOfContents
       frontmatter {
         title
         description
@@ -42,7 +43,12 @@ export const query = graphql`
 `
 
 function BlogTemplate({ data }) {
-  const { frontmatter, body, fields } = data.mdx
+  const { frontmatter, body, fields, tableOfContents } = data.mdx
+
+  const headings = [
+    { title: "Introduction", url: "#introduction" },
+    ...tableOfContents.items,
+  ]
 
   return (
     <Layout>
@@ -71,7 +77,7 @@ function BlogTemplate({ data }) {
           siteUrl={data.site.siteMetadata.siteUrl}
           timeToRead={data.mdx.timeToRead}
         />
-        <TableOfContents />
+        <TableOfContents headings={headings} />
       </div>
     </Layout>
   )
