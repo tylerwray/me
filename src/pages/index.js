@@ -3,8 +3,7 @@ import { graphql, Link } from "gatsby"
 
 import Layout from "../components/Layout"
 import Seo from "../components/SEO"
-import { getIcon } from "../icons"
-import ArrowRight from "../icons/ArrowRight"
+import { IconArrowRight } from "../icons"
 
 export const pageQuery = graphql`
   {
@@ -19,7 +18,6 @@ export const pageQuery = graphql`
           excerpt
           frontmatter {
             title
-            icon
           }
           fields {
             slug
@@ -67,7 +65,7 @@ function IndexPage({ data }) {
           />
         </div>
 
-        <h3 className="mb-8 uppercase text-purple-600 dark:text-purple-400 text-base">
+        <h3 className="mb-8 uppercase text-green-600 dark:text-green-400 text-base">
           Recently Published
         </h3>
         {data.allMdx.edges.map(({ node }) => (
@@ -86,7 +84,6 @@ function Post({ node }) {
     >
       <div className="mb-4">
         <div className="flex mb-2">
-          <div>{getIcon(node.frontmatter.icon)}</div>
           <div className="dark:group-hover:text-purple-400 group-hover:text-purple-600 text-lg font-bold">
             {node.frontmatter.title}
           </div>
@@ -94,7 +91,7 @@ function Post({ node }) {
         <div className="mb-2 no-underline">{node.excerpt}</div>
         <div className="mb-8 font-bold flex items-center">
           Read More
-          <ArrowRight className="opacity-0 group-hover:opacity-100 text-purple-600 dark:text-purple-400 h-full group-hover:translate-x-1 transition-all" />
+          <IconArrowRight className="opacity-0 group-hover:opacity-100 text-purple-600 dark:text-purple-400 h-full group-hover:translate-x-1 transition-all" />
         </div>
       </div>
     </Link>

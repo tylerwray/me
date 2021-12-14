@@ -55,7 +55,7 @@ function BlogTemplate({ data }) {
       <Seo
         path={fields.slug}
         description={frontmatter.description}
-        image={frontmatter.banner.publicURL}
+        image={frontmatter.banner?.publicURL}
         imageDescription={frontmatter.bannerDescription}
         keywords={frontmatter.tags}
         meta={[

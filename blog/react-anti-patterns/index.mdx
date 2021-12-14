@@ -1,7 +1,6 @@
 ---
 title: React Anti-Patterns
 description: Learn about some basic anti-patterns with React and how to avoid them.
-icon: react
 tags:
   - react
   - reactjs
@@ -43,7 +42,7 @@ One of my first challenges was I had two components that needed the same data fe
 
 It looked something like this:
 
-```jsx{8-11}
+```jsx highlight={8-10}
 class Base extends React.Component {
   componentDidMount() {
     apiCall(this.props.type).then((data) => {
@@ -51,7 +50,6 @@ class Base extends React.Component {
     })
   }
 
-  // This is SOOO bad
   render() {
     throw new Error("SHOULD NEVER GET HERE")
   }
@@ -66,12 +64,11 @@ class Widget extends Base {
 }
 ```
 
-> This probably even looks better than it did 👆
+> This is bad. Don't ever throw inside `render`.
 
-How do you avoid this? **DON'T DO IT.** The funny thing is, [React has explicit warnings against this!](https://reactjs.org/docs/composition-vs-inheritance.html)
-
-To be clear, you shouldn't use the `extends` keyword in javascript to inherit other React components.
-
+The idea was that `Widget` extends another component to save some code duplication.
+Don't use the `extends` keyword to inherit other React components.
+The funny thing is, [React has explicit warnings against this!](https://reactjs.org/docs/composition-vs-inheritance.html)
 Read the docs people.
 
 ## Prop spreading 💔
@@ -102,7 +99,7 @@ function Inner({ title, date, isTesting, onHover, onClick }) {
 
 You can mask the problem like this:
 
-```jsx{4}
+```jsx highlight={4}
 function Outer({ data, onHover, onClick, onSaveInner }) {
   return (
     <Inner
@@ -124,12 +121,12 @@ Problem solved! Right?
 **Nope.**
 
 We haven't really solved it. Now any extra properties on the data object get passed
-to the `jsx+<Inner />` component when they don't need to! And what happens when some of those props become optional? When the `jsx+<Inner />`
+to the `jsx__<Inner />` component when they don't need to! And what happens when some of those props become optional? When the `jsx__<Inner />`
 component wants to rename one of those props?
 
-Also notice how the `jsx+<Outer />` component doesn't actually use any of the props, it just passes them along!
+Also notice how the `jsx__<Outer />` component doesn't actually use any of the props, it just passes them along!
 
-This approach couples the two components together, you may as well inline the `jsx+<Inner />` component inside the `jsx+<Outer />`
+This approach couples the two components together, you may as well inline the `jsx__<Inner />` component inside the `jsx__<Outer />`
 
 React created a built-in approach to solving this problem. It's called [Context](https://reactjs.org/docs/context.html).
 
@@ -162,8 +159,7 @@ Co-location is perfectly valid if you don't need to reuse the code elsewhere.
 
 Take the following NavBar component for example:
 
-```jsx
-// NavBar.js
+```jsx file=NavBar.js
 import React from "react"
 import axios from "axios"
 import styled from "styled-components"
@@ -179,7 +175,6 @@ const Result = styled.div`
   border-bottom: 2px solid orange;
 `
 
-// I also love Axios!
 function apiCall(keyword) {
   return axios.get(`/api/search?query=${keyword}`)
 }

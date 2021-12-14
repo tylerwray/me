@@ -52,6 +52,7 @@ const useActiveHeading = (headings) => {
       // The first heading within the viewport is the one we want to highlight.
       let firstHeadingInViewport = headings.find(({ url }) => {
         const elem = document.querySelector(url)
+        if (!elem) return false
         const rect = elem.getBoundingClientRect()
         // Using negative value here because our headers have a top
         // padding and top border

@@ -11,8 +11,6 @@
   --code-variable-color: hsl(221, 87%, 60%);
   --code-url-color: hsl(198, 99%, 37%);
   --code-operator-color: hsl(187, 47%, 55%);
-  --code-highlight-line-color: theme("colors.purple.100");
-  --code-highlight-gutter-color: theme("colors.purple.400");
 }
 
 body.dark {
@@ -27,8 +25,6 @@ body.dark {
   --code-string-color: hsl(95, 38%, 62%);
   --code-variable-color: hsl(207, 82%, 66%);
   --code-url-color: hsl(187, 47%, 55%);
-  --code-highlight-line-color: rgba(142, 107, 223, 0.15);
-  --code-highlight-gutter-color: theme("colors.purple.500");
 }
 
 code[class*="language-"],
@@ -465,14 +461,4 @@ pre > code.diff-highlight .token.token.inserted:not(.prefix) *::selection {
   overflow: initial;
   float: left; /* 1 */
   min-width: 100%; /* 2 */
-}
-
-.gatsby-highlight-code-line {
-  background-color: var(--code-highlight-line-color);
-  border-left: 0.5em solid var(--code-highlight-gutter-color);
-  display: block;
-  margin-right: -1em;
-  margin-left: -1em;
-  padding-right: 1em;
-  padding-left: 0.5em;
 }

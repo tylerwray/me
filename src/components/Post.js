@@ -8,7 +8,7 @@ import VisuallyHidden from "./VisuallyHidden"
 function Post({ frontmatter, siteUrl, timeToRead, fields, body }) {
   const blogPostUrl = `${siteUrl}${fields.slug}`
 
-  const banner = getImage(frontmatter.banner)
+  const banner = getImage(frontmatter?.banner)
 
   const readingTime = timeToRead * 3
 

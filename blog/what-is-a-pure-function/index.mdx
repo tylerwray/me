@@ -56,7 +56,7 @@ for (let i = 1; i =< 100; i++) {
 
 A more complex example that calculates the price of items in an order:
 
-```js{9,10}
+```js highlight={9-10}
 const order = {
   items: [
     { name: "bandage", price: 1.25 },
@@ -65,8 +65,6 @@ const order = {
   ],
 }
 
-// calculateTotal is pure because if you give it the same items array
-// 1 million times, it always will return the same total
 const calculateTotal = (items) =>
   items.reduce((item, acc) => acc + item.price, 0)
 
@@ -74,6 +72,9 @@ const total = calculateTotal(order.items)
 
 console.log(`Your total is ${total}`) // Your total is 17.64
 ```
+
+> `calculateTotal` is pure because if you give it the same items array
+> 1 million times, it always will return the same total
 
 ## It has no side effects
 

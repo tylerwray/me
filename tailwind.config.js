@@ -1,16 +1,10 @@
-const colors = require("tailwindcss/colors")
+const colors = require("./src/colors")
 
 module.exports = {
   content: ["./src/**/*.js", "./blog/**/*.mdx", "./pages/**/*.mdx"],
-  darkMode: "class", // or 'media' or 'class'
+  darkMode: "class",
   theme: {
-    colors: {
-      gray: colors.zinc,
-      black: "rgba(57, 62, 65, 1)",
-      white: "#ffffff",
-      amber: colors.amber,
-      purple: colors.violet,
-    },
+    colors,
   },
   plugins: [],
 }

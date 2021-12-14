@@ -1,12 +1,12 @@
 import React, { useEffect } from "react"
-import useDarkMode from "use-dark-mode"
+import useColorModeValue from "../hooks/useColorModeValue"
 
 const COMMENTS_ID = "comments-container"
 
 const Comments = () => {
-  const darkMode = useDarkMode(false, {
-    classNameDark: "dark",
-    classNameLight: "light",
+  const theme = useColorModeValue({
+    dark: "github-dark",
+    light: "github-light",
   })
 
   useEffect(() => {
@@ -15,11 +15,8 @@ const Comments = () => {
     script.setAttribute("repo", "tylerwray/me")
     script.setAttribute("issue-term", "pathname")
     script.setAttribute("crossorigin", "anonymous")
-    if (darkMode.value) {
-      script.setAttribute("theme", "github-dark")
-    } else {
-      script.setAttribute("theme", "github-light")
-    }
+    script.setAttribute("theme", theme)
+
     script.async = true
 
     const comments = document.getElementById(COMMENTS_ID)
@@ -31,7 +28,7 @@ const Comments = () => {
       const comments = document.getElementById(COMMENTS_ID)
       if (comments) comments.innerHTML = ""
     }
-  }, [darkMode.value])
+  }, [theme])
 
   return <div id={COMMENTS_ID} />
 }
