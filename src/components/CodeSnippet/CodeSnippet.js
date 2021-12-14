@@ -42,7 +42,7 @@ const CopyButton = ({ codeString }) => {
 const Pre = ({ children, className, ...props }) => {
   return (
     <pre
-      className={`relative my-8 overflow-x-auto text-sm rounded-md p-6 pt-10 ${className}`}
+      className={`relative my-8 overflow-x-auto text-sm rounded-md pt-10 pr-6 pb-6 pl-2 ${className}`}
       {...props}
     >
       {children}
@@ -62,8 +62,14 @@ const FileNameBadge = ({ children }) => (
   </span>
 )
 
+const LineNumber = ({ children }) => (
+  <span className="text-gray-400 dark:text-gray-500 pr-3 w-8 text-right select-none opacity-50 inline-block">
+    {children}
+  </span>
+)
+
 const HIGHLIGHT_CODE_LINE_STYLES =
-  "bg-purple-100 dark:bg-[rgba(142,107,223,0.1)] border-l-4 border-purple-400 dark:border-purple-500 -mr-6 -ml-6 pl-[1.3rem]"
+  "bg-purple-100 dark:bg-[rgba(142,107,223,0.1)] border-l-4 border-purple-400 dark:border-purple-500 -mr-11 -ml-2 pl-[0.25rem]"
 
 function CodeSnippet({ children, lang = "markup", highlight, file }) {
   const theme = useColorModeValue({ dark: darkTheme, light: lightTheme })
@@ -96,6 +102,7 @@ function CodeSnippet({ children, lang = "markup", highlight, file }) {
 
               return (
                 <div {...lineProps}>
+                  <LineNumber>{i + 1}</LineNumber>
                   {line.map((token, key) => (
                     <span {...getTokenProps({ token, key })} />
                   ))}

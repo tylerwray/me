@@ -42,7 +42,8 @@ function Header() {
 }
 
 function NavItem({ to, children }) {
-  const isActive = to === window.location.pathname
+  const pathname = typeof window !== "undefined" ? window.location.pathname : ""
+  const isActive = to === pathname
 
   return (
     <Link
