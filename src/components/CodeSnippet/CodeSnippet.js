@@ -100,6 +100,8 @@ function CodeSnippet({ children, lang = "markup", highlight, file }) {
                 lineProps.className = `${lineProps.className} ${HIGHLIGHT_CODE_LINE_STYLES}`
               }
 
+              lineProps.className = `${lineProps.className} whitespace-nowrap`
+
               return (
                 <div {...lineProps}>
                   <LineNumber>{i + 1}</LineNumber>

@@ -24,7 +24,6 @@ export const query = graphql`
       frontmatter {
         title
         description
-        icon
         tags
         prettyDate: publishedOn(formatString: "MMMM DD, YYYY")
         metaDate: publishedOn(formatString: "YYYY-DD-MM")
