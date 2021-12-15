@@ -18,12 +18,19 @@ function getCodeChild(children) {
   if (childrenArray.length !== 1) return null
   const [firstChild] = childrenArray
   if (firstChild.props.mdxType !== "code") return null
+  if (firstChild.props.plain === true) return null
   return firstChild
 }
 
 const Pre = ({ children }) => {
   const codeChild = getCodeChild(children)
-  return codeChild ? transformCode(codeChild.props) : <pre>{children}</pre>
+  return codeChild ? (
+    transformCode(codeChild.props)
+  ) : (
+    <pre className="bg-gray-100 dark:bg-gray-800 px-6 py-3 mb-4 rounded-md">
+      {children}
+    </pre>
+  )
 }
 
 const Code = ({ children }) => {

@@ -158,7 +158,7 @@ Co-location is perfectly valid if you don't need to reuse the code elsewhere.
 
 Take the following NavBar component for example:
 
-```jsx file=NavBar.js
+```jsx file=NavBar.js highlight={5-10,16-19}
 import React from "react"
 import axios from "axios"
 import styled from "styled-components"
@@ -174,6 +174,7 @@ const Result = styled.div`
   border-bottom: 2px solid orange;
 `
 
+// I also love Axios!
 function apiCall(keyword) {
   return axios.get(`/api/search?query=${keyword}`)
 }
