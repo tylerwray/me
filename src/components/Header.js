@@ -1,14 +1,14 @@
-import { Link } from "gatsby"
-import React from "react"
-import useColorMode from "../hooks/useColorMode"
-import { IconMoon, IconSun } from "../icons"
+import { Link } from "gatsby";
+import React from "react";
+import useColorMode from "../hooks/useColorMode";
+import { IconMoon, IconSun } from "../icons";
 
-const emoji = ["🙈", "🌀", "💻", "🤘🏻"]
+const emoji = ["🙈", "🌀", "💻", "🤘🏻"];
 
 function Header() {
-  const icon = emoji[Math.floor(Math.random() * emoji.length)]
+  const icon = emoji[Math.floor(Math.random() * emoji.length)];
 
-  const { toggle } = useColorMode()
+  const { toggle } = useColorMode();
 
   return (
     <header className="flex items-center justify-between py-4 max-w-3xl mx-auto px-6">
@@ -38,12 +38,13 @@ function Header() {
         </button>
       </div>
     </header>
-  )
+  );
 }
 
 function NavItem({ to, children }) {
-  const pathname = typeof window !== "undefined" ? window.location.pathname : ""
-  const isActive = to === pathname
+  const pathname =
+    typeof window !== "undefined" ? window.location.pathname : "";
+  const isActive = to === pathname;
 
   return (
     <Link
@@ -63,7 +64,7 @@ function NavItem({ to, children }) {
         }`}
       />
     </Link>
-  )
+  );
 }
 
 // hover:
@@ -81,4 +82,4 @@ function NavItem({ to, children }) {
 // display: block;
 // position: absolute;
 
-export default Header
+export default Header;

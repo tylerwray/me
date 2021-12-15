@@ -1,8 +1,8 @@
-import React from "react"
-import Highlight, { defaultProps } from "prism-react-renderer"
-import darkTheme from "./darkTheme"
-import lightTheme from "./lightTheme"
-import useColorModeValue from "../../hooks/useColorModeValue"
+import React from "react";
+import Highlight, { defaultProps } from "prism-react-renderer";
+import darkTheme from "./darkTheme";
+import lightTheme from "./lightTheme";
+import useColorModeValue from "../../hooks/useColorModeValue";
 
 const Code = ({ children, className, ...props }) => {
   return (
@@ -12,11 +12,11 @@ const Code = ({ children, className, ...props }) => {
     >
       {children}
     </code>
-  )
-}
+  );
+};
 
 function InlineCode({ lang, children }) {
-  const theme = useColorModeValue({ dark: darkTheme, light: lightTheme })
+  const theme = useColorModeValue({ dark: darkTheme, light: lightTheme });
 
   return (
     <Highlight {...defaultProps} code={children} language={lang} theme={theme}>
@@ -32,7 +32,7 @@ function InlineCode({ lang, children }) {
         </Code>
       )}
     </Highlight>
-  )
+  );
 }
 
-export default InlineCode
+export default InlineCode;

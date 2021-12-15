@@ -5,4 +5,4 @@ export {
   FiArrowRight as IconArrowRight,
   FiCopy as IconCopy,
   FiCheck as IconCheck,
-} from "react-icons/fi"
+} from "react-icons/fi";

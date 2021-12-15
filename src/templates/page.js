@@ -1,8 +1,8 @@
-import React from "react"
-import { graphql } from "gatsby"
-import MDXRenderer from "gatsby-plugin-mdx/mdx-renderer"
-import Layout from "../components/Layout"
-import Seo from "../components/SEO"
+import React from "react";
+import { graphql } from "gatsby";
+import MDXRenderer from "gatsby-plugin-mdx/mdx-renderer";
+import Layout from "../components/Layout";
+import Seo from "../components/SEO";
 
 export const query = graphql`
   query Page($id: String!) {
@@ -18,10 +18,10 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
 export default function PageTemplate({ data }) {
-  const { body, frontmatter, fields } = data.mdx
+  const { body, frontmatter, fields } = data.mdx;
 
   return (
     <Layout>
@@ -35,5 +35,5 @@ export default function PageTemplate({ data }) {
         <MDXRenderer>{body}</MDXRenderer>
       </div>
     </Layout>
-  )
+  );
 }

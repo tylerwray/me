@@ -1,4 +1,4 @@
-import colors from "../../colors"
+import colors from "../../colors";
 
 const LIGHT_THEME = {
   plain: {
@@ -96,6 +96,6 @@ const LIGHT_THEME = {
       },
     },
   ],
-}
+};
 
-export default LIGHT_THEME
+export default LIGHT_THEME;

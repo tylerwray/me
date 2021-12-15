@@ -1,9 +1,9 @@
-import React from "react"
-import { graphql, Link } from "gatsby"
+import React from "react";
+import { graphql, Link } from "gatsby";
 
-import Layout from "../components/Layout"
-import Seo from "../components/SEO"
-import { IconArrowRight } from "../icons"
+import Layout from "../components/Layout";
+import Seo from "../components/SEO";
+import { IconArrowRight } from "../icons";
 
 export const pageQuery = graphql`
   {
@@ -26,7 +26,7 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 
 function IndexPage({ data }) {
   return (
@@ -73,7 +73,7 @@ function IndexPage({ data }) {
         ))}
       </div>
     </Layout>
-  )
+  );
 }
 
 function Post({ node }) {
@@ -95,7 +95,7 @@ function Post({ node }) {
         </div>
       </div>
     </Link>
-  )
+  );
 }
 
-export default IndexPage
+export default IndexPage;

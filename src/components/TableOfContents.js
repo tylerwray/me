@@ -1,26 +1,26 @@
-import React from "react"
+import React from "react";
 
 const throttle = (func, limit) => {
-  let lastFunc
-  let lastRan
+  let lastFunc;
+  let lastRan;
   return function (...args) {
     if (!lastRan) {
-      func.apply(null, args)
-      lastRan = Date.now()
+      func.apply(null, args);
+      lastRan = Date.now();
     } else {
-      clearTimeout(lastFunc)
+      clearTimeout(lastFunc);
       lastFunc = setTimeout(function () {
         if (Date.now() - lastRan >= limit) {
-          func.apply(null, args)
-          lastRan = Date.now()
+          func.apply(null, args);
+          lastRan = Date.now();
         }
-      }, limit - (Date.now() - lastRan))
+      }, limit - (Date.now() - lastRan));
     }
-  }
-}
+  };
+};
 
 const TableOfContents = ({ headings }) => {
-  const activeHeadingUrl = useActiveHeading(headings)
+  const activeHeadingUrl = useActiveHeading(headings);
 
   return (
     <nav
@@ -39,48 +39,48 @@ const TableOfContents = ({ headings }) => {
         </ContentLinkHeading>
       ))}
     </nav>
-  )
-}
+  );
+};
 
 const useActiveHeading = (headings) => {
   const [activeHeadingUrl, setActiveHeadingUrl] = React.useState(
     headings[0].url
-  )
+  );
 
   React.useEffect(() => {
     const handleScroll = throttle(() => {
       // The first heading within the viewport is the one we want to highlight.
       let firstHeadingInViewport = headings.find(({ url }) => {
-        const elem = document.querySelector(url)
-        if (!elem) return false
-        const rect = elem.getBoundingClientRect()
+        const elem = document.querySelector(url);
+        if (!elem) return false;
+        const rect = elem.getBoundingClientRect();
         // Using negative value here because our headers have a top
         // padding and top border
-        return rect.top >= -2 && rect.bottom <= window.innerHeight
-      })
+        return rect.top >= -2 && rect.bottom <= window.innerHeight;
+      });
 
       if (
         firstHeadingInViewport &&
         firstHeadingInViewport.url !== activeHeadingUrl
       ) {
-        setActiveHeadingUrl(firstHeadingInViewport.url)
+        setActiveHeadingUrl(firstHeadingInViewport.url);
       }
-    }, 500)
+    }, 500);
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll)
-    }
-  }, [activeHeadingUrl, setActiveHeadingUrl, headings])
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [activeHeadingUrl, setActiveHeadingUrl, headings]);
 
-  return activeHeadingUrl
-}
+  return activeHeadingUrl;
+};
 
 const ContentLinkHeading = ({ isActive = false, children, ...props }) => {
-  let activeStyles = "text-gray-600 dark:text-gray-400"
+  let activeStyles = "text-gray-600 dark:text-gray-400";
 
-  if (isActive) activeStyles = "text-gray-900 dark:text-white font-bold"
+  if (isActive) activeStyles = "text-gray-900 dark:text-white font-bold";
 
   return (
     <a
@@ -89,10 +89,10 @@ const ContentLinkHeading = ({ isActive = false, children, ...props }) => {
     >
       {children}
     </a>
-  )
-}
+  );
+};
 // font-weight: 500;
 // color: var(--table-of-contents-text);
 // transform: translateX(0.25rem);
 
-export default TableOfContents
+export default TableOfContents;

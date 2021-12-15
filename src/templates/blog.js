@@ -1,10 +1,10 @@
-import { graphql } from "gatsby"
-import React from "react"
+import { graphql } from "gatsby";
+import React from "react";
 
-import Layout from "../components/Layout"
-import Seo from "../components/SEO"
-import TableOfContents from "../components/TableOfContents"
-import Post from "../components/Post"
+import Layout from "../components/Layout";
+import Seo from "../components/SEO";
+import TableOfContents from "../components/TableOfContents";
+import Post from "../components/Post";
 
 export const query = graphql`
   query BlogPost($id: String!) {
@@ -39,15 +39,15 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
 function BlogTemplate({ data }) {
-  const { frontmatter, body, fields, tableOfContents } = data.mdx
+  const { frontmatter, body, fields, tableOfContents } = data.mdx;
 
   const headings = [
     { title: "Introduction", url: "#introduction" },
     ...tableOfContents.items,
-  ]
+  ];
 
   return (
     <Layout>
@@ -79,7 +79,7 @@ function BlogTemplate({ data }) {
         <TableOfContents headings={headings} />
       </div>
     </Layout>
-  )
+  );
 }
 
-export default BlogTemplate
+export default BlogTemplate;

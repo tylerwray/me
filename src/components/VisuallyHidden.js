@@ -1,34 +1,34 @@
-import React from "react"
+import React from "react";
 
 const VisuallyHidden = ({ children, ...delegated }) => {
-  const [forceShow, setForceShow] = React.useState(false)
+  const [forceShow, setForceShow] = React.useState(false);
 
   React.useEffect(() => {
     if (process.env.NODE_ENV === "production") {
-      return
+      return;
     }
 
     const handleKeyDown = (ev) => {
       if (ev.key === "Alt") {
-        setForceShow(true)
+        setForceShow(true);
       }
-    }
+    };
 
     const handleKeyUp = () => {
-      setForceShow(false)
-    }
+      setForceShow(false);
+    };
 
-    window.addEventListener("keydown", handleKeyDown)
-    window.addEventListener("keyup", handleKeyUp)
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown)
-      window.removeEventListener("keyup", handleKeyUp)
-    }
-  }, [])
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
+  }, []);
 
   if (forceShow) {
-    return children
+    return children;
   }
 
   return (
@@ -38,7 +38,7 @@ const VisuallyHidden = ({ children, ...delegated }) => {
     >
       {children}
     </div>
-  )
-}
+  );
+};
 
-export default VisuallyHidden
+export default VisuallyHidden;

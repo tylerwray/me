@@ -1,16 +1,16 @@
-import React from "react"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import MDXRenderer from "gatsby-plugin-mdx/mdx-renderer"
-import family from "../images/family_192.jpg"
-import Comments from "./Comments"
-import VisuallyHidden from "./VisuallyHidden"
+import React from "react";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import MDXRenderer from "gatsby-plugin-mdx/mdx-renderer";
+import family from "../images/family_192.jpg";
+import Comments from "./Comments";
+import VisuallyHidden from "./VisuallyHidden";
 
 function Post({ frontmatter, siteUrl, timeToRead, fields, body }) {
-  const blogPostUrl = `${siteUrl}${fields.slug}`
+  const blogPostUrl = `${siteUrl}${fields.slug}`;
 
-  const banner = getImage(frontmatter?.banner)
+  const banner = getImage(frontmatter?.banner);
 
-  const readingTime = timeToRead * 3
+  const readingTime = timeToRead * 3;
 
   return (
     <div className="max-w-3xl mx-auto px-6">
@@ -106,7 +106,7 @@ function Post({ frontmatter, siteUrl, timeToRead, fields, body }) {
       </div>
       <Comments />
     </div>
-  )
+  );
 }
 
-export default Post
+export default Post;

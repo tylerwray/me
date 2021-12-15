@@ -1,11 +1,11 @@
-import useColorMode from "./useColorMode"
+import useColorMode from "./useColorMode";
 
 function useColorModeValue({ dark, light }) {
-  const { mode } = useColorMode()
+  const { mode } = useColorMode();
 
-  if (mode === "dark") return dark
+  if (mode === "dark") return dark;
 
-  return light
+  return light;
 }
 
-export default useColorModeValue
+export default useColorModeValue;

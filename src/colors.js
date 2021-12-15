@@ -1,4 +1,4 @@
-const colors = require("tailwindcss/colors")
+const colors = require("tailwindcss/colors");
 
 module.exports = {
   gray: colors.zinc,
@@ -8,4 +8,4 @@ module.exports = {
   purple: colors.violet,
   green: colors.emerald,
   blue: colors.sky,
-}
+};
