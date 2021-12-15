@@ -42,7 +42,7 @@ const CopyButton = ({ codeString }) => {
 const Pre = ({ children, className, ...props }) => {
   return (
     <pre
-      className={`my-8 overflow-x-auto text-sm rounded-md pt-10 pb-6 ${className}`}
+      className={`my-8 overflow-scroll text-sm rounded-md pt-10 pb-6 ${className}`}
       {...props}
     >
       {children}
@@ -56,16 +56,20 @@ const LangBadge = ({ children }) => (
   </span>
 )
 
-const FileNameBadge = ({ children }) => (
-  <span className="font-mono bg-green-200 dark:bg-green-800 px-2 py-1 text-xs rounded-b-md">
-    {children}
-  </span>
-)
+const FileNameBadge = ({ children }) => {
+  if (!children) return null
+
+  return (
+    <span className="font-mono bg-green-200 dark:bg-green-800 px-2 py-1 text-xs rounded-b-md">
+      {children}
+    </span>
+  )
+}
 
 const LineNumber = ({ isHighlighted, children }) => (
   <span
-    className={`text-gray-400 dark:text-gray-500 pr-3 inline-block w-12 text-right select-none opacity-50 ${
-      isHighlighted && "border-l-4 border-purple-400"
+    className={`sticky left-0 bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 pr-3 inline-block w-12 text-right select-none text-opacity-50 ${
+      isHighlighted ? "border-l-4 border-purple-400" : ""
     }`}
   >
     {children}
@@ -73,13 +77,18 @@ const LineNumber = ({ isHighlighted, children }) => (
 )
 
 const Line = ({ isHighlighted, className, ...props }) => (
-  <div
-    className={`${className} ${
-      isHighlighted && "bg-purple-100 dark:bg-purple-500 dark:bg-opacity-10"
-    }`}
-    {...props}
-  ></div>
+  <div className={`${className} relative`} {...props}></div>
 )
+
+const LineHighlight = ({ isHighlighted }) => {
+  if (!isHighlighted) return null
+
+  return (
+    <span className="absolute left-0 top-0 w-full bg-purple-300 dark:bg-purple-500 opacity-10 pointer-events-none">
+      {" "}
+    </span>
+  )
+}
 
 function CodeSnippet({ children, lang = "markup", highlight, file }) {
   const theme = useColorModeValue({ dark: darkTheme, light: lightTheme })
@@ -99,25 +108,30 @@ function CodeSnippet({ children, lang = "markup", highlight, file }) {
         <div className="relative">
           <div className="inline-flex absolute z-10 left-6">
             <LangBadge>{lang}</LangBadge>
-            {file && <FileNameBadge>{file}</FileNameBadge>}
+            <FileNameBadge>{file}</FileNameBadge>
           </div>
           <Pre className={className} style={style}>
             <CopyButton codeString={codeString} />
-            {tokens.map((line, i) => {
-              const isHighlighted = shouldHighlightLine(i)
+            <code className="inline-block min-w-full">
+              {tokens.map((line, i) => {
+                const isHighlighted = shouldHighlightLine(i)
 
-              return (
-                <Line
-                  isHighlighted={isHighlighted}
-                  {...getLineProps({ line, key: i })}
-                >
-                  <LineNumber isHighlighted={isHighlighted}>{i + 1}</LineNumber>
-                  {line.map((token, key) => (
-                    <span {...getTokenProps({ token, key })} />
-                  ))}
-                </Line>
-              )
-            })}
+                return (
+                  <Line
+                    isHighlighted={isHighlighted}
+                    {...getLineProps({ line, key: i })}
+                  >
+                    <LineNumber isHighlighted={isHighlighted}>
+                      {i + 1}
+                    </LineNumber>
+                    {line.map((token, key) => (
+                      <span {...getTokenProps({ token, key })} />
+                    ))}
+                    <LineHighlight isHighlighted={isHighlighted} />
+                  </Line>
+                )
+              })}
+            </code>
           </Pre>
         </div>
       )}

@@ -25,16 +25,17 @@ function Post({ frontmatter, siteUrl, timeToRead, fields, body }) {
           {"📚".repeat(Math.floor(readingTime / 5))} {readingTime} min read
         </span>
         <span style={{ marginLeft: 10, marginRight: 10 }}>{` • `}</span>
+
         <a
           target="_blank"
           rel="noopener noreferrer"
           // using mobile.twitter.com because if people haven't upgraded
           // to the new experience, the regular URL wont work for them
-          href={`https://mobile.twitter.com/search?q=${encodeURIComponent(
+          href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
             blogPostUrl
           )}`}
         >
-          Discuss on Twitter
+          Tweet this post
         </a>
       </div>
       <GatsbyImage
@@ -54,13 +55,24 @@ function Post({ frontmatter, siteUrl, timeToRead, fields, body }) {
         </h2>
       </VisuallyHidden>
       <MDXRenderer>{body}</MDXRenderer>
-      <a target="_blank" rel="noopener noreferrer" href={fields.editLink}>
-        Edit post on GitHub
-      </a>
-      <div
-        className="flex justify-center p-12 my-16 dark:text-white bg-gray-100 dark:bg-gray-800 w-screen relative left-2/4 z-10"
-        style={{ marginLeft: "-50vw" }}
-      >
+      <div className="flex justify-between mt-8 mb-4">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          // using mobile.twitter.com because if people haven't upgraded
+          // to the new experience, the regular URL wont work for them
+          href={`https://mobile.twitter.com/search?q=${encodeURIComponent(
+            blogPostUrl
+          )}`}
+        >
+          Discuss on Twitter
+        </a>
+
+        <a target="_blank" rel="noopener noreferrer" href={fields.editLink}>
+          Edit post on GitHub
+        </a>
+      </div>
+      <div className="flex justify-center p-12 mb-16 dark:text-white bg-gray-100 dark:bg-gray-800 w-screen relative left-2/4 z-10 -ml-[50vw]">
         <div className="px-6 max-w-3xl">
           <div className="flex ">
             <div>
