@@ -84,7 +84,7 @@ const LineHighlight = ({ isHighlighted }) => {
   if (!isHighlighted) return null;
 
   return (
-    <span className="absolute left-0 top-0 w-full bg-purple-300 dark:bg-purple-500 opacity-10 pointer-events-none">
+    <span className="absolute left-0 top-0 w-full bg-purple-500 opacity-10 pointer-events-none">
       {" "}
     </span>
   );
