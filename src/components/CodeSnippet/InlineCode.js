@@ -7,7 +7,7 @@ import useColorModeValue from "../../hooks/useColorModeValue";
 const Code = ({ children, className, ...props }) => {
   return (
     <code
-      className={`text-sm whitespace-nowrap rounded-md py-1 px-2 ${className}`}
+      className={`text-sm whitespace-nowrap rounded py-1 px-2 ${className}`}
       {...props}
     >
       {children}
