@@ -4,7 +4,7 @@ import darkTheme from "./darkTheme";
 import lightTheme from "./lightTheme";
 import { calculateLinesToHighlight, copyToClipboard } from "./utils";
 import useColorModeValue from "../../hooks/useColorModeValue";
-import { IconCheck, IconCopy } from "../../icons";
+import { IconCheck, IconChevronRight, IconCopy } from "../../icons";
 import VisuallyHidden from "../VisuallyHidden";
 
 import Prism from "prism-react-renderer/prism";
@@ -42,7 +42,7 @@ const CopyButton = ({ codeString }) => {
 const Pre = ({ children, className, ...props }) => {
   return (
     <pre
-      className={`my-8 overflow-scroll text-sm rounded-md pt-10 pb-6 ${className}`}
+      className={`my-8 overflow-scroll text-sm rounded pt-10 pb-6 ${className}`}
       {...props}
     >
       {children}
@@ -66,18 +66,24 @@ const FileNameBadge = ({ children }) => {
   );
 };
 
+const ShellArrow = ({ isHighlighted }) => (
+  <div
+    className={`sticky left-0 text-right bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 w-10 mr-2 select-none inline-flex justify-end text-opacity-80 ${
+      isHighlighted ? "border-l-4 border-purple-400" : ""
+    }`}
+  >
+    <IconChevronRight className="w-5 h-5" />
+  </div>
+);
+
 const LineNumber = ({ isHighlighted, children }) => (
   <span
-    className={`sticky left-0 bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 pr-3 inline-block w-12 text-right select-none text-opacity-50 ${
+    className={`sticky left-0 text-right bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 pr-3 inline-block w-12 select-none text-opacity-80 ${
       isHighlighted ? "border-l-4 border-purple-400" : ""
     }`}
   >
     {children}
   </span>
-);
-
-const Line = ({ isHighlighted, className, ...props }) => (
-  <div className={`${className} relative`} {...props}></div>
 );
 
 const LineHighlight = ({ isHighlighted }) => {
@@ -117,18 +123,27 @@ function CodeSnippet({ children, lang = "markup", highlight, file }) {
                 const isHighlighted = shouldHighlightLine(i);
 
                 return (
-                  <Line
-                    isHighlighted={isHighlighted}
-                    {...getLineProps({ line, key: i })}
+                  <div
+                    {...getLineProps({
+                      line,
+                      key: i,
+                      className: "relative flex",
+                    })}
                   >
-                    <LineNumber isHighlighted={isHighlighted}>
-                      {i + 1}
-                    </LineNumber>
-                    {line.map((token, key) => (
-                      <span {...getTokenProps({ token, key })} />
-                    ))}
+                    {lang === "shell" ? (
+                      <ShellArrow isHighlighted={isHighlighted} />
+                    ) : (
+                      <LineNumber isHighlighted={isHighlighted}>
+                        {i + 1}
+                      </LineNumber>
+                    )}
+                    <div className="inline">
+                      {line.map((token, key) => (
+                        <span {...getTokenProps({ token, key })} />
+                      ))}
+                    </div>
                     <LineHighlight isHighlighted={isHighlighted} />
-                  </Line>
+                  </div>
                 );
               })}
             </code>
