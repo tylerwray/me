@@ -11,7 +11,7 @@ function Header() {
   const { toggle } = useColorMode();
 
   return (
-    <header className="flex items-center justify-between py-4 max-w-3xl mx-auto px-6">
+    <header className="flex items-center justify-between p-8 max-w-3xl mx-auto">
       <Link to="/" className="text-black dark:text-white no-underline">
         <span className="text-2xl" role="img" aria-label="emoji">
           {icon}
@@ -42,44 +42,32 @@ function Header() {
 }
 
 function NavItem({ to, children }) {
-  const pathname =
-    typeof window !== "undefined" ? window.location.pathname : "";
-  const isActive = to === pathname;
-
   return (
     <Link
       to={to}
-      className={`group mx-2  text-lg no-underline relative ${
-        isActive
-          ? "text-black dark:text-white"
-          : "text-gray-500 hover:text-black dark:hover:text-white dark:text-gray-400"
-      }`}
-    >
-      {children}
-      <span
-        className={`h-0.5 left-0 -bottom-1 w-full block absolute ${
-          isActive
-            ? "bg-black dark:bg-white"
-            : "scale-x-0 group-hover:scale-x-100 transition-transform origin-left group-hover:bg-black dark:group-hover:bg-white"
-        }`}
-      />
-    </Link>
+      getProps={({ isCurrent }) => {
+        return {
+          className: `group mx-2 text-lg no-underline relative ${
+            isCurrent
+              ? "text-black dark:text-white"
+              : "text-gray-500 hover:text-black dark:hover:text-white dark:text-gray-400"
+          }`,
+          children: (
+            <>
+              {children}
+              <span
+                className={`h-0.5 left-0 -bottom-1 w-full block absolute ${
+                  isCurrent
+                    ? "bg-black dark:bg-white"
+                    : "scale-x-0 group-hover:scale-x-100 transition-transform origin-left group-hover:bg-black dark:group-hover:bg-white"
+                }`}
+              />
+            </>
+          ),
+        };
+      }}
+    ></Link>
   );
 }
-
-// hover:
-// background-color: currentColor;
-// transform: scaleX(1);
-
-// content: '';
-// height: 2px;
-// transform: scaleX(0);
-// transition: transform 0.25s ease;
-// transform-origin: left;
-// left: 0;
-// bottom: -4px;
-// width: 100%;
-// display: block;
-// position: absolute;
 
 export default Header;

@@ -1,9 +1,9 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
 
-import Layout from "../components/Layout";
 import Seo from "../components/SEO";
 import { IconArrowRight } from "../icons";
+import Layout from "../components/Layout";
 
 export const pageQuery = graphql`
   {
@@ -36,42 +36,40 @@ function IndexPage({ data }) {
         title="My special corner of the internet"
         keywords={[`gatsby`, `application`, `react`]}
       />
-      <div className="max-w-3xl mx-auto px-6">
-        <div className="flex mb-16 text-center sm:text-left">
-          <div>
-            <h1 className="whitespace-no-wrap">
-              Hi there, I'm Tyler.{" "}
-              <span role="img" aria-label="hand wave">
-                👋
-              </span>
-            </h1>
+      <div className="flex mb-16 text-center sm:text-left">
+        <div>
+          <h1 className="whitespace-no-wrap">
+            Hi there, I'm Tyler.{" "}
+            <span role="img" aria-label="hand wave">
+              👋
+            </span>
+          </h1>
 
-            <img
-              className="rounded-full h-48 w-48 mx-auto sm:ml-12 sm:hidden"
-              alt="Me at Work"
-              src="/images/me_at_work_720.jpg"
-            />
-            <p>
-              For as long as I can remember, I've loved everything technology.
-              When I discovered that I could create technology with software, it
-              became my second love. It's now my mission to help others discover
-              the beauty in software that I've found.
-            </p>
-          </div>
           <img
-            className="rounded-full h-48 w-48 ml-12 hidden sm:block"
+            className="rounded-full h-48 w-48 mx-auto sm:ml-12 sm:hidden"
             alt="Me at Work"
             src="/images/me_at_work_720.jpg"
           />
+          <p>
+            For as long as I can remember, I've loved everything technology.
+            When I discovered that I could create technology with software, it
+            became my second love. It's now my mission to help others discover
+            the beauty in software that I've found.
+          </p>
         </div>
-
-        <h3 className="mb-8 uppercase text-green-600 dark:text-green-400 text-base">
-          Recently Published
-        </h3>
-        {data.allMdx.edges.map(({ node }) => (
-          <Post key={node.id} node={node} />
-        ))}
+        <img
+          className="rounded-full h-48 w-48 ml-12 hidden sm:block"
+          alt="Me at Work"
+          src="/images/me_at_work_720.jpg"
+        />
       </div>
+
+      <h3 className="mb-8 uppercase text-green-600 dark:text-green-400 text-base">
+        Recently Published
+      </h3>
+      {data.allMdx.edges.map(({ node }) => (
+        <Post key={node.id} node={node} />
+      ))}
     </Layout>
   );
 }

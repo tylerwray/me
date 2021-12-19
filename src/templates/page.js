@@ -1,8 +1,8 @@
 import React from "react";
 import { graphql } from "gatsby";
 import MDXRenderer from "gatsby-plugin-mdx/mdx-renderer";
-import Layout from "../components/Layout";
 import Seo from "../components/SEO";
+import Layout from "../components/Layout";
 
 export const query = graphql`
   query Page($id: String!) {
@@ -31,9 +31,7 @@ export default function PageTemplate({ data }) {
         title={frontmatter.title}
         keywords={frontmatter.tags}
       />
-      <div className="max-w-3xl mx-auto px-6">
-        <MDXRenderer>{body}</MDXRenderer>
-      </div>
+      <MDXRenderer>{body}</MDXRenderer>
     </Layout>
   );
 }

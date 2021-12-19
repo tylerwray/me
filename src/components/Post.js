@@ -13,9 +13,9 @@ function Post({ frontmatter, siteUrl, timeToRead, fields, body }) {
   const readingTime = timeToRead * 3;
 
   return (
-    <div className="max-w-3xl mx-auto px-6">
+    <div className="max-w-3xl px-8">
       <div className="flex text-lg leading-relaxed font-bold">
-        <h1 className="mb-2 text-2xl sm:text-4xl">{frontmatter.title}</h1>
+        <h1 className="mb-2">{frontmatter.title}</h1>
       </div>
       <div className="ml-8">{frontmatter.subTitle}</div>
       <div className="mb-4">

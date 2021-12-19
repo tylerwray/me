@@ -1,10 +1,9 @@
 import React from "react";
-import Header from "../components/Header";
+import Layout from "../components/Layout";
 
 function NotFound() {
   return (
-    <div className="max-w-3xl m-auto">
-      <Header />
+    <Layout>
       <div className="text-center text-xl p-12">
         <h1>404 - Not Found</h1>
         This is not the page you're looking for...
@@ -12,7 +11,7 @@ function NotFound() {
           👋🏼
         </span>
       </div>
-    </div>
+    </Layout>
   );
 }
 

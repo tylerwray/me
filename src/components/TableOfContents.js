@@ -25,7 +25,7 @@ const TableOfContents = ({ headings }) => {
   return (
     <nav
       id="table-of-contents"
-      className="sticky top-2 py-6 overflow-y-auto h-screen"
+      className="sticky top-2 overflow-y-auto h-screen pt-20 px-2 hidden xl:block justify-self-start"
     >
       <h4 className="uppercase">Table of Contents</h4>
 

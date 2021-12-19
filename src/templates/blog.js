@@ -1,10 +1,10 @@
 import { graphql } from "gatsby";
 import React from "react";
 
-import Layout from "../components/Layout";
 import Seo from "../components/SEO";
 import TableOfContents from "../components/TableOfContents";
 import Post from "../components/Post";
+import Header from "../components/Header";
 
 export const query = graphql`
   query BlogPost($id: String!) {
@@ -50,7 +50,7 @@ function BlogTemplate({ data }) {
   ];
 
   return (
-    <Layout>
+    <>
       <Seo
         path={fields.slug}
         description={frontmatter.description}
@@ -67,8 +67,9 @@ function BlogTemplate({ data }) {
         ]}
         title={frontmatter.title}
       />
-      <div className="layout-grid">
-        <div />
+      <Header />
+      <main className="grid grid-cols-1 gap-8 xl:grid-cols-post md:justify-items-center">
+        <div className="hidden xl:block" />
         <Post
           frontmatter={frontmatter}
           body={body}
@@ -77,8 +78,8 @@ function BlogTemplate({ data }) {
           timeToRead={data.mdx.timeToRead}
         />
         <TableOfContents headings={headings} />
-      </div>
-    </Layout>
+      </main>
+    </>
   );
 }
 
