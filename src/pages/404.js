@@ -4,10 +4,10 @@ import Layout from "../components/Layout";
 function NotFound() {
   return (
     <Layout>
-      <div className="text-center text-xl p-12">
+      <div className="grid justify-self-center justify-items-center w-full">
         <h1>404 - Not Found</h1>
-        This is not the page you're looking for...
-        <span className="block mt-12 text-8xl" role="img" alt="force hand wave">
+        <p>This is not the page you're looking for...</p>
+        <span className="block text-8xl p-8" role="img" alt="force hand wave">
           👋🏼
         </span>
       </div>

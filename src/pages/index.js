@@ -4,6 +4,7 @@ import { graphql, Link } from "gatsby";
 import Seo from "../components/SEO";
 import { IconArrowRight } from "../icons";
 import Layout from "../components/Layout";
+import meAtWork from "../images/me_at_work.jpg";
 
 export const pageQuery = graphql`
   {
@@ -34,22 +35,17 @@ function IndexPage({ data }) {
       <Seo
         path="/"
         title="My special corner of the internet"
-        keywords={[`gatsby`, `application`, `react`]}
+        keywords={[`tyler wray`, `blog`, `dev`, `tech`]}
       />
-      <div className="flex mb-16 text-center sm:text-left">
+      <div className="grid sm:grid-cols-2 gap-8 justify-items-center sm:justify-items-end pb-8">
         <div>
-          <h1 className="whitespace-no-wrap">
+          <h1 className="whitespace-nowrap">
             Hi there, I'm Tyler.{" "}
             <span role="img" aria-label="hand wave">
               👋
             </span>
           </h1>
 
-          <img
-            className="rounded-full h-48 w-48 mx-auto sm:ml-12 sm:hidden"
-            alt="Me at Work"
-            src="/images/me_at_work_720.jpg"
-          />
           <p>
             For as long as I can remember, I've loved everything technology.
             When I discovered that I could create technology with software, it
@@ -58,18 +54,20 @@ function IndexPage({ data }) {
           </p>
         </div>
         <img
-          className="rounded-full h-48 w-48 ml-12 hidden sm:block"
+          className="rounded-full h-max max-h-52"
           alt="Me at Work"
-          src="/images/me_at_work_720.jpg"
+          src={meAtWork}
         />
       </div>
 
-      <h3 className="mb-8 uppercase text-green-600 dark:text-green-400 text-base">
+      <h2 className="uppercase text-green-600 dark:text-green-400">
         Recently Published
-      </h3>
-      {data.allMdx.edges.map(({ node }) => (
-        <Post key={node.id} node={node} />
-      ))}
+      </h2>
+      <div className="grid gap-6">
+        {data.allMdx.edges.map(({ node }) => (
+          <Post key={node.id} node={node} />
+        ))}
+      </div>
     </Layout>
   );
 }
@@ -77,20 +75,16 @@ function IndexPage({ data }) {
 function Post({ node }) {
   return (
     <Link
-      className="group no-underline text-lg leading-relaxed text-black dark:text-white cursor-pointer border-transparent"
+      className="group no-underline text-black dark:text-white"
       to={node.fields.slug}
     >
-      <div className="mb-4">
-        <div className="flex mb-2">
-          <div className="dark:group-hover:text-purple-400 group-hover:text-purple-600 text-lg font-bold">
-            {node.frontmatter.title}
-          </div>
-        </div>
-        <div className="mb-2 no-underline">{node.excerpt}</div>
-        <div className="mb-8 font-bold flex items-center">
-          Read More
-          <IconArrowRight className="opacity-0 group-hover:opacity-100 text-purple-600 dark:text-purple-400 h-full group-hover:translate-x-1 transition-all" />
-        </div>
+      <h3 className="dark:group-hover:text-purple-400 group-hover:text-purple-600">
+        {node.frontmatter.title}
+      </h3>
+      <p>{node.excerpt}</p>
+      <div className="font-bold">
+        Read More
+        <IconArrowRight className="inline opacity-0 group-hover:opacity-100 text-purple-600 dark:text-purple-400 group-hover:translate-x-1 transition-all" />
       </div>
     </Link>
   );

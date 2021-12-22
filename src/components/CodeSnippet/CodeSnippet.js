@@ -42,7 +42,7 @@ const CopyButton = ({ codeString }) => {
 const Pre = ({ children, className, ...props }) => {
   return (
     <pre
-      className={`my-8 overflow-scroll text-sm rounded pt-10 pb-6 ${className}`}
+      className={`overflow-scroll text-sm rounded pt-10 pb-6 ${className}`}
       {...props}
     >
       {children}
@@ -51,34 +51,24 @@ const Pre = ({ children, className, ...props }) => {
 };
 
 const LangBadge = ({ children }) => (
-  <span className="font-mono uppercase bg-purple-200 dark:bg-purple-800 px-2 py-1 mr-4 text-xs rounded-b-md">
+  <div className="font-mono uppercase bg-purple-200 dark:bg-purple-800 px-2 py-1 text-xs rounded-b-md">
     {children}
-  </span>
+  </div>
 );
 
 const FileNameBadge = ({ children }) => {
   if (!children) return null;
 
   return (
-    <span className="font-mono bg-green-200 dark:bg-green-800 px-2 py-1 text-xs rounded-b-md">
+    <div className="font-mono bg-green-200 dark:bg-green-800 px-2 py-1 text-xs rounded-b-md">
       {children}
-    </span>
+    </div>
   );
 };
 
-const ShellArrow = ({ isHighlighted }) => (
-  <div
-    className={`sticky left-0 text-right bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 w-10 mr-2 select-none inline-flex justify-end text-opacity-80 ${
-      isHighlighted ? "border-l-4 border-purple-400" : ""
-    }`}
-  >
-    <IconChevronRight className="w-5 h-5" />
-  </div>
-);
-
-const LineNumber = ({ isHighlighted, children }) => (
+const GutterItem = ({ isHighlighted, children }) => (
   <span
-    className={`sticky left-0 text-right bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 pr-3 inline-block w-12 select-none text-opacity-80 ${
+    className={`sticky left-0 inline-grid justify-end w-12 pr-3 bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 text-opacity-80 select-none ${
       isHighlighted ? "border-l-4 border-purple-400" : ""
     }`}
   >
@@ -111,14 +101,14 @@ function CodeSnippet({ children, lang = "markup", highlight, file }) {
       theme={theme}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <div className="relative">
-          <div className="inline-flex absolute z-10 left-6">
+        <div className="relative pb-8">
+          <div className="absolute left-4 grid grid-cols-[max-content,auto] gap-4">
             <LangBadge>{lang}</LangBadge>
             <FileNameBadge>{file}</FileNameBadge>
           </div>
           <Pre className={className} style={style}>
             <CopyButton codeString={codeString} />
-            <code className="inline-block min-w-full">
+            <code className="grid">
               {tokens.map((line, i) => {
                 const isHighlighted = shouldHighlightLine(i);
 
@@ -127,21 +117,19 @@ function CodeSnippet({ children, lang = "markup", highlight, file }) {
                     {...getLineProps({
                       line,
                       key: i,
-                      className: "relative flex",
+                      className: "relative",
                     })}
                   >
-                    {lang === "shell" ? (
-                      <ShellArrow isHighlighted={isHighlighted} />
-                    ) : (
-                      <LineNumber isHighlighted={isHighlighted}>
-                        {i + 1}
-                      </LineNumber>
-                    )}
-                    <div className="inline">
-                      {line.map((token, key) => (
-                        <span {...getTokenProps({ token, key })} />
-                      ))}
-                    </div>
+                    <GutterItem isHighlighted={isHighlighted}>
+                      {lang === "shell" ? (
+                        <IconChevronRight className="scale-150" />
+                      ) : (
+                        i + 1
+                      )}
+                    </GutterItem>
+                    {line.map((token, key) => (
+                      <span {...getTokenProps({ token, key })} />
+                    ))}
                     <LineHighlight isHighlighted={isHighlighted} />
                   </div>
                 );

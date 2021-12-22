@@ -11,7 +11,7 @@ function Header() {
   const { toggle } = useColorMode();
 
   return (
-    <header className="flex items-center justify-between p-8 max-w-3xl mx-auto">
+    <header className="grid grid-cols-[max-content,auto,max-content,max-content,max-content,max-content] p-8 max-w-3xl items-center justify-self-center w-full">
       <Link to="/" className="text-black dark:text-white no-underline">
         <span className="text-2xl" role="img" aria-label="emoji">
           {icon}
@@ -20,23 +20,22 @@ function Header() {
           Tyler Wray
         </span>
       </Link>
-      <div className="flex justify-around items-center">
-        <NavItem to="/">Posts</NavItem>
-        <NavItem to="/me/">Me</NavItem>
-        <NavItem to="/contact/">Contact</NavItem>
-        <button
-          type="button"
-          aria-label="dark mode switch"
-          className="relative m-3 w-8 focus:outline-none"
-          onClick={toggle}
-        >
-          <div className="dark:bg-purple-600 bg-gray-300 absolute rounded-full h-6 w-10 left-0 right-0 transition duration-200" />
-          <div className="dark:translate-x-4 dark:bg-purple-900 bg-gray-100 rounded-full flex items-center justify-center shadow relative w-6 h-6 transition duration-200">
-            <IconSun className="dark:hidden stroke-amber-500 fill-amber-500" />
-            <IconMoon className="dark:block hidden stroke-purple-600 fill-purple-600" />
-          </div>
-        </button>
-      </div>
+      <div />
+      <NavItem to="/">Posts</NavItem>
+      <NavItem to="/me/">Me</NavItem>
+      <NavItem to="/contact/">Contact</NavItem>
+      <button
+        type="button"
+        aria-label="dark mode switch"
+        className="relative m-3 w-8 focus:outline-none"
+        onClick={toggle}
+      >
+        <div className="dark:bg-purple-600 bg-gray-300 absolute rounded-full h-6 w-10 left-0 right-0 transition duration-200" />
+        <div className="dark:translate-x-4 dark:bg-purple-900 bg-gray-100 rounded-full flex items-center justify-center shadow relative w-6 h-6 transition duration-200">
+          <IconSun className="dark:hidden stroke-amber-500 fill-amber-500" />
+          <IconMoon className="dark:block hidden stroke-purple-600 fill-purple-600" />
+        </div>
+      </button>
     </header>
   );
 }

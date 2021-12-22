@@ -4,10 +4,12 @@ import Header from "./Header";
 
 function Layout({ children }) {
   return (
-    <>
+    <div className="grid">
       <Header />
-      <main className="max-w-3xl mx-auto px-8">{children}</main>
-    </>
+      <main className="grid justify-self-center w-full max-w-3xl p-8">
+        {children}
+      </main>
+    </div>
   );
 }
 

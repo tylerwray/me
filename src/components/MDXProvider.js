@@ -27,9 +27,11 @@ const Pre = ({ children }) => {
   return codeChild ? (
     transformCode(codeChild.props)
   ) : (
-    <pre className="bg-gray-100 dark:bg-gray-800 px-6 py-3 mb-4 rounded-md">
-      {children}
-    </pre>
+    <div className="pb-4">
+      <pre className="bg-gray-100 dark:bg-gray-800 px-6 py-3 rounded-md">
+        {children}
+      </pre>
+    </div>
   );
 };
 

@@ -50,9 +50,8 @@ function BlogTemplate({ data }) {
   ];
 
   return (
-    <>
+    <div className="grid">
       <Seo
-        path={fields.slug}
         description={frontmatter.description}
         image={frontmatter.banner?.publicURL}
         imageDescription={frontmatter.bannerDescription}
@@ -65,6 +64,7 @@ function BlogTemplate({ data }) {
           { property: "article:tag", content: frontmatter.tags },
           { property: "article:section", content: "Technology" },
         ]}
+        path={fields.slug}
         title={frontmatter.title}
       />
       <Header />
@@ -79,7 +79,7 @@ function BlogTemplate({ data }) {
         />
         <TableOfContents headings={headings} />
       </main>
-    </>
+    </div>
   );
 }
 

@@ -6,6 +6,7 @@ module.exports = {
     author: "@wray_tw",
     siteUrl: "https://tylerwray.me",
     image: "/images/me_at_work.jpg",
+    imageDescription: "Me at work",
   },
   plugins: [
     {
@@ -79,4 +80,4 @@ module.exports = {
       },
     },
   ],
-}
+};

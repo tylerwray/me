@@ -4,6 +4,7 @@ import MDXRenderer from "gatsby-plugin-mdx/mdx-renderer";
 import family from "../images/family_192.jpg";
 import Comments from "./Comments";
 import VisuallyHidden from "./VisuallyHidden";
+import { IconEdit } from "../icons";
 
 function Post({ frontmatter, siteUrl, timeToRead, fields, body }) {
   const blogPostUrl = `${siteUrl}${fields.slug}`;
@@ -14,17 +15,14 @@ function Post({ frontmatter, siteUrl, timeToRead, fields, body }) {
 
   return (
     <div className="max-w-3xl px-8">
-      <div className="flex text-lg leading-relaxed font-bold">
-        <h1 className="mb-2">{frontmatter.title}</h1>
-      </div>
-      <div className="ml-8">{frontmatter.subTitle}</div>
-      <div className="mb-4">
+      <h1 className="pb-2">{frontmatter.title}</h1>
+      <div className="pb-4">
         <span>{frontmatter.prettyDate}</span>
-        <span style={{ marginLeft: 10, marginRight: 10 }}>{` • `}</span>
+        <span className="px-3">{` • `}</span>
         <span>
           {"📚".repeat(Math.floor(readingTime / 5))} {readingTime} min read
         </span>
-        <span style={{ marginLeft: 10, marginRight: 10 }}>{` • `}</span>
+        <span className="px-3">{` • `}</span>
 
         <a
           target="_blank"
@@ -39,11 +37,11 @@ function Post({ frontmatter, siteUrl, timeToRead, fields, body }) {
         </a>
       </div>
       <GatsbyImage
-        className="mt-3"
+        className="max-h-96"
         image={banner}
         alt={frontmatter.bannerDescription}
       />
-      <div className="mt-2 mb-6 text-sm text-center text-gray-700 dark:text-gray-500">
+      <div className="pt-1 pb-4 text-sm text-center text-gray-700 dark:text-gray-500">
         Photo By{" "}
         <a href={frontmatter.bannerCreditUrl}>{frontmatter.bannerCreditName}</a>
       </div>
@@ -55,7 +53,7 @@ function Post({ frontmatter, siteUrl, timeToRead, fields, body }) {
         </h2>
       </VisuallyHidden>
       <MDXRenderer>{body}</MDXRenderer>
-      <div className="flex justify-between mt-8 mb-4">
+      <div className="flex justify-between pt-8 pb-4">
         <a
           target="_blank"
           rel="noopener noreferrer"
@@ -68,13 +66,21 @@ function Post({ frontmatter, siteUrl, timeToRead, fields, body }) {
           Discuss on Twitter
         </a>
 
-        <a target="_blank" rel="noopener noreferrer" href={fields.editLink}>
+        <div />
+
+        <a
+          className="flex items-center"
+          target="_blank"
+          rel="noopener noreferrer"
+          href={fields.editLink}
+        >
+          <IconEdit className="pr-1" />
           Edit post on GitHub
         </a>
       </div>
       <div className="flex justify-center p-12 mb-16 dark:text-white bg-gray-100 dark:bg-gray-800 w-screen relative left-2/4 z-10 -ml-[50vw]">
         <div className="px-6 max-w-3xl">
-          <div className="flex ">
+          <div className="flex">
             <div>
               <h3 className="mt-0">About the Author</h3>
               <p className="pb-4">

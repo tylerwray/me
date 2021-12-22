@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const throttle = (func, limit) => {
   let lastFunc;
@@ -43,11 +43,9 @@ const TableOfContents = ({ headings }) => {
 };
 
 const useActiveHeading = (headings) => {
-  const [activeHeadingUrl, setActiveHeadingUrl] = React.useState(
-    headings[0].url
-  );
+  const [activeHeadingUrl, setActiveHeadingUrl] = useState(headings[0].url);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = throttle(() => {
       // The first heading within the viewport is the one we want to highlight.
       let firstHeadingInViewport = headings.find(({ url }) => {
@@ -84,15 +82,12 @@ const ContentLinkHeading = ({ isActive = false, children, ...props }) => {
 
   return (
     <a
-      className={`block mb-2 no-underline transition-opacity opacity-70 hover:focus:opacity-100 hover:black dark:hover:text-white text-base ${activeStyles}`}
+      className={`block pb-2 no-underline transition-opacity opacity-70 hover:focus:opacity-100 hover:black dark:hover:text-white text-base ${activeStyles}`}
       {...props}
     >
       {children}
     </a>
   );
 };
-// font-weight: 500;
-// color: var(--table-of-contents-text);
-// transform: translateX(0.25rem);
 
 export default TableOfContents;
