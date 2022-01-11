@@ -106,6 +106,9 @@ p {
 h2 > a.anchor.before {
   @apply top-4;
 }
+h3 > a.anchor.before {
+  @apply top-2;
+}
 
 .gatsby-resp-image-wrapper {
   @apply rounded-md;
