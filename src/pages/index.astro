@@ -1,0 +1,52 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import PostSnippet from "../components/PostSnippet.astro";
+
+const posts = (await Astro.glob("../pages/blog/**/*.mdx")).filter(
+  (post) => !post.frontmatter.draft
+);
+
+console.log(posts);
+console.log(posts[0].frontmatter);
+console.log(posts[0].url);
+// console.log(posts[1].compiledContent());
+// Will be useful for nav bar
+// console.log(posts[1].getHeadings());
+---
+
+<Layout
+  title="My special corner of the internet"
+  keywords={["tyler wray", "blog", "dev", "tech"]}
+>
+  <Header />
+  <div
+    class="grid sm:grid-cols-2 gap-8 justify-items-center sm:justify-items-end pb-8"
+  >
+    <div>
+      <h1 class="whitespace-nowrap">
+        Hi there, I'm Tyler.{" "}
+        <span role="img" aria-label="hand wave"> 👋</span>
+      </h1>
+
+      <p>
+        For as long as I can remember, I've loved everything technology. When I
+        discovered that I could create technology with software, it became my
+        second love. It's now my mission to help others discover the beauty in
+        software that I've found.
+      </p>
+    </div>
+    <img
+      class="rounded-full h-max max-h-52"
+      alt="Me at Work"
+      src="/todo-me-at-work.jpg"
+    />
+  </div>
+
+  <h2 class="uppercase text-green-600 dark:text-green-400">
+    Recently Published
+  </h2>
+  <main class="grid gap-6">
+    {posts.map((post) => <PostSnippet post={post} />)}
+  </main>
+</Layout>

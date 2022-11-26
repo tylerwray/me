@@ -1,0 +1,12 @@
+---
+import { Image } from "@astrojs/image/components";
+
+const { image, alt, creditUrl, creditName } = Astro.props;
+console.log(image);
+---
+
+<Image src={image} alt={alt} class="mb-0" format="webp" />
+
+<div class="pt-1 pb-4 text-sm text-center text-gray-700 dark:text-gray-500">
+  Photo By <a href={creditUrl}>{creditName}</a>
+</div>

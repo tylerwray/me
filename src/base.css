@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  supported-color-schemes: light dark;
+  color-scheme: light dark;
+}
+
+body {
+  @apply antialiased;
+  @apply bg-white;
+  @apply text-black;
+}
+
+body.dark {
+  @apply bg-gray-900;
+  @apply text-white;
+}
+
+/* h1 {
+  @apply pb-6;
+  @apply font-bold;
+  @apply text-3xl;
+}
+h2 {
+  @apply pt-4;
+  @apply pb-6;
+  @apply font-bold;
+  @apply text-2xl;
+  @apply border-t-2;
+  @apply border-gray-200;
+  @apply dark:border-gray-800;
+}
+h3 {
+  @apply pt-2;
+  @apply pb-4;
+  @apply text-xl;
+  @apply font-bold;
+}
+h4 {
+  @apply pb-6;
+  @apply font-bold;
+  @apply text-base;
+}
+h5 {
+  @apply pb-6;
+  @apply font-bold;
+  @apply text-sm;
+}
+h6 {
+  @apply pb-6;
+  @apply font-bold;
+  @apply text-xs;
+}
+blockquote {
+  @apply bg-purple-100;
+  @apply dark:bg-[rgba(121,72,232,0.2)];
+  @apply border-purple-400;
+  @apply dark:border-purple-800;
+  @apply border-l-8;
+  @apply p-4;
+  @apply -mx-2;
+  @apply mb-4;
+  @apply rounded-md;
+}
+
+blockquote p:last-child {
+  @apply pb-0;
+}
+
+ul {
+  @apply pl-6;
+  @apply pb-6;
+  @apply list-outside;
+  @apply list-disc;
+}
+ol {
+  @apply pl-6;
+  @apply pb-6;
+  @apply list-outside;
+  @apply list-decimal;
+}
+li {
+  @apply pb-3;
+}
+
+a {
+  @apply text-purple-600;
+  @apply dark:text-purple-400;
+  @apply underline;
+}
+p {
+  @apply pb-4;
+} */
+
+/* Style the link for gatsby-remark-autolink-headers */
+/* .anchor.before {
+  @apply fill-black;
+  @apply dark:fill-white;
+}
+
+h2 > a.anchor.before {
+  @apply top-4;
+}
+h3 > a.anchor.before {
+  @apply top-2;
+}
+
+.gatsby-resp-image-wrapper {
+  @apply rounded-md;
+  @apply shadow-md;
+}
+
+.gatsby-resp-image-image {
+  @apply rounded-md;
+} */

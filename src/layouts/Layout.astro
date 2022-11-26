@@ -1,0 +1,26 @@
+---
+import Header from "../components/Header.astro";
+import "../base.css";
+
+interface Props {
+  title: string;
+  keywords?: string[];
+}
+
+const { title, keywords = [] } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="keywords" content={keywords.join(", ")} />
+    <title>{title}</title>
+  </head>
+  <body class="dark">
+		<slot />
+  </body>
+</html>

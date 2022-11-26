@@ -1,0 +1,39 @@
+---
+import NavItem from "./NavItem.astro";
+const emoji = ["🙈", "🌀", "💻", "🤘🏻"];
+const icon = emoji[Math.floor(Math.random() * emoji.length)];
+const pathname = new URL(Astro.request.url).pathname;
+---
+
+<header
+  class="grid grid-cols-[max-content,auto,max-content,max-content,max-content,max-content] p-8 max-w-3xl items-center justify-self-center w-full"
+>
+  <a href="/" class="text-black dark:text-white no-underline">
+    <span class="text-2xl" role="img" aria-label="emoji">
+      {icon}
+    </span>
+    <span class="ml-4 text-2xl hidden sm:inline font-mono"> Tyler Wray</span>
+  </a>
+  <div></div>
+  <nav>
+    <NavItem to="/" isCurrent={pathname === "/"}>Posts</NavItem>
+    <NavItem to="/me" isCurrent={pathname === "/me"}>Me</NavItem>
+    <NavItem to="/contact" isCurrent={pathname === "/contact"}>Contact</NavItem>
+  </nav>
+  <button
+    type="button"
+    aria-label="dark mode switch"
+    class="relative m-3 w-8 focus:outline-none"
+  >
+    <div
+      class="dark:bg-purple-600 bg-gray-300 absolute rounded-full h-6 w-10 left-0 right-0 transition duration-200"
+    >
+    </div>
+    <div
+      class="dark:translate-x-4 dark:bg-purple-900 bg-gray-100 rounded-full flex items-center justify-center shadow relative w-6 h-6 transition duration-200"
+    >
+      <div class="dark:hidden stroke-amber-500 fill-amber-500"></div>
+      <div class="dark:block hidden stroke-purple-600 fill-purple-600"></div>
+    </div>
+  </button>
+</header>

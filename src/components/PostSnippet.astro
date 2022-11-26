@@ -1,0 +1,17 @@
+---
+const { post } = Astro.props;
+---
+
+<a class="group" href={post.url}>
+  <h3 class="dark:group-hover:text-purple-400 group-hover:text-purple-600">
+    {post.frontmatter.title}
+  </h3>
+  <p>{post.excerpt}</p>
+  <div class="font-bold">
+    Read More <div
+      class="inline opacity-0 group-hover:opacity-100 text-purple-600 dark:text-purple-400 group-hover:translate-x-1 transition-all"
+    >
+      Icon arrow right
+    </div>
+  </div>
+</a>
