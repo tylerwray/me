@@ -5,7 +5,7 @@ import { Image } from "@astrojs/image/components";
 
 console.log("Props", Astro.props);
 const { frontmatter, url } = Astro.props;
-const githubEditPath = `/src/pages${url}`;
+const githubEditPath = `/src/pages${url}.mdx`;
 ---
 
 <Layout title={frontmatter.title}>
