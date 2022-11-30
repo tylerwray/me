@@ -1,6 +1,7 @@
 ---
 title: React Anti-Patterns
-description: Learn about some basic anti-patterns with React and how to avoid them.
+description: Am I using the right pattern? What will my coworkers think of this? Is this readable? Everyone asks themselves these questions at some point when learning something new. I've been working with React for 3 1/2 years now and these are some patterns that have come back to bite me.
+layout: ../../layouts/BlogLayout.astro
 tags:
   - react
   - reactjs
@@ -8,10 +9,11 @@ tags:
   - frontend patterns
 author: Tyler Wray
 publishedOn: 2019-02-20
-banner: images/hero.jpg
-bannerDescription: Tires stacked in Pattern
-bannerCreditName: Lane Smith
-bannerCreditUrl: https://unsplash.com/photos/wEsqjsjIDLs
+image:
+  src: /assets/images/tires.jpg
+  alt: Tires stacked in Pattern
+  creditName: Lane Smith
+  creditUrl: https://unsplash.com/photos/wEsqjsjIDLs
 ---
 
 - Am I using the right pattern?
@@ -31,7 +33,7 @@ Testable code is usually easier to read, so write tests! 🧪
 
 I first started writing React after reading a book on design patterns, and the first chapter was on Inheritance.
 
-![Headfirst Design Patterns Book](./images/headfirst-design-patterns.jpg "Headfirst Design Patterns")
+<img class="mx-auto py-8" src="/assets/images/headfirst-design-patterns.jpg" alt="Headfirst Design Patterns Book" title="Headfirst Design Patterns">
 
 > Great book, worth the read 👍🏼
 
@@ -222,5 +224,4 @@ Yeah, kinda boring conclusion here. I think the reason I've come to love React i
 - ♻️ Always be refactoring
 - 📚 Optimize for readability
 
-React is doing something we have never seen before, it is outlasting the Javascript library lifecycle. I'm extremely [Bullish](https://www.merriam-webster.com/dictionary/bullish)
-on React and I can't wait to see where we take it the next 5 years 👍🏼
+React is doing something we have never seen before, it is outlasting the Javascript library lifecycle. I'm extremely Bullish on React and I can't wait to see where we take it the next 5 years 👍🏼

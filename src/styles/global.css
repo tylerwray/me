@@ -88,9 +88,11 @@ a {
   @apply dark:text-purple-400;
   @apply underline;
 }
+
 p {
   @apply pb-4;
 }
+
 pre {
   @apply overflow-auto;
   @apply p-6;
