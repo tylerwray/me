@@ -1,6 +1,7 @@
 ---
 title: Get to know me, on a personal level
 description: A little info about me, my hobbies, and accomplishments. This is constantly changing, but that's what makes life interesting!
+layout: ../layouts/BaseLayout.astro
 tags:
   - tyler wray
   - developer
@@ -29,7 +30,7 @@ are; Playing Golf, Making delicious Espresso, Playing Basketball, enjoying my tw
 doing yard work! I'm a [#dad](https://twitter.com/wray_tw/status/1127774420724895744?s=20)
 through and through.
 
-![Me at work with my daugher](./assets/images/me_at_work.jpg "Me at work")
+![Me at work with my daugher](/assets/images/me-at-work.jpg "Me at work")
 
 ## Things I've done.
 

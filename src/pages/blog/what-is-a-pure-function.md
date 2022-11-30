@@ -1,6 +1,6 @@
 ---
 title: What is a pure function?
-description: Pure functions are core to functional programming. Learn about what they are, why they're useful, and how to use them to improve code readability.
+description: One of the first things you will encounter when learning functional programming is the idea of pure functions. Functional programming is all about combining small pieces of code together to form a large vision, and pure functions help us do just that.
 layout: ../../layouts/BlogLayout.astro
 tags:
   - functional programming
@@ -8,18 +8,13 @@ tags:
   - functional
   - javascript
 author: Tyler Wray
-publishedOn: 2019-07-28
+publishedOn: 2019-07-29
+image:
+  src: /assets/images/tools.jpg
+  alt: Garage Tool Set
+  creditName: Todd Quackenbush
+  creditUrl: https://unsplash.com/photos/IClZBVw5W5A
 ---
-
-import Hero from "../../components/Hero.astro";
-import tools from "../../assets/images/tools.jpg";
-
-<Hero
-  image={tools}
-  alt="Garage Tool Set"
-  creditUrl="https://unsplash.com/photos/IClZBVw5W5A"
-  creditName="Todd Quackenbush"
-/>
 
 One of the first things you will encounter when learning functional programming is the idea of pure functions. Functional programming is all about combining small pieces of code together to form a large vision, and pure functions help us do just that.
 

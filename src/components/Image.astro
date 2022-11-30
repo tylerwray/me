@@ -1,0 +1,21 @@
+---
+import { Picture } from "@astrojs/image/components";
+
+interface Props {
+  src: string;
+  alt: string;
+}
+
+const { src, alt } = Astro.props;
+---
+
+<div class="h-0 overflow-hidden pt-[56.25%] relative bg-gray-800/25">
+  <Picture
+    src={src}
+    class="rounded-md absolute top-0 left-0"
+    widths={[200, 400, 800]}
+    sizes="(max-width: 800px) 100vw, 800px"
+    aspectRatio="16:9"
+    alt={alt}
+  />
+</div>

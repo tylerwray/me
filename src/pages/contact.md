@@ -1,6 +1,7 @@
 ---
 title: Get in touch, or not
 description: Find out where to reach me! Feel free to reach out at any time. I'm always a sucker for a good conversation.
+layout: ../layouts/BaseLayout.astro
 tags:
   - tyler wray
   - developer

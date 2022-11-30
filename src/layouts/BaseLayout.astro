@@ -1,0 +1,33 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  tags?: string[];
+}
+
+const { title, tags = [] } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="keywords" content={tags.join(", ")} />
+    <title>{title}</title>
+  </head>
+  <body
+    class="grid justify-items-center bg-white text-black dark:bg-gray-900 dark:text-white"
+  >
+    <Header />
+    <main class="p-8 max-w-3xl items-center justify-self-center w-full min-h-[50vh]">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

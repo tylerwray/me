@@ -1,6 +1,7 @@
 ---
 title: My favorite Lodash Functions
-description: These are my most used lodash utilities. Here I explain what they are, why they're useful, and if you should use them too.
+description: Lodash is a fantastic library of JavaScript utilities that can really enhance your productivity and confidence as a developer. But with things being added to JavaScript every year, is Lodash still relevant?
+layout: ../../layouts/BlogLayout.astro
 tags:
   - javascript
   - lodash
@@ -8,13 +9,16 @@ tags:
   - frontend patterns
 author: Tyler Wray
 publishedOn: 2020-04-06
-banner: images/hero.jpg
-bannerDescription: Blue Legos
-bannerCreditName: Iker Urteaga
-bannerCreditUrl: https://unsplash.com/photos/TL5Vy1IM-uA
+image:
+  src: /assets/images/blue-lego.jpg
+  alt: Blue Lego
+  creditName: Iker Urteaga
+  creditUrl: https://unsplash.com/photos/TL5Vy1IM-uA
 ---
 
-[Lodash](https://lodash.com) is a fantastic library of JavaScript utilities that can really enhance your productivity and confidence as a developer. But with things being added to JavaScript every year, is Lodash still relevant?
+[Lodash](https://lodash.com) is a fantastic library of JavaScript utilities that
+can really enhance your productivity and confidence as a developer. But with things
+being added to JavaScript every year, is Lodash still relevant?
 
 Sometimes it's easy to question the relevancy of Lodash with things like:
 

@@ -1,16 +1,25 @@
 ---
-import Layout from "./Layout.astro";
-import Header from "../components/Header.astro";
-import { Image } from "@astrojs/image/components";
+import type { MarkdownLayoutProps } from "astro";
+import BaseLayout from "./BaseLayout.astro";
+import Image from "../components/Image.astro";
+import type { Frontmatter } from "../frontmatter";
 
-console.log("Props", Astro.props);
-const { frontmatter, url } = Astro.props;
-const githubEditPath = `/src/pages${url}.mdx`;
+type Props = MarkdownLayoutProps<Frontmatter>;
+
+const { frontmatter, url, rawContent } = Astro.props;
+
+const estimatedReadingTime = Math.floor(rawContent().length / 700);
+const books = "📚".repeat(Math.floor(estimatedReadingTime / 3));
+const publishDate = new Date(frontmatter.publishedOn).toLocaleDateString(
+  "en-us",
+  { year: "numeric", month: "long", day: "numeric" }
+);
+const fullUrl = `https://tylerwray.me${url}`;
+const githubEditPath = `/src/pages${url}.md`;
 ---
 
-<Layout title={frontmatter.title}>
-  <div class="grid grid-cols-1 gap-8 xl:grid-cols-post md:justify-items-center">
-    <!-- <Seo
+<BaseLayout title={frontmatter.title}>
+  <!-- <Seo
       description={frontmatter.description}
       image={frontmatter.banner?.publicURL}
       imageDescription={frontmatter.bannerDescription}
@@ -26,83 +35,75 @@ const githubEditPath = `/src/pages${url}.mdx`;
       path={fields.slug}
       title={frontmatter.title}
     /> -->
-    <Header />
-    <main class="prose dark:prose-invert">
-      <h1>{frontmatter.title}</h1>
-      <div>
-        <span>{frontmatter.date}</span>
-        <span class="px-3">{` • `}</span>
-        <span>
-          {"📚".repeat(Math.floor(9 / 5))}
-          {9} min read
-        </span>
-        <span class="px-3">{` • `}</span>
+  <h1 class="pb-2">{frontmatter.title}</h1>
+  <div class="pb-4">
+    <span>{publishDate}</span>
+    <span class="px-3">{` • `}</span>
+    <span>
+      {books}
+      {estimatedReadingTime} min read
+    </span>
+    <span class="px-3">{` • `}</span>
 
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
-            "/TODO-blogPostUrl"
-          )}`}
-        >
-          Tweet this post
-        </a>
-      </div>
-      <div class="sr-only">
-        <h2 class="inline-block">
-          <a id="introduction" class="inline-block" href="#introduction">
-            Introduction
-          </a>
-        </h2>
-      </div>
-      <slot />
-      <div class="flex justify-between pt-8 pb-4">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={`https://mobile.twitter.com/search?q=${encodeURIComponent(
-            "/TODO-blogPostUrl"
-          )}`}
-        >
-          Discuss on Twitter
-        </a>
-
-        <div></div>
-
-        <a
-          class="flex items-center"
-          target="_blank"
-          rel="noopener noreferrer"
-          href={`https://github.com/tylerwray/blog/edit/main${githubEditPath}`}
-        >
-          <!-- TODO: ICON EDIT HERE -->
-          Edit post on GitHub
-        </a>
-      </div>
-      <div
-        class="flex justify-center p-12 mb-16 dark:text-white bg-gray-100 dark:bg-gray-800 w-screen relative left-2/4 z-10 -ml-[50vw]"
-      >
-        <div class="px-6 max-w-3xl">
-          <div class="flex">
-            <div>
-              <h3 class="mt-0">About the Author</h3>
-              <p class="pb-4">
-                Hi{" "}
-                <span role="img" aria-label="hand wave"> 👋</span>{" "}
-                I'm Tyler. I'm a software engineer with a passion for learning new
-                things. I love solving hard problems and simplifying them down to
-                their pieces. Presently residing in Utah with my two girls and beautiful
-                wife.
-              </p>
-            </div>
-            <img
-              class="rounded-full h-48 w-48 ml-12 hidden md:block"
-              alt="Family"
-              src="/todo-family"
-            />
-          </div>
-        </div>
-      </div>
-    </main>
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+        fullUrl
+      )}`}
+    >
+      Tweet this post
+    </a>
   </div>
-</Layout>
+
+  <Image src={frontmatter.image.src} alt={frontmatter.image.alt} />
+
+  <div class="pt-1 pb-4 text-sm text-center text-gray-700 dark:text-gray-500">
+    Photo By <a href={frontmatter.image.creditUrl}
+      >{frontmatter.image.creditName}</a
+    >
+  </div>
+
+  <div class="sr-only">
+    <h2 class="inline-block">
+      <a id="introduction" class="inline-block" href="#introduction">
+        Introduction
+      </a>
+    </h2>
+  </div>
+  <slot />
+  <div class="flex justify-between pt-8 pb-4">
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      href={`https://mobile.twitter.com/search?q=${encodeURIComponent(
+        "/TODO-blogPostUrl"
+      )}`}
+    >
+      Discuss on Twitter
+    </a>
+
+    <div></div>
+
+    <a
+      class="flex gap-1 items-center"
+      target="_blank"
+      rel="noopener noreferrer"
+      href={`https://github.com/tylerwray/blog/edit/main${githubEditPath}`}
+    >
+      <!-- Heroicons: pencil -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        class="w-4 h-4"
+      >
+        <path
+          d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z"
+        ></path>
+      </svg>
+
+      Edit post on GitHub
+    </a>
+  </div>
+</BaseLayout>
