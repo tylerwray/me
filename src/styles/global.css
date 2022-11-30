@@ -94,10 +94,25 @@ p {
 }
 
 pre {
-  @apply overflow-auto;
+  @apply overflow-scroll;
   @apply p-6;
   @apply mb-4;
-  @apply whitespace-pre-wrap;
   @apply text-sm;
   @apply rounded;
+}
+
+/* Adds line numbers to shiki */
+code {
+  counter-reset: step;
+  counter-increment: step 0;
+}
+
+code .line::before {
+  content: counter(step);
+  counter-increment: step;
+  width: 1rem;
+  margin-right: 1.5rem;
+  display: inline-block;
+  text-align: right;
+  color: rgba(115,138,148,.4)
 }

@@ -1,6 +1,7 @@
 ---
-title: Beautifully Rich Markdown Code Snippets
-description: This is how I created the code snippets on my blog with MDX and prism-react-render.
+title: Rich Markdown Code Snippets
+description: I've recently spent a good amount of time (probably too much) customizing the code snippets on my blog here to my exact liking. There's much more I want to do, but I'm really proud of how they turned out and I want to share with you how I created them!
+layout: ../../layouts/BlogLayout.astro
 tags:
   - gatsby
   - mdx
@@ -9,10 +10,11 @@ tags:
   - code-snippets
 author: Tyler Wray
 publishedOn: 2021-12-16
-banner: images/hero.jpg
-bannerDescription: Swerved Building
-bannerCreditName: Elliot Paris
-bannerCreditUrl: https://unsplash.com/@elliotparis
+image:
+  src: /assets/images/swerved-building.jpg
+  alt: Swerved Building
+  creditName: Elliot Paris
+  creditUrl: https://unsplash.com/@elliotparis
 ---
 
 I've recently spent a good amount of time (probably too much) customizing the code snippets on my blog here to my exact liking. There's much more I want to do, but I'm really proud of how they turned out and I want to share with you how I created them!

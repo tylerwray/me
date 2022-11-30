@@ -1,7 +1,6 @@
 ---
 title: Build an eCommerce App with Phoenix LiveView
 description: This tutorial takes you through building a real world ecommerce application with phoenix liveview. Integrating with Stripe, using tailwindcss, and showing live updates to users.
-draft: true
 tags:
   - elixir
   - phoenix
@@ -9,10 +8,14 @@ tags:
   - elixir
   - stripe
 author: Tyler Wray
-banner: images/hero.jpg
-bannerDescription: World map with Currency
-bannerCreditName: Christine Roy
-bannerCreditUrl: https://unsplash.com/photos/ir5MHI6rPg0
+layout: ../../layouts/BlogLayout.astro
+draft: true
+publishedOn: 2022-12-15
+image:
+  src: /assets/images/world-map.jpg
+  alt: World map with currency
+  creditName: Christine Roy
+  creditUrl: https://unsplash.com/photos/ir5MHI6rPg0
 ---
 
 I've heard alot about [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view) from co-workers and twitter,
@@ -45,7 +48,7 @@ Choose `yes` to install dependencies and follow the instructions to start the ap
 Once running, let's open [`http://localhost:4000/products`](http://localhost:4000/products) to see
 the phoenix welcome page 😎.
 
-![Phoenix default page](./images/phoenix-default.png "Phoenix default page")
+![Phoenix default page](/assets/images/amazin-phoenix-default.png "Phoenix default page")
 
 ## Stripe Account Setup
 
@@ -169,7 +172,7 @@ module.exports = {
 
 Then add the `postcss-loader` to the css rule in `assets/webpack.config.js`
 
-```git
+```diff
 # assets/webpack.config.js
 
 {
@@ -221,8 +224,8 @@ A basic navbar with a products grid, each showing a live inventory count.
 First thing we need to do is setup our root layout properly. And that starts with
 adding our nice navbar.
 
-<div class="bg-gray-800">
-  <img alt="Amazin logo" title="Amazin logo" src="/amazin-logo.svg" />
+<div class="bg-gray-800 mb-4">
+  <img alt="Amazin logo" title="Amazin logo" src="/assets/images/amazin-logo.svg" />
 </div>
 
 Head over to `lib/amazin_web/templates/layout/root.html.leex` and replace the
@@ -264,7 +267,7 @@ some updates to our router, and run migrations. Let's do that really quick.
 
 The command gave us alot of routes to add, but we're really only going to need these two.
 
-```git
+```diff
 scope "/", AmazinWeb do
   pipe_through :browser
 
@@ -275,7 +278,7 @@ end
 
 Next, we're gunna make one small tweak to the `Product` schema. Change the `amount` field to use the `Money` type to give us nice currency formatting all through the app:
 
-```git
+```diff
 defmodule Amazin.Store.Product do
   # ..
   import Ecto.Changeset
@@ -361,7 +364,7 @@ Finally, if you start up the server again and go to
 [`http://localhost:4000/products`](http://localhost:4000/products),
 you should see a bare page with your navbar.
 
-![Empty Page](./images/empty-page.png)
+![Empty Page](/assets/images/amazin-empty-page.png)
 
 Now let's fill our page with products.
 
@@ -375,7 +378,7 @@ any events via `Pheonix.PubSub.broadcast/2`, the `handle_info/2` function in the
 
 Lets add these things to our view at `lib/amazin_web/live/product_live/index.ex`:
 
-```git
+```diff
   @impl true
   def mount(_params, _session, socket) do
 +   if connected?(socket), do: Store.subscribe_to_product_events()
@@ -465,7 +468,7 @@ validating that the webhook came from stripe, and converting a raw request body 
 
 Next, make sure to use that parser in our server by updating the `Plug.Parsers` option in our app.
 
-```git
+```diff
 # lib/amazin_web/endpoint.ex
 
 plug Plug.Parsers,
@@ -631,7 +634,7 @@ mix phx.gen.live Store CartItem cart_items product_id:references:products
 
 The command again gives us lots of routes to add, but we only need this one for now:
 
-```git
+```diff
 scope "/", AmazinWeb do
   pipe_through :browser
 
@@ -650,7 +653,7 @@ mix ecto.migrate
 Lastly, we have to make a small change to the `CartItem` schema, adding the `product_id` foreign key to the cast fields.
 (I'm not sure why phoenix generators don't include this?)
 
-```git
+```diff
 defmodule Amazin.Store.CartItem do
   # ...
 
@@ -728,7 +731,7 @@ The second file will be the accompanying markup:
 
 Finally a quick update to our router makes this all work:
 
-```git
+```diff
 defmodule AmazinWeb.Router do
   use AmazinWeb, :router
   # ...
