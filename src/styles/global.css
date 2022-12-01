@@ -95,6 +95,7 @@ p {
 
 pre {
   @apply overflow-scroll;
+  @apply whitespace-pre-wrap;
   @apply p-6;
   @apply mb-4;
   @apply text-sm;
