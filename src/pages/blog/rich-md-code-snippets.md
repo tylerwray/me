@@ -2,6 +2,7 @@
 title: Rich Markdown Code Snippets
 description: I've recently spent a good amount of time (probably too much) customizing the code snippets on my blog here to my exact liking. There's much more I want to do, but I'm really proud of how they turned out and I want to share with you how I created them!
 layout: ../../layouts/BlogLayout.astro
+draft: true
 tags:
   - gatsby
   - mdx
@@ -28,7 +29,7 @@ When I think of a good dev blog or good dev docs; I think of beautiful, rich, el
 
 Even _more_ beautiful to me are code snippets in markdown because you can take this basic syntax —
 
-````markdown plain
+````
 ```js
 function hi() {
   console.log("hello");
@@ -407,13 +408,13 @@ And finally the styles to make it pretty 😍
 
 There you have it! Now you can write snippets inline with single backticks like this —
 
-```plain plain
+```
 `css__font-size: 1rem;`
 ```
 
 — or this —
 
-```plain plain
+```
 `jsx__<MDXProvider />
 ```
 
