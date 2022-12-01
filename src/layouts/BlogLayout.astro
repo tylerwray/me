@@ -6,10 +6,10 @@ import type { Frontmatter } from "../frontmatter";
 
 type Props = MarkdownLayoutProps<Frontmatter>;
 
-const { frontmatter, url, rawContent } = Astro.props;
+const { frontmatter, url } = Astro.props;
 
-const estimatedReadingTime = Math.floor(rawContent().length / 700);
-const books = "📚".repeat(Math.floor(estimatedReadingTime / 3));
+const estimatedReadingTime = Math.floor(frontmatter.minutesToRead);
+const books = "📚".repeat(Math.floor(estimatedReadingTime / 2));
 const publishDate = new Date(frontmatter.publishedOn).toLocaleDateString(
   "en-us",
   { year: "numeric", month: "long", day: "numeric" }

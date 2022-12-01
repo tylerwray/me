@@ -6,6 +6,7 @@ interface FrontmatterImage {
 }
 
 export interface Frontmatter {
+  minutesToRead: number;
   title: string;
   description: string;
   draft?: boolean
