@@ -2,7 +2,6 @@ import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import remarkCodeTitle from "remark-code-title";
 import image from "@astrojs/image";
-import mdx from "@astrojs/mdx";
 
 import { remarkReadingTime } from "./remark-reading-time.js";
 
@@ -24,6 +23,5 @@ export default defineConfig({
     image({
       serviceEntryPoint: "@astrojs/image/sharp",
     }),
-    mdx({}),
   ],
 });
