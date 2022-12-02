@@ -6,12 +6,12 @@ interface FrontmatterImage {
 }
 
 export interface Frontmatter {
+  // Injected from plugin
   minutesToRead: number;
   title: string;
   description: string;
   draft?: boolean
   tags?: string[];
-  author: string;
   publishedOn: string;
   image: FrontmatterImage;
 }

@@ -5,9 +5,6 @@ tags:
   - elixir
   - phoenix
   - liveview
-  - elixir
-  - stripe
-author: Tyler Wray
 layout: ../../layouts/BlogLayout.astro
 draft: true
 publishedOn: 2022-12-15

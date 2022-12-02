@@ -4,10 +4,6 @@ description: Lodash is a fantastic library of JavaScript utilities that can real
 layout: ../../layouts/BlogLayout.astro
 tags:
   - javascript
-  - lodash
-  - functions
-  - frontend patterns
-author: Tyler Wray
 publishedOn: 2020-04-06
 image:
   src: /assets/images/blue-lego.jpg

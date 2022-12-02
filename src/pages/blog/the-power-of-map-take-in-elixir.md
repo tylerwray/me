@@ -4,10 +4,6 @@ description: Elixir has some powerful utility functions build into the standard 
 layout: ../../layouts/BlogLayout.astro
 tags:
   - elixir
-  - map
-  - functions
-  - utility
-author: Tyler Wray
 publishedOn: 2021-04-06
 image:
   src: /assets/images/disassembled-typewriter.jpg

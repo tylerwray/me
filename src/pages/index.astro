@@ -13,10 +13,7 @@ const posts = (await Astro.glob<Frontmatter>("../pages/blog/**/*.md"))
   );
 ---
 
-<BaseLayout
-  title="My special corner of the internet"
-  tags={["tyler wray", "blog", "dev", "tech"]}
->
+<BaseLayout>
   <div
     class="grid sm:grid-cols-2 gap-8 justify-items-center sm:justify-items-end pb-8"
   >
@@ -35,7 +32,7 @@ const posts = (await Astro.glob<Frontmatter>("../pages/blog/**/*.md"))
     </div>
 
     <Image
-      src="/assets/images/me-at-work.jpg"
+      src="/assets/images/me.jpg"
       alt="Me at work"
       format="webp"
       class="rounded-full"

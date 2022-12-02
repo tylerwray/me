@@ -4,10 +4,6 @@ description: Am I using the right pattern? What will my coworkers think of this?
 layout: ../../layouts/BlogLayout.astro
 tags:
   - react
-  - reactjs
-  - anti patterns
-  - frontend patterns
-author: Tyler Wray
 publishedOn: 2019-02-20
 image:
   src: /assets/images/tires.jpg

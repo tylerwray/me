@@ -6,10 +6,6 @@ draft: true
 tags:
   - gatsby
   - mdx
-  - prism-react-renderer
-  - markdown
-  - code-snippets
-author: Tyler Wray
 publishedOn: 2021-12-16
 image:
   src: /assets/images/swerved-building.jpg

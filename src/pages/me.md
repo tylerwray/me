@@ -1,7 +1,7 @@
 ---
 title: Get to know me, on a personal level
 description: A little info about me, my hobbies, and accomplishments. This is constantly changing, but that's what makes life interesting!
-layout: ../layouts/BaseLayout.astro
+layout: ../layouts/PageLayout.astro
 tags:
   - tyler wray
   - developer
