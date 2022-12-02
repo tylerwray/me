@@ -1,9 +1,10 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
+import remarkCodeTitle from "remark-code-title";
 import image from "@astrojs/image";
 import mdx from "@astrojs/mdx";
 
-import { remarkReadingTime } from './remark-reading-time.js';
+import { remarkReadingTime } from "./remark-reading-time.js";
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,7 +12,7 @@ export default defineConfig({
     shikiConfig: {
       theme: "dracula",
     },
-    remarkPlugins: [remarkReadingTime],
+    remarkPlugins: [remarkReadingTime, remarkCodeTitle],
     extendDefaultPlugins: true,
   },
   integrations: [
@@ -23,6 +24,6 @@ export default defineConfig({
     image({
       serviceEntryPoint: "@astrojs/image/sharp",
     }),
-    mdx(),
+    mdx({}),
   ],
 });
