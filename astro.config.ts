@@ -11,7 +11,7 @@ export default defineConfig({
   site: "https://tylerwray.me/",
   markdown: {
     shikiConfig: {
-      theme: "dracula",
+      theme: "dark-plus",
     },
     remarkPlugins: [remarkReadingTime, remarkCodeTitle],
     extendDefaultPlugins: true,

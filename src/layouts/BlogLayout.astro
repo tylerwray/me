@@ -24,50 +24,52 @@ const githubEditPath = `/src/pages${url}.md`;
   image={frontmatter.image.src}
   imageAlt={frontmatter.image.alt}
 >
-  <h1 class="text-3xl font-extrabold pb-2">
-    {frontmatter.title}
-  </h1>
-  <div class="pb-4">
-    <span>{publishDate}</span>
-    <span class="px-2">{" • "}</span>
-    <span>
-      {books}
-      {estimatedReadingTime} min read
-    </span>
-    <span class="px-2">{" • "}</span>
+  <header>
+    <h1 class="text-3xl font-extrabold pb-2">
+      {frontmatter.title}
+    </h1>
+    <div class="pb-4">
+      <time datetime={frontmatter.publishedOn}>{publishDate}</time>
+      <span class="px-2">{" • "}</span>
+      <span>
+        {books}
+        {estimatedReadingTime} min read
+      </span>
+      <span class="px-2">{" • "}</span>
 
-    <a
-      target="_blank"
-      class="text-purple-600 dark:text-purple-400 hover:underline font-medium"
-      rel="noopener noreferrer"
-      href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
-        fullUrl
-      )}`}
-    >
-      Tweet this post
-    </a>
-  </div>
+      <a
+        target="_blank"
+        class="text-purple-600 dark:text-purple-400 hover:underline font-medium"
+        rel="noopener noreferrer"
+        href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+          fullUrl
+        )}`}
+      >
+        Tweet this post
+      </a>
+    </div>
 
-  <div class="h-0 overflow-hidden pt-[56.25%] relative bg-zinc-800/25">
-    <Picture
-      widths={[600, 800, 1200, 1600]}
-      sizes="(max-width: 800px) 90vw, 768px"
-      aspectRatio={16 / 9}
-      src={frontmatter.image.src}
-      loading="eager"
-      alt={frontmatter.image.alt}
-      class="rounded-md overflow-hidden absolute top-0 left-0"
-      width={768}
-      height={402}
-    />
-  </div>
+    <div class="h-0 overflow-hidden pt-[56.25%] relative bg-zinc-800/25">
+      <Picture
+        widths={[600, 800, 1200, 1600]}
+        sizes="(max-width: 800px) 90vw, 768px"
+        aspectRatio={16 / 9}
+        src={frontmatter.image.src}
+        loading="eager"
+        alt={frontmatter.image.alt}
+        class="rounded-md overflow-hidden absolute top-0 left-0"
+        width={768}
+        height={402}
+      />
+    </div>
 
-  <div class="pt-1 pb-4 text-sm text-center text-gray-700 dark:text-gray-500">
-    Photo By <a
-      class="text-purple-600 dark:text-purple-400 hover:underline font-medium"
-      href={frontmatter.image.creditUrl}>{frontmatter.image.creditName}</a
-    >
-  </div>
+    <div class="pt-1 pb-4 text-sm text-center text-gray-700 dark:text-gray-500">
+      Photo By <a
+        class="text-purple-600 dark:text-purple-400 hover:underline font-medium"
+        href={frontmatter.image.creditUrl}>{frontmatter.image.creditName}</a
+      >
+    </div>
+  </header>
 
   <div class="sr-only">
     <h2 class="inline-block">
@@ -76,6 +78,7 @@ const githubEditPath = `/src/pages${url}.md`;
       </a>
     </h2>
   </div>
+
   <article
     class="prose dark:prose-invert prose-a:text-purple-600 dark:prose-a:text-purple-400 prose-a:no-underline hover:prose-a:underline prose-h1:text-3xl prose-img:rounded-md prose-img:mx-auto"
   >
