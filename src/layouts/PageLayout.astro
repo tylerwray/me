@@ -13,5 +13,9 @@ const { frontmatter } = Astro.props;
   description={frontmatter.description}
   tags={frontmatter.tags}
 >
-  <slot />
+  <article
+    class="prose dark:prose-invert max-w-none prose-a:text-purple-600 dark:prose-a:text-purple-400 prose-h1:text-3xl prose-img:rounded-md prose-img:mx-auto"
+  >
+    <slot />
+  </article>
 </BaseLayout>

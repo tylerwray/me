@@ -29,7 +29,7 @@ Testable code is usually easier to read, so write tests! 🧪
 
 I first started writing React after reading a book on design patterns, and the first chapter was on Inheritance.
 
-<img class="mx-auto py-8" src="/assets/images/headfirst-design-patterns.jpg" alt="Headfirst Design Patterns Book" title="Headfirst Design Patterns">
+!['Headfirst Design Patterns Book'](/assets/images/headfirst-design-patterns.jpg "Headfirst Design Patterns")
 
 > Great book, worth the read 👍🏼
 

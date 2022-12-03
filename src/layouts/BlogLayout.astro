@@ -1,7 +1,7 @@
 ---
 import type { MarkdownLayoutProps } from "astro";
 import BaseLayout from "./BaseLayout.astro";
-import Image from "../components/Image.astro";
+import { Picture } from "@astrojs/image/components";
 import type { Frontmatter } from "../frontmatter";
 
 type Props = MarkdownLayoutProps<Frontmatter>;
@@ -24,18 +24,21 @@ const githubEditPath = `/src/pages${url}.md`;
   image={frontmatter.image.src}
   imageAlt={frontmatter.image.alt}
 >
-  <h1 class="pb-2">{frontmatter.title}</h1>
+  <h1 class="text-3xl font-extrabold pb-2">
+    {frontmatter.title}
+  </h1>
   <div class="pb-4">
     <span>{publishDate}</span>
-    <span class="px-3">{` • `}</span>
+    <span class="px-2">{" • "}</span>
     <span>
       {books}
       {estimatedReadingTime} min read
     </span>
-    <span class="px-3">{` • `}</span>
+    <span class="px-2">{" • "}</span>
 
     <a
       target="_blank"
+      class="text-purple-600 dark:text-purple-400 hover:underline font-medium"
       rel="noopener noreferrer"
       href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
         fullUrl
@@ -45,11 +48,24 @@ const githubEditPath = `/src/pages${url}.md`;
     </a>
   </div>
 
-  <Image src={frontmatter.image.src} alt={frontmatter.image.alt} />
+  <div class="h-0 overflow-hidden pt-[56.25%] relative bg-zinc-800/25">
+    <Picture
+      widths={[600, 800, 1200, 1600]}
+      sizes="(max-width: 800px) 90vw, 768px"
+      aspectRatio={16 / 9}
+      src={frontmatter.image.src}
+      loading="eager"
+      alt={frontmatter.image.alt}
+      class="rounded-md overflow-hidden absolute top-0 left-0"
+      width={768}
+      height={402}
+    />
+  </div>
 
   <div class="pt-1 pb-4 text-sm text-center text-gray-700 dark:text-gray-500">
-    Photo By <a href={frontmatter.image.creditUrl}
-      >{frontmatter.image.creditName}</a
+    Photo By <a
+      class="text-purple-600 dark:text-purple-400 hover:underline font-medium"
+      href={frontmatter.image.creditUrl}>{frontmatter.image.creditName}</a
     >
   </div>
 
@@ -60,10 +76,15 @@ const githubEditPath = `/src/pages${url}.md`;
       </a>
     </h2>
   </div>
-  <slot />
-  <div class="flex justify-between pt-8 pb-4">
+  <article
+    class="prose dark:prose-invert prose-a:text-purple-600 dark:prose-a:text-purple-400 prose-a:no-underline hover:prose-a:underline prose-h1:text-3xl prose-img:rounded-md prose-img:mx-auto"
+  >
+    <slot />
+  </article>
+  <div class="grid grid-cols-[auto_1fr_auto] pt-8 pb-4">
     <a
       target="_blank"
+      class="text-purple-600 dark:text-purple-400 hover:underline font-medium"
       rel="noopener noreferrer"
       href={`https://mobile.twitter.com/search?q=${encodeURIComponent(
         "/TODO-blogPostUrl"
@@ -75,7 +96,7 @@ const githubEditPath = `/src/pages${url}.md`;
     <div></div>
 
     <a
-      class="flex gap-1 items-center"
+      class="grid grid-cols-[auto_1fr] items-center gap-1 text-purple-600 dark:text-purple-400 hover:underline font-medium"
       target="_blank"
       rel="noopener noreferrer"
       href={`https://github.com/tylerwray/me/edit/main${githubEditPath}`}

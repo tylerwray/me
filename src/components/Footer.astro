@@ -2,30 +2,23 @@
 import { Image } from "@astrojs/image/components";
 ---
 
-<footer>
-  <div
-    class="flex justify-center p-12 mb-16 dark:text-white bg-gray-100 dark:bg-gray-800 w-screen relative left-2/4 z-10 -ml-[50vw]"
-  >
-    <div class="px-6 max-w-3xl">
-      <div class="flex">
-        <div>
-          <h3 class="mt-0">About me</h3>
-          <p class="pb-4">
-            Hi{" "}
-            <span role="img" aria-label="hand wave"> 👋</span>{" "}
-            I'm Tyler. I'm a software engineer with a passion for learning new things.
-            I love solving hard problems and simplifying them down to their pieces.
-            Presently residing in Utah with my two girls and beautiful wife.
-          </p>
-        </div>
-        <Image
-          class="rounded-full h-48 w-48 ml-12 hidden md:block"
-          alt="Family"
-          src="/assets/images/family_192.jpg"
-          width={192}
-          aspectRatio={1}
-        />
-      </div>
+<footer class="w-full bg-zinc-100 dark:bg-zinc-800">
+  <div class="grid sm:grid-cols-2 justify-items-center max-w-3xl mx-auto p-8">
+    <div>
+      <h3 class="text-xl font-bold pb-4">About me</h3>
+      <p class="dark:text-gray-300">
+        Hi <span role="img" aria-label="hand wave"> 👋</span>
+        I'm Tyler. I'm a software engineer with a passion for learning new things.
+        I love solving hard problems and simplifying them down to their pieces. Presently
+        residing in Utah with my two girls and beautiful wife.
+      </p>
     </div>
+    <Image
+      class="rounded-full h-48 w-48 hidden sm:block"
+      alt="Family"
+      src="/assets/images/family_192.jpg"
+      width={192}
+      aspectRatio={1}
+    />
   </div>
 </footer>

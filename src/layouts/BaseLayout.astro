@@ -1,5 +1,5 @@
 ---
-import Header from "../components/Header.astro";
+import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 
@@ -17,7 +17,7 @@ const baseTags = ["blog", "dev", "tech"];
 const defaultMeta = {
   title: "Tyler Wray",
   // TODO: Make better
-  description: "My special corner of the internet",
+  description: "My little corner of the internet",
   image: "/assets/images/me.jpg",
   imageAlt: "Photo of the author outdoors",
   tags: baseTags,
@@ -80,11 +80,11 @@ const twitterHandle = "@wray_tw";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body
-    class="grid justify-items-center bg-white text-black dark:bg-gray-900 dark:text-white"
+    class="grid justify-items-center bg-white text-black dark:bg-zinc-900 dark:text-white antialiased"
   >
-    <Header />
+    <Nav />
     <main
-      class="p-8 max-w-3xl items-center justify-self-center w-full min-h-[50vh]"
+      class="p-8 pb-24 max-w-3xl items-center justify-self-center w-full min-h-[60vh]"
     >
       <slot />
     </main>

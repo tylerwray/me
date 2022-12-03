@@ -6,7 +6,7 @@ const icon = emoji[Math.floor(Math.random() * emoji.length)];
 const pathname = new URL(Astro.request.url).pathname;
 ---
 
-<header
+<nav
   class="grid grid-cols-[max-content,auto,max-content,max-content,max-content,max-content] p-8 max-w-3xl items-center w-full"
 >
   <a href="/" class="text-black dark:text-white no-underline">
@@ -18,4 +18,4 @@ const pathname = new URL(Astro.request.url).pathname;
   <NavItem to="/me" isCurrent={pathname === "/me"}>Me</NavItem>
   <NavItem to="/contact" isCurrent={pathname === "/contact"}>Contact</NavItem>
   <ThemeButton />
-</header>
+</nav>
