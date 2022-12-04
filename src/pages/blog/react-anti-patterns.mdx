@@ -39,7 +39,10 @@ One of my first challenges was I had two components that needed the same data fe
 
 It looked something like this:
 
-```jsx highlight={8-10}
+```jsx
+---
+title: "Tyler Was Here"
+---
 class Base extends React.Component {
   componentDidMount() {
     apiCall(this.props.type).then((data) => {

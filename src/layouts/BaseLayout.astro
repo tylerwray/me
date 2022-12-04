@@ -57,11 +57,7 @@ const twitterHandle = "@wray_tw";
     <meta property="og:image:url" content={socialImageURL} />
     <meta property="og:image:alt" content={imageAlt} />
     <meta property="og:locale" content="en_US" />
-    {
-      publishedOn && (
-        <meta property="article:published_time" content={publishedOn} />
-      )
-    }
+    {publishedOn && <meta property="article:published_time" content={publishedOn} />}
     <meta property="article:author" content="Tyler Wray" />
     <meta property="article:section" content="Technology" />
     <meta property="article:tags" content={keywords} />
@@ -79,13 +75,9 @@ const twitterHandle = "@wray_tw";
     <meta name="keywords" content={keywords} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
-  <body
-    class="grid justify-items-center bg-white text-black dark:bg-zinc-900 dark:text-white antialiased"
-  >
+  <body class="bg-white text-black dark:bg-zinc-900 dark:text-white antialiased">
     <Nav />
-    <main
-      class="p-8 pb-24 max-w-3xl items-center justify-self-center w-full min-h-[60vh]"
-    >
+    <main class="p-8 pb-24 max-w-3xl mx-auto items-center justify-self-center w-full min-h-[60vh]">
       <slot />
     </main>
     <Footer />

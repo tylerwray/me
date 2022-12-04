@@ -1,31 +1,26 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
-import remarkCodeTitle from "remark-code-title";
 import image from "@astrojs/image";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 import { remarkReadingTime } from "./remark-reading-time.js";
+import { codeSnippets } from "./integrations/code-snippets.js";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://tylerwray.me/",
   markdown: {
-    shikiConfig: {
-      theme: "dark-plus",
-    },
-    remarkPlugins: [remarkReadingTime, remarkCodeTitle],
-    extendDefaultPlugins: true,
+    syntaxHighlight: false,
   },
   integrations: [
-    tailwind({
-      config: {
-        applyBaseStyles: false,
-      },
-    }),
+    tailwind(),
     image({
       serviceEntryPoint: "@astrojs/image/sharp",
     }),
     sitemap(),
-    mdx(),
+    codeSnippets(),
+    mdx({
+      remarkPlugins: [remarkReadingTime],
+    }),
   ],
 });
