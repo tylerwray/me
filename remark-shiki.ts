@@ -44,7 +44,43 @@ const remarkShiki = async ({ theme, langs = [] }: Config) => {
     await highlighter.loadLanguage(lang);
   }
 
+  // TODO: It would be SICK to use react for this.
   return () => (tree: any) => {
+    visit(tree, "inlineCode", (node) => {
+      let lang = "plaintext";
+
+      const inlineCodeRegex = /(.+)__(.+)/;
+
+      // Language is given to inline code snippets
+      // with __ like so: node.value: "`jsx__<SomeComponent />`"
+      if (inlineCodeRegex.test(node.value)) {
+        const match = node.value.match(inlineCodeRegex);
+        lang = match[1];
+        // The inline code itself
+        node.value = match[2];
+      }
+
+      const langExists = highlighter.getLoadedLanguages().includes(lang as any);
+
+      if (!langExists) {
+        // eslint-disable-next-line no-console
+        console.warn(`The language "${lang}" doesn't exist, falling back to plaintext.`);
+        lang = "plaintext";
+      }
+
+      let html = highlighter!.codeToHtml(node.value, { lang });
+
+      // Handle code wrapping
+      html = html.replace(/style="(.*?)"/, 'style="$1; overflow-x: auto;"');
+
+      // FIXME: Should we really be using regex to hack like this?
+      const removePreTagRegex = /<pre.+?>(.+)<\/pre>/
+      html = html.replace(removePreTagRegex, "$1")
+
+      node.type = "html";
+      node.value = html;
+    });
+
     visit(tree, "code", (node, index, parent) => {
       let lang: string;
 
@@ -71,6 +107,7 @@ const remarkShiki = async ({ theme, langs = [] }: Config) => {
 
       // Replace "shiki" class naming with "astro".
       html = html.replace('<pre class="shiki"', `<pre class="astro-code"`);
+
       // Add "user-select: none;" for "+"/"-" diff symbols
       if (node.lang === "diff") {
         html = html.replace(
@@ -78,6 +115,7 @@ const remarkShiki = async ({ theme, langs = [] }: Config) => {
           '<span class="line"><span style="$1"><span style="user-select: none;">$2</span>'
         );
       }
+
       // Handle code wrapping
       html = html.replace(/style="(.*?)"/, 'style="$1; overflow-x: auto;"');
 
@@ -98,7 +136,7 @@ const remarkShiki = async ({ theme, langs = [] }: Config) => {
         type: "element",
         tagName: "div",
         data: {
-          hName: "AutoCodeSnippet",
+          hName: "div",
           hProperties: {
             class: "code-snippet",
           },
@@ -106,15 +144,7 @@ const remarkShiki = async ({ theme, langs = [] }: Config) => {
         children: [...title, { type: "html", value: html }],
       };
 
-      if (node.frontmatter.title) {
-        console.log(codeSnippetWrapper);
-      }
-
       parent.children.splice(index, 1, codeSnippetWrapper);
-
-      if (node.frontmatter.title) {
-        console.log(parent);
-      }
     });
   };
 };
