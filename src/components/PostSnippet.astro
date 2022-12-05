@@ -9,9 +9,14 @@ const { title, description, url } = Astro.props;
 ---
 
 <a class="group no-underline" href={url}>
-  <h3 class="text-xl font-bold py-3 dark:group-hover:text-purple-400 group-hover:text-purple-600">
+  <div class="relative py-3 w-max">
+  <h3 class="text-xl font-bold">
     {title}
   </h3>
+  <span
+    class="h-0.5 left-0 w-full block absolute scale-x-0 group-hover:scale-x-100 transition-transform ease-in origin-left group-hover:bg-black dark:group-hover:bg-white"
+  ></span>
+  </div>
   <p class="dark:text-gray-300 font-normal pb-5">{description}</p>
   <div class="font-bold">
     Read More
