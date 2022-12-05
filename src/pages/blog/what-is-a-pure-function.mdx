@@ -52,7 +52,11 @@ for (let i = 1; i =< 100; i++) {
 
 A more complex example that calculates the price of items in an order:
 
-```js highlight={9-10}
+```js
+---
+highlight: {9-10}
+---
+
 const order = {
   items: [
     { name: "bandage", price: 1.25 },
@@ -111,7 +115,7 @@ This immediately begs the question:
 
 There are a couple answers to these questions, but the easiest is to just clearly separate them.
 
-Let’s re-write the example above by separating side-effect and pure functions:
+Let's re-write the example above by separating side-effect and pure functions:
 
 ```js
 let state = 2;

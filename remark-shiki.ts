@@ -47,7 +47,7 @@ const remarkShiki = async ({ theme, langs = [] }: Config) => {
   // TODO: It would be SICK to use react for this.
   return () => (tree: any) => {
     visit(tree, "inlineCode", (node) => {
-      let lang = "plaintext";
+      let lang: string | null = null;
 
       const inlineCodeRegex = /(.+)__(.+)/;
 
@@ -60,12 +60,16 @@ const remarkShiki = async ({ theme, langs = [] }: Config) => {
         node.value = match[2];
       }
 
+      if (lang === null) {
+        // Halt highlighting if no lang is given
+        return;
+      }
+
       const langExists = highlighter.getLoadedLanguages().includes(lang as any);
 
       if (!langExists) {
-        // eslint-disable-next-line no-console
-        console.warn(`The language "${lang}" doesn't exist, falling back to plaintext.`);
-        lang = "plaintext";
+        console.warn(`The language "${lang}" doesn't exist, halting syntax highlighting.`);
+        return;
       }
 
       let html = highlighter!.codeToHtml(node.value, { lang });
@@ -73,9 +77,8 @@ const remarkShiki = async ({ theme, langs = [] }: Config) => {
       // Handle code wrapping
       html = html.replace(/style="(.*?)"/, 'style="$1; overflow-x: auto;"');
 
-      // FIXME: Should we really be using regex to hack like this?
-      const removePreTagRegex = /<pre.+?>(.+)<\/pre>/
-      html = html.replace(removePreTagRegex, "$1")
+      const removePreTagRegex = /<pre.+?>(.+)<\/pre>/;
+      html = html.replace(removePreTagRegex, "$1");
 
       node.type = "html";
       node.value = html;
@@ -89,7 +92,6 @@ const remarkShiki = async ({ theme, langs = [] }: Config) => {
         if (langExists) {
           lang = node.lang;
         } else {
-          // eslint-disable-next-line no-console
           console.warn(`The language "${node.lang}" doesn't exist, falling back to plaintext.`);
           lang = "plaintext";
         }

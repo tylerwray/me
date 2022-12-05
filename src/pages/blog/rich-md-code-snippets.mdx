@@ -70,7 +70,12 @@ MDX transforms tripple backtick's (` ``` `) into `<pre />` tags on our webpage. 
 
 I like to do this by creating a few encapsulated components. First of which is `jsx__<MDXProvider />`
 
-```jsx file=src/components/MDXProvider.js highlight={4,5}
+```jsx
+---
+title: src/components/MDXProvider.js
+highlight: {4,5}
+---
+
 import React from "react";
 import { MDXProvider as BaseMDXProvider } from "@mdx-js/react";
 
@@ -86,7 +91,12 @@ export default MDXProvider;
 
 Then we create `jsx__<RootWrapper />` to use `jsx__<MDXProvider />` —
 
-```jsx file=src/components/RootWrapper.js highlight={5}
+```jsx
+---
+title: src/components/RootWrapper.js
+highlight: {5}
+---
+
 import React from "react";
 import MDXProvider from "./MDXProvider";
 
@@ -99,13 +109,16 @@ export default RootWrapper;
 
 Finally, we need to modify `wrapRootElement` in both `gatsby-browser.js` and `gatsby-ssr.js` so that our entire app is wrapped with `jsx__<RootWrapper />` —
 
-```jsx file=gatsby-browser.js,gatsby-ssr.js highlight={4-6}
+```jsx
+---
+title: gatsby-browser.js and gatsby-ssr.js
+highlight: {4-6}
+---
+
 import React from "react";
 import RootWrapper from "./src/components/RootWrapper";
 
-export const wrapRootElement = ({ element }) => (
-  <RootWrapper>{element}</RootWrapper>
-);
+export const wrapRootElement = ({ element }) => <RootWrapper>{element}</RootWrapper>;
 ```
 
 Now we are setup to deeply customize the `<pre />` tags rendered by MDX!
@@ -124,7 +137,11 @@ yarn add prism-react-renderer
 
 Now we're going to create our rich code snippet! Create a new component, `jsx__<CodeSnippet />`, that looks like this —
 
-```jsx file=src/components/CodeSnippet.js
+```jsx
+---
+title: src/components/CodeSnippet.js
+---
+
 import React, { useState } from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import "./CodeSnippet.css";
@@ -204,7 +221,11 @@ code snippet which is very useful for blog posts like this one 😉.
 
 Finally, here's the accompanying styles that make our code snippet beautiful —
 
-```css file=src/components/CodeSnippet.css
+```css
+---
+title: src/components/CodeSnippet.css
+---
+
 .code-wrapper {
   position: relative;
 }
@@ -267,7 +288,12 @@ Finally, here's the accompanying styles that make our code snippet beautiful —
 
 Revisiting our `jsx__<MDXProvider />` component, we're going to wire up our `jsx__<CodeSnippet />` component to MDX when it renders `<pre />` tags.
 
-```jsx file=src/components/MDXProvider.js highlight={31-33}
+```jsx
+---
+title: src/components/MDXProvider.js
+highlight: {31-33}
+---
+
 import React from "react";
 import { MDXProvider as BaseMDXProvider } from "@mdx-js/react";
 import CodeSnippet from "./CodeSnippet";
@@ -323,7 +349,11 @@ Here's how.
 
 Add an `inlineCode` option to the `components` in our `jsx__<MDXProvider />` —
 
-```jsx file=src/components/MDXProvider.js highlight={26-28}
+```jsx
+---
+title: src/components/MDXProvider.js
+highlight: {26-28}
+---
 import React from "react";
 import { MDXProvider as BaseMDXProvider } from "@mdx-js/react";
 import InlineCode from "./InlineCode";
@@ -362,7 +392,11 @@ export default MDXProvider;
 
 Then create your `jsx__<InlineCode />` component.
 
-```jsx file=src/components/InlineCode.js
+```jsx
+---
+title: src/components/InlineCode.js
+---
+
 import React from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
 
@@ -391,7 +425,11 @@ export default InlineCode;
 
 And finally the styles to make it pretty 😍
 
-```css file=src/components/InlineCode.css
+```css
+---
+title: src/components/InlineCode.css
+---
+
 .inline-code {
   font-size: 0.875rem;
   line-height: 1.25rem;

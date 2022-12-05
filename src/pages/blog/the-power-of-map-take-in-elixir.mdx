@@ -52,7 +52,11 @@ could get pretty unwieldy.
 
 Using [`Map.take/2`](https://hexdocs.pm/elixir/Map.html#take/2) is so much simpler when you just need to check if a key exists.
 
-```elixir highlight={4}
+```elixir
+---
+highlight: {4}
+---
+
 def call do
   source = get_some_map()
 
@@ -95,7 +99,11 @@ end
 
 Again, using [`Map.take/2`](https://hexdocs.pm/elixir/Map.html#take/2) is so much simpler.
 
-```elixir highlight={2-3}
+```elixir
+---
+highlight: {2-3}
+---
+
 def call(args) do
   contact = Map.take(args, [:phone, :email])
   address = Map.take(args, [:line1, :line2, :city, :state, :postal_code, :country])

@@ -40,9 +40,6 @@ One of my first challenges was I had two components that needed the same data fe
 It looked something like this:
 
 ```jsx
----
-title: "Tyler Was Here"
----
 class Base extends React.Component {
   componentDidMount() {
     apiCall(this.props.type).then((data) => {
@@ -63,8 +60,6 @@ class Widget extends Base {
   }
 }
 ```
-
-> This is bad. Don't ever throw inside `render`.
 
 The idea was that `Widget` extends another component to save some code duplication.
 Don't use the `extends` keyword to inherit other React components.
@@ -99,16 +94,13 @@ function Inner({ title, date, isTesting, onHover, onClick }) {
 
 You can mask the problem like this:
 
-```jsx highlight={4}
+```jsx
+---
+highlight: {4}
+---
+
 function Outer({ data, onHover, onClick, onSaveInner }) {
-  return (
-    <Inner
-      {...data}
-      onHover={onHover}
-      onClick={onClick}
-      onSaveInner={onSaveInner}
-    />
-  );
+  return <Inner {...data} onHover={onHover} onClick={onClick} onSaveInner={onSaveInner} />;
 }
 
 function Inner({ title, date, isTesting, onHover, onClick }) {
@@ -160,12 +152,17 @@ Co-location is perfectly valid if you don't need to reuse the code elsewhere.
 Take the following NavBar component for example:
 
 ```jsx file=NavBar.js highlight={5-10,16-19}
+---
+title: NavBar.js
+highlight: {5-10,16-19}
+---
+
 import React from "react";
 import axios from "axios";
 import styled from "styled-components";
 
 // Styled-components are my favorite 😊💅
-const Header = styled.h1`
+const Title = styled.h1`
   background-color: #dc8b22;
   font-size: 1.5rem;
   text-decoration: underline;
@@ -198,11 +195,12 @@ export function NavBar() {
 
   return (
     <header>
+      <Title>Find things!</Title>
       <form onSubmit={search}>
         <input placeholder="Search" onChange={handleChange} />
       </form>
       {results.map((result) => (
-        <div key={result.id}>{result.value}</div>
+        <Result key={result.id}>{result.value}</Result>
       ))}
     </header>
   );
