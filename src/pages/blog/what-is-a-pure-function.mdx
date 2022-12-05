@@ -36,11 +36,19 @@ const cowSay = (phrase) => `The cow says ${phrase}`;
 We say `cowSay` is pure because if you call it with the string `'moo'` , it will always return the string `'The cow says moo'`, no matter how many times you call it.
 
 ```js
+---
+title: Example
+---
 for (let i = 1; i =< 100; i++) {
   const says = cowSay("moo")
   console.log(`${i}: ${says}`)
 }
-// Output
+```
+
+```
+---
+title: Output
+---
 // 1: The cow says moo
 // 2: The cow says moo
 // 3: The cow says moo

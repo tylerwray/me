@@ -10,12 +10,12 @@ import { visit } from "unist-util-visit";
 const highlighterCacheAsync = new Map<string, Promise<shiki.Highlighter>>();
 
 interface Config {
-  theme: string;
+  theme: shiki.IThemeRegistration;
   langs?: shiki.Lang[];
 }
 
 const remarkShiki = async ({ theme, langs = [] }: Config) => {
-  const cacheID: string = theme;
+  const cacheID = theme as string;
   let highlighterAsync = highlighterCacheAsync.get(cacheID);
   if (!highlighterAsync) {
     highlighterAsync = getHighlighter({ theme }).then((hl) => {
@@ -134,6 +134,15 @@ const remarkShiki = async ({ theme, langs = [] }: Config) => {
           ]
         : [];
 
+      const copyButton = {
+        type: "element",
+        data: {
+          hName: "button",
+          hProperties: { class: "code-snippet-copy-button" },
+        },
+        children: [{ type: "text", value: "Copy" }],
+      };
+
       const codeSnippetWrapper = {
         type: "element",
         tagName: "div",
@@ -143,7 +152,7 @@ const remarkShiki = async ({ theme, langs = [] }: Config) => {
             class: "code-snippet",
           },
         },
-        children: [...title, { type: "html", value: html }],
+        children: [...title, copyButton, { type: "html", value: html }],
       };
 
       parent.children.splice(index, 1, codeSnippetWrapper);

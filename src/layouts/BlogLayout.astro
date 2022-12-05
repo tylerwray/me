@@ -19,27 +19,39 @@ const fullUrl = `https://tylerwray.me${url}`;
 const githubEditPath = `/src/pages${url}.md`;
 ---
 
-<script>
-  // TODO: Make clipboard copy button on code snippets
-  function copyToClipboard(str) {
-    const el = document.createElement("textarea");
-    el.value = str;
-    el.setAttribute("readonly", "");
-    el.style.position = "absolute";
-    el.style.left = "-9999px";
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand("copy");
-    document.body.removeChild(el);
-  }
-</script>
-
 <BaseLayout
   title={frontmatter.title}
   tags={frontmatter.tags}
   image={frontmatter.image.src}
   imageAlt={frontmatter.image.alt}
 >
+  <script>
+    async function copyToClipboard(e: Event) {
+      // Traverse the dom to find the code string.
+      // <button /> is sibling of <pre /> who has a child of <code /> that we want to copy.
+      const button = e.currentTarget as HTMLButtonElement;
+
+      if (!button) {
+        return;
+      }
+
+      const codeToCopy = button.nextSibling?.firstChild?.textContent ?? "";
+
+      try {
+        await navigator.clipboard.writeText(codeToCopy);
+        button.innerText = "Copied!";
+        setTimeout(() => {
+          button.innerText = "Copy";
+        }, 2500);
+      } catch (e) {
+        console.error("Could not copy code: ", e);
+      }
+    }
+
+    document.querySelectorAll(".code-snippet-copy-button").forEach((button) => {
+      button.addEventListener("click", copyToClipboard);
+    });
+  </script>
   <header>
     <h1 class="text-3xl font-extrabold pb-2">
       {frontmatter.title}
