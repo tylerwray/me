@@ -9,9 +9,40 @@ module.exports = {
       colors: {
         purple: colors.violet,
       },
+      // See tailwind default theme for theme keys
+      // https://github.com/tailwindlabs/tailwindcss/blob/master/stubs/defaultConfig.stub.js
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {
+            blockquote: {
+              backgroundColor: theme("colors.purple.100"),
+              borderLeftColor: theme("colors.purple.400"),
+              borderLeftWidth: theme("borderWidth.8"),
+              marginBottom: theme("spacing.4"),
+              marginInline: '-0.5rem',
+              paddingBlock: theme("spacing.4"),
+              borderRadius: theme("borderRadius.md"),
+              quotes: "none",
+              "& > p": {
+                padding: 0,
+                margin: 0,
+              },
+            },
+            a: {
+              color: theme("colors.purple.600"),
+              textDecorationLine: "none",
+              "&:hover": {
+                textDecorationLine: "underline",
+              },
+            },
+            h1: {
+              fontSize: theme("fontSize.3xl")[0],
+              lineHeight: theme("fontSize.3xl")[1].lineHeight,
+            },
+            img: {
+              borderRadius: theme("borderRadius.md"),
+              margin: "0 auto",
+            },
             "p, li": {
               code: {
                 color: "inherit",
@@ -35,6 +66,14 @@ module.exports = {
         // Dark Mode specific styles
         invert: {
           css: {
+            blockquote: {
+              backgroundColor: "rgba(121,72,232,0.2)",
+              borderLeftColor: theme("colors.purple.800"),
+            },
+            a: {
+              color: theme("colors.purple.400"),
+              border: theme("colors.purple.800"),
+            },
             "p, li": {
               code: {
                 backgroundColor: theme("colors.zinc.800"),
