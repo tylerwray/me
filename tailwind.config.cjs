@@ -14,12 +14,21 @@ module.exports = {
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {
+            p: {
+              margin: 0,
+              paddingBottom: theme("spacing.5"),
+            },
+            "h1, h2, h3, h4, h5, h6": {
+              margin: 0,
+            },
             blockquote: {
+              fontWeight: theme("fontWeight.normal"),
+              fontStyle: "normal",
               backgroundColor: theme("colors.purple.100"),
               borderLeftColor: theme("colors.purple.400"),
               borderLeftWidth: theme("borderWidth.8"),
               marginBottom: theme("spacing.4"),
-              marginInline: '-0.5rem',
+              marginInline: "-0.5rem",
               paddingBlock: theme("spacing.4"),
               borderRadius: theme("borderRadius.md"),
               quotes: "none",

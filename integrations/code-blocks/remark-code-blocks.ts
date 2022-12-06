@@ -39,12 +39,12 @@ const remarkShiki = async () => {
 
   // TODO: It would be SICK to use react for this.
   return () => (tree: any) => {
-    visit(tree, "inlineCode", (node) => {
+    visit(tree, "inlineCode", (node, index, parent) => {
       let lang: string | null = null;
 
       const inlineCodeRegex = /(.+)__(.+)/;
 
-      // Language is given to inline code snippets
+      // Language is given to inline code blocks
       // with __ like so: node.value: "`jsx__<SomeComponent />`"
       if (inlineCodeRegex.test(node.value)) {
         const match = node.value.match(inlineCodeRegex);
@@ -65,16 +65,46 @@ const remarkShiki = async () => {
         return;
       }
 
-      let html = highlighter.codeToHtml(node.value, { lang });
+      const darkBlockHtml = removePreTag(buildBlock({ theme: DARK_THEME, code: node.value, lang, highlighter }));
+      const lightBlockHtml = removePreTag(buildBlock({ theme: LIGHT_THEME, code: node.value, lang, highlighter }));
 
-      // Handle code wrapping
-      html = html.replace(/style="(.*?)"/, 'style="$1; overflow-x: auto;"');
+      const darkBlockWrapper = {
+        type: "element",
+        tagName: "span",
+        data: {
+          hName: "span",
+          hProperties: {
+            class: "dark-theme-inline-code-block",
+          },
+        },
+        children: [{ type: "html", value: darkBlockHtml }],
+      };
 
-      const removePreTagRegex = /<pre.+?>(.+)<\/pre>/;
-      html = html.replace(removePreTagRegex, "$1");
+      const lightBlockWrapper = {
+        type: "element",
+        tagName: "span",
+        data: {
+          hName: "span",
+          hProperties: {
+            class: "light-theme-inline-code-block",
+          },
+        },
+        children: [{ type: "html", value: lightBlockHtml }],
+      };
 
-      node.type = "html";
-      node.value = html;
+      const codeBlockWrapper = {
+        type: "element",
+        tagName: "span",
+        data: {
+          hName: "span",
+          hProperties: {
+            class: "inline-code-block",
+          },
+        },
+        children: [darkBlockWrapper, lightBlockWrapper],
+      };
+
+      parent.children.splice(index, 1, codeBlockWrapper);
     });
 
     visit(tree, "code", (node, index, parent) => {
@@ -109,56 +139,56 @@ const remarkShiki = async () => {
         type: "element",
         data: {
           hName: "button",
-          hProperties: { class: "code-snippet-copy-button" },
+          hProperties: { class: "code-block-copy-button" },
         },
         children: [{ type: "text", value: "Copy" }],
       };
 
-      const darkSnippetHtml = buildSnippet({ theme: DARK_THEME, code: node.value, lang, highlighter });
-      const lightSnippetHtml = buildSnippet({ theme: LIGHT_THEME, code: node.value, lang, highlighter });
+      const darkBlockHtml = buildBlock({ theme: DARK_THEME, code: node.value, lang, highlighter });
+      const lightBlockHtml = buildBlock({ theme: LIGHT_THEME, code: node.value, lang, highlighter });
 
-      const darkSnippetWrapper = {
+      const darkBlockWrapper = {
         type: "element",
         tagName: "div",
         data: {
           hName: "div",
           hProperties: {
-            class: "dark-theme-code-snippet",
+            class: "dark-theme-code-block",
           },
         },
-        children: [{ type: "html", value: darkSnippetHtml }],
+        children: [{ type: "html", value: darkBlockHtml }],
       };
 
-      const lightSnippetWrapper = {
+      const lightBlockWrapper = {
         type: "element",
         tagName: "div",
         data: {
           hName: "div",
           hProperties: {
-            class: "light-theme-code-snippet",
+            class: "light-theme-code-block",
           },
         },
-        children: [{ type: "html", value: lightSnippetHtml }],
+        children: [{ type: "html", value: lightBlockHtml }],
       };
 
-      const codeSnippetWrapper = {
+      const codeBlockWrapper = {
         type: "element",
         tagName: "div",
         data: {
           hName: "div",
           hProperties: {
-            class: "code-snippet",
+            class: "code-block",
           },
         },
-        children: [...title, copyButton, darkSnippetWrapper, lightSnippetWrapper],
+        children: [...title, copyButton, darkBlockWrapper, lightBlockWrapper],
       };
 
-      parent.children.splice(index, 1, codeSnippetWrapper);
+      parent.children.splice(index, 1, codeBlockWrapper);
     });
   };
 };
 
-function buildSnippet({
+function buildBlock({
   theme,
   code,
   lang,
@@ -192,6 +222,11 @@ function buildSnippet({
   html = html.replace(/style="(.*?)"/, 'style="$1; overflow-x: auto;"');
 
   return html;
+}
+
+function removePreTag(html: string): string {
+  const removePreTagRegex = /<pre.+?>(.+)<\/pre>/;
+  return html.replace(removePreTagRegex, "$1");
 }
 
 export default remarkShiki;

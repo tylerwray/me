@@ -1,16 +1,15 @@
 import type { AstroIntegration } from "astro";
-import remarkShiki from "../remark-shiki";
+import remarkCodeBlocks from "./remark-code-blocks";
 import remarkCodeFrontmatter from "remark-code-frontmatter";
 
-// TODO: Does this have to be an integration?
-export function codeSnippets(): AstroIntegration {
+export function codeBlocks(): AstroIntegration {
   return {
-    name: "code-snippets",
+    name: "code-blocks",
     hooks: {
       "astro:config:setup": async ({ updateConfig }) => {
         updateConfig({
           markdown: {
-            remarkPlugins: [remarkCodeFrontmatter, await remarkShiki()],
+            remarkPlugins: [remarkCodeFrontmatter, await remarkCodeBlocks()],
           },
         });
       },

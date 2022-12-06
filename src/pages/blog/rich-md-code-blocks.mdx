@@ -1,28 +1,28 @@
 ---
-title: Rich Markdown Code Snippets
-description: I've recently spent a good amount of time (probably too much) customizing the code snippets on my blog here to my exact liking. There's much more I want to do, but I'm really proud of how they turned out and I want to share with you how I created them!
+title: Rich Markdown Code Blocks
+description: I've recently spent a good amount of time (probably too much) customizing the code blocks on my blog here to my exact liking. There's much more I want to do, but I'm really proud of how they turned out and I want to share with you how I created them!
 layout: ../../layouts/BlogLayout.astro
 tags:
   - gatsby
   - mdx
 publishedOn: 2021-12-16
 image:
-  src: /assets/images/swerved-building.jpg
-  alt: Swerved Building
-  creditName: Elliot Paris
-  creditUrl: https://unsplash.com/@elliotparis
+  src: /assets/images/blocks.jpg
+  alt: Architecture Blocks
+  creditName: Desmond Marshall
+  creditUrl: https://unsplash.com/@ddmarshall?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 ---
 
-I've recently spent a good amount of time (probably too much) customizing the code snippets on my blog here to my exact liking. There's much more I want to do, but I'm really proud of how they turned out and I want to share with you how I created them!
+I've recently spent a good amount of time (probably too much) customizing the code blocks on my blog here to my exact liking. There's much more I want to do, but I'm really proud of how they turned out and I want to share with you how I created them!
 
-Its my humble opinion that good code snippets are some of the most beautiful pieces of user interface on the web.
+Its my humble opinion that good code blocks are some of the most beautiful pieces of user interface on the web.
 
-When I think of a good dev blog or good dev docs; I think of beautiful, rich, elegant code snippets that show snippets of code in context with the post. Done well, code snippets can really enhance the experience of reading development content. Some of my favorite code snippets are on sites like
+When I think of a good dev blog or good dev docs; I think of beautiful, rich, elegant code blocks that show blocks of code in context with the post. Done well, code blocks can really enhance the experience of reading development content. Some of my favorite code blocks are on sites like
 [Gatsby](gatsbyjs.com/), [Stripe](https://stripe.com/docs/js), and [Josh W Comeau's Blog](https://www.joshwcomeau.com).
 
-## Markdown Code Snippets
+## Markdown Code Blocks
 
-Even _more_ beautiful to me are code snippets in markdown because you can take this basic syntax —
+Even _more_ beautiful to me are code blocks in markdown because you can take this basic syntax —
 
 ````
 ```js
@@ -32,7 +32,7 @@ function hi() {
 ```
 ````
 
-— and transform it into this beautiful and feature rich code snippet for your readers!
+— and transform it into this beautiful and feature rich code block for your readers!
 
 ```js
 function hi() {
@@ -44,7 +44,7 @@ This is what makes Markdown so powerful! Writing minimal syntax, with intent, re
 
 ## My Setup
 
-I'm gunna show you how I was able to make these custom code snippets on my blog using [Gatsby](https://gatsbyjs.com/), [MDX](https://mdxjs.com/), and [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer).
+I'm gunna show you how I was able to make these custom code blocks on my blog using [Gatsby](https://gatsbyjs.com/), [MDX](https://mdxjs.com/), and [prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer).
 
 > In this post I'm going to assume you know the basics of React. Things like rendering components, props, state, hooks.
 
@@ -79,7 +79,7 @@ highlight: {4,5}
 import React from "react";
 import { MDXProvider as BaseMDXProvider } from "@mdx-js/react";
 
-// This is what we'll use later to customize our code snippets!
+// This is what we'll use later to customize our code blocks!
 const components = {};
 
 function MDXProvider({ children }) {
@@ -125,9 +125,9 @@ Now we are setup to deeply customize the `<pre />` tags rendered by MDX!
 
 ## PrismJS and prism-react-renderer
 
-[PrismJS](https://prismjs.com/) is a syntax highlighting library for code snippets on the web. It works by taking in code and wrapping the pieces of the code in HTML tags with semantic class names so we can style things like variables, function names, booleans, numbers, etc.
+[PrismJS](https://prismjs.com/) is a syntax highlighting library for code blocks on the web. It works by taking in code and wrapping the pieces of the code in HTML tags with semantic class names so we can style things like variables, function names, booleans, numbers, etc.
 
-[prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer) wraps PrismJS and gives us control to render each element as we see fit! This is the power that gives us the ability to create such rich and beautiful code snippets.
+[prism-react-renderer](https://github.com/FormidableLabs/prism-react-renderer) wraps PrismJS and gives us control to render each element as we see fit! This is the power that gives us the ability to create such rich and beautiful code blocks.
 
 Install `prism-react-render` by running —
 
@@ -135,18 +135,18 @@ Install `prism-react-render` by running —
 yarn add prism-react-renderer
 ```
 
-Now we're going to create our rich code snippet! Create a new component, `jsx__<CodeSnippet />`, that looks like this —
+Now we're going to create our rich code block! Create a new component, `jsx__<CodeBlock />`, that looks like this —
 
 ```jsx
 ---
-title: src/components/CodeSnippet.js
+title: src/components/CodeBlock.js
 ---
 
 import React, { useState } from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
-import "./CodeSnippet.css";
+import "./CodeBlock.css";
 
-function CodeSnippet({ children, lang = "markup" }) {
+function CodeBlock({ children, lang = "markup" }) {
   return (
     <Highlight {...defaultProps} code={children.trim()} language={lang}>
       {({ class, style, tokens, getLineProps, getTokenProps }) => (
@@ -154,17 +154,17 @@ function CodeSnippet({ children, lang = "markup" }) {
           <div class="code-language-badge">{lang}</div>
           <pre class={`code-preformatted ${class}`} style={style}>
             <CopyButton codeString={codeString} />
-            <code class="code-snippet">
+            <code class="code-block">
               {tokens.map((line, i) => (
                 <div
                   {...getLineProps({
                     line,
                     key: i,
-                    class: "code-snippet-line-wrapper",
+                    class: "code-block-line-wrapper",
                   })}
                 >
-                  <div class="code-snippet-line-number">{i + 1}</div>
-                  <div class="code-snippet-line">
+                  <div class="code-block-line-number">{i + 1}</div>
+                  <div class="code-block-line">
                     {line.map((token, key) => (
                       <span {...getTokenProps({ token, key })} />
                     ))}
@@ -196,7 +196,7 @@ function CopyButton({ codeString }) {
 
   return (
     <button
-      class="code-snippet-copy-button"
+      class="code-block-copy-button"
       onClick={() => {
         copyToClipboard(codeString);
         setIsCopied(true);
@@ -207,23 +207,23 @@ function CopyButton({ codeString }) {
     </button>
   );
 }
-export default CodeSnippet;
+export default CodeBlock;
 ```
 
 Let's pause and read through this code for a bit. There's a lot to unpack.
 
-First off we have the `jsx__<CodeSnippet />` component which does all the magic of rendering each code snippet. This is a very nested and complex component. However, this complexity allows us to customize each intricate detail because we control how each element is rendered with react.
+First off we have the `jsx__<CodeBlock />` component which does all the magic of rendering each code block. This is a very nested and complex component. However, this complexity allows us to customize each intricate detail because we control how each element is rendered with react.
 
-In `jsx__<CodeSnippet />` we have our `jsx__<Highlight />` component from `prism-react-renderer`. If you're curious about the inner workings here, refer to the `prism-react-renderer` [README](https://github.com/FormidableLabs/prism-react-renderer).
+In `jsx__<CodeBlock />` we have our `jsx__<Highlight />` component from `prism-react-renderer`. If you're curious about the inner workings here, refer to the `prism-react-renderer` [README](https://github.com/FormidableLabs/prism-react-renderer).
 
-Then we have our `jsx__<CopyButton />` component which is placed within the code snippet allowing the user to copy our
-code snippet which is very useful for blog posts like this one 😉.
+Then we have our `jsx__<CopyButton />` component which is placed within the code block allowing the user to copy our
+code block which is very useful for blog posts like this one 😉.
 
-Finally, here's the accompanying styles that make our code snippet beautiful —
+Finally, here's the accompanying styles that make our code block beautiful —
 
 ```css
 ---
-title: src/components/CodeSnippet.css
+title: src/components/CodeBlock.css
 ---
 
 .code-wrapper {
@@ -251,16 +251,16 @@ title: src/components/CodeSnippet.css
   padding-bottom: 1.5rem;
 }
 
-.code-snippet {
+.code-block {
   display: inline-block;
 }
 
-.code-snippet-line-wrapper {
+.code-block-line-wrapper {
   position: relative;
   display: flex;
 }
 
-.code-snippet-line-number {
+.code-block-line-number {
   position: sticky;
   display: inline-block;
   left: 0;
@@ -271,11 +271,11 @@ title: src/components/CodeSnippet.css
   width: 3rem;
 }
 
-.code-snippet-line {
+.code-block-line {
   display: inline;
 }
 
-.code-snippet-copy-button {
+.code-block-copy-button {
   border-radius: 0.25rem;
   position: absolute;
   top: 0.5rem;
@@ -286,7 +286,7 @@ title: src/components/CodeSnippet.css
 }
 ```
 
-Revisiting our `jsx__<MDXProvider />` component, we're going to wire up our `jsx__<CodeSnippet />` component to MDX when it renders `<pre />` tags.
+Revisiting our `jsx__<MDXProvider />` component, we're going to wire up our `jsx__<CodeBlock />` component to MDX when it renders `<pre />` tags.
 
 ```jsx
 ---
@@ -296,16 +296,16 @@ highlight: {31-33}
 
 import React from "react";
 import { MDXProvider as BaseMDXProvider } from "@mdx-js/react";
-import CodeSnippet from "./CodeSnippet";
+import CodeBlock from "./CodeBlock";
 
 function transformCode({ children, class, ...props }) {
   // Parse lang from class. i.e. class is "language-jsx"
   const lang = class && class.split("-")[1];
 
   return (
-    <CodeSnippet lang={lang} {...props}>
+    <CodeBlock lang={lang} {...props}>
       {children}
-    </CodeSnippet>
+    </CodeBlock>
   );
 }
 
@@ -318,7 +318,7 @@ function getCodeChild(children) {
 }
 
 const Pre = ({ children }) => {
-  // Try to render a rich code snippet, fallback to plain
+  // Try to render a rich code block, fallback to plain
   // <pre /> tag otherwise.
   const codeChild = getCodeChild(children);
   return codeChild ? transformCode(codeChild.props) : <pre>{children}</pre>;
@@ -335,13 +335,13 @@ function MDXProvider({ children }) {
 export default MDXProvider;
 ```
 
-And that's it! We've now got rich and beautiful code snippets on the page. The cool thing with this approach is our `jsx__<CodeSnippet />` component is very extensible. You can add line highlighting, file names, titles, and more. Anything you can imagine!
+And that's it! We've now got rich and beautiful code blocks on the page. The cool thing with this approach is our `jsx__<CodeBlock />` component is very extensible. You can add line highlighting, file names, titles, and more. Anything you can imagine!
 
 For more fun like theming, language support, and line highlights; refer to the `prism-react-renderer` [README](https://github.com/FormidableLabs/prism-react-renderer).
 
-## Bonus - Inline Code Snippets
+## Bonus - Inline Code Blocks
 
-A little bonus... have you noticed all the nicely formtted inline code snippets? Like this one: `jsx__<MDXProvider />`?
+A little bonus... have you noticed all the nicely formtted inline code blocks? Like this one: `jsx__<MDXProvider />`?
 
 Well that's all done with `prism-react-renderer` and MDX as well!
 
@@ -367,7 +367,7 @@ const Code = ({ children }) => {
   let inlineCode = children;
 
   // We'll be using double underscores to set our language for
-  // inline code snippets.
+  // inline code blocks.
   const RE = /__/;
 
   if (RE.test(children)) {
@@ -439,7 +439,7 @@ title: src/components/InlineCode.css
 }
 ```
 
-There you have it! Now you can write snippets inline with single backticks like this —
+There you have it! Now you can write blocks inline with single backticks like this —
 
 ```
 `css__font-size: 1rem;`
@@ -453,4 +453,4 @@ There you have it! Now you can write snippets inline with single backticks like 
 
 which will render this `css__font-size: 1rem;` and this `jsx__<MDXProvider />`.
 
-Hopefully you now have beautiful, rich, inline and multi-line code snippets. Drop a comment if this helped you out and send me a picture of your snippets on twitter [@wray_tw](https://twitter.com/wray_tw)!
+Hopefully you now have beautiful, rich, inline and multi-line code blocks. Drop a comment if this helped you out and send me a picture of your blocks on twitter [@wray_tw](https://twitter.com/wray_tw)!
