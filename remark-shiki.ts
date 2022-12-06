@@ -9,16 +9,15 @@ import { visit } from "unist-util-visit";
  */
 const highlighterCacheAsync = new Map<string, Promise<shiki.Highlighter>>();
 
-interface Config {
-  theme: shiki.IThemeRegistration;
-  langs?: shiki.Lang[];
-}
+const DARK_THEME = "github-dark";
+const LIGHT_THEME = "github-light";
 
-const remarkShiki = async ({ theme, langs = [] }: Config) => {
-  const cacheID = theme as string;
+const remarkShiki = async () => {
+  const themes = [LIGHT_THEME, DARK_THEME];
+  const cacheID = themes.join("-");
   let highlighterAsync = highlighterCacheAsync.get(cacheID);
   if (!highlighterAsync) {
-    highlighterAsync = getHighlighter({ theme }).then((hl) => {
+    highlighterAsync = getHighlighter({ themes }).then((hl) => {
       hl.setColorReplacements({
         "#000001": "var(--astro-code-color-text)",
         "#000002": "var(--astro-code-color-background)",
@@ -37,12 +36,6 @@ const remarkShiki = async ({ theme, langs = [] }: Config) => {
     highlighterCacheAsync.set(cacheID, highlighterAsync);
   }
   const highlighter = await highlighterAsync;
-
-  // NOTE: There may be a performance issue here for large sites that use `lang`.
-  // Since this will be called on every page load. Unclear how to fix this.
-  for (const lang of langs) {
-    await highlighter.loadLanguage(lang);
-  }
 
   // TODO: It would be SICK to use react for this.
   return () => (tree: any) => {
@@ -72,7 +65,7 @@ const remarkShiki = async ({ theme, langs = [] }: Config) => {
         return;
       }
 
-      let html = highlighter!.codeToHtml(node.value, { lang });
+      let html = highlighter.codeToHtml(node.value, { lang });
 
       // Handle code wrapping
       html = html.replace(/style="(.*?)"/, 'style="$1; overflow-x: auto;"');
@@ -99,28 +92,6 @@ const remarkShiki = async ({ theme, langs = [] }: Config) => {
         lang = "plaintext";
       }
 
-      let html = highlighter!.codeToHtml(node.value, { lang });
-
-      // Q: Couldn't these regexes match on a user's inputted code blocks?
-      // A: Nope! All rendered HTML is properly escaped.
-      // Ex. If a user typed `<span class="line"` into a code block,
-      // It would become this before hitting our regexes:
-      // &lt;span class=&quot;line&quot;
-
-      // Replace "shiki" class naming with "astro".
-      html = html.replace('<pre class="shiki"', `<pre class="astro-code"`);
-
-      // Add "user-select: none;" for "+"/"-" diff symbols
-      if (node.lang === "diff") {
-        html = html.replace(
-          /<span class="line"><span style="(.*?)">([\+|\-])/g,
-          '<span class="line"><span style="$1"><span style="user-select: none;">$2</span>'
-        );
-      }
-
-      // Handle code wrapping
-      html = html.replace(/style="(.*?)"/, 'style="$1; overflow-x: auto;"');
-
       const title = node.frontmatter?.title
         ? [
             {
@@ -143,6 +114,33 @@ const remarkShiki = async ({ theme, langs = [] }: Config) => {
         children: [{ type: "text", value: "Copy" }],
       };
 
+      const darkSnippetHtml = buildSnippet({ theme: DARK_THEME, code: node.value, lang, highlighter });
+      const lightSnippetHtml = buildSnippet({ theme: LIGHT_THEME, code: node.value, lang, highlighter });
+
+      const darkSnippetWrapper = {
+        type: "element",
+        tagName: "div",
+        data: {
+          hName: "div",
+          hProperties: {
+            class: "dark-theme-code-snippet",
+          },
+        },
+        children: [{ type: "html", value: darkSnippetHtml }],
+      };
+
+      const lightSnippetWrapper = {
+        type: "element",
+        tagName: "div",
+        data: {
+          hName: "div",
+          hProperties: {
+            class: "light-theme-code-snippet",
+          },
+        },
+        children: [{ type: "html", value: lightSnippetHtml }],
+      };
+
       const codeSnippetWrapper = {
         type: "element",
         tagName: "div",
@@ -152,12 +150,48 @@ const remarkShiki = async ({ theme, langs = [] }: Config) => {
             class: "code-snippet",
           },
         },
-        children: [...title, copyButton, { type: "html", value: html }],
+        children: [...title, copyButton, darkSnippetWrapper, lightSnippetWrapper],
       };
 
       parent.children.splice(index, 1, codeSnippetWrapper);
     });
   };
 };
+
+function buildSnippet({
+  theme,
+  code,
+  lang,
+  highlighter,
+}: {
+  theme: shiki.Theme;
+  code: string;
+  lang: string;
+  highlighter: shiki.Highlighter;
+}): string {
+  let html = highlighter.codeToHtml(code, { lang, theme });
+
+  // Q: Couldn't these regexes match on a user's inputted code blocks?
+  // A: Nope! All rendered HTML is properly escaped.
+  // Ex. If a user typed `<span class="line"` into a code block,
+  // It would become this before hitting our regexes:
+  // &lt;span class=&quot;line&quot;
+
+  // Replace "shiki" class naming with "astro".
+  html = html.replace('<pre class="shiki"', `<pre class="astro-code"`);
+
+  // Add "user-select: none;" for "+"/"-" diff symbols
+  if (lang === "diff") {
+    html = html.replace(
+      /<span class="line"><span style="(.*?)">([\+|\-])/g,
+      '<span class="line"><span style="$1"><span style="user-select: none;">$2</span>'
+    );
+  }
+
+  // Handle code wrapping
+  html = html.replace(/style="(.*?)"/, 'style="$1; overflow-x: auto;"');
+
+  return html;
+}
 
 export default remarkShiki;

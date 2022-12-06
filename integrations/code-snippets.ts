@@ -10,7 +10,7 @@ export function codeSnippets(): AstroIntegration {
       "astro:config:setup": async ({ updateConfig }) => {
         updateConfig({
           markdown: {
-            remarkPlugins: [remarkCodeFrontmatter, await remarkShiki({ theme: "dark-plus" })],
+            remarkPlugins: [remarkCodeFrontmatter, await remarkShiki()],
           },
         });
       },
