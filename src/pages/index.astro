@@ -1,13 +1,11 @@
 ---
 import { Image } from "@astrojs/image/components";
+import RecentPosts from "../components/RecentPosts.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-
 ---
 
 <BaseLayout>
-  <div
-    class="grid sm:grid-cols-2 gap-8 justify-items-center sm:justify-items-end pb-8"
-  >
+  <div class="grid sm:grid-cols-2 gap-8 justify-items-center sm:justify-items-end pb-8">
     <div>
       <h1 class="text-3xl font-extrabold pb-4">
         Hi there, I'm Tyler.{" "}
@@ -15,9 +13,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </h1>
 
       <p class="dark:text-zinc-300">
-        For as long as I can remember, I've loved everything technology. When I
-        discovered that I could create technology with software, it became my
-        second love. It's now my mission to help others discover the beauty in
+        For as long as I can remember, I've loved everything technology. When I discovered that I could create
+        technology with software, it became my second love. It's now my mission to help others discover the beauty in
         software that I've found.
       </p>
     </div>
@@ -31,4 +28,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       aspectRatio="1:1"
     />
   </div>
+
+  <RecentPosts />
 </BaseLayout>
