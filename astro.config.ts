@@ -34,7 +34,7 @@ const createSROnlyLabel = (text: string) => {
 
 // https://astro.build/config
 export default defineConfig({
-  trailingSlash: "never",
+  trailingSlash: 'always',
   site: "https://tylerwray.me/",
   markdown: {
     syntaxHighlight: false,

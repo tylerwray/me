@@ -1,0 +1,23 @@
+---
+import PostSnippet from "../components/PostSnippet.astro";
+import type { Frontmatter } from "../frontmatter";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const posts = (await Astro.glob<Frontmatter>("../pages/blog/**/*.mdx"))
+  .filter((post) => !post.frontmatter.draft)
+  .sort((a, b) => new Date(b.frontmatter.publishedOn).getTime() - new Date(a.frontmatter.publishedOn).getTime());
+---
+
+<BaseLayout title="Blog" description="My blog. My thoughts. My favorite subjects.">
+  <h1 class="text-3xl font-extrabold pb-4">Blog</h1>
+  <p class="pb-8 dark:text-zinc-300">My blog, my thoughts, my favorite subjects.</p>
+  <h2 class="text-2xl font-bold pb-4 uppercase text-purple-600 dark:text-purple-400">Recently Published</h2>
+
+  <main class="grid gap-6">
+    {
+      posts.map((post) => (
+        <PostSnippet title={post.frontmatter.title} description={post.frontmatter.description} url={post.url} />
+      ))
+    }
+  </main>
+</BaseLayout>

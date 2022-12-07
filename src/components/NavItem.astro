@@ -1,25 +1,31 @@
 ---
-interface Props {
-  to: string;
-  isCurrent: boolean;
-}
+import type { HTMLAttributes } from "astro/types";
+interface Props extends HTMLAttributes<"a"> {}
 
-const { to, isCurrent } = Astro.props;
+const { href, ...props } = Astro.props;
+
+let isActive: boolean;
+if (href === "/") {
+  isActive = href === Astro.url.pathname;
+} else {
+  isActive = Astro.url.pathname.includes(typeof href === "string" ? href : href?.href ?? "");
+}
 ---
 
 <a
-  href={to}
-  class={`group mx-2 text-lg no-underline relative ${
-    isCurrent
-      ? "text-black dark:text-white"
-      : "text-gray-500 hover:text-black dark:hover:text-white dark:text-gray-400"
-  }`}
+  class:list={[
+    "group text-lg no-underline relative hover:text-black dark:hover:text-white ",
+    { "text-black dark:text-white": isActive },
+    { "text-zinc-500 dark:text-zinc-400": !isActive },
+  ]}
+  href={href}
+  {...props}
 >
   <slot />
   <span
-    class={`h-0.5 left-0 -bottom-1 w-full block absolute ${
-      isCurrent
-        ? "bg-black dark:bg-white"
-        : "scale-x-0 group-hover:scale-x-100 transition-transform ease-in origin-left group-hover:bg-black dark:group-hover:bg-white"
-    }`}></span>
+    class:list={[
+      "h-0.5 left-0 -bottom-1 w-full block absolute group-hover:scale-x-100 transition-transform ease-in origin-left group-hover:bg-black dark:group-hover:bg-white",
+      { "bg-black dark:bg-white": isActive },
+      { "scale-x-0": !isActive },
+    ]}></span>
 </a>

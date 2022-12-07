@@ -3,20 +3,18 @@ import NavItem from "./NavItem.astro";
 import ThemeButton from "./ThemeButton.astro";
 const emoji = ["🙈", "🌀", "💻", "🤘🏻"];
 const icon = emoji[Math.floor(Math.random() * emoji.length)];
-const pathname = Astro.url.pathname.replace(/\/$/, "")
-console.log("BUILDING PAGE pathname -> ", pathname);
 ---
 
-<nav
-  class="grid grid-cols-[max-content,auto,max-content,max-content,max-content,max-content] p-8 max-w-3xl mx-auto items-center w-full"
->
-  <a href="/" class="text-black dark:text-white no-underline">
+<nav class="grid grid-cols-[1fr_auto] p-8 max-w-3xl mx-auto items-center w-full">
+  <div class="hidden sm:grid grid-flow-col auto-cols-max gap-4">
     <span class="text-2xl" role="img" aria-label="emoji">{icon}</span>
-    <span class="ml-4 text-2xl hidden sm:inline font-mono"> Tyler Wray</span>
-  </a>
-  <div></div>
-  <NavItem to="/" isCurrent={pathname === "/"}>Posts</NavItem>
-  <NavItem to="/me" isCurrent={pathname === "/me"}>Me</NavItem>
-  <NavItem to="/contact" isCurrent={pathname === "/contact"}>Contact</NavItem>
-  <ThemeButton />
+    <span class="text-black dark:text-white text-2xl font-mono"> Tyler Wray</span>
+  </div>
+  <div class="grid grid-flow-col auto-cols-max gap-4">
+    <NavItem href="/">Home</NavItem>
+    <NavItem href="/blog/">Blog</NavItem>
+    <NavItem href="/me/">Me</NavItem>
+    <NavItem href="/contact/">Contact</NavItem>
+    <ThemeButton />
+  </div>
 </nav>
