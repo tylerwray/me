@@ -4,6 +4,7 @@ import ThemeButton from "./ThemeButton.astro";
 const emoji = ["🙈", "🌀", "💻", "🤘🏻"];
 const icon = emoji[Math.floor(Math.random() * emoji.length)];
 const pathname = new URL(Astro.request.url).pathname;
+console.log("BUILDING PAGE pathname -> ", pathname);
 ---
 
 <nav
