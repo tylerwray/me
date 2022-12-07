@@ -3,8 +3,7 @@ import NavItem from "./NavItem.astro";
 import ThemeButton from "./ThemeButton.astro";
 const emoji = ["🙈", "🌀", "💻", "🤘🏻"];
 const icon = emoji[Math.floor(Math.random() * emoji.length)];
-const pathname = new URL(Astro.request.url).pathname;
-console.log("BUILDING PAGE pathname -> ", pathname);
+console.log("BUILDING PAGE pathname -> ", Astro.url.pathname);
 ---
 
 <nav
@@ -15,8 +14,8 @@ console.log("BUILDING PAGE pathname -> ", pathname);
     <span class="ml-4 text-2xl hidden sm:inline font-mono"> Tyler Wray</span>
   </a>
   <div></div>
-  <NavItem to="/" isCurrent={pathname === "/"}>Posts</NavItem>
-  <NavItem to="/me" isCurrent={pathname === "/me"}>Me</NavItem>
-  <NavItem to="/contact" isCurrent={pathname === "/contact"}>Contact</NavItem>
+  <NavItem to="/" isCurrent={Astro.url.pathname === "/"}>Posts</NavItem>
+  <NavItem to="/me" isCurrent={Astro.url.pathname === "/me"}>Me</NavItem>
+  <NavItem to="/contact" isCurrent={Astro.url.pathname === "/contact"}>Contact</NavItem>
   <ThemeButton />
 </nav>

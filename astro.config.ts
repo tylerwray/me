@@ -3,7 +3,7 @@ import tailwind from "@astrojs/tailwind";
 import image from "@astrojs/image";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
-import { toString } from 'hast-util-to-string';
+import { toString } from "hast-util-to-string";
 import { h } from "hastscript";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
@@ -34,6 +34,7 @@ const createSROnlyLabel = (text: string) => {
 
 // https://astro.build/config
 export default defineConfig({
+  trailingSlash: "never",
   site: "https://tylerwray.me/",
   markdown: {
     syntaxHighlight: false,
