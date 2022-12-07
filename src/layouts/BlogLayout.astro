@@ -15,7 +15,7 @@ const publishDate = new Date(frontmatter.publishedOn).toLocaleDateString("en-us"
   month: "long",
   day: "numeric",
 });
-const fullUrl = `https://tylerwray.me${url}`;
+const fullUrl = `https://tylerwray.me${url}`.replace(/\/+$/, '');
 const githubEditPath = `/src/pages${url}.md`;
 ---
 
