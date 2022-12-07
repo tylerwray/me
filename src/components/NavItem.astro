@@ -5,10 +5,11 @@ interface Props extends HTMLAttributes<"a"> {}
 const { href, ...props } = Astro.props;
 
 let isActive: boolean;
+
 if (href === "/") {
   isActive = href === Astro.url.pathname;
 } else {
-  isActive = Astro.url.pathname.includes(typeof href === "string" ? href : href?.href ?? "");
+  isActive = Astro.url.pathname.includes(href);
 }
 ---
 
