@@ -9,7 +9,7 @@ type Props = MarkdownLayoutProps<Frontmatter>;
 const { frontmatter, url } = Astro.props;
 
 const estimatedReadingTime = Math.floor(frontmatter.minutesToRead);
-const books = "📚".repeat(Math.floor(estimatedReadingTime / 2));
+const books = "📚".repeat(Math.floor(estimatedReadingTime / 3));
 const publishDate = new Date(frontmatter.publishedOn).toLocaleDateString("en-us", {
   year: "numeric",
   month: "long",
