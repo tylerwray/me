@@ -78,6 +78,7 @@ const twitterHandle = "@wray_tw";
     <meta name="author" content="Tyler Wray" />
     <meta name="keywords" content={keywords} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script src="/sw.js"></script>
   </head>
   <body
     class="bg-white text-black dark:bg-zinc-900 dark:text-white antialiased"
@@ -89,42 +90,5 @@ const twitterHandle = "@wray_tw";
       <slot />
     </main>
     <Footer />
-    <script>
-      // 2022-12-6: Ship this Javascript to clear the cache and remove service workers
-      // from my old site. 
-      // IDK When I can remove this... but hopefully soon-ish?
-
-      // Clear cache
-      self.addEventListener("activate", function (event) {
-        // @ts-ignore
-        event.waitUntil(
-          caches
-            .keys()
-            .then((cacheNames) =>
-              Promise.all(
-                cacheNames.map((cacheName) => caches.delete(cacheName))
-              )
-            )
-        );
-      });
-
-      self.addEventListener("install", (e) => {
-        // @ts-ignore
-        self.skipWaiting();
-      });
-
-      self.addEventListener("activate", (e) => {
-        // @ts-ignore
-        self.registration
-          .unregister()
-          // @ts-ignore
-          .then(() => self.clients.matchAll())
-          // @ts-ignore
-          .then((clients) => {
-            // @ts-ignore
-            clients.forEach((client) => client.navigate(client.url));
-          });
-      });
-    </script>
   </body>
 </html>
