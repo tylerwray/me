@@ -1,5 +1,5 @@
 ---
-import { Image } from "@astrojs/image/components";
+import { Picture } from "@astrojs/image/components";
 import RecentPosts from "../components/RecentPosts.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
@@ -19,13 +19,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </p>
     </div>
 
-    <Image
+    <Picture
       src="/assets/images/me.jpg"
-      alt="Me at work"
-      format="webp"
-      class="rounded-full"
-      width={208}
+      class="rounded-full overflow-hidden"
+      alt="Image of the author"
       aspectRatio="1:1"
+      widths={[208, 320, 480]}
+      loading="eager"
+      sizes="208px"
+      width={208}
+      height={208}
     />
   </div>
 
