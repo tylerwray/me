@@ -1,0 +1,12 @@
+---
+import RecentPosts from "../components/RecentPosts.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+---
+
+<BaseLayout title="Blog" description="My blog. My thoughts. My favorite subjects.">
+  <h1 class="text-3xl font-extrabold pb-4">Blog</h1>
+  <p class="pb-8 dark:text-zinc-300">My blog, my thoughts, my favorite subjects.</p>
+  
+  <RecentPosts />
+</BaseLayout>

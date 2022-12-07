@@ -1,0 +1,26 @@
+---
+import { Image } from "@astrojs/image/components";
+---
+
+<footer class="w-full bg-zinc-100 dark:bg-zinc-800">
+  <div class="grid sm:grid-cols-2 justify-items-center max-w-3xl mx-auto p-8">
+    <div>
+      <h3 class="text-xl font-bold pb-4">
+        Oh hi, I'm Tyler. <span role="img" aria-label="hand wave">👋</span>
+      </h3>
+      <!-- TODO: Make better -->
+      <p class="dark:text-zinc-300">
+        I'm a software engineer with a passion for learning new things. I love
+        solving hard problems and simplifying them down to their pieces.
+        Presently residing in Utah with my two girls and beautiful wife.
+      </p>
+    </div>
+    <Image
+      class="rounded-full h-48 w-48 hidden sm:block"
+      alt="Family"
+      src="/assets/images/family_192.jpg"
+      width={192}
+      aspectRatio={1}
+    />
+  </div>
+</footer>

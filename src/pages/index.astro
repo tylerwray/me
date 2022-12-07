@@ -1,0 +1,36 @@
+---
+import { Picture } from "@astrojs/image/components";
+import RecentPosts from "../components/RecentPosts.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <div class="grid sm:grid-cols-2 gap-8 justify-items-center sm:justify-items-end pb-8">
+    <div>
+      <h1 class="text-3xl font-extrabold pb-4">
+        Hi there, I'm Tyler.{" "}
+        <span role="img" aria-label="hand wave"> 👋</span>
+      </h1>
+
+      <p class="dark:text-zinc-300">
+        For as long as I can remember, I've loved everything technology. When I discovered that I could create
+        technology with software, it became my second love. It's now my mission to help others discover the beauty in
+        software that I've found.
+      </p>
+    </div>
+
+    <Picture
+      src="/assets/images/me.jpg"
+      class="rounded-full overflow-hidden"
+      alt="Image of the author"
+      aspectRatio="1:1"
+      widths={[208, 320, 480]}
+      loading="eager"
+      sizes="208px"
+      width={208}
+      height={208}
+    />
+  </div>
+
+  <RecentPosts />
+</BaseLayout>
