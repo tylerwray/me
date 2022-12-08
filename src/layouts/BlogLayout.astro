@@ -16,7 +16,7 @@ const publishDate = new Date(frontmatter.publishedOn).toLocaleDateString("en-us"
   day: "numeric",
 });
 const fullUrl = `https://tylerwray.me${url}`;
-const githubEditPath = `/src/pages${url.replace(/\/+$/, '')}.md`;
+const githubEditPath = `/src/pages${url.replace(/\/+$/, '')}.mdx`;
 ---
 
 <BaseLayout
@@ -122,7 +122,7 @@ const githubEditPath = `/src/pages${url.replace(/\/+$/, '')}.md`;
       class="grid grid-cols-[auto_1fr] items-center gap-1 text-purple-600 dark:text-purple-400 hover:underline font-medium"
       target="_blank"
       rel="noopener noreferrer"
-      href={`https://github.com/tylerwray/me/edit/main${githubEditPath}`}
+      href={`https://github.com/tylerwray/me/edit/master${githubEditPath}`}
     >
       <!-- Heroicons: pencil -->
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
