@@ -1,11 +1,35 @@
 ---
 import { Picture } from "@astrojs/image/components";
-import RecentPosts from "../components/RecentPosts.astro";
+import type { Frontmatter } from "../frontmatter";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Pill from "../components/Pill.astro";
+import PostCard from "../components/PostCard.astro";
+
+const latestTutorial = (
+  await Astro.glob<Frontmatter>("../pages/tutorials/**/*.mdx")
+)
+  .filter((post) => !post.frontmatter.draft)
+  .sort(
+    (a, b) =>
+      new Date(b.frontmatter.publishedOn).getTime() -
+      new Date(a.frontmatter.publishedOn).getTime()
+  )
+  .at(0);
+
+const latestBlogPost = (await Astro.glob<Frontmatter>("../pages/blog/**/*.mdx"))
+  .filter((post) => !post.frontmatter.draft)
+  .sort(
+    (a, b) =>
+      new Date(b.frontmatter.publishedOn).getTime() -
+      new Date(a.frontmatter.publishedOn).getTime()
+  )
+  .at(0);
 ---
 
 <BaseLayout>
-  <div class="grid sm:grid-cols-2 gap-8 justify-items-center sm:justify-items-end pb-8">
+  <div
+    class="grid sm:grid-cols-2 gap-8 justify-items-center pb-24"
+  >
     <div>
       <h1 class="text-3xl font-extrabold pb-4">
         Hi there, I'm Tyler.{" "}
@@ -13,8 +37,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </h1>
 
       <p class="dark:text-zinc-300">
-        For as long as I can remember, I've loved everything technology. When I discovered that I could create
-        technology with software, it became my second love. It's now my mission to help others discover the beauty in
+        For as long as I can remember, I've loved everything technology. When I
+        discovered that I could create technology with software, it became my
+        second love. It's now my mission to help others discover the beauty in
         software that I've found.
       </p>
     </div>
@@ -24,13 +49,47 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       class="rounded-full overflow-hidden"
       alt="Image of the author"
       aspectRatio="1:1"
-      widths={[208, 320, 480]}
+      widths={[320, 480]}
       loading="eager"
-      sizes="208px"
-      width={208}
-      height={208}
+      sizes="320px"
+      width={320}
+      height={320}
     />
   </div>
 
-  <RecentPosts />
+  <div class="grid sm:grid-cols-2 gap-12 justify-items-center">
+    {
+      latestTutorial && (
+        <div>
+          <h3 class="text-xl font-semibold text-purple-600 dark:text-purple-400 pb-4 text-center">
+            Featured Tutorial
+          </h3>
+          <PostCard
+            href={latestTutorial.url}
+            image={latestTutorial.frontmatter.image}
+            tags={latestTutorial.frontmatter.tags}
+            title={latestTutorial.frontmatter.title}
+            description={latestTutorial.frontmatter.description}
+          />
+        </div>
+      )
+    }
+
+    {
+      latestBlogPost && (
+        <div>
+          <h3 class="text-xl font-semibold text-purple-600 dark:text-purple-400 pb-4 text-center">
+            Featured Blog Post
+          </h3>
+          <PostCard
+            href={latestBlogPost.url}
+            image={latestBlogPost.frontmatter.image}
+            tags={latestBlogPost.frontmatter.tags}
+            title={latestBlogPost.frontmatter.title}
+            description={latestBlogPost.frontmatter.description}
+          />
+        </div>
+      )
+    }
+  </div>
 </BaseLayout>

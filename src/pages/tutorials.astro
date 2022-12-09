@@ -1,0 +1,37 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+import type { Frontmatter } from "../frontmatter";
+import PostCard from "../components/PostCard.astro";
+
+const tutorials = (await Astro.glob<Frontmatter>("../pages/tutorials/**/*.mdx"))
+  .filter((post) => !post.frontmatter.draft)
+  .sort(
+    (a, b) =>
+      new Date(b.frontmatter.publishedOn).getTime() -
+      new Date(a.frontmatter.publishedOn).getTime()
+  );
+---
+
+<BaseLayout title="Tutorials" description="Developement tutorials">
+  <h1 class="text-3xl font-extrabold pb-4">Development Tutorials</h1>
+  <p class="pb-8 dark:text-zinc-300">
+    Learn some neat tricks.
+  </p>
+
+  <hr class="py-6 border-zinc-300 dark:border-zinc-600" />
+
+  <div class="grid gap-6">
+    {
+      tutorials.map((tutorial) => (
+        <PostCard
+          href={tutorial.url}
+          image={tutorial.frontmatter.image}
+          tags={tutorial.frontmatter.tags}
+          title={tutorial.frontmatter.title}
+          description={tutorial.frontmatter.description}
+        />
+      ))
+    }
+  </div>
+</BaseLayout>

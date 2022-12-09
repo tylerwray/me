@@ -1,0 +1,49 @@
+---
+import { Picture } from "@astrojs/image/components";
+import type { Tag } from "../frontmatter";
+import Pill from "./Pill.astro";
+
+interface Props {
+  href?: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+  tags?: Tag[];
+  title: string;
+  description: string;
+}
+const { href, image, tags = [], title, description } = Astro.props;
+---
+
+<a
+  href={href}
+  class="grid gap-4 w-64 p-4 rounded-md hover:bg-zinc-800 transition-colors"
+>
+  <Picture
+    src={image.src}
+    class="overflow-hidden rounded-md"
+    alt={image.alt}
+    aspectRatio="1:1"
+    widths={[224]}
+    loading="eager"
+    sizes="224px"
+    width={224}
+    height={224}
+  />
+  <div class="flex flex-wrap gap-1">
+    {tags.map((tag) => <Pill tag={tag}>{tag}</Pill>)}
+  </div>
+  <div class="relative py-3 group">
+    <h3 class="text-lg font-bold">
+      {title}
+    </h3>
+    <span
+      class="h-0.5 left-0 w-full block absolute scale-x-0 group-hover:scale-x-100 transition-transform ease-in origin-left group-hover:bg-black dark:group-hover:bg-white"
+    ></span>
+  </div>
+
+  <p class="text-zinc-300 font-normal">
+    {description}
+  </p>
+</a>

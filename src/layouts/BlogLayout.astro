@@ -3,6 +3,7 @@ import type { MarkdownLayoutProps } from "astro";
 import BaseLayout from "./BaseLayout.astro";
 import { Picture } from "@astrojs/image/components";
 import type { Frontmatter } from "../frontmatter";
+import Pill from "../components/Pill.astro";
 
 type Props = MarkdownLayoutProps<Frontmatter>;
 
@@ -10,11 +11,14 @@ const { frontmatter, url } = Astro.props;
 
 const estimatedReadingTime = Math.floor(frontmatter.minutesToRead);
 const books = "📚".repeat(Math.floor(estimatedReadingTime / 3));
-const publishDate = new Date(frontmatter.publishedOn).toLocaleDateString("en-us", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-});
+const publishDate = new Date(frontmatter.publishedOn).toLocaleDateString(
+  "en-us",
+  {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }
+);
 const fullUrl = `https://tylerwray.me${url}`;
 const githubEditPath = `/src/pages${url}.md`;
 ---
@@ -56,6 +60,7 @@ const githubEditPath = `/src/pages${url}.md`;
     <h1 class="text-3xl font-extrabold pb-2">
       {frontmatter.title}
     </h1>
+
     <div class="pb-4">
       <time datetime={frontmatter.publishedOn}>{publishDate}</time>
       <span class="px-2">{" • "}</span>
@@ -69,13 +74,17 @@ const githubEditPath = `/src/pages${url}.md`;
         target="_blank"
         class="text-purple-600 dark:text-purple-400 hover:underline font-medium"
         rel="noopener noreferrer"
-        href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(fullUrl)}`}
+        href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+          fullUrl
+        )}`}
       >
         Tweet this post
       </a>
     </div>
 
-    <div class="h-0 overflow-hidden pt-[56.25%] relative bg-zinc-800/25 rounded-md shadow-lg">
+    <div
+      class="h-0 overflow-hidden pt-[56.25%] relative bg-zinc-800/25 rounded-md shadow-lg"
+    >
       <Picture
         widths={[600, 800, 1200, 1600]}
         sizes="(max-width: 800px) 90vw, 768px"
@@ -99,7 +108,9 @@ const githubEditPath = `/src/pages${url}.md`;
 
   <div class="sr-only">
     <h2 class="inline-block">
-      <a id="introduction" class="inline-block" href="#introduction"> Introduction</a>
+      <a id="introduction" class="inline-block" href="#introduction">
+        Introduction</a
+      >
     </h2>
   </div>
 
@@ -111,7 +122,9 @@ const githubEditPath = `/src/pages${url}.md`;
       target="_blank"
       class="text-purple-600 dark:text-purple-400 hover:underline font-medium"
       rel="noopener noreferrer"
-      href={`https://mobile.twitter.com/search?q=${encodeURIComponent("/TODO-blogPostUrl")}`}
+      href={`https://mobile.twitter.com/search?q=${encodeURIComponent(
+        "/TODO-blogPostUrl"
+      )}`}
     >
       Discuss on Twitter
     </a>
@@ -125,7 +138,12 @@ const githubEditPath = `/src/pages${url}.md`;
       href={`https://github.com/tylerwray/me/edit/main${githubEditPath}`}
     >
       <!-- Heroicons: pencil -->
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        class="w-4 h-4"
+      >
         <path
           d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z"
         ></path>
@@ -133,5 +151,9 @@ const githubEditPath = `/src/pages${url}.md`;
 
       Edit post on GitHub
     </a>
+  </div>
+
+  <div class="flex flex-wrap gap-1 py-4">
+    {frontmatter.tags?.map((tag) => <Pill tag={tag}>{tag}</Pill>)}
   </div>
 </BaseLayout>

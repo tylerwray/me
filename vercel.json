@@ -1,9 +1,0 @@
-{
-  "redirects": [
-    { 
-      "source": "/rich-md-code-snippets",
-      "destination": "/rich-md-code-blocks", 
-      "permanent": true
-    }
-  ]
-}

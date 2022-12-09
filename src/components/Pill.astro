@@ -1,0 +1,59 @@
+---
+import type { Tag } from "../frontmatter";
+
+type Color =
+  | "red"
+  | "orange"
+  | "yellow"
+  | "green"
+  | "teal"
+  | "blue"
+  | "purple"
+  | "pink";
+
+interface Props {
+  tag?: Tag;
+  color?: Color;
+}
+
+const tagMapping: { [key in Tag]: Color } = {
+  elixir: "purple",
+  phoenix: "orange",
+  javascript: "yellow",
+  react: "blue",
+  gatsby: "purple",
+  mdx: "yellow",
+  typescript: "blue",
+  tailwind: "teal",
+};
+
+const { tag, color } = Astro.props;
+
+const colorClasses: { [key in Color]: string } = {
+  red: "bg-red-300 text-red-800",
+  orange: "bg-orange-300 text-red-800",
+  yellow: "bg-yellow-300 text-red-800",
+  green: "bg-emerald-300 text-emerald-800",
+  teal: "bg-teal-300 text-emerald-800",
+  blue: "bg-blue-300 text-blue-800",
+  purple: "bg-purple-300 text-purple-800",
+  pink: "bg-pink-300 text-pink-800",
+};
+
+let pillClasses = colorClasses.yellow;
+
+if (tag) {
+  pillClasses = colorClasses[tagMapping[tag]];
+} else if (color) {
+  pillClasses = colorClasses[color];
+}
+---
+
+<span
+  class:list={[
+    "text-xs uppercase font-semibold w-max h-max px-2 py-1 rounded-full",
+    pillClasses,
+  ]}
+>
+  <slot />
+</span>
