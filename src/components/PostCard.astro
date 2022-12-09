@@ -18,23 +18,27 @@ const { href, image, tags = [], title, description } = Astro.props;
 
 <a
   href={href}
-  class="grid gap-4 w-64 p-4 rounded-md hover:bg-zinc-800 transition-colors"
+  class="grid w-80 gap-4 p-4 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors"
 >
-  <Picture
-    src={image.src}
-    class="overflow-hidden rounded-md"
-    alt={image.alt}
-    aspectRatio="1:1"
-    widths={[224]}
-    loading="eager"
-    sizes="224px"
-    width={224}
-    height={224}
-  />
+  <div
+    class="h-0 overflow-hidden pt-[56.25%] relative bg-zinc-800/25 rounded-md shadow-lg"
+  >
+    <Picture
+      src={image.src}
+      class="rounded-md overflow-hidden absolute top-0 left-0"
+      alt={image.alt}
+      aspectRatio="16:9"
+      widths={[300]}
+      loading="eager"
+      sizes="300px"
+      width={300}
+      height={300}
+    />
+  </div>
   <div class="flex flex-wrap gap-1">
     {tags.map((tag) => <Pill tag={tag}>{tag}</Pill>)}
   </div>
-  <div class="relative py-3 group">
+  <div class="relative py-3 w-max group">
     <h3 class="text-lg font-bold">
       {title}
     </h3>
@@ -43,7 +47,7 @@ const { href, image, tags = [], title, description } = Astro.props;
     ></span>
   </div>
 
-  <p class="text-zinc-300 font-normal">
+  <p class="dark:text-zinc-300 font-normal">
     {description}
   </p>
 </a>
