@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 import PostSnippet from "../components/PostSnippet.astro";
 import type { Frontmatter } from "../frontmatter";
+import PostCard from "../components/PostCard.astro";
 
 const posts = (await Astro.glob<Frontmatter>("../pages/blog/**/*.md"))
   .filter((post) => !post.frontmatter.draft)
@@ -24,13 +25,15 @@ const posts = (await Astro.glob<Frontmatter>("../pages/blog/**/*.md"))
 
   <hr class="py-6 border-zinc-300 dark:border-zinc-600" />
 
-  <div class="grid gap-6">
+  <div class="grid gap-6 sm:grid-cols-2 justify-items-center items-start">
     {
       posts.map((post) => (
-        <PostSnippet
+        <PostCard
+          href={post.url}
+          image={post.frontmatter.image}
+          tags={post.frontmatter.tags}
           title={post.frontmatter.title}
           description={post.frontmatter.description}
-          url={post.url}
         />
       ))
     }

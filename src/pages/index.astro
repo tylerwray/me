@@ -54,7 +54,7 @@ const latestBlogPost = (await Astro.glob<Frontmatter>("../pages/blog/**/*.md"))
     />
   </div>
 
-  <div class="grid sm:grid-cols-2 gap-12 justify-items-center">
+  <div class="grid sm:grid-cols-2 gap-12 justify-items-center items-start">
     {
       latestTutorial && (
         <div>

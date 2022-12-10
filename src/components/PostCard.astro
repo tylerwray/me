@@ -18,7 +18,7 @@ const { href, image, tags = [], title, description } = Astro.props;
 
 <a
   href={href}
-  class="grid w-80 gap-4 p-4 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-700/75 transition-colors"
+  class="grid w-80 p-4 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-700/75 transition-colors"
 >
   <div
     class="h-0 overflow-hidden pt-[56.25%] relative bg-zinc-800/25 rounded-md shadow-lg"
@@ -35,10 +35,10 @@ const { href, image, tags = [], title, description } = Astro.props;
       height={300}
     />
   </div>
-  <div class="flex flex-wrap gap-1">
+  <div class="flex flex-wrap gap-1 py-4">
     {tags.map((tag) => <Pill tag={tag}>{tag}</Pill>)}
   </div>
-  <div class="relative py-3 w-max group">
+  <div class="relative pb-2 w-max group">
     <h3 class="text-lg font-bold">
       {title}
     </h3>
