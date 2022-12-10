@@ -26,7 +26,7 @@ const latestBlogPost = (await Astro.glob<Frontmatter>("../pages/blog/**/*.md"))
 ---
 
 <BaseLayout>
-  <div class="grid sm:grid-cols-2 gap-8 justify-items-center pb-24">
+  <div class="grid sm:grid-cols-2 gap-8 justify-items-center pb-16">
     <div>
       <h1 class="text-3xl font-extrabold pb-4">
         Hi there, I'm Tyler.{" "}
@@ -46,11 +46,11 @@ const latestBlogPost = (await Astro.glob<Frontmatter>("../pages/blog/**/*.md"))
       class="rounded-full overflow-hidden"
       alt="Image of the author"
       aspectRatio="1:1"
-      widths={[320, 480]}
+      widths={[240]}
       loading="eager"
-      sizes="320px"
-      width={320}
-      height={320}
+      sizes="240px"
+      width={240}
+      height={240}
     />
   </div>
 
