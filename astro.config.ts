@@ -2,7 +2,6 @@ import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import image from "@astrojs/image";
 import sitemap from "@astrojs/sitemap";
-import mdx from "@astrojs/mdx";
 import { toString } from "hast-util-to-string";
 import { h } from "hastscript";
 import rehypeSlug from "rehype-slug";
@@ -34,10 +33,37 @@ const createSROnlyLabel = (text: string) => {
 
 // https://astro.build/config
 export default defineConfig({
-  trailingSlash: 'always',
+  trailingSlash: "always",
   site: "https://tylerwray.me/",
   markdown: {
     syntaxHighlight: false,
+    remarkPlugins: [remarkReadingTime],
+    rehypePlugins: [
+      rehypeSlug,
+      [
+        rehypeAutolinkHeadings,
+        {
+          properties: {
+            class: "anchor-link",
+          },
+          behavior: "before",
+          group: ({ tagName }: any) =>
+            h(`div.heading-wrapper.level-${tagName}`, {
+              tabIndex: -1,
+            }),
+          content: (heading: any) => [
+            h(
+              `span.anchor-icon`,
+              {
+                ariaHidden: "true",
+              },
+              AnchorLinkIcon
+            ),
+            createSROnlyLabel(toString(heading)),
+          ],
+        },
+      ],
+    ],
   },
   integrations: [
     tailwind(),
@@ -46,34 +72,5 @@ export default defineConfig({
     }),
     sitemap(),
     codeBlocks(),
-    mdx({
-      remarkPlugins: [remarkReadingTime],
-      rehypePlugins: [
-        rehypeSlug,
-        [
-          rehypeAutolinkHeadings,
-          {
-            properties: {
-              class: "anchor-link",
-            },
-            behavior: "before",
-            group: ({ tagName }: any) =>
-              h(`div.heading-wrapper.level-${tagName}`, {
-                tabIndex: -1,
-              }),
-            content: (heading: any) => [
-              h(
-                `span.anchor-icon`,
-                {
-                  ariaHidden: "true",
-                },
-                AnchorLinkIcon
-              ),
-              createSROnlyLabel(toString(heading)),
-            ],
-          },
-        ],
-      ],
-    }),
   ],
 });

@@ -34,15 +34,15 @@ Lists!
 
 #### Heading level 4
 
-Did you know MDX can render stuff with plain JSX? This is a blue block.
+Did you know markdown can render stuff with plain html? This is a blue block.
 
-<div class="bg-blue-500 w-12 h-12 my-12" />
+<div class="bg-blue-500 w-12 h-12 my-12"></div>
 
 ##### Heading level 5
 
 Images are a fun way to breath a little life into a post.
 
-![star wars](https://static.wikia.nocookie.net/starwars/images/c/cc/Star-wars-logo-new-tall.jpg/revision/latest?cb=20190313021755)
+![star wars](https://static.wikia.nocookie.net/starwars/images/c/cc/Star-wars-logo-new-tall.jpg/revision/latest)
 
 ###### Heading level 6
 
@@ -142,7 +142,7 @@ div[data-highlighted] > div#twenty-four {
 You can render plain inline code blocks or sytax highlighted inline code blocks.
 
 ```js
-console.log("Hello there!")
+console.log("Hello there!");
 ```
 
 - Plain — `plain-text`

@@ -2,11 +2,10 @@
 import { Picture } from "@astrojs/image/components";
 import type { Frontmatter } from "../frontmatter";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Pill from "../components/Pill.astro";
 import PostCard from "../components/PostCard.astro";
 
 const latestTutorial = (
-  await Astro.glob<Frontmatter>("../pages/tutorials/**/*.mdx")
+  await Astro.glob<Frontmatter>("../pages/tutorials/**/*.md")
 )
   .filter((post) => !post.frontmatter.draft)
   .sort(
@@ -16,7 +15,7 @@ const latestTutorial = (
   )
   .at(0);
 
-const latestBlogPost = (await Astro.glob<Frontmatter>("../pages/blog/**/*.mdx"))
+const latestBlogPost = (await Astro.glob<Frontmatter>("../pages/blog/**/*.md"))
   .filter((post) => !post.frontmatter.draft)
   .sort(
     (a, b) =>
@@ -27,9 +26,7 @@ const latestBlogPost = (await Astro.glob<Frontmatter>("../pages/blog/**/*.mdx"))
 ---
 
 <BaseLayout>
-  <div
-    class="grid sm:grid-cols-2 gap-8 justify-items-center pb-24"
-  >
+  <div class="grid sm:grid-cols-2 gap-8 justify-items-center pb-24">
     <div>
       <h1 class="text-3xl font-extrabold pb-4">
         Hi there, I'm Tyler.{" "}

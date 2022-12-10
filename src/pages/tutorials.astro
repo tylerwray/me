@@ -4,7 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import type { Frontmatter } from "../frontmatter";
 import PostCard from "../components/PostCard.astro";
 
-const tutorials = (await Astro.glob<Frontmatter>("../pages/tutorials/**/*.mdx"))
+const tutorials = (await Astro.glob<Frontmatter>("../pages/tutorials/**/*.md"))
   .filter((post) => !post.frontmatter.draft)
   .sort(
     (a, b) =>
@@ -15,13 +15,11 @@ const tutorials = (await Astro.glob<Frontmatter>("../pages/tutorials/**/*.mdx"))
 
 <BaseLayout title="Tutorials" description="Developement tutorials">
   <h1 class="text-3xl font-extrabold pb-4">Development Tutorials</h1>
-  <p class="pb-8 dark:text-zinc-300">
-    Learn some neat tricks.
-  </p>
+  <p class="pb-8 dark:text-zinc-300">Learn some neat tricks.</p>
 
   <hr class="py-6 border-zinc-300 dark:border-zinc-600" />
 
-  <div class="grid gap-6">
+  <div class="grid gap-6 justify-items-center">
     {
       tutorials.map((tutorial) => (
         <PostCard

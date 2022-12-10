@@ -4,7 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PostSnippet from "../components/PostSnippet.astro";
 import type { Frontmatter } from "../frontmatter";
 
-const posts = (await Astro.glob<Frontmatter>("../pages/blog/**/*.mdx"))
+const posts = (await Astro.glob<Frontmatter>("../pages/blog/**/*.md"))
   .filter((post) => !post.frontmatter.draft)
   .sort(
     (a, b) =>
