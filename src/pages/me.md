@@ -33,15 +33,17 @@ through and through.
 
 ## Tools I use.
 
-- Editor: [Neovim](https://neovim.io/) with [OneDark](https://github.com/joshdick/onedark.vim)
+- Editor: [VSCode](https://code.visualstudio.com/) with [GitHub Theme](https://marketplace.visualstudio.com/items?itemName=GitHub.github-vscode-theme)
 - Terminal: [iTerm2](https://www.iterm2.com/) with [Oh My ZSH](https://ohmyz.sh/)
-- Dotfiles: [Repo](https://github.com/tylerwray/dotfiles). Includes all my vim configuration.
 
 ## Tech things I like.
 
+- 😍 [Tailwind](https://tailwindcss.com/)
+- 😍 [Typescript](https://www.typescriptlang.org/)
+- 😍 [Elixir](https://elixir-lang.org/)
+- 😍 [Astro](https://astro.build)
 - [Docker](https://www.docker.com/)
-- [Elixir](https://elixir-lang.org/)
-- [Gatsby](https://www.gatsbyjs.org/)
+- [Heroicons](https://heroicons.com/)
 - [Go](https://golang.org/)
 - [GraphQL](https://graphql.org/)
 - [Homebrew](https://brew.sh/)
@@ -50,8 +52,6 @@ through and through.
 - [Postgres](https://www.postgresql.org/)
 - [Prettier](https://prettier.io/)
 - [React](https://reactjs.org/)
-- [Tailwind](https://tailwindcss.com/)
-- [Typescript](https://www.typescriptlang.org/)
 - [Vim](https://www.vim.org/) (and [Neovim](https://neovim.io/))
 
 ## Thing, things I like.
@@ -70,7 +70,7 @@ through and through.
 - [A nice steak](https://www.ruthschris.com/restaurant-locations/park-city/)
 - [Football](https://www.nfl.com/)
 - [Autumn](https://www.sltrib.com/artsliving/outdoors/2017/09/19/10-top-spots-for-utahs-fall-colors/)
-- [Home Cooking]()
+- Home Cooking
 
 # Contact
 
