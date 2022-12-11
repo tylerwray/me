@@ -35,10 +35,8 @@ const { href, image, tags = [], title, description } = Astro.props;
       height={300}
     />
   </div>
-  <div class="flex flex-wrap gap-1 py-4">
-    {tags.map((tag) => <Pill tag={tag}>{tag}</Pill>)}
-  </div>
-  <div class="relative pb-2 w-max group">
+
+  <div class="relative pt-4 pb-2 w-max group">
     <h3 class="text-lg font-bold">
       {title}
     </h3>
@@ -47,7 +45,11 @@ const { href, image, tags = [], title, description } = Astro.props;
     ></span>
   </div>
 
-  <p class="dark:text-zinc-300 font-normal">
+  <p class="dark:text-zinc-300 font-normal pb-4">
     {description}
   </p>
+
+  <div class="flex flex-wrap gap-1">
+    {tags.map((tag) => <Pill tag={tag}>{tag}</Pill>)}
+  </div>
 </a>

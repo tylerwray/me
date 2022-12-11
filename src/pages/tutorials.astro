@@ -6,6 +6,7 @@ import PostCard from "../components/PostCard.astro";
 
 const tutorials = (await Astro.glob<Frontmatter>("../pages/tutorials/**/*.md"))
   .filter((post) => !post.frontmatter.draft)
+  .filter((post) => !post.frontmatter.isSubpage)
   .sort(
     (a, b) =>
       new Date(b.frontmatter.publishedOn).getTime() -

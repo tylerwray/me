@@ -36,6 +36,7 @@ export default defineConfig({
   trailingSlash: "always",
   site: "https://tylerwray.me/",
   markdown: {
+    extendDefaultPlugins: true,
     syntaxHighlight: false,
     remarkPlugins: [remarkReadingTime],
     rehypePlugins: [

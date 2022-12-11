@@ -7,13 +7,15 @@ interface FrontmatterImage {
 
 export type Tag =
   | "elixir"
-  | "phoenix"
-  | "javascript"
-  | "react"
   | "gatsby"
+  | "javascript"
   | "mdx"
-  | "typescript"
-  | "tailwind";
+  | "phoenix live view"
+  | "phoenix"
+  | "react"
+  | "stripe"
+  | "tailwind"
+  | "typescript";
 
 export interface Frontmatter {
   // Injected from plugin
@@ -21,6 +23,7 @@ export interface Frontmatter {
   title: string;
   description: string;
   draft?: boolean;
+  isSubpage?: boolean;
   tags?: Tag[];
   publishedOn: string;
   image: FrontmatterImage;
