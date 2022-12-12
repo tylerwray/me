@@ -1,4 +1,4 @@
-interface FrontmatterImage {
+export interface FrontmatterImage {
   src: string;
   alt: string;
   creditName: string;
@@ -17,14 +17,20 @@ export type Tag =
   | "tailwind"
   | "typescript";
 
+export interface FrontmatterTutorial {
+  title: string;
+  slug: string;
+  homePage?: boolean
+}
+
 export interface Frontmatter {
   // Injected from plugin
   minutesToRead: number;
   title: string;
   description: string;
   draft?: boolean;
-  isSubpage?: boolean;
   tags?: Tag[];
   publishedOn: string;
   image: FrontmatterImage;
+  tutorial?: FrontmatterTutorial
 }

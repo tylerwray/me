@@ -1,0 +1,15 @@
+---
+interface Props {
+  steps: { href: string; title: string }[];
+}
+
+const { steps } = Astro.props;
+---
+
+{
+  steps.map((step) => (
+    <div>
+      <a href={step.href}>{step.title}</a>
+    </div>
+  ))
+}

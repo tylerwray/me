@@ -7,6 +7,8 @@ tags:
   - gatsby
   - mdx
 publishedOn: 2021-12-16
+tutorial:
+  homePage: true
 image:
   src: /assets/images/blocks.jpg
   alt: Architecture Blocks
