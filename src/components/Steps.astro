@@ -4,12 +4,50 @@ interface Props {
 }
 
 const { steps } = Astro.props;
+
+const activeStepIndex = steps.findIndex(
+  (step) => step.href == Astro.url.pathname
+);
 ---
 
-{
-  steps.map((step) => (
-    <div>
-      <a href={step.href}>{step.title}</a>
-    </div>
-  ))
-}
+<ul class="pb-4">
+  {
+    steps.map((step, index) => (
+      <li class="px-1 py-2">
+        <a
+          class="grid gap-2 grid-cols-[auto_1fr] items-center group"
+          href={step.href}
+        >
+          {activeStepIndex > index && (
+            // Heroicons: check
+            <div class="bg-purple-500 dark:bg-purple-600 text-white dark:text-zinc-300 w-5 h-5 rounded-full grid items-center justify-items-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="5"
+                stroke="currentColor"
+                class="w-3 h-3"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M4.5 12.75l6 6 9-13.5"
+                />
+              </svg>
+            </div>
+          )}
+          {activeStepIndex < index && (
+            <div class="bg-zinc-300 dark:bg-zinc-600 rounded-full w-3 h-3 m-1" />
+          )}
+          {activeStepIndex === index && (
+            <div class="bg-purple-500 dark:bg-purple-600 rounded-full w-3 h-3 m-1 ring-4 ring-purple-200 dark:ring-purple-800/50" />
+          )}
+          <span class="transition-colors group-hover:underline group-hover:text-purple-600 dark:group-hover:text-purple-400">
+            {step.title}
+          </span>
+        </a>
+      </li>
+    ))
+  }
+</ul>
