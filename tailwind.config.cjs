@@ -33,6 +33,7 @@ module.exports = {
               backgroundColor: theme("colors.purple.100"),
               borderLeftColor: theme("colors.purple.400"),
               borderLeftWidth: theme("borderWidth.8"),
+              marginTop: 0,
               marginBottom: theme("spacing.4"),
               marginInline: "-0.5rem",
               paddingBlock: theme("spacing.4"),
