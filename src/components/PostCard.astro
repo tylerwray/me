@@ -18,7 +18,7 @@ const { href, image, tags = [], title, description } = Astro.props;
 
 <a
   href={href}
-  class="grid w-80 p-4 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-700/75 transition-colors"
+  class="grid group w-80 p-4 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-700/75 transition-colors"
 >
   <div
     class="h-0 overflow-hidden pt-[56.25%] relative bg-zinc-800/25 rounded-md shadow-lg"
@@ -36,7 +36,7 @@ const { href, image, tags = [], title, description } = Astro.props;
     />
   </div>
 
-  <div class="relative pt-4 pb-2 w-max group">
+  <div class="relative pt-4 pb-2 w-max">
     <h3 class="text-lg font-bold">
       {title}
     </h3>

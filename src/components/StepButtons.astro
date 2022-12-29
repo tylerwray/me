@@ -26,14 +26,14 @@ if (activeStepIndex > 0) {
   {
     previousStep && (
       <a
-        class="group grid gap-4 w-full p-4 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-700/75 transition-colors"
+        class="group grid gap-2 w-full p-4 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-700/75 transition-colors"
         href={previousStep.href}
       >
-        <div class="text-xl font-semibold relative w-max">
+        <div class="text-xl font-semibold relative w-max group-hover:text-black dark:group-hover:text-white">
           {previousStep.title}
           <span class="h-0.5 left-0 -bottom-1 w-full block absolute group-hover:scale-x-100 transition-transform scale-x-0 ease-in origin-left group-hover:bg-black dark:group-hover:bg-white" />
         </div>
-        <span class="flex gap-1 items-center dark:text-zinc-400">
+        <span class="flex gap-1 items-center text-zinc-500 dark:text-zinc-400">
           {/* Heroicons: arrow-left */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -57,14 +57,14 @@ if (activeStepIndex > 0) {
   {
     nextStep && (
       <a
-        class="group grid md:col-start-2 justify-items-end gap-4 w-full p-4 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-700/75 transition-colors"
+        class="group grid md:col-start-2 justify-items-end gap-2 w-full p-4 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-700/75 transition-colors"
         href={nextStep.href}
       >
-        <div class="text-xl font-semibold relative w-max">
+        <div class="text-xl font-semibold relative w-max group-hover:text-black dark:group-hover:text-white">
           {nextStep.title}
           <span class="h-0.5 left-0 -bottom-1 w-full block absolute group-hover:scale-x-100 transition-transform scale-x-0 ease-in origin-left group-hover:bg-black dark:group-hover:bg-white" />
         </div>
-        <span class="flex gap-1 items-center dark:text-zinc-400">
+        <span class="flex gap-1 items-center text-zinc-500 dark:text-zinc-400">
           Next
           {/* Heroicons: arrow-right */}
           <svg
