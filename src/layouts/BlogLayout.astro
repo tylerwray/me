@@ -119,6 +119,9 @@ const githubEditPath = `/src/pages${url}.md`;
   <article class="prose dark:prose-invert">
     <slot />
   </article>
+
+  <slot name="step-buttons" />
+
   <div class="grid grid-cols-[auto_1fr_auto] pt-8 pb-4">
     <a
       target="_blank"

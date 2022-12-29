@@ -4,6 +4,7 @@ import Steps from "../components/Steps.astro";
 import path from "node:path";
 import type { Frontmatter, FrontmatterTutorial } from "../frontmatter";
 import BlogLayout from "./BlogLayout.astro";
+import StepButtons from "../components/StepButtons.astro";
 
 type Props = MarkdownLayoutProps<Frontmatter>;
 
@@ -45,4 +46,5 @@ const steps = getSteps(tutorialPages, frontmatter.tutorial?.slug);
 <BlogLayout {...Astro.props}>
   <Steps slot="tutorial-steps" steps={steps} />
   <slot />
+  <StepButtons slot="step-buttons" steps={steps} />
 </BlogLayout>

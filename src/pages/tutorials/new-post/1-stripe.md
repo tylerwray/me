@@ -34,7 +34,3 @@ stripe logs tail
 
 You should see a `Ready!` message if you correctly installed the CLI and logged into your stripe account.
 `Ctrl+c` out of that command, and lets continue 👍🏼
-
-<div class="text-2xl">
-  <a href="../phoenix-app-setup/">Next Step — Phoenix App Setup</a>
-</div>
