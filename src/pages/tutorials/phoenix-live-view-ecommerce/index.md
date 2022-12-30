@@ -9,7 +9,7 @@ tags:
   - tailwind
 publishedOn: 2022-12-07
 draft: true
-tutorial: 
+tutorial:
   slug: live_view_ecommerce
   title: Introduction
   homePage: true
@@ -22,9 +22,8 @@ image:
 
 ## Introduction
 
-I've heard alot about [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view) from co-workers and twitter,
-so I wanted to actually build something to test it's merit. At it's core, Phoenix LiveView is a framework for writing
-real-time web UI's in a declarative fashion, using a programming langauage loved by many; [Elixir](https://elixir-lang.org/).
+I've heard alot of buzz over the last ~2 years about [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view) in the industry,
+so I wanted to actually build something to test it out! At it's core, Phoenix LiveView is a framework for writing real-time web applications, using a programming langauage loved by many; [Elixir](https://elixir-lang.org/).
 
 We're going to build an ecommerce application powered by [Stripe](https://stripe.com) and Phoenix LiveView. Along the way learning
 about the problems Phoenix LiveView solves, some basics of Stripe, cool tailwindcss features, and a bit about reactive programming,
@@ -43,12 +42,10 @@ At the end of this tutorial you will have accomplished —
 
 - Setup of a new phoenix live view app.
 - Setup of tailwindcss for proper user in our phoenix app.
-- Setup of a stripe account and made API calls with elixir.
+- Setup of a stripe account.
+- Making API calls to stripe from within an Elixir Application.
 - Learning about phoenix generators.
-- Building some awesome UI tailwindcss.
-- Building a reactive phoenix live view.
-
-This tutorial is broken into multiple stages, outlined below —
+- Make a beautiful web-app with tailwindcss.
+- Make a reactive phoenix live view.
 
 This is going to be fun, let's dive in.
-

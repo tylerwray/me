@@ -3,8 +3,8 @@ title: Phoenix App Setup
 description: Some description about Stripe Setup
 layout: ../../../layouts/TutorialLayout.astro
 tags:
+  - stripe
   - elixir
-  - phoenix
   - phoenix live view
   - tailwind
 publishedOn: 2022-12-07
@@ -41,12 +41,11 @@ the phoenix welcome page 😎.
 
 ## Install Dependencies
 
-We're going to need three elixir dependencies for our application:
+We're going to need a few elixir dependencies for our application:
 
-1. [elixir_uuid](https://hexdocs.pm/elixir_uuid/readme.html): Will help us generate idempotency keys for stripe.
-1. [stripity_stripe](https://github.com/code-corps/stripity_stripe): A client library
-   for working with the stripe API.
 1. [Money](https://hexdocs.pm/money/Money.html): A currency formatter.
+1. [stripity_stripe](https://github.com/code-corps/stripity_stripe): A client library for working with the stripe API.
+1. [tailwindcss](https://tailwindcss.com/): A utility-first css framework.
 
 Add them to your deps in `mix.exs`
 
@@ -55,44 +54,41 @@ Add them to your deps in `mix.exs`
 
 def deps do
   [
-    {:elixir_uuid, "~> 1.2"},
-    {:stripity_stripe, "~> 2.9.0"},
-    {:money, "~> 1.8"}
+    {:money, "~> 1.12"},
+    {:stripity_stripe, "~> 2.17"},
+    {:tailwind, "~> 0.1", runtime: Mix.env() == :dev}
   ]
 end
 ```
 
-Then run
+> I really like tailwind as a companion to phoenix-live-view because of it's functional-composable nature.
+> It makes it really easy to style our live views!
+
+Finally run —
 
 ```bash
 mix deps.get
-```
-
-Next we need to setup [tailwindcss](https://tailwindcss.com/) to work with liveview.
-I really like tailwind as a companion to liveview because of it's composable nature.
-It makes it really easy to style our live views.
-
-For now, just install these modules.
-
-```bash
-npm install --prefix assets postcss postcss-loader tailwindcss
 ```
 
 ## Configuration
 
 This part is a bit boring... but the payoff is worth it 🤞🏻 We need to add a couple pieces of configuration.
 
+1. We need to tee `tailwindcss` how to read out live-views.
 1. We need to tell `stripity_stripe` what our Stripe API key is.
-1. We need to tell our Money package which currency to use by default.
-1. Lastly, we need to tell webpack how to include tailwindcss.
+1. We need to tell our `money` package which currency to use by default.
+
+For tailwindcss configuration and setup, follow the [official documentation for phoenix app setup](https://tailwindcss.com/docs/guides/phoenix).
 
 You can grab the Stripe API public and secret keys from the
 [stripe developer page](https://dashboard.stripe.com/apikeys) of your stripe account.
 Take great care with the secret key, like the name says, it's secret 🤫
 
+Leave `webhook_secret` alone for now, we will come back to it later.
+
 Once you have your API keys, create a new file: `config/dev.secret.exs`.
 
-Inside that `config/dev.secret.exs` file, you can now safely add the keys from stripe:
+Inside that `config/dev.secret.exs` file, you can now safely add the keys from stripe —
 
 ```elixir
 ---
@@ -108,10 +104,18 @@ config :amazin,
   stripe_public_key: "YOUR_PUBLIC_KEY"
 ```
 
-> Don't forget to add `config/dev.secret.exs` to your `.gitignore`!
+Add `config/dev.secret.exs` to your `.gitignore` —
 
-Then in our dev configuration we are going to load that secret file we just created.
-Make sure to put this at the very bottom of `config/dev.exs`
+```shell
+---
+title: .gitignore
+---
+# Ignore development secrets
+/config/dev.secret.exs
+```
+
+In our dev configuration we are going to load that secret file we just created.
+Make sure to put this at the very bottom of `config/dev.exs` —
 
 ```elixir
 ---
@@ -131,39 +135,6 @@ title: config/config.exs
 ---
 
 config :money, default_currency: :USD
-```
-
-Now for tailwindcss configuration. This is going to the be the most javascript
-you write in this guide, I promise. We're using [`postcss-loader`](https://postcss.org/)
-to load tailwind, so lets do that by creating a new file at `assets/postcss.config.js`
-with the contents:
-
-```javascript
----
-title: assets/postcss.config.js
----
-
-module.exports = {
-  plugins: [require("tailwindcss")],
-};
-```
-
-Then add the `postcss-loader` to the css rule in `assets/webpack.config.js`
-
-```diff
----
-title: assets/webpack.config.js
----
-
-{
-  test: /\.[s]?css$/,
-  use: [
-    MiniCssExtractPlugin.loader,
-    "css-loader",
-    "sass-loader",
-+   "postcss-loader",
-  ],
-}
 ```
 
 ## Testing it all out
