@@ -14,6 +14,9 @@ module.exports = {
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {
+            pre: {
+              margin: 0,
+            },
             p: {
               margin: 0,
               paddingBottom: theme("spacing.5"),

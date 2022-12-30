@@ -53,6 +53,10 @@ div[data-remark-code-title] + button + div + div > .astro-code {
   @apply pr-16;
 }
 
+.code-block {
+  @apply pb-5;
+}
+
 li > code,
 p > code {
   @apply break-words;
