@@ -40,6 +40,7 @@ module.exports = {
               marginBottom: theme("spacing.4"),
               marginInline: "-0.5rem",
               paddingBlock: theme("spacing.4"),
+              paddingInline: theme("spacing.6"),
               borderRadius: theme("borderRadius.md"),
               quotes: "none",
               "& > p": {

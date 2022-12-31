@@ -27,7 +27,7 @@ A basic navbar with a products grid, each showing a live inventory count.
 First thing we need to do is setup our root layout properly. And that starts with
 adding our nice navbar.
 
-In our `root.html.heex` file replace the contents of the `<body />` tag so it looks like this —
+In our `root.html.heex` file replace the contents of the `heex__<body />` tag so it looks like this —
 
 ```heex
 ---
@@ -132,30 +132,27 @@ Then run migrations:
 mix ecto.migrate
 ```
 
-## Products Live View Grid
-
 Now we're going make things our own and use the awesome power of tailwindcss.
 
-Small one, but remove `class="container"` from the `<main />` tag in both our templates because it conflicts with the tailwindcss `container` class —
+Small one, but add the `mx-auto` class to the `heex__<main />` tag in both our templates so that our product grid is centered —
 
 ```diff
 ---
 title: lib/amazin_web/templates/layout/live.html.heex
 ---
-- <main class="container>
-+ <main>
+- <main class="container">
++ <main class="container mx-auto">
 ```
 
 ```diff
 ---
 title: lib/amazin_web/templates/layout/app.html.heex
 ---
-- <main class="container>
-+ <main>
+- <main class="container">
++ <main class="container mx-auto">
 ```
 
-Now its time to make our product list prettier.  
-Replace the home page with —
+Now its time to make our product list prettier. Replace the home page with —
 
 ```heex
 ---
@@ -206,15 +203,15 @@ you should see a bare page with your navbar.
 
 ![Empty Page](/assets/images/amazin-empty-page.png)
 
-## LiveView UI Setup
+## Reactive LiveView
 
 We want the live-view to update itself when relevent events occur. Theres alot of ways we _could_ accomplish that; but turns
 out phoenix ships with a really nice way out of the box: [Phoenix.PubSub](https://hexdocs.pm/phoenix_pubsub/Phoenix.PubSub.html)!
 
 First we need to make a quick stop in our `Store` context to do a few things —
 
-1. Setup events: Use `Phoenix.PubSub` to create a reactive UI so that our live-view will auto-update when we receive webhooks from Stripe.
-1. Upsert product: This is going to allow our webhook events to be idempotent, which is very nice to have when dealing with Stripe.
+1. **Setup events** — Use `elixir__Phoenix.PubSub` to create a reactive UI so that our live-view will auto-update when we receive webhooks from Stripe.
+1. **Upsert product** — This is going to allow our webhook events to be idempotent, which is very nice to have when dealing with Stripe.
 
 ```elixir
 ---
@@ -281,10 +278,10 @@ defmodule Amazin.Store do
 end
 ```
 
-Important parts to notice here are the `Repo.insert/2` call with an `on_conflict` for upserts, the `Phoenix.PubSub.broadcast/3` call that broadcasts a generic "updated" event, and the `subscribe_to_product_events/0` function.
+Important parts to notice here are the `elixir__Repo.insert/2` call with an `on_conflict` for upserts, the `elixir__Phoenix.PubSub.broadcast/3` call that broadcasts a generic "updated" event, and the `elixir__subscribe_to_product_events/0` function.
 
 When our live-view mounts we want to subscribe our view to any product events. If we get notified of
-any events via `Pheonix.PubSub.broadcast/2`, the `handle_info/2` function in the module is called.
+any events via `elixir__Pheonix.PubSub.broadcast/2`, the `elixir__handle_info/2` function in the module is called.
 
 Lets add the following to our product grid live view —
 
@@ -413,11 +410,36 @@ defmodule Mix.Tasks.ProductsBackfill do
   @moduledoc """
   Sync all the products and their prices from stripe into your local DB.
   """
+  use Mix.Task
+
+  alias Amazin.Store
 
   @requirements ["app.start"]
 
+  @impl true
   def run([]) do
-    Stripe.Products.list()
+    list_and_save()
   end
+
+  defp list_and_save(cursor \\ nil) do
+    case Stripe.Product.list(params(cursor)) do
+      {:ok, %{has_more: has_more, data: products}} ->
+        Enum.each(products, &Store.save_stripe_product/1)
+
+        if has_more do
+          next_cursor = products |> List.last() |> Map.get(:id)
+
+          list_and_save(next_cursor)
+        else
+          :ok
+        end
+
+      error ->
+        IO.inspect(:stderr, error, label: "Failed to list Stripe Products")
+    end
+  end
+
+  defp params(cursor) when is_binary(cursor), do: %{starting_after: cursor}
+  defp params(_), do: %{}
 end
 ```
