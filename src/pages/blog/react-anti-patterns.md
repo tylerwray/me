@@ -151,7 +151,7 @@ Co-location is perfectly valid if you don't need to reuse the code elsewhere.
 
 Take the following NavBar component for example:
 
-```jsx file=NavBar.js highlight={5-10,16-19}
+```jsx
 ---
 title: NavBar.js
 highlight: {5-10,16-19}
