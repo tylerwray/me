@@ -24,10 +24,10 @@ module.exports = {
             "h1, h2, h3, h4, h5, h6": {
               margin: 0,
             },
-            "ul, li": {
+            "ul, ol, li": {
               margin: 0,
             },
-            ul: {
+            "ul, ol": {
               paddingBottom: theme("spacing.5")
             },
             blockquote: {

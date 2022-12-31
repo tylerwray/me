@@ -25,8 +25,11 @@ image:
 I've heard alot of buzz over the last ~2 years about [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view) in the industry,
 so I wanted to actually build something to test it out! At it's core, Phoenix LiveView is a framework for writing real-time web applications, using a programming langauage loved by many; [Elixir](https://elixir-lang.org/).
 
+## What to expect
+
 We're going to build an ecommerce application powered by [Stripe](https://stripe.com) and Phoenix LiveView. Along the way learning
 about the problems Phoenix LiveView solves, some basics of Stripe, cool tailwindcss features, and a bit about reactive programming,
+
 
 The tech we will use in this tutorial —
 

@@ -8,6 +8,7 @@ tags:
   - phoenix live view
   - tailwind
 publishedOn: 2022-12-07
+draft: true
 tutorial:
   slug: live_view_ecommerce
   title: Phoenix App Setup
@@ -18,6 +19,8 @@ image:
   creditUrl: https://tylerwray.me
 ---
 
+## Install
+
 Use [this guide](https://hexdocs.pm/phoenix/installation.html#content) in the
 phoenix docs to Elixir, Erlang, Phoneix, NodeJS, and PostgreSQL.
 Thats alot, but trust me it's worth it 🥇.
@@ -25,6 +28,8 @@ Thats alot, but trust me it's worth it 🥇.
 > If you're running macOS, I highly recommend [Postgres.app](https://postgresapp.com/) to
 > run postgres, and [Postico](https://eggerapps.at/postico/) as a nice GUI client.
 > Both made by the same wonderful people, at [EggerApps](https://eggerapps.at/about.html) 😍.
+
+## Create the Application
 
 Once you have everything setup, let's run this command to create our application.
 
@@ -50,7 +55,9 @@ We're going to need a few elixir dependencies for our application:
 Add them to your deps in `mix.exs`
 
 ```elixir
-# mix.exs
+---
+title: mix.exs
+---
 
 def deps do
   [

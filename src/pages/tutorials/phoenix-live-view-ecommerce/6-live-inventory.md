@@ -8,6 +8,7 @@ tags:
   - phoenix live view
   - tailwind
 publishedOn: 2022-12-07
+draft: true
 tutorial: 
   slug: live_view_ecommerce
   title: Live Inventory

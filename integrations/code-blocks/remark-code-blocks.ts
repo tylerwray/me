@@ -1,6 +1,7 @@
 import type * as shiki from "shiki";
 import { getHighlighter } from "shiki";
 import { visit } from "unist-util-visit";
+import heexLanguageGrammar from './heex_syntax.json'
 
 /**
  * getHighlighter() is the most expensive step of Shiki. Instead of calling it on every page,
@@ -37,6 +38,15 @@ const remarkShiki = async () => {
   }
   const highlighter = await highlighterAsync;
 
+  const heexLanguage = {
+    id: "heex",
+    scopeName: "source.heex",
+    grammar: heexLanguageGrammar,
+    aliases: ["heex"],
+  };
+
+  await highlighter.loadLanguage(heexLanguage as any);
+
   // TODO: It would be SICK to use react for this.
   return () => (tree: any) => {
     visit(tree, "inlineCode", (node, index, parent) => {
@@ -61,12 +71,18 @@ const remarkShiki = async () => {
       const langExists = highlighter.getLoadedLanguages().includes(lang as any);
 
       if (!langExists) {
-        console.warn(`The language "${lang}" doesn't exist, halting syntax highlighting.`);
+        console.warn(
+          `The language "${lang}" doesn't exist, halting syntax highlighting.`
+        );
         return;
       }
 
-      const darkBlockHtml = removePreTag(buildBlock({ theme: DARK_THEME, code: node.value, lang, highlighter }));
-      const lightBlockHtml = removePreTag(buildBlock({ theme: LIGHT_THEME, code: node.value, lang, highlighter }));
+      const darkBlockHtml = removePreTag(
+        buildBlock({ theme: DARK_THEME, code: node.value, lang, highlighter })
+      );
+      const lightBlockHtml = removePreTag(
+        buildBlock({ theme: LIGHT_THEME, code: node.value, lang, highlighter })
+      );
 
       const darkBlockWrapper = {
         type: "element",
@@ -115,7 +131,9 @@ const remarkShiki = async () => {
         if (langExists) {
           lang = node.lang;
         } else {
-          console.warn(`The language "${node.lang}" doesn't exist, falling back to plaintext.`);
+          console.warn(
+            `The language "${node.lang}" doesn't exist, falling back to plaintext.`
+          );
           lang = "plaintext";
         }
       } else {
@@ -144,8 +162,18 @@ const remarkShiki = async () => {
         children: [{ type: "text", value: "Copy" }],
       };
 
-      const darkBlockHtml = buildBlock({ theme: DARK_THEME, code: node.value, lang, highlighter });
-      const lightBlockHtml = buildBlock({ theme: LIGHT_THEME, code: node.value, lang, highlighter });
+      const darkBlockHtml = buildBlock({
+        theme: DARK_THEME,
+        code: node.value,
+        lang,
+        highlighter,
+      });
+      const lightBlockHtml = buildBlock({
+        theme: LIGHT_THEME,
+        code: node.value,
+        lang,
+        highlighter,
+      });
 
       const darkBlockWrapper = {
         type: "element",
