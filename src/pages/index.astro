@@ -65,6 +65,7 @@ const latestBlogPost = (await Astro.glob<Frontmatter>("../pages/blog/**/*.md"))
           </h2>
           <PostCard
             href={latestTutorial.url}
+            rel="prefetch"
             image={latestTutorial.frontmatter.image}
             tags={latestTutorial.frontmatter.tags}
             title={latestTutorial.frontmatter.title}
@@ -82,6 +83,7 @@ const latestBlogPost = (await Astro.glob<Frontmatter>("../pages/blog/**/*.md"))
           </h2>
           <PostCard
             href={latestBlogPost.url}
+            rel="prefetch"
             image={latestBlogPost.frontmatter.image}
             tags={latestBlogPost.frontmatter.tags}
             title={latestBlogPost.frontmatter.title}

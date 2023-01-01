@@ -1,10 +1,10 @@
 ---
 import { Picture } from "@astrojs/image/components";
+import type { HTMLAttributes } from "astro/types";
 import type { Tag } from "../frontmatter";
 import Pill from "./Pill.astro";
 
-interface Props {
-  href?: string;
+interface Props extends HTMLAttributes<"a"> {
   image: {
     src: string;
     alt: string;
@@ -13,11 +13,12 @@ interface Props {
   title: string;
   description: string;
 }
-const { href, image, tags = [], title, description } = Astro.props;
+
+const { image, tags = [], title, description, ...rest } = Astro.props;
 ---
 
 <a
-  href={href}
+  {...rest}
   class="grid group w-80 p-4 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-700/75 transition-colors"
 >
   <div
