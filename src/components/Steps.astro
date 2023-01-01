@@ -10,61 +10,65 @@ const activeStepIndex = steps.findIndex(
 );
 ---
 
-<ul class="pb-4">
-  {
-    steps.map((step, index) => (
-      <li class="px-1 py-2">
-        <a
-          class="grid gap-2 grid-cols-[auto_1fr] items-center group"
-          href={step.href}
-        >
-          {activeStepIndex > index && (
-            // Heroicons: check
-            <div class="bg-purple-500 dark:bg-purple-600 text-white dark:text-zinc-300 w-5 h-5 rounded-full grid items-center justify-items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="5"
-                stroke="currentColor"
-                class="w-3 h-3"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M4.5 12.75l6 6 9-13.5"
-                />
-              </svg>
-            </div>
-          )}
-          {activeStepIndex < index && (
-            <div class="bg-zinc-300 dark:bg-zinc-600 rounded-full w-3 h-3 m-1" />
-          )}
-          {activeStepIndex === index && (
-            <div class="bg-purple-500 dark:bg-purple-600 rounded-full w-3 h-3 m-1 ring-4 ring-purple-200 dark:ring-purple-800/50" />
-          )}
-
-          <span
-            class:list={[
-              "transition-colors w-max relative group-hover:text-black dark:group-hover:text-white ",
-              { "text-black dark:text-white": activeStepIndex === index },
-              { "text-zinc-500 dark:text-zinc-400": activeStepIndex !== index },
-            ]}
+<nav>
+  <ul class="pb-4">
+    {
+      steps.map((step, index) => (
+        <li class="px-1 py-2">
+          <a
+            class="grid gap-2 grid-cols-[auto_1fr] items-center group"
+            href={step.href}
           >
-            {step.title}
+            {activeStepIndex > index && (
+              // Heroicons: check
+              <div class="bg-purple-500 dark:bg-purple-600 text-white dark:text-zinc-300 w-5 h-5 rounded-full grid items-center justify-items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="5"
+                  stroke="currentColor"
+                  class="w-3 h-3"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.5 12.75l6 6 9-13.5"
+                  />
+                </svg>
+              </div>
+            )}
+            {activeStepIndex < index && (
+              <div class="bg-zinc-300 dark:bg-zinc-600 rounded-full w-3 h-3 m-1" />
+            )}
+            {activeStepIndex === index && (
+              <div class="bg-purple-500 dark:bg-purple-600 rounded-full w-3 h-3 m-1 ring-4 ring-purple-200 dark:ring-purple-800/50" />
+            )}
+
             <span
               class:list={[
-                "h-0.5 left-0 -bottom-1 w-full block absolute group-hover:scale-x-100 transition-transform ease-in origin-left group-hover:bg-black dark:group-hover:bg-white",
+                "transition-colors w-max relative group-hover:text-black dark:group-hover:text-white ",
+                { "text-black dark:text-white": activeStepIndex === index },
                 {
-                  "bg-black dark:bg-white scale-x-100":
-                    activeStepIndex === index,
+                  "text-zinc-500 dark:text-zinc-400": activeStepIndex !== index,
                 },
-                { "scale-x-0": activeStepIndex !== index },
               ]}
-            />
-          </span>
-        </a>
-      </li>
-    ))
-  }
-</ul>
+            >
+              {step.title}
+              <span
+                class:list={[
+                  "h-0.5 left-0 -bottom-1 w-full block absolute group-hover:scale-x-100 transition-transform ease-in origin-left group-hover:bg-black dark:group-hover:bg-white",
+                  {
+                    "bg-black dark:bg-white scale-x-100":
+                      activeStepIndex === index,
+                  },
+                  { "scale-x-0": activeStepIndex !== index },
+                ]}
+              />
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

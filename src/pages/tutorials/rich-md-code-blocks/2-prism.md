@@ -1,5 +1,5 @@
 ---
-title: PrismJS and prism-react-renderer
+title: PrismJS
 description: Using PrismJS and prism-react-renderer to pair nicely with MDX custom components
 layout: ../../../layouts/TutorialLayout.astro
 tags:
@@ -9,7 +9,7 @@ tags:
 publishedOn: 2021-12-16
 tutorial:
   slug: rich_md_code_blocks
-  title: PrismJS and prism-react-renderer
+  title: PrismJS
 image:
   src: /assets/images/blocks.jpg
   alt: Architecture Blocks

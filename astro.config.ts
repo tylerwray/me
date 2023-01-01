@@ -8,6 +8,7 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { remarkReadingTime } from "./remark-reading-time";
 import { codeBlocks } from "./integrations/code-blocks";
+import react from "@astrojs/react";
 
 const AnchorLinkIcon = h(
   "svg",
@@ -73,5 +74,6 @@ export default defineConfig({
     }),
     sitemap(),
     codeBlocks(),
+    react(),
   ],
 });

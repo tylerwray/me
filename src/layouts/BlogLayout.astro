@@ -1,9 +1,10 @@
 ---
-import type { MarkdownLayoutProps } from "astro";
+import type { MarkdownHeading, MarkdownLayoutProps } from "astro";
 import BaseLayout from "./BaseLayout.astro";
 import { Picture } from "@astrojs/image/components";
 import type { Frontmatter } from "../frontmatter";
 import Pill from "../components/Pill.astro";
+import { TableOfContents } from "../components/TableOfContents";
 
 type Props = MarkdownLayoutProps<Frontmatter>;
 
@@ -21,6 +22,11 @@ const publishDate = new Date(frontmatter.publishedOn).toLocaleDateString(
 );
 const fullUrl = `https://tylerwray.me${url}`;
 const githubEditPath = `/src/pages${url}.md`;
+
+const headings: MarkdownHeading[] = [
+  { depth: 2, slug: "overview", text: "Overview" },
+  ...Astro.props.headings,
+].filter(({ depth }) => depth < 4);
 ---
 
 <BaseLayout
@@ -29,6 +35,11 @@ const githubEditPath = `/src/pages${url}.md`;
   image={frontmatter.image.src}
   imageAlt={frontmatter.image.alt}
 >
+  <TableOfContents
+    client:media="(min-width: 80rem)"
+    headings={headings}
+    slot="right-sidebar"
+  />
   <script>
     async function copyToClipboard(e: Event) {
       // Traverse the dom to find the code string.
@@ -57,7 +68,7 @@ const githubEditPath = `/src/pages${url}.md`;
     });
   </script>
   <header>
-    <h1 class="text-3xl font-extrabold pb-2">
+    <h1 class="text-3xl font-extrabold pb-2" id="overview">
       {frontmatter.title}
     </h1>
 
@@ -108,15 +119,8 @@ const githubEditPath = `/src/pages${url}.md`;
 
   <slot name="tutorial-steps" />
 
-  <div class="sr-only">
-    <h2 class="inline-block">
-      <a id="introduction" class="inline-block" href="#introduction">
-        Introduction</a
-      >
-    </h2>
-  </div>
-
   <article class="prose max-w-none dark:prose-invert">
+    <h2 class="sr-only" id="introduction"></h2>
     <slot />
   </article>
 

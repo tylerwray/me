@@ -85,9 +85,15 @@ const twitterHandle = "@wray_tw";
   >
     <Nav />
     <main
-      class="p-8 pb-24 max-w-3xl mx-auto justify-self-center w-full min-h-[60vh]"
+      class="grid justify-center grid-cols-[minmax(0,48rem)] xl:grid-cols-[minmax(0,24rem)_48rem_minmax(0,24rem)]"
     >
-      <slot />
+      <div></div>
+      <div id="article" class="p-8 pb-24">
+        <slot />
+      </div>
+      <aside class="sticky top-24 overflow-y-auto h-screen hidden xl:block w-64">
+        <slot name="right-sidebar" />
+      </aside>
     </main>
     <Footer />
   </body>

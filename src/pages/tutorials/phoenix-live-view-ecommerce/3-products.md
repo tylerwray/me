@@ -203,7 +203,7 @@ you should see a bare page with your navbar.
 
 ![Empty Page](/assets/images/amazin-empty-page.png)
 
-## Reactive LiveView
+## Add Reactivity
 
 We want the live-view to update itself when relevent events occur. Theres alot of ways we _could_ accomplish that; but turns
 out phoenix ships with a really nice way out of the box: [Phoenix.PubSub](https://hexdocs.pm/phoenix_pubsub/Phoenix.PubSub.html)!
@@ -384,7 +384,7 @@ config :amazin,
   stripe_public_key: "pk_test_123xxx"
 ```
 
-## Add products
+## Add Products
 
 Next you'll want to start up the server with `mix phx.server` and navigate to [`http://localhost:4000/products`](http://localhost:4000/products).
 You should see an empty page just like before.
@@ -396,7 +396,7 @@ Once you save that, you should magically see your products page update and displ
 The cli should show that `product.created` event was sent and you should see a new record in your
 database `products` table.
 
-## Bonus - Backfill products
+## ✨ Bonus ✨ Backfill Products
 
 You may have products already in stripe and you don't want to wait for them to be updated via webhook, here's a simple backfill mix task which can be used to copy all stripe products into your DB.
 

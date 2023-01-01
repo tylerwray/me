@@ -25,7 +25,7 @@ A function is `pure` if it passes two simple tests:
 
 Let's take a look these two rules.
 
-## Given the same input, it will always return the same output
+## Same input, Same output
 
 Here's a pure function:
 
