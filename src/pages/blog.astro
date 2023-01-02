@@ -3,14 +3,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 import type { Frontmatter } from "../frontmatter";
 import PostCard from "../components/PostCard.astro";
+import { filterBlogPosts } from "../utils";
 
-const posts = (await Astro.glob<Frontmatter>("../pages/blog/**/*.md"))
-  .filter((post) => !post.frontmatter.draft)
-  .sort(
-    (a, b) =>
-      new Date(b.frontmatter.publishedOn).getTime() -
-      new Date(a.frontmatter.publishedOn).getTime()
-  );
+const posts = filterBlogPosts(
+  await Astro.glob<Frontmatter>("../pages/blog/**/*.md")
+);
 ---
 
 <BaseLayout

@@ -3,16 +3,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 import type { Frontmatter } from "../frontmatter";
 import PostCard from "../components/PostCard.astro";
+import { filterTutorials } from "../utils";
 
-const tutorials = (await Astro.glob<Frontmatter>("../pages/tutorials/**/*.md"))
-  .filter((post) => !post.frontmatter.draft)
-  // Don't show child pages
-  .filter((post) => post.frontmatter.tutorial?.homePage)
-  .sort(
-    (a, b) =>
-      new Date(b.frontmatter.publishedOn).getTime() -
-      new Date(a.frontmatter.publishedOn).getTime()
-  );
+const tutorials = filterTutorials(
+  await Astro.glob<Frontmatter>("../pages/tutorials/**/*.md")
+);
 ---
 
 <BaseLayout title="Tutorials" description="Developement tutorials">

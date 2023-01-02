@@ -1,30 +1,17 @@
 ---
 import { Picture } from "@astrojs/image/components";
-import type { Frontmatter } from "../frontmatter";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PostCard from "../components/PostCard.astro";
+import type { Frontmatter } from "../frontmatter";
+import { filterBlogPosts, filterTutorials } from "../utils";
 
-const latestTutorial = (
+const latestTutorial = filterTutorials(
   await Astro.glob<Frontmatter>("../pages/tutorials/**/*.md")
-)
-  .filter((post) => !post.frontmatter.draft)
-  // Don't show child pages
-  .filter((post) => post.frontmatter.tutorial?.homePage)
-  .sort(
-    (a, b) =>
-      new Date(b.frontmatter.publishedOn).getTime() -
-      new Date(a.frontmatter.publishedOn).getTime()
-  )
-  .at(0);
+).at(0);
 
-const latestBlogPost = (await Astro.glob<Frontmatter>("../pages/blog/**/*.md"))
-  .filter((post) => !post.frontmatter.draft)
-  .sort(
-    (a, b) =>
-      new Date(b.frontmatter.publishedOn).getTime() -
-      new Date(a.frontmatter.publishedOn).getTime()
-  )
-  .at(0);
+const latestBlogPost = filterBlogPosts(
+  await Astro.glob<Frontmatter>("../pages/blog/**/*.md")
+).at(0);
 ---
 
 <BaseLayout>
