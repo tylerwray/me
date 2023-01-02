@@ -396,6 +396,10 @@ Once you save that, you should magically see your products page update and displ
 The cli should show that `product.created` event was sent and you should see a new record in your
 database `products` table.
 
+It should look something like this —
+
+![Products Grid with Products](/assets/images/amazin-product-grid.png)
+
 ## ✨ Bonus ✨ Backfill Products
 
 You may have products already in stripe and you don't want to wait for them to be updated via webhook, here's a simple backfill mix task which can be used to copy all stripe products into your DB.
