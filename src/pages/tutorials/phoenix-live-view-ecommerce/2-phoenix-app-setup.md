@@ -153,13 +153,13 @@ Let's test that out. Start an interactive session of your application with:
 iex -S mix
 ```
 
-Then inside iex, run:
+Then inside iex, run —
 
 ```elixir
-iex(1)> Stripe.Customer.list
+iex(1)> Stripe.Product.list
 ```
 
-and you should see something like:
+and you should see something like —
 
 ```elixir
 {:ok,
@@ -168,7 +168,7 @@ and you should see something like:
    has_more: false,
    object: "list",
    total_count: nil,
-   url: "/v1/customers"
+   url: "/v1/products"
  }}
 ```
 

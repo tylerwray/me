@@ -235,46 +235,17 @@ defmodule Amazin.Store do
   end
 
   @doc """
-  Updates or inserts a product using the stripe product ID as the upsert key.
+  Broadcast a product event.
 
   ## Examples
 
-      iex> save_stripe_product(%Stripe.Product{id: "prod_HoQoDjBRhwDy1B"})
-      {:ok, %Product{}}
+      iex> broadcast_product_event(:updated, %Stripe.Product{})
+      :ok
 
   """
-  def save_stripe_product(stripe_product) do
-    case Stripe.Price.list(%{product: stripe_product.id}) do
-      {:ok, %{data: stripe_prices}} ->
-        result =
-          %Product{}
-          |> Product.changeset(format_stripe_product(stripe_product, stripe_prices))
-          |> Repo.insert(
-            on_conflict: {:replace, [:amount, :description, :name, :thumbnail]},
-            conflict_target: :stripe_product_id
-          )
-
-        Phoenix.PubSub.broadcast(Amazin.PubSub, "products", :updated)
-
-        result
-
-      error ->
-        error
-    end
+  def broadcast_product_event(event, product) do
+    Phoenix.PubSub.broadcast(Amazin.PubSub, "products", {event, product})
   end
-
-  defp format_stripe_product(stripe_product, stripe_prices) do
-    %{
-      amount: first_amount(stripe_prices),
-      description: stripe_product.description,
-      name: stripe_product.name,
-      stripe_product_id: stripe_product.id,
-      thumbnail: List.first(stripe_product.images)
-    }
-  end
-
-  defp first_amount([%Stripe.Price{unit_amount: amount} | _]), do: amount
-  defp first_amount(_), do: 0
 end
 ```
 
@@ -285,21 +256,27 @@ any events via `elixir__Pheonix.PubSub.broadcast/2`, the `elixir__handle_info/2`
 
 Lets add the following to our product grid live view —
 
-```diff
+```elixir
 ---
 title: lib/amazin_web/live/product_live/index.ex
 ---
-
+defmodule AmazinWeb.ProductLive.Index do
   @impl true
   def mount(_params, _session, socket) do
-+   if connected?(socket), do: Store.subscribe_to_product_events()
+    if connected?(socket), do: Store.subscribe_to_product_events()
     {:ok, assign(socket, :products, fetch_products())}
   end
 
-+ @impl true
-+ def handle_info(:updated, socket) do
-+   {:noreply, assign(socket, :products, Store.list_products())}
-+ end
+  @impl true
+  def handle_info({:product_updated, product}, socket) do
+    {:noreply, assign(socket, :products, update_product(product))}
+  end
+
+  @impl true
+  def handle_info({:product_created, product}, socket) do
+    {:noreply, assign(socket, :products, add_product(product))}
+  end
+end
 ```
 
 ## Stripe Webhooks
@@ -326,13 +303,13 @@ defmodule AmazinWeb.StripeWebhookHandler do
 
   @impl true
   def handle_event(%Stripe.Event{type: "product.updated"} = event) do
-    Store.save_stripe_product(event.data.object)
+    Store.broadcast_product_updated(:updated, event.data.object)
     :ok
   end
 
   @impl true
   def handle_event(%Stripe.Event{type: "product.created"} = event) do
-    Store.save_stripe_product(event.data.object)
+    Store.broadcast_product_created(:created, event.data.object)
     :ok
   end
 
@@ -399,51 +376,3 @@ database `products` table.
 It should look something like this —
 
 ![Products Grid with Products](/assets/images/amazin-product-grid.png)
-
-## ✨ Bonus ✨ Backfill Products
-
-You may have products already in stripe and you don't want to wait for them to be updated via webhook, here's a simple backfill mix task which can be used to copy all stripe products into your DB.
-
-Create a new file at `lib/mix/tasks/products_backfill.ex` —
-
-```elixir
----
-title: lib/mix/tasks/products_backfill.ex
----
-defmodule Mix.Tasks.ProductsBackfill do
-  @moduledoc """
-  Sync all the products and their prices from stripe into your local DB.
-  """
-  use Mix.Task
-
-  alias Amazin.Store
-
-  @requirements ["app.start"]
-
-  @impl true
-  def run([]) do
-    list_and_save()
-  end
-
-  defp list_and_save(cursor \\ nil) do
-    case Stripe.Product.list(params(cursor)) do
-      {:ok, %{has_more: has_more, data: products}} ->
-        Enum.each(products, &Store.save_stripe_product/1)
-
-        if has_more do
-          next_cursor = products |> List.last() |> Map.get(:id)
-
-          list_and_save(next_cursor)
-        else
-          :ok
-        end
-
-      error ->
-        IO.inspect(:stderr, error, label: "Failed to list Stripe Products")
-    end
-  end
-
-  defp params(cursor) when is_binary(cursor), do: %{starting_after: cursor}
-  defp params(_), do: %{}
-end
-```

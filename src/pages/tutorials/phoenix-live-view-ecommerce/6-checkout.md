@@ -9,7 +9,7 @@ tags:
   - tailwind
 publishedOn: 2022-12-07
 draft: true
-tutorial: 
+tutorial:
   slug: live_view_ecommerce
   title: Checkout
 image:
@@ -21,51 +21,54 @@ image:
 
 Finally we want to actually display these `cart_items` records and allow a user to checkout and pay us.
 
-Hop into our `Store` context again and lets add a query to list all our cart items.
+Hop into our `Store` context again and lets add a query to list all our cart items formatted for the checkout with stripe —
 
 ```elixir
 ---
 title: lib/amazin/store.ex
 ---
 
-@doc """
-Returns the list of cart_items.
+defmodule Amazin.Store do
+  #..
 
-## Examples
+  @doc """
+  Returns the list of cart items formatted for checkout.
 
-    iex> list_cart_items()
-    [%{}, ...]
+  ## Examples
 
-"""
-def list_cart_items() do
-  query =
-    from ci in CartItem,
-      join: p in Product,
-      on: ci.product_id == p.id,
-      group_by: p.id,
-      select: %{
-        total: sum(p.amount),
-        stripe_price_id: p.stripe_price_id,
-        amount: p.amount,
-        quantity: count(ci.id),
-        description: p.description,
-        name: p.name,
-        stock: p.stock,
-        thumbnail: p.thumbnail
-      }
+      iex> list_cart_items_for_checkout()
+      [%{}, ...]
 
-  Repo.all(query)
+  """
+  def list_cart_items_for_checkout do
+    query =
+      from ci in CartItem,
+        join: p in Product,
+        on: ci.product_id == p.id,
+        group_by: p.id,
+        select: %{
+          total: sum(p.amount),
+          stripe_price_id: p.stripe_price_id,
+          amount: p.amount,
+          quantity: count(ci.id),
+          description: p.description,
+          name: p.name,
+          stock: p.stock,
+          thumbnail: p.thumbnail
+        }
+
+    Repo.all(query)
+  end
 end
 ```
 
-Now we want to create a little dynamic HTML for our cart page. Our phoenix generator we ran a bit ago for cart items gave us a nice
-page for our cart at `lib/amazin_web/live/cart_live/index.html.leex`. Lets go replace it's contents with the following:
+Our phoenix generator we ran a bit ago for cart items gave us a simple page for our cart, but we can make it better.
+Lets go replace it's contents with the following —
 
-```elixir
+```heex
 ---
-title: lib/amazin_web/live/cart_live/index.html.leex
+title: lib/amazin_web/live/cart_live/index.html.heex
 ---
-
 <div class="flex flex-col items-center justify-center p-12">
   <div class="w-1/3 border rounded border-b-0 mb-6">
     <%= for cart_item <- @cart_items do %>
@@ -76,9 +79,9 @@ title: lib/amazin_web/live/cart_live/index.html.leex
           </div>
           <img
             class="w-6 h-6 mr-2"
-            src="<%= cart_item.thumbnail %>"
-            title="<%= cart_item.name %>"
-            alt="<%= cart_item.name %>"
+            src={cart_item.thumbnail}
+            title={cart_item.name}
+            alt={cart_item.name}
           />
           <div class="text-lg leading-6 font-medium text-gray-900">
             <%= cart_item.name %>
@@ -93,18 +96,12 @@ title: lib/amazin_web/live/cart_live/index.html.leex
       Total: <%= @total %>
     </div>
   </div>
-  <button onclick="handleCheckout()" class="focus:outline-none focus:shadow-outline text-lg bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 mt-2 rounded" >
+  <button
+    phx-click="checkout"
+    class="focus:outline-none focus:shadow-outline text-lg bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 mt-2 rounded"
+  >
     Checkout
   </button>
-  <script>
-    var stripe = Stripe(@stripe_public_key);
-
-    function handleCheckout() {
-      stripe.redirectToCheckout({
-        sessionId: '<%= @checkout_session_id %>'
-      })
-    }
-  </script>
 </div>
 ```
 
