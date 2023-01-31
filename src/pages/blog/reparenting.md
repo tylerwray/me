@@ -15,6 +15,8 @@ image:
 This is a different post from what I usually write about on here. I wanted to share this with my wife, Ashley, but YouTube didn't have a good way to share
 this amazing article posted by [The School of Life](https://www.youtube.com/@theschooloflifetv). Thus, I'm posting it here for her to read and others!
 
+I felt absolutely moved by this article. My inner-child felt love as I desired to connect with it and give it comfort. While reading I cried, laughed, felt happiness and joy. 
+
 Here's an accompanying YouTube video to watch after you read —
 
 <iframe class="aspect-video pb-8 w-full" src="https://www.youtube-nocookie.com/embed/ZBXZojt6dpM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
