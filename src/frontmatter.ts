@@ -12,6 +12,7 @@ export type Tag =
   | "mdx"
   | "phoenix live view"
   | "phoenix"
+  | "personal"
   | "react"
   | "stripe"
   | "tailwind"
