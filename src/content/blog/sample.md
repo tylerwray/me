@@ -1,7 +1,6 @@
 ---
 title: Sample Page
 description: Sample Page
-layout: ../../layouts/BlogLayout.astro
 tags:
   - javascript
 publishedOn: 2020-04-06

@@ -1,0 +1,76 @@
+---
+import { CollectionEntry, getCollection } from "astro:content";
+import StepButtons from "../../components/StepButtons.astro";
+import Steps from "../../components/Steps.astro";
+import EntryLayout from "../../layouts/EntryLayout.astro";
+import { HeadingsSchema, MinutesToReadSchema, Step } from "../../schemas";
+import path from "node:path";
+
+export async function getStaticPaths() {
+  const tutorialEntries = await getCollection("tutorials", (entry) => {
+    // Exclude draft posts in production
+    if (import.meta.env.PROD && entry.data.draft) {
+      return false;
+    }
+
+    return true;
+  });
+
+  function getSteps(baseSlug: string): Step[] {
+    return tutorialEntries
+      .filter((entry) => entry.slug.startsWith(baseSlug))
+      .sort((a, b) => {
+        const aPath = path.parse(a.id);
+        const bPath = path.parse(b.id);
+        // Directories are numbered so pages in different directories can be sorted easily.
+        if (aPath.dir < bPath.dir) return -1;
+        if (aPath.dir > bPath.dir) return 1;
+        // Index files should come first within a directory.
+        if (aPath.name === "index") return -1;
+        if (bPath.name === "index") return 1;
+        // Other files within a directory are numbered and sorted ascending.
+        return aPath.name < bPath.name ? -1 : aPath.name > bPath.name ? 1 : 0;
+      })
+      .map((entry) => ({
+        href: `/tutorials/${entry.slug}/`,
+        title: entry.data.title,
+      }));
+  }
+
+  const staticPaths = tutorialEntries.map((entry) => {
+    const baseSlug = entry.slug.split("/").at(0) ?? "";
+
+    return {
+      params: { slug: entry.slug },
+      props: { entry, steps: getSteps(baseSlug) },
+    };
+  });
+
+  return staticPaths;
+}
+
+interface Props {
+  entry: CollectionEntry<"tutorials">;
+  steps: Step[];
+}
+
+const { entry, steps } = Astro.props;
+
+const { Content, remarkPluginFrontmatter, headings } = await entry.render();
+
+const minutesToRead = MinutesToReadSchema.parse(
+  remarkPluginFrontmatter.minutesToRead
+);
+
+const entryHeadings = HeadingsSchema.parse(headings);
+---
+
+<EntryLayout
+  minutesToRead={minutesToRead}
+  entry={entry}
+  headings={entryHeadings}
+>
+  <Steps slot="tutorial-steps" steps={steps} />
+  <Content />
+  <StepButtons slot="step-buttons" steps={steps} />
+</EntryLayout>

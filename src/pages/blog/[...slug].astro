@@ -1,0 +1,42 @@
+---
+import { CollectionEntry, getCollection } from "astro:content";
+import EntryLayout from "../../layouts/EntryLayout.astro";
+import { HeadingsSchema, MinutesToReadSchema } from "../../schemas";
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection("blog", (entry) => {
+    // Exclude draft posts in production
+    if (import.meta.env.PROD && entry.data.draft) {
+      return false;
+    }
+    return true;
+  });
+
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<"blog">;
+}
+
+const { entry } = Astro.props;
+
+const { Content, remarkPluginFrontmatter, headings } = await entry.render();
+
+const minutesToRead = MinutesToReadSchema.parse(
+  remarkPluginFrontmatter.minutesToRead
+);
+
+const entryHeadings = HeadingsSchema.parse(headings);
+---
+
+<EntryLayout
+  minutesToRead={minutesToRead}
+  entry={entry}
+  headings={entryHeadings}
+>
+  <Content />
+</EntryLayout>

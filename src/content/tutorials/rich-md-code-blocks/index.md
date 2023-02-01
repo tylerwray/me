@@ -1,7 +1,6 @@
 ---
 title: Rich Markdown Code Blocks
 description: I've recently spent a good amount of time (probably too much) customizing the code blocks on my blog here to my exact liking. There's much more I want to do, but I'm really proud of how they turned out and I want to share with you how I created them!
-layout: ../../../layouts/TutorialLayout.astro
 tags:
   - react
   - gatsby

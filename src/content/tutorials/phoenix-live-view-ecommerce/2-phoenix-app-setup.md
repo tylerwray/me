@@ -1,12 +1,11 @@
 ---
 title: Phoenix App Setup
 description: Some description about Stripe Setup
-layout: ../../../layouts/TutorialLayout.astro
 tags:
   - stripe
   - elixir
-  - phoenix live view
-  - tailwind
+  - phoenix
+  - tailwindcss
 publishedOn: 2022-12-07
 draft: true
 tutorial:

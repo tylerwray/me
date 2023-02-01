@@ -1,5 +1,5 @@
 ---
-import type { Tag } from "../frontmatter";
+import type { Tag } from "../schemas";
 
 type Color =
   | "red"
@@ -12,6 +12,7 @@ type Color =
   | "pink";
 
 interface Props {
+  // Use tag type
   tag?: Tag;
   color?: Color;
 }
@@ -22,11 +23,10 @@ const tagMapping: { [key in Tag]: Color } = {
   javascript: "yellow",
   mdx: "yellow",
   personal: "green",
-  "phoenix live view": "orange",
   phoenix: "orange",
   react: "blue",
   stripe: "blue",
-  tailwind: "teal",
+  tailwindcss: "teal",
   typescript: "blue",
 };
 

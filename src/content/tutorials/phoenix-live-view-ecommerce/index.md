@@ -1,12 +1,11 @@
 ---
 title: Live View eCommerce
 description: Learn phoenix live view by building a real-world eCommerce application that can actually process payments!
-layout: ../../../layouts/TutorialLayout.astro
 tags:
   - stripe
   - elixir
-  - phoenix live view
-  - tailwind
+  - phoenix
+  - tailwindcss
 publishedOn: 2022-12-07
 draft: true
 tutorial:

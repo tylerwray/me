@@ -1,7 +1,6 @@
 ---
 title: Gatsby + MDX
 description: Using MDX with Gatsby to render custom elements in .mdx files
-layout: ../../../layouts/TutorialLayout.astro
 tags:
   - gatsby
   - react

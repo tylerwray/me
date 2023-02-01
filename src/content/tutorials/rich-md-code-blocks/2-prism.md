@@ -1,7 +1,6 @@
 ---
 title: PrismJS
 description: Using PrismJS and prism-react-renderer to pair nicely with MDX custom components
-layout: ../../../layouts/TutorialLayout.astro
 tags:
   - gatsby
   - react

@@ -1,7 +1,6 @@
 ---
 title: Reparenting - The School of Life
 description: This is a repost of an article posted on YouTube by The School of Life about Reparenting.
-layout: ../../layouts/BlogLayout.astro
 tags:
   - personal
 publishedOn: 2023-01-30

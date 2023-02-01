@@ -1,7 +1,6 @@
 ---
 title: The Power of Map.take/2 in Elixir
 description: Elixir has some powerful utility functions build into the standard library. One of my favorites is Map.take/2. After working exclusively in elixir for 3 years now, I've been floored by the breadth of its standard library. Simply put, it's delightful.
-layout: ../../layouts/BlogLayout.astro
 tags:
   - elixir
 publishedOn: 2021-04-06

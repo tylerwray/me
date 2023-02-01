@@ -1,6 +1,8 @@
 ---
+import type { Step } from '../schemas';
+
 interface Props {
-  steps: { href: string; title: string }[];
+  steps: Step[];
 }
 
 const { steps } = Astro.props;

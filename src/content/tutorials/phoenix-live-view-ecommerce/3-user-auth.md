@@ -1,12 +1,11 @@
 ---
 title: User Auth
 description: User Authentication and Session management
-layout: ../../../layouts/TutorialLayout.astro
 tags:
   - stripe
   - elixir
-  - phoenix live view
-  - tailwind
+  - phoenix
+  - tailwindcss
 publishedOn: 2022-12-07
 draft: true
 tutorial:

@@ -2,16 +2,33 @@
 import { Picture } from "@astrojs/image/components";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PostCard from "../components/PostCard.astro";
-import type { Frontmatter } from "../frontmatter";
-import { filterBlogPosts, filterTutorials } from "../utils";
+import { getCollection } from "astro:content";
 
-const latestTutorial = filterTutorials(
-  await Astro.glob<Frontmatter>("../pages/tutorials/**/*.md")
-).at(0);
+const latestTutorialEntry = (
+  await getCollection("tutorials", (entry) => {
+    // Exclude draft posts in production
+    if (import.meta.env.PROD && entry.data.draft) {
+      return false;
+    }
 
-const latestBlogPost = filterBlogPosts(
-  await Astro.glob<Frontmatter>("../pages/blog/**/*.md")
-).at(0);
+    return entry.data.tutorial.homePage;
+  })
+)
+  .sort((a, b) => b.data.publishedOn.getTime() - a.data.publishedOn.getTime())
+  .at(0);
+
+const latestBlogEntry = (
+  await getCollection("blog", (entry) => {
+    // Exclude draft posts in production
+    if (import.meta.env.PROD && entry.data.draft) {
+      return false;
+    }
+
+    return true;
+  })
+)
+  .sort((a, b) => b.data.publishedOn.getTime() - a.data.publishedOn.getTime())
+  .at(0);
 ---
 
 <BaseLayout>
@@ -45,36 +62,36 @@ const latestBlogPost = filterBlogPosts(
 
   <div class="grid sm:grid-cols-2 gap-12 justify-items-center items-start">
     {
-      latestTutorial && (
+      latestTutorialEntry && (
         <div>
           <h2 class="text-2xl font-semibold text-purple-600 dark:text-purple-400 pb-4 text-center">
             Featured Tutorial
           </h2>
           <PostCard
-            href={latestTutorial.url}
+            href={`/tutorials/${latestTutorialEntry.slug}/`}
             rel="prefetch"
-            image={latestTutorial.frontmatter.image}
-            tags={latestTutorial.frontmatter.tags}
-            title={latestTutorial.frontmatter.title}
-            description={latestTutorial.frontmatter.description}
+            image={latestTutorialEntry.data.image}
+            tags={latestTutorialEntry.data.tags}
+            title={latestTutorialEntry.data.title}
+            description={latestTutorialEntry.data.description}
           />
         </div>
       )
     }
 
     {
-      latestBlogPost && (
+      latestBlogEntry && (
         <div>
           <h2 class="text-2xl font-semibold text-purple-600 dark:text-purple-400 pb-4 text-center">
             Featured Blog Post
           </h2>
           <PostCard
-            href={latestBlogPost.url}
+            href={`/blog/${latestBlogEntry.slug}/`}
             rel="prefetch"
-            image={latestBlogPost.frontmatter.image}
-            tags={latestBlogPost.frontmatter.tags}
-            title={latestBlogPost.frontmatter.title}
-            description={latestBlogPost.frontmatter.description}
+            image={latestBlogEntry.data.image}
+            tags={latestBlogEntry.data.tags}
+            title={latestBlogEntry.data.title}
+            description={latestBlogEntry.data.description}
           />
         </div>
       )

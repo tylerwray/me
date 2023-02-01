@@ -1,7 +1,6 @@
 ---
 title: Bonus - Inline Code Blocks
 description: Extend our setup slightly to allow Inline Code Blocks
-layout: ../../../layouts/TutorialLayout.astro
 tags:
   - gatsby
   - react

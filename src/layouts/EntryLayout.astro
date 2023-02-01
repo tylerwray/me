@@ -5,23 +5,27 @@ import { Picture } from "@astrojs/image/components";
 import type { Frontmatter } from "../frontmatter";
 import Pill from "../components/Pill.astro";
 import { TableOfContents } from "../components/TableOfContents";
+import type { CollectionEntry } from "astro:content";
+import type { Headings } from "../schemas";
 
-type Props = MarkdownLayoutProps<Frontmatter>;
+interface Props {
+  minutesToRead: number;
+  entry: CollectionEntry<"blog"> | CollectionEntry<"tutorials">;
+  headings: Headings;
+}
 
-const { frontmatter, url } = Astro.props;
+const { minutesToRead, entry } = Astro.props;
 
-const estimatedReadingTime = Math.floor(frontmatter.minutesToRead);
+const estimatedReadingTime = Math.floor(minutesToRead);
 const books = "📚".repeat(Math.floor(estimatedReadingTime / 3));
-const publishDate = new Date(frontmatter.publishedOn).toLocaleDateString(
-  "en-us",
-  {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  }
-);
-const fullUrl = `https://tylerwray.me${url}`;
-const githubEditPath = `/src/pages${url}.md`;
+const publishDate = entry.data.publishedOn.toLocaleDateString("en-us", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const fullUrl = `https://tylerwray.me/blog/${entry.slug}/`;
+const githubEditPath = `/src/content/blog/${entry.slug}.md`;
 
 const headings: MarkdownHeading[] = [
   { depth: 2, slug: "overview", text: "Overview" },
@@ -30,10 +34,10 @@ const headings: MarkdownHeading[] = [
 ---
 
 <BaseLayout
-  title={frontmatter.title}
-  tags={frontmatter.tags}
-  image={frontmatter.image.src}
-  imageAlt={frontmatter.image.alt}
+  title={entry.data.title}
+  tags={entry.data.tags}
+  image={entry.data.image.src}
+  imageAlt={entry.data.image.alt}
 >
   <TableOfContents
     client:media="(min-width: 80rem)"
@@ -69,11 +73,11 @@ const headings: MarkdownHeading[] = [
   </script>
   <header>
     <h1 class="text-3xl font-extrabold pb-2" id="overview">
-      {frontmatter.title}
+      {entry.data.title}
     </h1>
 
     <div class="pb-4">
-      <time datetime={frontmatter.publishedOn}>{publishDate}</time>
+      <time datetime={entry.data.publishedOn.toString()}>{publishDate}</time>
       <span class="px-2">{" • "}</span>
       <span>
         {books}
@@ -100,9 +104,9 @@ const headings: MarkdownHeading[] = [
         widths={[600, 800, 1200, 1600]}
         sizes="(max-width: 800px) 90vw, 768px"
         aspectRatio={16 / 9}
-        src={frontmatter.image.src}
+        src={entry.data.image.src}
         loading="eager"
-        alt={frontmatter.image.alt}
+        alt={entry.data.image.alt}
         class="rounded-md overflow-hidden absolute top-0 left-0"
         width={768}
         height={402}
@@ -112,7 +116,7 @@ const headings: MarkdownHeading[] = [
     <div class="pt-1 pb-4 text-sm text-center text-zinc-700 dark:text-zinc-200">
       Photo By <a
         class="text-purple-600 dark:text-purple-400 hover:underline font-medium"
-        href={frontmatter.image.creditUrl}>{frontmatter.image.creditName}</a
+        href={entry.data.image.creditUrl}>{entry.data.image.creditName}</a
       >
     </div>
   </header>
@@ -163,6 +167,6 @@ const headings: MarkdownHeading[] = [
   </div>
 
   <div class="flex flex-wrap gap-1 py-4">
-    {frontmatter.tags?.map((tag) => <Pill tag={tag}>{tag}</Pill>)}
+    {entry.data.tags?.map((tag) => <Pill tag={tag}>{tag}</Pill>)}
   </div>
 </BaseLayout>

@@ -1,7 +1,6 @@
 ---
 title: React Anti-Patterns
 description: Am I using the right pattern? What will my coworkers think of this? Is this readable? Everyone asks themselves these questions at some point when learning something new. I've been working with React for 3 1/2 years now and these are some patterns that have come back to bite me.
-layout: ../../layouts/BlogLayout.astro
 tags:
   - react
 publishedOn: 2019-02-20

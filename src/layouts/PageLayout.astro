@@ -1,14 +1,13 @@
 ---
 import type { MarkdownLayoutProps } from "astro";
 import BaseLayout from "./BaseLayout.astro";
-import type { Frontmatter } from "../frontmatter";
 
-type Props = MarkdownLayoutProps<Frontmatter>;
+type Props = MarkdownLayoutProps<{ title: string; description: string }>;
 
 const { frontmatter } = Astro.props;
 ---
 
-<BaseLayout title={frontmatter.title} description={frontmatter.description} tags={frontmatter.tags}>
+<BaseLayout title={frontmatter.title} description={frontmatter.description}>
   <article class="prose dark:prose-invert">
     <slot />
   </article>

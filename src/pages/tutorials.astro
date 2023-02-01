@@ -1,13 +1,19 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-import type { Frontmatter } from "../frontmatter";
 import PostCard from "../components/PostCard.astro";
-import { filterTutorials } from "../utils";
+import { getCollection } from "astro:content";
 
-const tutorials = filterTutorials(
-  await Astro.glob<Frontmatter>("../pages/tutorials/**/*.md")
-);
+const tutorialEntries = (
+  await getCollection("tutorials", (entry) => {
+    // Exclude draft posts in production
+    if (import.meta.env.PROD && entry.data.draft) {
+      return false;
+    }
+
+    return entry.data.tutorial.homePage;
+  })
+)
+  .sort((a, b) => b.data.publishedOn.getTime() - a.data.publishedOn.getTime())
 ---
 
 <BaseLayout title="Tutorials" description="Developement tutorials">
@@ -18,13 +24,13 @@ const tutorials = filterTutorials(
 
   <div class="grid sm:grid-cols-2 gap-6 justify-items-center items-start">
     {
-      tutorials.map((tutorial) => (
+      tutorialEntries.map((entry) => (
         <PostCard
-          href={tutorial.url}
-          image={tutorial.frontmatter.image}
-          tags={tutorial.frontmatter.tags}
-          title={tutorial.frontmatter.title}
-          description={tutorial.frontmatter.description}
+          href={`/tutorials/${entry.slug}/`}
+          image={entry.data.image}
+          tags={entry.data.tags}
+          title={entry.data.title}
+          description={entry.data.description}
         />
       ))
     }

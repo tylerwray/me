@@ -1,7 +1,6 @@
 ---
 title: My favorite Lodash Functions
 description: Lodash is a fantastic library of JavaScript utilities that can really enhance your productivity and confidence as a developer. But with things being added to JavaScript every year, is Lodash still relevant?
-layout: ../../layouts/BlogLayout.astro
 tags:
   - javascript
 publishedOn: 2020-04-06
