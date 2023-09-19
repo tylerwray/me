@@ -9,11 +9,10 @@ publishedOn: 2021-12-16
 tutorial:
   slug: rich_md_code_blocks
   title: PrismJS
-image:
-  src: /assets/images/blocks.jpg
-  alt: Architecture Blocks
-  creditName: Desmond Marshall
-  creditUrl: https://unsplash.com/@ddmarshall?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
+imageSrc: ./images/blocks.jpg
+imageAlt: Architecture Blocks
+imageCreditName: Desmond Marshall
+imageCreditUrl: https://unsplash.com/@ddmarshall?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 ---
 
 [PrismJS](https://prismjs.com/) is a syntax highlighting library for code blocks on the web. It works by taking in code and wrapping the pieces of the code in HTML tags with semantic class names so we can style things like variables, function names, booleans, numbers, etc.

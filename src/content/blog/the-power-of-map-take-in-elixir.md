@@ -4,11 +4,10 @@ description: Elixir has some powerful utility functions build into the standard 
 tags:
   - elixir
 publishedOn: 2021-04-06
-image:
-  src: /assets/images/disassembled-typewriter.jpg
-  alt: Disassembled Typewriter
-  creditName: Florian Klauer
-  creditUrl: https://unsplash.com/@florianklauer
+imageSrc: ./images/disassembled-typewriter.jpg
+imageAlt: Disassembled Typewriter
+imageCreditName: Florian Klauer
+imageCreditUrl: https://unsplash.com/@florianklauer
 ---
 
 After working exclusively in elixir for 3 years now, I've been floored by the breadth of its standard library. Simply put, it's delightful.

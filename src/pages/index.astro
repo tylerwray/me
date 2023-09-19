@@ -1,8 +1,9 @@
 ---
-import { Picture } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PostCard from "../components/PostCard.astro";
 import { getCollection } from "astro:content";
+import profile from "../images/profile.jpg";
 
 const latestTutorialEntry = (
   await getCollection("tutorials", (entry) => {
@@ -47,16 +48,10 @@ const latestBlogEntry = (
       </p>
     </div>
 
-    <Picture
-      src="/assets/images/me.jpg"
-      class="rounded-full overflow-hidden"
+    <Image
+      src={profile}
       alt="Image of the author"
-      aspectRatio="1:1"
-      widths={[240]}
-      loading="eager"
-      sizes="240px"
-      width={240}
-      height={240}
+      class="rounded-full object-cover w-60 h-60"
     />
   </div>
 
@@ -70,7 +65,8 @@ const latestBlogEntry = (
           <PostCard
             href={`/tutorials/${latestTutorialEntry.slug}/`}
             rel="prefetch"
-            image={latestTutorialEntry.data.image}
+            imageSrc={latestTutorialEntry.data.imageSrc}
+            imageAlt={latestTutorialEntry.data.imageAlt}
             tags={latestTutorialEntry.data.tags}
             title={latestTutorialEntry.data.title}
             description={latestTutorialEntry.data.description}
@@ -88,7 +84,8 @@ const latestBlogEntry = (
           <PostCard
             href={`/blog/${latestBlogEntry.slug}/`}
             rel="prefetch"
-            image={latestBlogEntry.data.image}
+            imageSrc={latestBlogEntry.data.imageSrc}
+            imageAlt={latestBlogEntry.data.imageAlt}
             tags={latestBlogEntry.data.tags}
             title={latestBlogEntry.data.title}
             description={latestBlogEntry.data.description}

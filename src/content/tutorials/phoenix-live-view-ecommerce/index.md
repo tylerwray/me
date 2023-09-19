@@ -12,11 +12,10 @@ tutorial:
   slug: live_view_ecommerce
   title: Introduction
   homePage: true
-image:
-  src: /assets/images/phoenix-stripe-tailwind.jpg
-  alt: Elixir, Phoenix Live View, Stripe, Tailwind
-  creditName: Tyler Wray
-  creditUrl: https://tylerwray.me
+imageSrc: ./images/phoenix-stripe-tailwind.jpg
+imageAlt: Elixir, Phoenix Live View, Stripe, Tailwind
+imageCreditName: Tyler Wray
+imageCreditUrl: https://tylerwray.me
 ---
 
 ## Introduction
@@ -28,7 +27,6 @@ so I wanted to actually build something to test it out! At it's core, Phoenix Li
 
 We're going to build an ecommerce application powered by [Stripe](https://stripe.com) and Phoenix LiveView. Along the way learning
 about the problems Phoenix LiveView solves, some basics of Stripe, cool tailwindcss features, and a bit about reactive programming,
-
 
 The tech we will use in this tutorial —
 

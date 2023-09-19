@@ -1,5 +1,6 @@
 ---
-import { Image } from "@astrojs/image/components";
+import { Image } from "astro:assets";
+import family from "../images/family.jpg";
 ---
 
 <footer class="w-full bg-zinc-100 dark:bg-zinc-800">
@@ -16,11 +17,9 @@ import { Image } from "@astrojs/image/components";
       </p>
     </div>
     <Image
-      class="rounded-full h-48 w-48 hidden sm:block"
+      class="rounded-full h-48 w-48 hidden object-cover sm:block"
       alt="Family"
-      src="/assets/images/family_192.jpg"
-      width={192}
-      aspectRatio={1}
+      src={family}
     />
   </div>
 </footer>

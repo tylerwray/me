@@ -9,11 +9,10 @@ publishedOn: 2021-12-16
 tutorial:
   slug: rich_md_code_blocks
   title: Gatsby + MDX
-image:
-  src: /assets/images/blocks.jpg
-  alt: Architecture Blocks
-  creditName: Desmond Marshall
-  creditUrl: https://unsplash.com/@ddmarshall?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
+imageSrc: ./images/blocks.jpg
+imageAlt: Architecture Blocks
+imageCreditName: Desmond Marshall
+imageCreditUrl: https://unsplash.com/@ddmarshall?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 ---
 
 MDX is the engine that translates plain markdown into awesome web markup. MDX is properly known for allowing a new flavor of markdown which you can render JSX within! Hence the name MD(X). We'll not be using that feature today. Instead we'll focus on the markdown rendering capabilites of MDX.

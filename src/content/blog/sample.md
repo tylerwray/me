@@ -5,11 +5,10 @@ tags:
   - javascript
 publishedOn: 2020-04-06
 draft: true
-image:
-  src: https://static.wikia.nocookie.net/starwars/images/c/cc/Star-wars-logo-new-tall.jpg/revision/latest?cb=20190313021755
-  alt: Disassembled Typewriter
-  creditName: Florian Klauer
-  creditUrl: https://unsplash.com/@florianklauer
+imageSrc: ./images/star-wars.webp
+imageAlt: Disassembled Typewriter
+imageCreditName: Florian Klauer
+imageCreditUrl: https://unsplash.com/@florianklauer
 ---
 
 # Heading level 1

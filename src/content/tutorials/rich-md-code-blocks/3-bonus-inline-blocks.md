@@ -9,11 +9,10 @@ publishedOn: 2021-12-16
 tutorial:
   slug: rich_md_code_blocks
   title: Bonus - Inline Code Blocks
-image:
-  src: /assets/images/blocks.jpg
-  alt: Architecture Blocks
-  creditName: Desmond Marshall
-  creditUrl: https://unsplash.com/@ddmarshall?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
+imageSrc: ./images/blocks.jpg
+imageAlt: Architecture Blocks
+imageCreditName: Desmond Marshall
+imageCreditUrl: https://unsplash.com/@ddmarshall?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 ---
 
 A little bonus... have you noticed all the nicely formtted inline code blocks? Like this one: `jsx__<MDXProvider />`?

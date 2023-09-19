@@ -11,11 +11,10 @@ draft: true
 tutorial:
   slug: live_view_ecommerce
   title: Stripe Account Setup
-image:
-  src: /assets/images/phoenix-stripe-tailwind.jpg
-  alt: Elixir, Phoenix Live View, Stripe, Tailwind
-  creditName: Tyler Wray
-  creditUrl: https://tylerwray.me
+imageSrc: ./images/phoenix-stripe-tailwind.jpg
+imageAlt: Elixir, Phoenix Live View, Stripe, Tailwind
+imageCreditName: Tyler Wray
+imageCreditUrl: https://tylerwray.me
 ---
 
 ## Stripe Account Setup

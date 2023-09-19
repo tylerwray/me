@@ -11,11 +11,10 @@ draft: true
 tutorial:
   slug: live_view_ecommerce
   title: Checkout
-image:
-  src: /assets/images/phoenix-stripe-tailwind.jpg
-  alt: Elixir, Phoenix Live View, Stripe, Tailwind
-  creditName: Tyler Wray
-  creditUrl: https://tylerwray.me
+imageSrc: ./images/phoenix-stripe-tailwind.jpg
+imageAlt: Elixir, Phoenix Live View, Stripe, Tailwind
+imageCreditName: Tyler Wray
+imageCreditUrl: https://tylerwray.me
 ---
 
 Finally we want to actually display these `cart_items` records and allow a user to checkout and pay us.

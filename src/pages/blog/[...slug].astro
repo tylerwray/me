@@ -1,7 +1,8 @@
 ---
-import { CollectionEntry, getCollection } from "astro:content";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import EntryLayout from "../../layouts/EntryLayout.astro";
-import { HeadingsSchema, MinutesToReadSchema } from "../../schemas";
+import { HeadingsSchema, MinutesToReadSchema } from "../../content/config";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("blog", (entry) => {

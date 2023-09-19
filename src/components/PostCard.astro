@@ -1,41 +1,36 @@
 ---
-import { Picture } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import type { HTMLAttributes } from "astro/types";
-import type { Tag } from "../schemas";
+import type { Tag } from "../content/config";
 import Pill from "./Pill.astro";
 
 interface Props extends HTMLAttributes<"a"> {
-  image: {
-    src: string;
-    alt: string;
-  };
+  imageSrc: ImageMetadata;
+  imageAlt: string;
   tags?: Tag[];
   title: string;
   description: string;
 }
 
-const { image, tags = [], title, description, ...rest } = Astro.props;
+const {
+  imageSrc,
+  imageAlt,
+  tags = [],
+  title,
+  description,
+  ...rest
+} = Astro.props;
 ---
 
 <a
   {...rest}
   class="grid group w-80 p-4 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-700/75 transition-colors"
 >
-  <div
-    class="h-0 overflow-hidden pt-[56.25%] relative bg-zinc-800/25 rounded-md shadow-lg"
-  >
-    <Picture
-      src={image.src}
-      class="rounded-md overflow-hidden absolute top-0 left-0"
-      alt={image.alt}
-      aspectRatio="16:9"
-      widths={[300]}
-      loading="eager"
-      sizes="300px"
-      width={300}
-      height={300}
-    />
-  </div>
+  <Image
+    src={imageSrc}
+    class="h-40 w-72 object-cover rounded-md overflow-hidden"
+    alt={imageAlt}
+  />
 
   <div class="relative pt-4 pb-2 w-max">
     <h3 class="text-lg font-bold">

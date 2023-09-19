@@ -10,11 +10,10 @@ tutorial:
   slug: rich_md_code_blocks
   title: Introduction
   homePage: true
-image:
-  src: /assets/images/blocks.jpg
-  alt: Architecture Blocks
-  creditName: Desmond Marshall
-  creditUrl: https://unsplash.com/@ddmarshall?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
+imageSrc: ./images/blocks.jpg
+imageAlt: Architecture Blocks
+imageCreditName: Desmond Marshall
+imageCreditUrl: https://unsplash.com/@ddmarshall?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 ---
 
 I've recently spent a good amount of time (probably too much) customizing the code blocks on my blog here to my exact liking. There's much more I want to do, but I'm really proud of how they turned out and I want to share with you how I created them!

@@ -1,12 +1,11 @@
 ---
 import type { MarkdownHeading, MarkdownLayoutProps } from "astro";
 import BaseLayout from "./BaseLayout.astro";
-import { Picture } from "@astrojs/image/components";
-import type { Frontmatter } from "../frontmatter";
+import { Image } from "astro:assets";
 import Pill from "../components/Pill.astro";
 import { TableOfContents } from "../components/TableOfContents";
 import type { CollectionEntry } from "astro:content";
-import type { Headings } from "../schemas";
+import type { Headings } from "../content/config";
 
 interface Props {
   minutesToRead: number;
@@ -36,8 +35,8 @@ const headings: MarkdownHeading[] = [
 <BaseLayout
   title={entry.data.title}
   tags={entry.data.tags}
-  image={entry.data.image.src}
-  imageAlt={entry.data.image.alt}
+  imageSrc={entry.data.imageSrc}
+  imageAlt={entry.data.imageAlt}
 >
   <TableOfContents
     client:media="(min-width: 80rem)"
@@ -97,26 +96,16 @@ const headings: MarkdownHeading[] = [
       </a>
     </div>
 
-    <div
-      class="h-0 overflow-hidden pt-[56.25%] relative bg-zinc-800/25 rounded-md shadow-lg"
-    >
-      <Picture
-        widths={[600, 800, 1200, 1600]}
-        sizes="(max-width: 800px) 90vw, 768px"
-        aspectRatio={16 / 9}
-        src={entry.data.image.src}
-        loading="eager"
-        alt={entry.data.image.alt}
-        class="rounded-md overflow-hidden absolute top-0 left-0"
-        width={768}
-        height={402}
-      />
-    </div>
+    <Image
+      src={entry.data.imageSrc}
+      alt={entry.data.imageAlt}
+      class="rounded-md shadow-lg max-h-96 w-full object-cover"
+    />
 
     <div class="pt-1 pb-4 text-sm text-center text-zinc-700 dark:text-zinc-200">
       Photo By <a
         class="text-purple-600 dark:text-purple-400 hover:underline font-medium"
-        href={entry.data.image.creditUrl}>{entry.data.image.creditName}</a
+        href={entry.data.imageCreditUrl}>{entry.data.imageCreditName}</a
       >
     </div>
   </header>
@@ -162,7 +151,7 @@ const headings: MarkdownHeading[] = [
         ></path>
       </svg>
 
-      Edit post on GitHub
+       Edit post on GitHub
     </a>
   </div>
 

@@ -1,6 +1,5 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
-import image from "@astrojs/image";
 import sitemap from "@astrojs/sitemap";
 import { toString } from "hast-util-to-string";
 import { h } from "hastscript";
@@ -67,14 +66,5 @@ export default defineConfig({
       ],
     ],
   },
-  integrations: [
-    tailwind(),
-    image({
-      serviceEntryPoint: "@astrojs/image/sharp",
-    }),
-    sitemap(),
-    codeBlocks(),
-    react(),
-    prefetch(),
-  ],
+  integrations: [tailwind(), sitemap(), codeBlocks(), react(), prefetch()],
 });

@@ -23,7 +23,7 @@ are; Playing Golf, Making delicious Espresso, Playing Basketball, enjoying my tw
 doing yard work! I'm a [#dad](https://twitter.com/wray_tw/status/1127774420724895744?s=20)
 through and through.
 
-![Me at work with my daugher](/assets/images/me-at-work.jpg "Me at work")
+![Me at work with my daugher](../images/me-at-work.jpg "Me at work")
 
 ## Things I've done.
 

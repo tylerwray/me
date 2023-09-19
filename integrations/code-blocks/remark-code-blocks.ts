@@ -1,7 +1,7 @@
 import type * as shiki from "shiki";
 import { getHighlighter } from "shiki";
 import { visit } from "unist-util-visit";
-import heexLanguageGrammar from './heex_syntax.json'
+import heexLanguageGrammar from "./heex_syntax.json";
 
 /**
  * getHighlighter() is the most expensive step of Shiki. Instead of calling it on every page,

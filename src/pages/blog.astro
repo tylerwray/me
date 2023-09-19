@@ -32,7 +32,8 @@ const blogEntries = (
       blogEntries.map((entry) => (
         <PostCard
           href={`/blog/${entry.slug}/`}
-          image={entry.data.image}
+          imageSrc={entry.data.imageSrc}
+          imageAlt={entry.data.imageAlt}
           tags={entry.data.tags}
           title={entry.data.title}
           description={entry.data.description}

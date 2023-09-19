@@ -4,17 +4,16 @@ description: This is a repost of an article posted on YouTube by The School of L
 tags:
   - personal
 publishedOn: 2023-01-30
-image:
-  src: /assets/images/the-school-of-life.jpeg
-  alt: The School of Life
-  creditName: The School of Life
-  creditUrl: https://www.theschooloflife.com/
+imageSrc: ./images/the-school-of-life.jpg
+imageAlt: The School of Life
+imageCreditName: The School of Life
+imageCreditUrl: https://www.theschooloflife.com/
 ---
 
 This is a different post from what I usually write about on here. I wanted to share this with my wife, Ashley, but YouTube didn't have a good way to share
 this amazing article posted by [The School of Life](https://www.youtube.com/@theschooloflifetv). Thus, I'm posting it here for her to read and others!
 
-I felt absolutely moved by this article. My inner-child felt love as I desired to connect with it and give it comfort. While reading I cried, laughed, felt happiness and joy. 
+I felt absolutely moved by this article. My inner-child felt love as I desired to connect with it and give it comfort. While reading I cried, laughed, felt happiness and joy.
 
 Here's an accompanying YouTube video to watch after you read —
 

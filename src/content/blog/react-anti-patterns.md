@@ -4,11 +4,10 @@ description: Am I using the right pattern? What will my coworkers think of this?
 tags:
   - react
 publishedOn: 2019-02-20
-image:
-  src: /assets/images/tires.jpg
-  alt: Tires stacked in Pattern
-  creditName: Lane Smith
-  creditUrl: https://unsplash.com/photos/wEsqjsjIDLs
+imageSrc: ./images/tires.jpg
+imageAlt: Tires stacked in Pattern
+imageCreditName: Lane Smith
+imageCreditUrl: https://unsplash.com/photos/wEsqjsjIDLs
 ---
 
 - Am I using the right pattern?
@@ -28,7 +27,7 @@ Testable code is usually easier to read, so write tests! 🧪
 
 I first started writing React after reading a book on design patterns, and the first chapter was on Inheritance.
 
-!['Headfirst Design Patterns Book'](/assets/images/headfirst-design-patterns.jpg "Headfirst Design Patterns")
+!['Headfirst Design Patterns Book'](./images/headfirst-design-patterns.jpg "Headfirst Design Patterns")
 
 > Great book, worth the read 👍🏼
 

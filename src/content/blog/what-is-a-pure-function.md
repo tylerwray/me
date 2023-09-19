@@ -4,11 +4,10 @@ description: One of the first things you will encounter when learning functional
 tags:
   - javascript
 publishedOn: 2019-07-29
-image:
-  src: /assets/images/tools.jpg
-  alt: Garage Tool Set
-  creditName: Todd Quackenbush
-  creditUrl: https://unsplash.com/photos/IClZBVw5W5A
+imageSrc: ./images/tools.jpg
+imageAlt: Garage Tool Set
+imageCreditName: Todd Quackenbush
+imageCreditUrl: https://unsplash.com/photos/IClZBVw5W5A
 ---
 
 One of the first things you will encounter when learning functional programming is the idea of pure functions. Functional programming is all about combining small pieces of code together to form a large vision, and pure functions help us do just that.

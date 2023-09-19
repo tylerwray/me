@@ -8,12 +8,11 @@ tags:
   - tailwindcss
 publishedOn: 2022-12-07
 draft: true
-tutorial: 
+tutorial:
   slug: live_view_ecommerce
   title: Live Inventory
-image:
-  src: /assets/images/phoenix-stripe-tailwind.jpg
-  alt: Elixir, Phoenix Live View, Stripe, Tailwind
-  creditName: Tyler Wray
-  creditUrl: https://tylerwray.me
+imageSrc: ./images/phoenix-stripe-tailwind.jpg
+imageAlt: Elixir, Phoenix Live View, Stripe, Tailwind
+imageCreditName: Tyler Wray
+imageCreditUrl: https://tylerwray.me
 ---

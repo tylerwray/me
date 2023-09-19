@@ -1,9 +1,11 @@
 ---
-import { CollectionEntry, getCollection } from "astro:content";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import StepButtons from "../../components/StepButtons.astro";
 import Steps from "../../components/Steps.astro";
 import EntryLayout from "../../layouts/EntryLayout.astro";
-import { HeadingsSchema, MinutesToReadSchema, Step } from "../../schemas";
+import { HeadingsSchema, MinutesToReadSchema } from "../../content/config";
+import type { Step } from "../../content/config";
 import path from "node:path";
 
 export async function getStaticPaths() {

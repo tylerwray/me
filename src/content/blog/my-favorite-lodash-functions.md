@@ -4,11 +4,10 @@ description: Lodash is a fantastic library of JavaScript utilities that can real
 tags:
   - javascript
 publishedOn: 2020-04-06
-image:
-  src: /assets/images/blue-lego.jpg
-  alt: Blue Lego
-  creditName: Iker Urteaga
-  creditUrl: https://unsplash.com/photos/TL5Vy1IM-uA
+imageSrc: ./images/blue-lego.jpg
+imageAlt: Blue Lego
+imageCreditName: Iker Urteaga
+imageCreditUrl: https://unsplash.com/photos/TL5Vy1IM-uA
 ---
 
 [Lodash](https://lodash.com) is a fantastic library of JavaScript utilities that
