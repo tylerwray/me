@@ -66,9 +66,16 @@ const headings: MarkdownHeading[] = [
       }
     }
 
-    document.querySelectorAll(".code-block-copy-button").forEach((button) => {
-      button.addEventListener("click", copyToClipboard);
-    });
+    function registerCopyButtonClicks() {
+      document.querySelectorAll(".code-block-copy-button").forEach((button) => {
+        button.addEventListener("click", copyToClipboard);
+      });
+    }
+
+    registerCopyButtonClicks();
+
+    // Runs on view transitions navigation
+    document.addEventListener("astro:after-swap", registerCopyButtonClicks);
   </script>
   <header>
     <h1
