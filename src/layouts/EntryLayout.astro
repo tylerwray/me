@@ -71,7 +71,11 @@ const headings: MarkdownHeading[] = [
     });
   </script>
   <header>
-    <h1 class="text-3xl font-extrabold pb-2" id="overview">
+    <h1
+      class="text-3xl font-extrabold pb-2"
+      id="overview"
+      transition:name={`hero-title-${entry.data.title}`}
+    >
       {entry.data.title}
     </h1>
 
@@ -97,6 +101,7 @@ const headings: MarkdownHeading[] = [
     </div>
 
     <Image
+      transition:name={`hero-image-${entry.data.imageAlt}`}
       src={entry.data.imageSrc}
       alt={entry.data.imageAlt}
       class="rounded-md shadow-lg max-h-96 w-full object-cover"

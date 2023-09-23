@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from "astro:transitions";
+
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import profile from "../images/profile.jpg";
@@ -80,24 +82,27 @@ const twitterHandle = "@wray_tw";
     <meta name="keywords" content={keywords} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <script is:inline src="/sw.js"></script>
+    <ViewTransitions />
   </head>
-  <body
-    class="bg-white text-black dark:bg-zinc-900 dark:text-white antialiased"
-  >
-    <Nav />
-    <main
-      class="grid justify-center grid-cols-[minmax(0,48rem)] xl:grid-cols-[minmax(0,24rem)_48rem_minmax(0,24rem)]"
+  <body>
+    <div
+      class="bg-white text-black dark:bg-zinc-900 dark:text-white antialiased"
     >
-      <div></div>
-      <div id="article" class="p-8 pb-24">
-        <slot />
-      </div>
-      <aside
-        class="sticky top-24 overflow-y-auto h-screen hidden xl:block w-64"
+      <Nav />
+      <main
+        class="grid justify-center grid-cols-[minmax(0,48rem)] xl:grid-cols-[minmax(0,24rem)_48rem_minmax(0,24rem)]"
       >
-        <slot name="right-sidebar" />
-      </aside>
-    </main>
-    <Footer />
+        <div></div>
+        <div id="article" class="p-8 pb-24">
+          <slot />
+        </div>
+        <aside
+          class="sticky top-24 overflow-y-auto h-screen hidden xl:block w-64"
+        >
+          <slot name="right-sidebar" />
+        </aside>
+      </main>
+      <Footer />
+    </div>
   </body>
 </html>

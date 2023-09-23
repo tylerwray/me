@@ -6,7 +6,7 @@ tags:
 publishedOn: 2020-04-06
 draft: true
 imageSrc: ./images/star-wars.webp
-imageAlt: Disassembled Typewriter
+imageAlt: Star wars
 imageCreditName: Florian Klauer
 imageCreditUrl: https://unsplash.com/@florianklauer
 ---
