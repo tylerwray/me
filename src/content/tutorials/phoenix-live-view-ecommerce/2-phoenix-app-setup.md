@@ -40,15 +40,15 @@ Choose `yes` to install dependencies and follow the instructions to start the ap
 Once running, let's open [`http://localhost:4000/`](http://localhost:4000/) to see
 the phoenix welcome page 😎.
 
-![Phoenix default page](/assets/images/amazin-phoenix-default.png "Phoenix default page")
+![Phoenix default page](./images/phoenix-default.png "Phoenix default page")
 
 ## Install Dependencies
 
-We're going to need a few elixir dependencies for our application:
+Phoenix has everything you need to deploy to production, including tailwind! There's just a few more
+dependencies we need for our specific application:
 
 1. [Money](https://hexdocs.pm/money/Money.html): A currency formatter.
 1. [stripity_stripe](https://github.com/code-corps/stripity_stripe): A client library for working with the stripe API.
-1. [tailwindcss](https://tailwindcss.com/): A utility-first css framework.
 
 Add them to your deps in `mix.exs`
 
@@ -60,8 +60,7 @@ title: mix.exs
 def deps do
   [
     {:money, "~> 1.12"},
-    {:stripity_stripe, "~> 2.17"},
-    {:tailwind, "~> 0.1", runtime: Mix.env() == :dev}
+    {:stripity_stripe, "~> 2.17"}
   ]
 end
 ```
@@ -69,7 +68,7 @@ end
 > I really like tailwind as a companion to phoenix-live-view because of it's functional-composable nature.
 > It makes it really easy to style our live views!
 
-Finally run —
+Then run —
 
 ```bash
 mix deps.get
@@ -79,11 +78,8 @@ mix deps.get
 
 This part is a bit boring... but the payoff is worth it 🤞🏻 We need to add a couple pieces of configuration.
 
-1. We need to tee `tailwindcss` how to read out live-views.
 1. We need to tell `stripity_stripe` what our Stripe API key is.
 1. We need to tell our `money` package which currency to use by default.
-
-For tailwindcss configuration and setup, follow the [official documentation for phoenix app setup](https://tailwindcss.com/docs/guides/phoenix).
 
 You can grab the Stripe API public and secret keys from the
 [stripe developer page](https://dashboard.stripe.com/apikeys) of your stripe account.

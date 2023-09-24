@@ -10,11 +10,10 @@ import heexLanguageGrammar from "./heex_syntax.json";
  */
 const highlighterCacheAsync = new Map<string, Promise<shiki.Highlighter>>();
 
-const DARK_THEME = "github-dark";
-const LIGHT_THEME = "github-light";
+const THEME = "github-dark";
 
 const remarkShiki = async () => {
-  const themes = [LIGHT_THEME, DARK_THEME];
+  const themes = [THEME];
   const cacheID = themes.join("-");
   let highlighterAsync = highlighterCacheAsync.get(cacheID);
   if (!highlighterAsync) {
@@ -77,38 +76,11 @@ const remarkShiki = async () => {
         return;
       }
 
-      const darkBlockHtml = removePreTag(
-        buildBlock({ theme: DARK_THEME, code: node.value, lang, highlighter })
-      );
-      const lightBlockHtml = removePreTag(
-        buildBlock({ theme: LIGHT_THEME, code: node.value, lang, highlighter })
+      const htmlBlock = removePreTag(
+        buildBlock({ theme: THEME, code: node.value, lang, highlighter })
       );
 
-      const darkBlockWrapper = {
-        type: "element",
-        tagName: "span",
-        data: {
-          hName: "span",
-          hProperties: {
-            class: "dark-theme-inline-code-block",
-          },
-        },
-        children: [{ type: "html", value: darkBlockHtml }],
-      };
-
-      const lightBlockWrapper = {
-        type: "element",
-        tagName: "span",
-        data: {
-          hName: "span",
-          hProperties: {
-            class: "light-theme-inline-code-block",
-          },
-        },
-        children: [{ type: "html", value: lightBlockHtml }],
-      };
-
-      const codeBlockWrapper = {
+      const inlineCodeBlock = {
         type: "element",
         tagName: "span",
         data: {
@@ -117,10 +89,10 @@ const remarkShiki = async () => {
             class: "inline-code-block",
           },
         },
-        children: [darkBlockWrapper, lightBlockWrapper],
+        children: [{ type: "html", value: htmlBlock }],
       };
 
-      parent.children.splice(index, 1, codeBlockWrapper);
+      parent.children.splice(index, 1, inlineCodeBlock);
     });
 
     visit(tree, "code", (node, index, parent) => {
@@ -162,44 +134,14 @@ const remarkShiki = async () => {
         children: [{ type: "text", value: "Copy" }],
       };
 
-      const darkBlockHtml = buildBlock({
-        theme: DARK_THEME,
-        code: node.value,
-        lang,
-        highlighter,
-      });
-      const lightBlockHtml = buildBlock({
-        theme: LIGHT_THEME,
+      const htmlBlock = buildBlock({
+        theme: THEME,
         code: node.value,
         lang,
         highlighter,
       });
 
-      const darkBlockWrapper = {
-        type: "element",
-        tagName: "div",
-        data: {
-          hName: "div",
-          hProperties: {
-            class: "dark-theme-code-block",
-          },
-        },
-        children: [{ type: "html", value: darkBlockHtml }],
-      };
-
-      const lightBlockWrapper = {
-        type: "element",
-        tagName: "div",
-        data: {
-          hName: "div",
-          hProperties: {
-            class: "light-theme-code-block",
-          },
-        },
-        children: [{ type: "html", value: lightBlockHtml }],
-      };
-
-      const codeBlockWrapper = {
+      const codeBlock = {
         type: "element",
         tagName: "div",
         data: {
@@ -208,10 +150,10 @@ const remarkShiki = async () => {
             class: "code-block",
           },
         },
-        children: [...title, copyButton, darkBlockWrapper, lightBlockWrapper],
+        children: [...title, copyButton, { type: "html", value: htmlBlock }],
       };
 
-      parent.children.splice(index, 1, codeBlockWrapper);
+      parent.children.splice(index, 1, codeBlock);
     });
   };
 };
