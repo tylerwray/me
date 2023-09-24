@@ -28,7 +28,7 @@ module.exports = {
               margin: 0,
             },
             "ul, ol": {
-              paddingBottom: theme("spacing.5")
+              paddingBottom: theme("spacing.5"),
             },
             blockquote: {
               fontWeight: theme("fontWeight.normal"),

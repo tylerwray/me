@@ -18,19 +18,6 @@ const remarkShiki = async () => {
   let highlighterAsync = highlighterCacheAsync.get(cacheID);
   if (!highlighterAsync) {
     highlighterAsync = getHighlighter({ themes }).then((hl) => {
-      hl.setColorReplacements({
-        "#000001": "var(--astro-code-color-text)",
-        "#000002": "var(--astro-code-color-background)",
-        "#000004": "var(--astro-code-token-constant)",
-        "#000005": "var(--astro-code-token-string)",
-        "#000006": "var(--astro-code-token-comment)",
-        "#000007": "var(--astro-code-token-keyword)",
-        "#000008": "var(--astro-code-token-parameter)",
-        "#000009": "var(--astro-code-token-function)",
-        "#000010": "var(--astro-code-token-string-expression)",
-        "#000011": "var(--astro-code-token-punctuation)",
-        "#000012": "var(--astro-code-token-link)",
-      });
       return hl;
     });
     highlighterCacheAsync.set(cacheID, highlighterAsync);
@@ -176,9 +163,6 @@ function buildBlock({
   // Ex. If a user typed `<span class="line"` into a code block,
   // It would become this before hitting our regexes:
   // &lt;span class=&quot;line&quot;
-
-  // Replace "shiki" class naming with "astro".
-  html = html.replace('<pre class="shiki"', `<pre class="astro-code"`);
 
   // Add "user-select: none;" for "+"/"-" diff symbols
   if (lang === "diff") {

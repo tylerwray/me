@@ -42,17 +42,6 @@ div[data-remark-code-title] {
   @apply bg-zinc-200 dark:bg-zinc-800 text-sm text-zinc-800 dark:text-zinc-400 px-4 font-mono py-2 rounded-t-md overflow-x-auto border border-zinc-300 dark:border-zinc-700/70;
 }
 
-/* Dark mode title modifier */
-div[data-remark-code-title] + button + div > .astro-code,
-/* Light mode title modifier */
-div[data-remark-code-title] + button + div + div > .astro-code {
-  @apply mt-0 rounded-t-none border-t-0;
-}
-
-.astro-code {
-  @apply pr-16;
-}
-
 .code-block {
   @apply pb-5;
 }
@@ -63,7 +52,7 @@ p > code {
 }
 
 pre {
-  @apply border border-zinc-300 dark:border-zinc-700/70;
+  @apply border border-zinc-700/70;
 }
 
 .code-block {
