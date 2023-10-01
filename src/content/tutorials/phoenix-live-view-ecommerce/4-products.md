@@ -17,75 +17,23 @@ imageCreditName: Tyler Wray
 imageCreditUrl: https://tylerwray.me
 ---
 
-## Navbar
-
-We are going to create our first simple live view;
-A basic navbar with a products grid, each showing a live inventory count.
-
-First thing we need to do is setup our root layout properly. And that starts with
-adding our nice navbar.
-
-In our `root.html.heex` file replace the contents of the `heex__<body />` tag so it looks like this —
-
-```heex
----
-title: lib/amazin_web/templates/layout/root.html.heex
----
-
-<body>
-  <nav class="bg-gray-800">
-    <div class="p-4 flex gap-4 justify-center items-center">
-      <div class="flex items-center gap-2">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="currentColor"
-          viewBox="0 0 30 30"
-          class="w-8 h-8 text-red-400"
-        >
-          <path d="m0 0h30.78v30.78h-30.78z" opacity="0" />
-          <path
-            d="m25.8039 8.605575-3.629475-3.629475c-.720854-.72175246-1.6988234-1.12770198-2.7189-1.1286h-8.13105c-1.0200766.00089802-1.99804595.40684754-2.7189 1.1286l-3.629475 3.629475c-.72175246.72085405-1.12770198 1.6988234-1.1286 2.7189v11.760525c0 2.1249156 1.72258443 3.8475 3.8475 3.8475h15.39c2.1249156 0 3.8475-1.7225844 3.8475-3.8475v-11.760525c-.000898-1.0200766-.4068475-1.99804595-1.1286-2.7189zm-10.4139 11.914425c-2.8332208 0-5.13-2.2967792-5.13-5.13 0-.7083052.5741948-1.2825 1.2825-1.2825s1.2825.5741948 1.2825 1.2825c0 1.4166104 1.1483896 2.565 2.565 2.565s2.565-1.1483896 2.565-2.565c0-.7083052.5741948-1.2825 1.2825-1.2825s1.2825.5741948 1.2825 1.2825c0 2.8332208-2.2967792 5.13-5.13 5.13zm-7.169175-11.5425 2.193075-2.193075c.2457703-.234356.5710113-.36720092.910575-.371925h8.13105c.3395637.00472408.6648047.137569.910575.371925l2.193075 2.193075z"
-          />
-        </svg>
-        <div class="text-white text-xl">amazin</div>
-      </div>
-
-      <a href="/products" class="px-3 py-2 rounded text-white bg-gray-900">PRODUCTS</a>
-      <div class="grow"></div>
-      <a href="/cart" class="px-3 py-2 rounded text-white bg-gray-900">CART</a>
-    </div>
-  </nav>
-  <%= @inner_content %>
-</body>
-```
-
-Once it's done, it should look like this —
-
-![Application Navigation](/assets/images/amazin-navigation.png)
-
 ## Products Live View
 
-Now we are going to create a new live view using the built in generators
-that come with phoenix. If you haven't seen anything like this before,
-it may blow your mind.
+Now we are going to create a new live view to display our list of products!
+If you haven't seen a live-view before, it may blow your mind.
+
+To create our live-view we are going to use Phoenix generators to scaffold the basics of our app.
 
 ```bash
 mix phx.gen.live Store Product products \
   amount:integer \
-  description:string \
+  description:text \
   name:string \
   stock:integer \
-  stripe_product_id:string:unique \
-  thumbnail:string
+  thumbnail:text
 ```
 
-This creates a context called `Store` with a live-view called `Products` and a table called `products`.
-The remaining arguments defining the schema of a `Product`.
-
-The generator output shows us all the files it created, instructs us to make
-some updates to our router, and run migrations. Let's do that really quick.
-
-The command gave us alot of routes to add, but we're going to ignore those and define our routes like so —
+This will create a bunch of files. Feel free to explore them now. Follow the output instructions to add the routes to `lib/amazin_web/router.ex` —
 
 ```diff
 ---
@@ -96,120 +44,115 @@ scope "/", AmazinWeb do
   pipe_through :browser
 
    get "/", PageController, :index
+
 +  live "/products", ProductLive.Index, :index
++  live "/products/new", ProductLive.Index, :new
++  live "/products/:id/edit", ProductLive.Index, :edit
+
 +  live "/products/:id", ProductLive.Show, :show
++  live "/products/:id/show/edit", ProductLive.Show, :edit
 end
 ```
 
-Next, we're gunna make a few small tweaks to the `Product` schema —
-
-1. Change the `amount` field to use the `Money` type to give us nice currency formatting all through the app.
-1. Add a default of `0` to the stock field.
-
-```diff
----
-title: lib/amazin/store/product.ex
----
-
-defmodule Amazin.Store.Product do
-  # ..
-  import Ecto.Changeset
-
-  schema "products" do
--   field :amount, :integer
-+   field :amount, Money.Ecto.Amount.Type
-    field :description, :string
-    field :name, :string
--   field :stock, :integer
-+   field :stock, :integer, default: 0
-```
-
-Then run migrations:
+Run migrations —
 
 ```bash
 mix ecto.migrate
 ```
 
-Now we're going make things our own and use the awesome power of tailwindcss.
+Finally, if you start up the server again and go to
+[`http://localhost:4000/products`](http://localhost:4000/products),
+you should see a bare page with your navbar, list of products, and "new product" button.
 
-Small one, but add the `mx-auto` class to the `heex__<main />` tag in both our templates so that our product grid is centered —
+![Empty Page](./images/amazin-empty.png)
 
-```diff
----
-title: lib/amazin_web/templates/layout/live.html.heex
----
-- <main class="container">
-+ <main class="container mx-auto">
-```
+Go ahead and add a product with the `New Product` button. Enter product details —
 
-```diff
----
-title: lib/amazin_web/templates/layout/app.html.heex
----
-- <main class="container">
-+ <main class="container mx-auto">
-```
+![Add product modal](./images/amazin-new-product-modal.png)
 
-Now its time to make our product list prettier. Replace the home page with —
+Then save the product —
+
+![Basic product list](./images/amazin-basic-product-list.png)
+
+This isn't the prettiest list. Let's make it better!
+
+Update the markup for the product list page —
 
 ```heex
 ---
 title: lib/amazin_web/live/product_live/index.html.heex
 ---
-<div class="grid grid-cols-4 gap-12 p-12">
-  <%= for product <- @products do %>
-    <div class="flex flex-col bg-white border border-gray-400 shadow rounded-lg">
-      <img
-        class="grow p-6 object-contain"
-        src={product.thumbnail}
-        title={product.name}
-        alt={product.name}
-      />
-      <div class="px-6 py-4 border-t border-gray-400">
-        <h3 class="text-lg leading-6 font-medium text-gray-900">
-          <%= product.name %>
-        </h3>
-        <p class="text-sm text-gray-500"><%= product.description %></p>
-      </div>
-      <div class="px-6 py-4 border-t border-gray-400 text-xl">
-        <%= product.stock %> remaining
-      </div>
-      <div class="p-6 py-4 border-t border-gray-400 text-xl">
-        <div class="flex flex-col items-left">
-          <%= product.amount %>
-          <button
-            phx-click="add_to_cart"
-            phx-value-id={product.id}
-            class="focus:outline-none focus:shadow-outline text-sm bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 mt-2 rounded"
-          >
-            Add to Cart
-          </button>
-        </div>
+<.header>
+  All Products
+  <:actions>
+    <.link patch={~p"/products/new"}>
+      <.button>New Product</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<div
+  class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 p-12 max-w-7xl mx-auto"
+  id="products"
+  phx-update="stream">
+  <div
+    :for={{dom_id, product} <- @streams.products}
+    id={dom_id}
+    class="flex flex-col bg-white hover:bg-gray-100 cursor-pointer border border-gray-400 shadow rounded-lg"
+    phx-click={JS.navigate(~p"/products/#{product}")}
+  >
+    <img
+      class="grow p-6 object-contain"
+      src={product.thumbnail}
+      title={product.name}
+      alt={product.name}
+    />
+    <div class="px-6 py-4 border-t border-gray-400">
+      <h3 class="text-lg leading-6 font-medium text-gray-900 pb-2">
+        <%= product.name %>
+      </h3>
+      <p class="text-sm text-gray-500"><%= product.description %></p>
+    </div>
+    <div class="px-6 py-4 border-t border-gray-400">
+      <%= product.stock %> remaining
+    </div>
+    <div class="p-6 py-4 border-t border-gray-400 text-xl">
+      <div class="flex flex-col items-left">
+        <%= Money.new(product.amount) %>
+        <button
+          phx-click="add_to_cart"
+          phx-value-id={product.id}
+          class="focus:outline-none focus:shadow-outline text-sm bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 mt-2 rounded"
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
-  <% end %>
+  </div>
 </div>
+
+<.modal :if={@live_action == :new} id="product-modal" show on_cancel={JS.patch(~p"/products")}>
+  <.live_component
+    module={AmazinWeb.ProductLive.FormComponent}
+    id={:new}
+    title={@page_title}
+    action={@live_action}
+    product={@product}
+    patch={~p"/products"}
+  />
+</.modal>
 ```
 
-This renders a four column grid of product "cards" each with an image, name, description,
-inventory, price, and an "Add to cart" button. It's entirely styled with tailwindcss. I love ❤️
-the readability of functional CSS.
+Add a few more products, and your product page is starting to look really nice —
 
-Finally, if you start up the server again and go to
-[`http://localhost:4000/products`](http://localhost:4000/products),
-you should see a bare page with your navbar.
+![Products Page Grid](./images/amazin-product-grid.png)
 
-![Empty Page](/assets/images/amazin-empty-page.png)
-
-## Add Reactivity
+## Reactive UI
 
 We want the live-view to update itself when relevent events occur. Theres alot of ways we _could_ accomplish that; but turns
 out phoenix ships with a really nice way out of the box: [Phoenix.PubSub](https://hexdocs.pm/phoenix_pubsub/Phoenix.PubSub.html)!
 
-First we need to make a quick stop in our `Store` context to do a few things —
-
-1. **Setup events** — Use `elixir__Phoenix.PubSub` to create a reactive UI so that our live-view will auto-update when we receive webhooks from Stripe.
-1. **Upsert product** — This is going to allow our webhook events to be idempotent, which is very nice to have when dealing with Stripe.
+First we need to make a quick stop in our `Store` context to setup our events. We'll Use `Phoenix.PubSub` to create a reactive UI so that our live-view will auto-update certain domain events occur
 
 ```elixir
 ---
@@ -217,7 +160,7 @@ title: lib/amazin/store.ex
 ---
 
 defmodule Amazin.Store do
-  # ...
+  # ... Removed for brevity
 
   @doc """
   Subscribes you to product events.
@@ -237,7 +180,7 @@ defmodule Amazin.Store do
 
   ## Examples
 
-      iex> broadcast_product_event(:updated, %Stripe.Product{})
+      iex> broadcast_product_event(:product_updated, %Stripe.Product{})
       :ok
 
   """
@@ -247,130 +190,111 @@ defmodule Amazin.Store do
 end
 ```
 
-Important parts to notice here are the `elixir__Repo.insert/2` call with an `on_conflict` for upserts, the `elixir__Phoenix.PubSub.broadcast/3` call that broadcasts a generic "updated" event, and the `elixir__subscribe_to_product_events/0` function.
+Important parts to notice here are the `elixir__Phoenix.PubSub.broadcast/3` call that broadcasts a generic `elixir__:product_updated` event and the `elixir__subscribe_to_product_events/0` function.
+
+Now we want to broadcast events for our view to use. Update the `elixir__Store.create_product/2` and `elixir__Store.update_product/2` functions to broadcast events.
+
+```elixir
+---
+title: lib/amazin/store.ex
+---
+
+defmodule Amazin.Store do
+  # ... Removed for brevity
+
+  @doc """
+  Creates a product.
+
+  ## Examples
+
+      iex> create_product(%{field: value})
+      {:ok, %Product{}}
+
+      iex> create_product(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_product(attrs \\ %{}) do
+    result =
+      %Product{}
+      |> Product.changeset(attrs)
+      |> Repo.insert()
+
+    case result do
+      {:ok, new_product} ->
+        broadcast_product_event(:product_created, new_product)
+        {:ok, new_product}
+
+      error ->
+        error
+    end
+  end
+
+  @doc """
+  Updates a product.
+
+  ## Examples
+
+      iex> update_product(product, %{field: new_value})
+      {:ok, %Product{}}
+
+      iex> update_product(product, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_product(%Product{} = product, attrs) do
+    result =
+      product
+      |> Product.changeset(attrs)
+      |> Repo.update()
+
+    case result do
+      {:ok, updated_product} ->
+        broadcast_product_event(:product_updated, updated_product)
+        {:ok, updated_product}
+
+      error ->
+        error
+    end
+  end
+
+  # ... Removed for brevity
+end
+```
 
 When our live-view mounts we want to subscribe our view to any product events. If we get notified of
 any events via `elixir__Pheonix.PubSub.broadcast/2`, the `elixir__handle_info/2` function in the module is called.
 
-Lets add the following to our product grid live view —
+Lets replace our `mount` function and add `handle_info` functions to our product grid live view —
 
 ```elixir
 ---
 title: lib/amazin_web/live/product_live/index.ex
 ---
 defmodule AmazinWeb.ProductLive.Index do
+  # ... Removed for brevity
+
   @impl true
   def mount(_params, _session, socket) do
     if connected?(socket), do: Store.subscribe_to_product_events()
-    {:ok, assign(socket, :products, fetch_products())}
+
+    {:ok, stream(socket, :products, Store.list_products())}
   end
 
   @impl true
-  def handle_info({:product_updated, product}, socket) do
-    {:noreply, assign(socket, :products, update_product(product))}
+  def handle_info({:product_updated, updated_product}, socket) do
+    {:noreply, stream_insert(socket, :products, updated_product)}
   end
 
   @impl true
-  def handle_info({:product_created, product}, socket) do
-    {:noreply, assign(socket, :products, add_product(product))}
+  def handle_info({:product_created, created_product}, socket) do
+    {:noreply, stream_insert(socket, :products, created_product)}
   end
+
+  # ... Removed for brevity
 end
 ```
 
-## Stripe Webhooks
+It's worth reading the [docs](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#stream_insert/4) to understand `stream_insert/4`. It's doing some powerful things and letting us write less, more delcaritive, code.
 
-Stripe is the source of truth for our products and their prices. We are going to keep a copy of that data in our DB for performance. Our DB will be the source of truth for inventory. When stripe products
-and prices change (or new ones are created) we want our live view to reflect those updates to the user immediately.
-We setup the basis for that functionality in the previous section, and now we're going to test it's power using
-webhooks from stripe.
-
-> You can read more about stripe products and prices entities in their guide — https://stripe.com/docs/billing/prices-guide.
-
-Following the [instructions](https://hexdocs.pm/stripity_stripe/Stripe.WebhookPlug.html#content) from our elixir-stripe package, we're going to setup our server to receieve webhooks from stripe.
-
-Create a new module to handle webhooks from stripe. We will handle more events later by adding to this handler module —
-
-```elixir
----
-title: lib/amazin_web/stripe_webhook_handler.ex
----
-defmodule AmazinWeb.StripeWebhookHandler do
-  @behaviour Stripe.WebhookHandler
-
-  alias Amazin.Store
-
-  @impl true
-  def handle_event(%Stripe.Event{type: "product.updated"} = event) do
-    Store.broadcast_product_updated(:updated, event.data.object)
-    :ok
-  end
-
-  @impl true
-  def handle_event(%Stripe.Event{type: "product.created"} = event) do
-    Store.broadcast_product_created(:created, event.data.object)
-    :ok
-  end
-
-  # Return HTTP 200 for unhandled events
-  @impl true
-  def handle_event(_event), do: :ok
-end
-```
-
-> In production it's better to have error handling and process the webhooks asynchronously. (See [stripe webhook best practices](https://stripe.com/docs/webhooks/best-practices) for more info). However; For the purposes
-> of this tutorial we will just return `elixir__:ok` to tell stripe we received the webhook and process everything synchronously.
-
-Next we update our endpoint to handle the routing and verification of webhooks using a provided plug from our elixir-stripe package —
-
-```elixir
----
-title: lib/amazin_web/endpoint.ex
----
-plug Stripe.WebhookPlug,
-  at: "/webhooks/stripe",
-  handler: AmazinWeb.StripeWebhookHandler,
-  secret: Application.compile_env(:amazin, :webhook_secret)
-
-# Make sure this goes before `Plug.Parsers`
-```
-
-Remember our secrets file for configuration variables? We're going to update it now with our webhook secret.
-
-Run the `stripe-cli` listener —
-
-```bash
-stripe listen --forward-to localhost:4000/webhooks/stripe
-```
-
-Then copy the webhook signing secret from the output. It should start with `whsec_`. Take that secret and update your config with it's value —
-
-```diff
----
-title: config/dev.secret.exs
----
-
-import Config
-
-config :stripity_stripe, api_key: "sk_test_123xxx"
-
-config :amazin,
-- webhook_secret: "YOUR_WEBHOOK_SECRET",
-+ webhook_secret: "whsec_123xxx",
-  stripe_public_key: "pk_test_123xxx"
-```
-
-## Add Products
-
-Next you'll want to start up the server with `mix phx.server` and navigate to [`http://localhost:4000/products`](http://localhost:4000/products).
-You should see an empty page just like before.
-
-Now open the stripe dashboard and go to your [test products page](https://dashboard.stripe.com/test/products).
-Create a product with name, description, and image. Set a one-time price using the `Standard pricing` model.
-
-Once you save that, you should magically see your products page update and display your product 🙌🏻
-The cli should show that `product.created` event was sent and you should see a new record in your
-database `products` table.
-
-It should look something like this —
-
-![Products Grid with Products](/assets/images/amazin-product-grid.png)
+Now that everything is wired up to be reactive, you can see the reactivity in action! Open up a two browser window's side by side of the app. In one window create a new product and you'll see it magically appear in the other browser window! Edit a product to see the same effect ✨

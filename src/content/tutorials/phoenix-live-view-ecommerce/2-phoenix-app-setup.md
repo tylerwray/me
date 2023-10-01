@@ -84,9 +84,6 @@ This part is a bit boring... but the payoff is worth it 🤞🏻 We need to add 
 You can grab the Stripe API public and secret keys from the
 [stripe developer page](https://dashboard.stripe.com/apikeys) of your stripe account.
 Take great care with the secret key, like the name says, it's secret 🤫
-
-Leave `webhook_secret` alone for now, we will come back to it later.
-
 Once you have your API keys, create a new file: `config/dev.secret.exs`.
 
 Inside that `config/dev.secret.exs` file, you can now safely add the keys from stripe —
@@ -96,13 +93,11 @@ Inside that `config/dev.secret.exs` file, you can now safely add the keys from s
 title: config/dev.secret.exs
 ---
 
-use Mix.Config
+import Config
 
 config :stripity_stripe, api_key: "YOUR_SECRET_KEY"
 
-config :amazin,
-  webhook_secret: "YOUR_WEBHOOK_SECRET",
-  stripe_public_key: "YOUR_PUBLIC_KEY"
+config :amazin, stripe_public_key: "YOUR_PUBLIC_KEY"
 ```
 
 Add `config/dev.secret.exs` to your `.gitignore` —

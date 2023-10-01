@@ -74,6 +74,11 @@ module.exports = {
                 fontWeight: "400",
               },
             },
+            ".inline-code-block": {
+              code: {
+                backgroundColor: theme("colors.zinc.800"),
+              },
+            },
             "code::before": {
               content: '""',
             },
