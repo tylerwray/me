@@ -145,7 +145,7 @@ iex -S mix
 Then inside iex, run —
 
 ```elixir
-iex(1)> Stripe.Product.list
+iex(1)> Stripe.PaymentIntent.list
 ```
 
 and you should see something like —
@@ -157,7 +157,7 @@ and you should see something like —
    has_more: false,
    object: "list",
    total_count: nil,
-   url: "/v1/products"
+   url: "/v1/payment_intents"
  }}
 ```
 
