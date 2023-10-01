@@ -26,7 +26,7 @@ Replace the contents of `lib/amazin_web/controllers/page_html/home.html.heex` wi
 title: lib/amazin_web/controllers/page_html/home.html.heex
 ---
 
-<div class="container mx-auto py-16 grid">
+<div class="container mx-auto py-4 grid max-w-4xl">
   <h1 class="text-4xl font-semibold pb-2">Welcome to Amazin!</h1>
 
   <p class="text-gray-500 pb-8">

@@ -147,6 +147,62 @@ Add a few more products, and your product page is starting to look really nice �
 
 ![Products Page Grid](./images/amazin-product-grid.png)
 
+Lastly lets just update the product details page to be a bit more appealing —
+
+```heex
+---
+title: lib/amazin_web/live/product_live/show.html.heex
+---
+
+<.header>
+  <.link
+    navigate={~p"/products"}
+    class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"
+  >
+    <.icon name="hero-arrow-left-solid" class="h-3 w-3" /> Back to products
+  </.link>
+  <:actions>
+    <.link patch={~p"/products/#{@product}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit product</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<div class="grid grid-cols-2 gap-16 p-4">
+  <img
+    class="grow object-contain"
+    src={@product.thumbnail}
+    title={@product.name}
+    alt={@product.name}
+  />
+  <div class="pt-8">
+    <h1 class="text-4xl pb-2"><%= @product.name %></h1>
+    <div class="text-gray-500 pb-8"><%= @product.description %></div>
+    <div class="font-bold text-5xl"><%= Money.new(@product.amount) %></div>
+  </div>
+</div>
+
+<.modal
+  :if={@live_action == :edit}
+  id="product-modal"
+  show
+  on_cancel={JS.patch(~p"/products/#{@product}")}
+>
+  <.live_component
+    module={AmazinWeb.ProductLive.FormComponent}
+    id={@product.id}
+    title={@page_title}
+    action={@live_action}
+    product={@product}
+    patch={~p"/products/#{@product}"}
+  />
+</.modal>
+```
+
+Then it should look a bit nicer, like so —
+
+![Product Details](./images/amazin-product-details.png)
+
 ## Reactive UI
 
 We want the live-view to update itself when relevent events occur. Theres alot of ways we _could_ accomplish that; but turns
