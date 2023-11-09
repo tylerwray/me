@@ -23,8 +23,8 @@ const publishDate = entry.data.publishedOn.toLocaleDateString("en-us", {
   day: "numeric",
 });
 
-const fullUrl = `https://tylerwray.me/blog/${entry.slug}/`;
-const githubEditPath = `/src/content/blog/${entry.slug}.md`;
+const fullUrl = `https://tylerwray.me/${entry.collection}/${entry.slug}/`;
+const githubEditPath = `/src/content/${entry.collection}/${entry.slug}.md`;
 
 const headings: MarkdownHeading[] = [
   { depth: 2, slug: "overview", text: "Overview" },
