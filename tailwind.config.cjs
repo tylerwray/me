@@ -1,4 +1,5 @@
 const colors = require("tailwindcss/colors");
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -8,6 +9,9 @@ module.exports = {
     extend: {
       colors: {
         purple: colors.violet,
+      },
+      fontFamily: {
+        sans: ["Inter Variable", "Inter", ...defaultTheme.fontFamily.sans],
       },
       // See tailwind default theme for theme keys
       // https://github.com/tailwindlabs/tailwindcss/blob/master/stubs/defaultConfig.stub.js
