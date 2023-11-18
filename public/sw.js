@@ -9,8 +9,8 @@ self.addEventListener("activate", function (event) {
     caches
       .keys()
       .then((cacheNames) =>
-        Promise.all(cacheNames.map((cacheName) => caches.delete(cacheName)))
-      )
+        Promise.all(cacheNames.map((cacheName) => caches.delete(cacheName))),
+      ),
   );
 });
 

@@ -22,7 +22,7 @@ export const HeadingsSchema = z.array(
     depth: z.number().min(1).max(6),
     slug: z.string(),
     text: z.string(),
-  })
+  }),
 );
 
 export type Headings = z.infer<typeof HeadingsSchema>;

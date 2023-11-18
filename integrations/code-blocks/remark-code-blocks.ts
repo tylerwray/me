@@ -58,13 +58,13 @@ const remarkShiki = async () => {
 
       if (!langExists) {
         console.warn(
-          `The language "${lang}" doesn't exist, halting syntax highlighting.`
+          `The language "${lang}" doesn't exist, halting syntax highlighting.`,
         );
         return;
       }
 
       const htmlBlock = removePreTag(
-        buildBlock({ theme: THEME, code: node.value, lang, highlighter })
+        buildBlock({ theme: THEME, code: node.value, lang, highlighter }),
       );
 
       const inlineCodeBlock = {
@@ -91,7 +91,7 @@ const remarkShiki = async () => {
           lang = node.lang;
         } else {
           console.warn(
-            `The language "${node.lang}" doesn't exist, falling back to plaintext.`
+            `The language "${node.lang}" doesn't exist, falling back to plaintext.`,
           );
           lang = "plaintext";
         }
@@ -168,7 +168,7 @@ function buildBlock({
   if (lang === "diff") {
     html = html.replace(
       /<span class="line"><span style="(.*?)">([\+|\-])/g,
-      '<span class="line"><span style="$1"><span style="user-select: none;">$2</span>'
+      '<span class="line"><span style="$1"><span style="user-select: none;">$2</span>',
     );
   }
 

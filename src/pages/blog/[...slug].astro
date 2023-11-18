@@ -28,7 +28,7 @@ const { entry } = Astro.props;
 const { Content, remarkPluginFrontmatter, headings } = await entry.render();
 
 const minutesToRead = MinutesToReadSchema.parse(
-  remarkPluginFrontmatter.minutesToRead
+  remarkPluginFrontmatter.minutesToRead,
 );
 
 const entryHeadings = HeadingsSchema.parse(headings);

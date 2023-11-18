@@ -8,7 +8,7 @@ interface Props {
 const { steps } = Astro.props;
 
 const activeStepIndex = steps.findIndex(
-  (step) => step.href == Astro.url.pathname
+  (step) => step.href == Astro.url.pathname,
 );
 
 let nextStep = null;
