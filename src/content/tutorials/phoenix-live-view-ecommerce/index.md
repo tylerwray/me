@@ -1,6 +1,6 @@
 ---
-title: Live View eCommerce
-description: Learn phoenix live view by building a real-world eCommerce application that can actually process payments!
+title: 'How to - Phoenix LiveView'
+description: Learn Phoenix LiveView by building a real-world eCommerce application that can actually process payments!
 tags:
   - stripe
   - elixir
@@ -16,8 +16,6 @@ imageAlt: Elixir, Phoenix Live View, Stripe, Tailwind
 imageCreditName: Tyler Wray
 imageCreditUrl: https://tylerwray.me
 ---
-
-## Introduction
 
 I've seen a good amount of buzz over the last ~3 years about [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view),
 so I wanted to actually build something to see it's merit. Elixir has been one of my favorite programming languages, Phoniex one of my favorite web frameworks, so I'm excited to dive in.
