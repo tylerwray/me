@@ -1,12 +1,12 @@
 ---
 title: Products Page
-description: Some description about Stripe Setup
+description: Build your eCommerce live view products page showing a nice grid of products for your users.
 tags:
   - stripe
   - elixir
   - phoenix
   - tailwindcss
-publishedOn: 2022-12-07
+publishedOn: 2023-11-20
 draft: true
 tutorial:
   slug: live_view_ecommerce
@@ -179,6 +179,7 @@ title: lib/amazin_web/live/product_live/show.html.heex
     <h1 class="text-4xl pb-2"><%= @product.name %></h1>
     <div class="text-gray-500 pb-8"><%= @product.description %></div>
     <div class="font-bold text-5xl"><%= Money.new(@product.amount) %></div>
+    <div><%= @product.stock %> remaining</div>
   </div>
 </div>
 
@@ -354,3 +355,5 @@ end
 It's worth reading the [docs](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#stream_insert/4) to understand `stream_insert/4`. It's doing some powerful things and letting us write less, more delcaritive, code.
 
 Now that everything is wired up to be reactive, you can see the reactivity in action! Open up a two browser window's side by side of the app. In one window create a new product and you'll see it magically appear in the other browser window! Edit a product to see the same effect ✨
+
+_Finished application on [github](https://github.com/tylerwray/amazin)._

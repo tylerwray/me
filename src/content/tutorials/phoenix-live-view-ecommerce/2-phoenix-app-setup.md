@@ -1,12 +1,12 @@
 ---
 title: Phoenix App Setup
-description: Some description about Stripe Setup
+description: Setup your phoenix live view app to be an eCommerce beauty.
 tags:
   - stripe
   - elixir
   - phoenix
   - tailwindcss
-publishedOn: 2022-12-07
+publishedOn: 2023-11-20
 draft: true
 tutorial:
   slug: live_view_ecommerce
@@ -78,11 +78,13 @@ mix deps.get
 
 This part is a bit boring... but the payoff is worth it 🤞🏻 We need to add a couple pieces of configuration.
 
-1. We need to tell `stripity_stripe` what our Stripe API key is.
-1. We need to tell our `money` package which currency to use by default.
+1. We need to configure `stripity_stripe` with our Stripe API key and webhook secret.
+1. We need to configure the `money` package with a default currency.
 
-You can grab the Stripe API public and secret keys from the
+You can grab the Stripe API secret key from the
 [stripe developer page](https://dashboard.stripe.com/apikeys) of your stripe account.
+
+
 Take great care with the secret key, like the name says, it's secret 🤫
 Once you have your API keys, create a new file: `config/dev.secret.exs`.
 
@@ -96,8 +98,6 @@ title: config/dev.secret.exs
 import Config
 
 config :stripity_stripe, api_key: "YOUR_SECRET_KEY"
-
-config :amazin, stripe_public_key: "YOUR_PUBLIC_KEY"
 ```
 
 Add `config/dev.secret.exs` to your `.gitignore` —
@@ -162,3 +162,5 @@ and you should see something like —
 ```
 
 And with that, we are all set up! Now the fun begins 😈
+
+_Finished application on [github](https://github.com/tylerwray/amazin)._

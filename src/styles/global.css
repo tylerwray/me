@@ -60,7 +60,7 @@ pre {
 }
 
 .code-block-copy-button {
-  @apply absolute rounded text-zinc-300 text-sm font-bold top-[0.40rem] right-2 p-2 bg-zinc-700 hover:bg-zinc-600;
+  @apply absolute rounded text-zinc-300 text-xs font-bold top-[0.40rem] right-2 p-2 bg-zinc-700 hover:bg-zinc-600;
 }
 
 div[data-remark-code-title] ~ .code-block-copy-button {

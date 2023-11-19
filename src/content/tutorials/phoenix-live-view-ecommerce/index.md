@@ -6,7 +6,7 @@ tags:
   - elixir
   - phoenix
   - tailwindcss
-publishedOn: 2022-12-07
+publishedOn: 2023-11-20
 draft: true
 tutorial:
   slug: live_view_ecommerce
@@ -28,15 +28,13 @@ so I wanted to actually build something to test it out! At it's core, Phoenix Li
 We're going to build an ecommerce application powered by [Stripe](https://stripe.com) and Phoenix LiveView. Along the way learning
 about Phoenix LiveView, some basics of Stripe, and tailwindcss.
 
-The tech we will use in this tutorial —
+The stack we will use in this tutorial —
 
 - Elixir
 - Phoenix Framework
 - Postgres
 - Tailwindcss
 - Stripe
-
-_TODO_ Insert architecture diagram.
 
 At the end of this tutorial you will have accomplished —
 
@@ -45,3 +43,5 @@ At the end of this tutorial you will have accomplished —
 - Take payments in your application with Stripe.
 
 This is going to be fun, let's dive in.
+
+TL;DR - _Finished application on [github](https://github.com/tylerwray/amazin)._

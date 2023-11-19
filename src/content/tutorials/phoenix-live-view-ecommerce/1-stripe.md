@@ -1,12 +1,12 @@
 ---
 title: Stripe Account Setup
-description: Some description about Stripe Setup
+description: Setup your stripe account to process payments and receive webhooks.
 tags:
   - stripe
   - elixir
   - phoenix
   - tailwindcss
-publishedOn: 2022-12-07
+publishedOn: 2023-11-20
 draft: true
 tutorial:
   slug: live_view_ecommerce
@@ -37,3 +37,5 @@ stripe logs tail
 
 You should see a `Ready!` message if you correctly installed the CLI and logged into your stripe account.
 `Ctrl+c` out of that command, and lets continue 👍🏼
+
+_Finished application on [github](https://github.com/tylerwray/amazin)._

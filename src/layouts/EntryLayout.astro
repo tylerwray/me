@@ -57,7 +57,7 @@ const headings: MarkdownHeading[] = [
 
       try {
         await navigator.clipboard.writeText(codeToCopy);
-        button.innerText = "Copied!";
+        button.innerText = "Copied";
         setTimeout(() => {
           button.innerText = "Copy";
         }, 2500);

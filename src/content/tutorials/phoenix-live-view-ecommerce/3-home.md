@@ -1,16 +1,16 @@
 ---
 title: Home Page
-description: Create a home page and application shell
+description: Create your home page and application shell for phoenix live view eCommerce app.
 tags:
   - stripe
   - elixir
   - phoenix
   - tailwindcss
-publishedOn: 2022-12-07
+publishedOn: 2023-11-20
 draft: true
 tutorial:
   slug: live_view_ecommerce
-  title: User Auth
+  title: Home Page
 imageSrc: ./images/phoenix-stripe-tailwind.jpg
 imageAlt: Elixir, Phoenix Live View, Stripe, Tailwind
 imageCreditName: Tyler Wray
@@ -52,7 +52,7 @@ In our `app.html.heex` file replace the contents of the `heex__<body />` tag so 
 
 ```heex
 ---
-title: lib/amazin_web/templates/layout/app.html.heex
+title: lib/amazin_web/components/layout/app.html.heex
 ---
 
 <nav class="shadow-md fixed z-10 w-full bg-white h-20">
@@ -121,3 +121,5 @@ end
 Put it all together and you should be looking at something like this —
 
 ![App Home Page](./images/amazin-home.png)
+
+_Finished application on [github](https://github.com/tylerwray/amazin)._
