@@ -20,13 +20,15 @@ imageCreditUrl: https://tylerwray.me
 
 ## Introduction
 
-I've heard alot of buzz over the last ~3 years about [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view),
-so I wanted to actually build something to test it out! At it's core, Phoenix LiveView is a framework for writing real-time web applications using a programming langauage loved by many; [Elixir](https://elixir-lang.org/).
+I've seen a good amount of buzz over the last ~3 years about [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view),
+so I wanted to actually build something to see it's merit. Elixir has been one of my favorite programming languages, Phoniex one of my favorite web frameworks, so I'm excited to dive in.
+
+At it's core, Phoenix LiveView is a framework for writing real-time web applications using a programming langauage loved by many; [Elixir](https://elixir-lang.org/). The real-time aspect is very interesting, as is the
+component-based semantics using a language like Elixir.
 
 ## What to expect
 
-We're going to build an ecommerce application powered by [Stripe](https://stripe.com) and Phoenix LiveView. Along the way learning
-about Phoenix LiveView, some basics of Stripe, and tailwindcss.
+We're going to build an eCommerce application powered by [Stripe](https://stripe.com) and Phoenix LiveView.
 
 The stack we will use in this tutorial —
 
@@ -38,10 +40,10 @@ The stack we will use in this tutorial —
 
 At the end of this tutorial you will have accomplished —
 
-- Building a Phoenix Live View application.
-- Style that application with TailwindCSS.
-- Take payments in your application with Stripe.
+- Building a Phoenix LiveView application.
+- Styling that application with TailwindCSS.
+- Accepting payments in your application with Stripe.
 
 This is going to be fun, let's dive in.
 
-TL;DR - _Finished application on [github](https://github.com/tylerwray/amazin)._
+_Finished application on [github](https://github.com/tylerwray/amazin)._

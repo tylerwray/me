@@ -60,7 +60,7 @@ title: mix.exs
 def deps do
   [
     {:money, "~> 1.12"},
-    {:stripity_stripe, "~> 2.17"}
+    {:stripity_stripe, "~> 3.0"},
   ]
 end
 ```
@@ -83,7 +83,6 @@ This part is a bit boring... but the payoff is worth it 🤞🏻 We need to add 
 
 You can grab the Stripe API secret key from the
 [stripe developer page](https://dashboard.stripe.com/apikeys) of your stripe account.
-
 
 Take great care with the secret key, like the name says, it's secret 🤫
 Once you have your API keys, create a new file: `config/dev.secret.exs`.

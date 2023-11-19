@@ -209,7 +209,7 @@ Then it should look a bit nicer, like so —
 We want the live-view to update itself when relevent events occur. Theres alot of ways we _could_ accomplish that; but turns
 out phoenix ships with a really nice way out of the box: [Phoenix.PubSub](https://hexdocs.pm/phoenix_pubsub/Phoenix.PubSub.html)!
 
-First we need to make a quick stop in our `Store` context to setup our events. We'll Use `Phoenix.PubSub` to create a reactive UI so that our live-view will auto-update certain domain events occur
+First we need to make a quick stop in our `Store` context to setup our events. We'll Use `Phoenix.PubSub` to create a reactive UI so that our live-view will auto-update certain domain events occur —
 
 ```elixir
 ---
@@ -337,6 +337,8 @@ defmodule AmazinWeb.ProductLive.Index do
 
     {:ok, stream(socket, :products, Store.list_products())}
   end
+
+  # ... Removed for brevity
 
   @impl true
   def handle_info({:product_updated, updated_product}, socket) do

@@ -220,7 +220,8 @@ defmodule AmazinWeb.Router do
 end
 ```
 
-Next let's wire up our product live view to handle adding items to a cart in the session. Replace the `mount` function with the following —
+Next let's wire up our product live view to handle adding items to a cart in the session.
+Replace the `mount` function, add a new `handle_info/2` function, and add the `handle_event/3` function for adding to cart —
 
 ```elixir
 defmodule AmazinWeb.ProductLive.Index do
@@ -240,6 +241,7 @@ defmodule AmazinWeb.ProductLive.Index do
 
   # ... Removed for brevity
 
+  @impl true
   def handle_info(:clear_flash, socket) do
     {:noreply, clear_flash(socket)}
   end
