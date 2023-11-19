@@ -22,7 +22,8 @@ This was my first attempt at a long-form tutorial and it was a lot harder than I
 I first had the idea for this tutorial in April 2020 and I wrote some play-around code.
 Then I got really serious and drafted the first page in December 2022.
 
-I would build a bit of it then take a break. Pick it back up and have to re-build it using newer live-view patterns.
+I would build a bit of it then take a break. Pick it back up and have to re-build it using newer live-view patterns. Writing this I learned how to cut scope on a 
+project like this. I really struggled with making the perfect showcase app early on instead of making something that was good enough to get someone familiar with LiveView.
 
 Elxir is probably my favorite programming language. Phoenix is a fantastic framework. Tailwind was a real joy to work with, as always. Stripe is world-class.
 I went into this only knowing surface level details of Live-View, and now I feel like I can build anything with Live-View.
