@@ -7,7 +7,6 @@ tags:
   - phoenix
   - tailwindcss
 publishedOn: 2023-11-20
-draft: true
 tutorial:
   slug: live_view_ecommerce
   title: Final Thoughts
