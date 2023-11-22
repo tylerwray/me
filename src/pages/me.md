@@ -77,3 +77,4 @@ through and through.
 - Github: [tylerwray](https://github.com/tylerwray)
 - Twitter: [@wray_tw](https://twitter.com/wray_tw)
 - LinkedIn: [Tyler Wray](https://www.linkedin.com/in/wraytw)
+- Email: <me@tylerwray.me>
