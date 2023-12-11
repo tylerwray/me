@@ -1,6 +1,7 @@
 import { defineCollection, z, type SchemaContext } from "astro:content";
 
 const TagSchema = z.enum([
+  "astro",
   "elixir",
   "gatsby",
   "javascript",

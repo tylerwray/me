@@ -12,12 +12,12 @@ type Color =
   | "pink";
 
 interface Props {
-  // Use tag type
   tag?: Tag;
   color?: Color;
 }
 
 const tagMapping: { [key in Tag]: Color } = {
+  astro: "orange",
   elixir: "purple",
   gatsby: "purple",
   javascript: "yellow",
