@@ -49,9 +49,7 @@ export default defineConfig({
           },
           behavior: "before",
           group: ({ tagName }: any) =>
-            h(`div.heading-wrapper.level-${tagName}`, {
-              tabIndex: -1,
-            }),
+            h(`div.heading-wrapper.level-${tagName}`),
           content: (heading: any) => [
             h(
               `span.anchor-icon`,
