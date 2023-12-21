@@ -1,5 +1,5 @@
 ---
-title: Rebuilt it with Astro
+title: Rebuild it with Astro
 description: Rewrite it in Rust has become a great software development meme in the world today, and for good reason. In this article I'm going not going to convince you to use rust, but rather to Rebuild it with Astro
 tags:
   - astro
