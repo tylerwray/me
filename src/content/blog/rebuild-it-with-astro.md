@@ -4,8 +4,7 @@ description: Rewrite it in Rust has become a great software development meme in 
 tags:
   - astro
   - javascript
-publishedOn: 2023-12-04
-draft: true
+publishedOn: 2023-12-20
 imageSrc: ./images/astro.png
 imageAlt: Astro logo
 imageCreditName: Astro
